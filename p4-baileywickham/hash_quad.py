@@ -21,7 +21,7 @@ class HashTable:
                 self.hash_table[h] = (str(key), [value])
                 self.num_items += 1
                 break
-            elif self.hash_table[h] is not None and self.hash_table[h][0] == key:
+            elif self.hash_table[h][0] == key:
                 self.hash_table[h][1].append(value)
                 break
             h = (oh + (i * i)) % self.table_size
