@@ -44,9 +44,9 @@ class Concordance:
         with open(filename, 'w') as f:
             f.write(out.rstrip())
 
-'''
+
 conc = Concordance()
 conc.load_stop_table("stop_words.txt")
 conc.load_concordance_table("file_WAP.txt")
 conc.write_concordance("wap.txt")
-'''
+
