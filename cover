@@ -1,0 +1,1 @@
+alias cover='for file in *test*.py; do coverage3 run -p $file; done; coverage combine; coverage3 report -m'
