@@ -36,6 +36,7 @@ def tsort(vertices):
         if al[i][0] == 0:
             s.push(al[i])
             del al[i]
+
     while not s.is_empty():
         v = s.pop()
         for i in v[1]:
@@ -47,24 +48,4 @@ def tsort(vertices):
     if al:
         raise ValueError("input contains a cycle")
     return outstr
-'''
-def main():
-    """Entry point for the tsort utility allowing the user to specify
-       a file containing the edge of the DAG"""
-    if len(argv) != 2:
-        exit()
-    try:
-        f = open(argv[1], 'r')
-    except FileNotFoundError as e:
-        exit()
-    
-    vertices = []
-    for line in f:
-        vertices += line.split()
-       
-    try:
-        result = tsort(vertices)
-        print(result)
-    except Exception as e:
-        print(e) 
-'''
+
