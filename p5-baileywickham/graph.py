@@ -88,7 +88,10 @@ class Graph:
         '''Returns True if the graph is bicolorable and False otherwise.
            This method MUST use Breadth First Search logic!'''
         start = min(self.verts)
-        return self.bi_helper(start)
+        s =  self.bi_helper(start)
+        for x in self.verts.keys():
+            self.verts[x] = None
+        return s
        
 
     def bi_helper(self,v):
