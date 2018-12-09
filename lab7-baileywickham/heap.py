@@ -85,30 +85,12 @@ class MaxHeap:
         self.items[a], self.items[b] = self.items[b], self.items[a]
 
     def perc_down(self, i):
-        """where the parameter i is an index in the heap and perc_down moves the element stored
-        at that location to its proper place in the heap rearranging elements as it goes."""
-        '''
-        l = 2*i 
-        r = 2*i + 1
-        m = self.items[i]
-        if self.size < r:
-            if self.size-1< l:
-                return
-            elif m < self.items[l]:
-                self.swap(i,l)
-        elif m < self.items[r] or m < self.items[l]:
-            print('its less than one')
-            if self.items[l] < self.items[r]:
-                print('should be swapping',i)
-                self.swap(i,r)
-            else:
-                self.swap(i,l)
-        '''
         while i * 2 <= self.size:
             m = self.mc(i)
             if self.items[i] < self.items[m]:
                 self.swap(i,m)
             i = m
+            
     def mc(self, i):
         if i * 2 + 1 > self.size:
             return 2 * i
