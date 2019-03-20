@@ -1,0 +1,311 @@
+<!doctype html>
+<html>
+<head>
+   <meta charset="utf-8"/>
+   <title>Lab 5, CSC/CPE 203</title>
+   <link rel="stylesheet" href="../../lib/assignment.css" type="text/css">
+</head>
+
+<body>
+<div class="container">
+  <div class="boxed">
+
+  <div class="header">  <h1>Lab 5, CSC/CPE 203 - Sorting, comparisons and lambda</h1></div>
+
+<p>
+Sorting/ordering data is a common need in computing applications.  Java has
+built-in support to allow for various methods to compare data, which can
+then be used when sorting.  One tool to facilitate this is to specify
+a small block of code that can be passed around and executed
+later.  A convenient way of doing this was added to Java 8:
+<em>lambda expressions</em>.  The inclusion of
+<em>lambda expressions</em> can aid the
+programmer with common tasks.  Comparisons are the first example we will 
+tackle in this lab.  A lambda expression can be seen as a syntactic 
+simplification of a common use of anonymous inner classes, or even normal
+classes that implement an interface.  Though this "syntactic sugar"
+is of great value, lambda expressions are coupled with additional support
+throughout the Java libraries.  In particular, the
+<code><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html">java.util.function</a></code> package provides
+support for lambdas, and
+<code><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html">java.util.stream</a></code>
+relies on them heavily.
+</p>
+
+<p>
+This lab introduces the mechanics of lambda expressions as motivated by
+the common task of comparing two objects.  Later activities will revisit the
+use of lambda expressions in different contexts.
+<p>
+NOTE:  All string comparisons should be case-sensitive.
+
+
+<div class="header">
+<h2>Objectives</h2>
+</div>
+
+<ul>
+<li><p>To explore the task of comparing data using various Java mechanism, including comparators and lambdas
+<li><p>To practice using lambda expressions for comparisons to sort data
+<li><p>To practice understanding the application of lambda expressions via
+reading and understanding code examples using lambdas for things other
+than sorting.
+</ul>
+
+<div class="header">
+<h2>Given Files</h2>
+</div>
+
+<p>
+The given files include a class to represent a Song, and some initial
+test cases.
+
+<div class="header">
+<h2>Comparators and Lambda Expressions</h2>
+</div>
+
+<p>Examine the provided files in the <code>src</code>
+directory.
+</p>
+
+<p>
+At first we will explore different ways of creating objects
+that implement the
+<code><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html">java.util.Comparator</a></code> interface.
+A <code>Comparator</code> is an object that compares to object passed
+to it, 
+to determine which comes before the other, according to some ordering you
+define.  This is done with the
+<code>compare</code> method.
+For example, one might define a <code>Comparator&lt;Integer&gt;</code>
+to determine which of two <code>Integer</code> objects comes first by
+ascending order.
+</p>
+
+<p>
+Various methods take <code>Comparator</code> objects to configure 
+algorithms, like sorting.  By passing different 
+<code>Comparator</code> objects, the same sort algorithm can produce
+different orderings of data strucures.  Use of the
+<code>Comparator</code> interface allows one to remove the "ordering"
+logic from the objects to be compared.  This was not true of the older
+<code>Comparable</code> interface.  Instead, with <code>Comparable</code>,
+the comparison logic is placed with the code doing the sorting.  This allows
+multiple orderings of the same data.
+</p>
+
+<p>
+The <code>Comparator</code> interface requires its implementing
+classes to implement a <code>compare</code> method that takes
+two arguments and returns an <code>int</code> value indicating
+the relative order of the arguments.  A negative return value
+indicates that the first parameter object comes before the
+second; a positive return value indicates that the second parameter
+object comes before the first; and zero indicates that the
+values are equivalent by the ordering.  See
+<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html#compare-T-T-">the
+official documentation</a>.
+
+<p>
+You will create instances of <code>Comparator&lt;Song></code> as
+initializers for the static data members in <code>Comparators</code>.
+When the Java runtime loads the class <code>Comparators</code>, these
+static initializers are run in the same order as they appear in the source
+file, so it's OK to refer to a static data member that appears earlier
+in the file.
+
+
+<div class="header">
+<h3>ArtistComparator</h3>
+</div>
+
+<p>
+Define an <code>ArtistComparator</code> class, as a normal class that
+implements <code>Comparator&lt;Song&gt;</code>, to
+compare two <code>Song</code> objects by the song's artist.  
+This comparator could be used,
+for example, to sort songs by artist, in
+ascending order.  The <code>Song</code> class is in the provided code.
+</p>
+
+<p>
+Write a few tests of your <code>ArtistComparator</code> in the
+provided <code>TestCases.java</code> by comparing two <code>Song</code>
+objects.  You may use elements of the <code>songs</code> array.
+</p>
+
+<p>
+For example, when you compare the first and second songs in the song list, the 
+result should greater than 0, because "Kate Bush" is lexically 
+before "Lene Lovich".  You should write several test cases.
+Note that the first song is at position zero.
+</p>
+
+<div class="header">
+<h3>Title Comparator &mdash; As a Lambda Expression</h3>
+</div>
+
+<p>
+Functional interfaces (those that declare only a single required method)
+can be implemented and instantiated by lambda expressions.  The compiler 
+automatically generates
+a class that implements the interface, and it creates an instance of that
+class to represent the lambda.  A lambda expression effectively represents
+a function.
+</p>
+
+<p>
+For this part you <em>will not</em> define a new named class.  Instead,
+assign a lambda expression to <code>Comparators.lambdaTitleComparator</code>
+This lambda expression should act as a comparator on
+<code>Song</code> objects that orders them in ascending order by
+title.
+</p>
+
+<p>
+Write a few tests to verify that this comparator works.  For the test 
+cases you only need to compare two songs at a time.  You should
+write more then one comparisons to accurately test your implementation.
+</p>
+
+<p>
+For example, when you compare the first and second songs in the song list, 
+the result should now be less than 0, because "New Toy" comes
+lexically before "The Wedding List".
+</p>
+
+<div class="header">
+<h3>Year Comparator &mdash; As a Key Extractor</h3>
+</div>
+
+<p>
+Another way of instantiating a functional interfaces is to 
+directly provide the name of a method of the required type.
+A getter method on some type <code>T</code> is a function that
+takes that type <code>T</code>, and returns a value of type <code>R</code>.
+Such a method can be called a "key extractor."  
+In synergy with this, the Comparator interface provides a number
+of convenience static methods for creating comparators.  For example,
+<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html#comparingInt-java.util.function.ToIntFunction-"><code>Comparator.comparingInt()</code></a>
+takes
+a key extractor that returns an <code>int</code>.  The type declaration 
+is a little dense; we'll cover
+this syntax much later in the course.  For now, you can use the
+API note in 
+<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html#comparing-java.util.function.Function-"><code>Comparator.comparing()</code></a>
+as a model.
+<p>
+Using a key extractor instead of a lambda expression is less general, because
+you can only write a reference to an existing method.  It can be slightly more
+compact, and some find this style to be more readable.  It is unlikely that 
+there will be any notable performance difference between the two styles.
+Buried in the sea of dross and questionable advice that one can find on
+stack overflow, some insight into why this duplicative language feature
+was added is given by Brian Goetz, one of the architects of this part
+of the Java Language, in <a href="https://stackoverflow.com/questions/24487805/lambda-expression-vs-method-reference#24493905">this post</a>.
+<p>
+Create a comparator by calling
+<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html#comparingInt-java.util.function.ToIntFunction-"><code>Comparator.comparingInt()</code></a>
+with a key extractor argument, so that the resulting comparator
+compares songs by year.
+<p>
+Write a few tests to verify that this comparator works.  For the test 
+cases you only need to compare two songs at a time.  You should
+write more then one comparisons to accurately test your implementation.
+
+
+<div class="header">
+<h3>Comparing Two Fields</h3>
+</div>
+<p>
+The comparators defined thus far compare only a single field to determine
+an ordering.  It is often the case that when ordering two objects
+one might want to order first by a primary key and then, if the primary
+key matches, by a secondary key.  For instance, one might wish to order
+songs by artist, and by year for songs by the same artist.
+</p><p>
+One can do this quite simply with a single <code>Comparator</code> and a single
+lambda, where the body of the lambda first compares the first fields, and
+then, if they're eqiuvalent, compares the second fields.  For this part,
+you assign a lambda expression to a <code>Comparator&lt;Song&gt;</code> 
+variable.  This lambda expression will
+compare two <code>Song</code> objects by artist, and then by year for
+songs with the same artist.
+</p><p>
+Write at least two tests using this comparator, first on a pair of songs with
+the same artist, and then for a pair of songs with a different artist.
+</p><p>
+For example, when you compare the second and fifth songs in the song list, they are both by the same artist, but with different years.  When compared think about what the result would be based on the years of these songs.
+</p>
+
+
+<div class="header">
+<h3>Comparator Composition</h3>
+</div>
+
+<p>
+Another way to achieve the same goal is to compose two comparators into
+one, by defining a third comparator that uses the first two.  
+For this part you will define the <code>ComposedComparator</code> class,
+implementing <code>Comparator&lt;Song&gt;</code>.  This
+comparator must define a constructor that takes two
+<code>Comparator&lt;Song&gt;</code> objects, <code>c1</code> and
+<code>c2</code>.  The <code>compare</code> method must be defined to use
+<code>c1</code> to compare the <code>Song</code> objects and then, if
+they are equivalent by the <code>c1</code> ordering, it must
+use <code>c2</code>.
+</p>
+
+<p>
+Write a test using this comparator that behaves the same way as the lambda
+from the previous exercise.  You can re-use any of the single-field
+comparators defined previously.  Write two tests for it, testing it in the
+same way as the equivalent lambda comparator defined earlier.
+</p>
+
+<div class="header">
+<h3><code>sort</code></h3>
+</div>
+
+<p>
+Using the techniques from the previous exercises,
+complete the sorting test 
+by creating a comparator that orders by artist, then title, and then 
+year, each in ascending order.  You may re-use any of the classes or
+comparators you've created, in any combination you wish.
+</p>
+
+<p>
+For this test case, there is a correctly ordered song list to use for your comparison.
+</p>
+
+
+<div class="header">
+<h2>Submission</h2>
+</div>
+
+<p>
+Submit your code in <code>turninXXX/lab05</code> to GitHub by midnight on the due date.  
+If you'd like to submit the lab one day late with a penalty of 5%, 
+add a file called <code>late_5_percent_off.txt</code> to the 
+<code>lab05</code> directory.  If you'd like to submit the lab two 
+days late with a penalty of 15%, add a file called
+<code>late_15_percent_off.txt</code> to the <code>lab05</code>
+directory.  Make sure you add and push the late file.
+<p>
+After your code is working and submitted,
+check you submission using the <code>checkgit</code> command on the
+unix server.  If the autograder can't compile your lab for a reason that
+is caught by <code>checkgit</code>, you will get a zero on the lab.  To
+check your submission, on a Unix server type:
+<blockquote><pre>checkgit &lt;git-login> 203 lab05</pre></blockquote>
+<p>
+If it works, you will see the message "** Tests Passed **".  If not,
+you will see some kind of error message.  The error message might not tell
+you exactly what you need to change, but it should give an indication as
+to what is wrong.
+</div>
+</div>
+</div>
+</body>
+</html>

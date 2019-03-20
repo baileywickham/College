@@ -1,0 +1,79 @@
+
+Here are some useful git commands for this class:
+
+    git clone https://... the rest of the link from the git website ...
+
+	This is how you create a local copy of a GIT repository.  You
+	get the URL from your repository's web site, under the green
+	"Clone or download" button on the right toward the top.
+	You want "clone," not "download."
+
+	If you like, you can change the name of the directory it puts your
+	repository in.
+
+The rest of the commands should be run from within the repository (cd to it)
+
+    git add .
+
+	Adds all the new and/or changed files in your directory and its
+	subdirectories to the "change set."
+
+    git commit
+
+	Stages all of the files in your "change set" so they're ready
+	to be "pushed" to the repository on the server.
+
+    git rm <name of file>
+
+	Remove a file, and remove it from the change set.  This is handy
+	if you aborted out of "git commit" because you accidently added a
+	file that you didn't want to.
+
+    git push
+
+	Publishes the currently committed change set up to the server.
+	Until you do this, all of your changes are just on your local
+	computer; after you do it, collaborators on your repository
+	(like the professor and TAs) can see your changes.
+
+    git pull
+
+	This takes all the changes that others have made to your
+	repository, and copies them into your local copy.  When we grade
+	homework or labs, we might put comments in your code; when you do
+	a pull you'll be able to see them.  You'll also want to do a git
+        pull on the materials directory when there's an update.
+
+    Seeing changes in different version of a file
+
+	IntelliJ Idea (the IDE) has a very nice visual diff tool, accessible
+	in the file editor with right click -> Git -> "Compare with...".
+	If you're not using the IDE, there is a command you can use,
+	but it's pretty awkward.  If you look at a file on the github
+	web site, you can always see the changes in one commit, by clicking
+	on "history."
+
+        There probably are good free tools you can find to show you
+	differences between versions.  Another option it to use Idea's
+	diff tool, even if you're not working in the IDE.  You can
+	use idea's "import project -> create from existing sources" 
+	option for this.  It's a littly heavyweight, but it works.
+
+This "GIT cheat sheet" from GitHub might be helpful, too:
+https://education.github.com/git-cheat-sheet-education.pdf .
+
+If you get tired of typing your github password, and you don't mind
+doing some extra configuration, you can set up an ssh key for yourself.  
+See https://help.github.com/articles/connecting-to-github-with-ssh/ .
+When you're done, it might help to run "ssh -T git@github.com" -- this seems
+to turn the symbol for the key green on the github dashbord.
+(Source:  https://github.com/spences10/cheat-sheets/blob/master/git.md#use-ssh-in-place-of-https)
+
+Again, if you've configured an ssh key, make sure you use the "clone with SSH" 
+URI from github.  It starts with "git@github.com", and not with 
+"https://github.com".
+
+If you have two-factor authentication enabled for your account, you will
+probably need to configure a token for use on the unix server.  Github lets
+you create a token that disables two-factor authentication on just one
+repository.

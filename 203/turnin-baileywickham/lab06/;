@@ -1,0 +1,13 @@
+Average Views without Purchase: 3.00
+
+Price Difference for Purchased Product by Session
+    session0
+       product3 125.00
+    session2
+       product3 125.00
+
+Number of Views for Purchased Product by Customer
+   region1 customer0
+       product3 1
+   region2 customer0
+       product3 2

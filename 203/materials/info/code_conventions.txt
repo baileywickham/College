@@ -1,0 +1,77 @@
+
+
+Set tab stops at 8, and the indent level at 4.  This should be the
+default for most tools.  This was the coding convention at JavaSoft.
+Some people prefer an indent level of 3.  I don't mind terribly, but 
+I'll try to make all the code I provide you indent to 4.
+
+Your text editor may have a way of configuring this.  Some text editors
+use confusing terms for "tab stops" and "indent level."  Sublime is a
+notorious offender in this regard.  Tab stops refers to how many spaces
+you see when there is a tab character in the file.  This is not necessarily
+the same thing as what happens when you press the tab key on the keyboard;
+many editors make a distinction between the two.
+
+    A bit of history:  Teletype machines and ASCII terminal originally 
+    had tab stops pre-set to 8 spaces.  Generally, C code on Unix was
+    formatted with tabs set to 8, and with code indented about four
+    spaces for every level.  Some people preferred changing the tab
+    stops to coincide with the indent level, but this wasn't very common
+    on Unix.  Bill Gates preferred this style, and Microsoft popularized 
+    it on Windows.
+
+    The problem with re-defining tab to mean a different number of spaces
+    is that you, and everyone you interact with, would need to configure
+    every program they use to view code to agree if they wanted to avoid
+    seeing very ugly code that's indented much too far.  This is a particular
+    problem in envirnoments with a rich and divers set of tools.  For example,
+    on Unix terminals, people often use tools other than a text editor to
+    view source code, like more, less, grep, cat, diff, etc.
+
+    If you like, you can set your editor to replace tabs with the right
+    number of spaces.  This can be a good idea if you're working with
+    people who have a different tab religion.
+
+Always us curly braces for a code block.
+
+    For example, never write this:
+
+        if (x == 0) 
+	    foo();
+	else
+	    bar();
+	glorp();
+
+    Instead, do this:
+
+	if (x == 0) {
+	    foo();
+	} else {
+	    bar();
+	}
+	glorp();
+
+    Rationale:  This will save you from an embarrasing error if you add code
+    to the if block or the else block.
+
+
+Put closing braces on their own line, below the last line of the code block.
+
+    Don't do this:
+
+	if (x == 0) {
+	    foo(); }
+
+    Do this:
+
+	if (x == 0) {
+	    foo(); 
+	}
+
+Don't make your lines too long:  Most lines shouldn't be longer than about 100
+columns, and definitely don't go past 121.  
+
+    IntelliJ's editor gives you a little black line in the editor window
+    at column 121.  You might notice that older code tends to be
+    limited to 80 columns.  That's mostly because physical terminals
+    were almost all 80 columns wide.

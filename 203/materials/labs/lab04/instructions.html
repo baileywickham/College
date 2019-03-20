@@ -1,0 +1,322 @@
+<!doctype html>
+<html>
+<head>
+   <meta charset="utf-8"/>
+   <title>Lab 4, CSC/CPE 203</title>
+   <link rel="stylesheet" href="../../lib/assignment.css" type="text/css">
+</head>
+
+<body>
+<div class="container">
+  <div class="boxed">
+
+  <div class="header">  <h1>Lab 4, CSC/CPE 203 - Interfaces</h1></div>
+
+<p>
+ <div class="header">
+ <h2>Introduction</h2>
+ </div>
+<p>
+In this lab you will create a virtual drawing workspace on which
+you can place various geometric shapes. You will not actually be drawing
+the shapes in this program; you will simply be representing geometric
+shapes as objects placing them in a "workspace" data structure that represents a
+location in a 2D space. The
+workspace will make use of a <code>java.util.List</code> from the 
+Java Standard Library to store shapes.  It will have methods that allow 
+you to add, remove, and inspect
+the shapes it contains. All of the shapes share a common set of methods
+defined by a Java interface. The implementation of these common methods varies,
+as appropriate, by shape. In addition, each shape has one or more methods
+unique to it. The following shapes will be supported: circle, rectangle,
+triangle, and convex polygon.
+</p>
+
+<div class="header">
+<h2>Objectives</h2>
+</div>
+
+<ul>
+<li><p>To develop and demonstrate basic object-oriented development skills. Much of the 
+   structure of the solution is given - use good judgment when "filling in the blanks".</p></li>
+<li><p>To become familiar with Java interfaces and the concept of polymorphism.</p></li>
+<li><p>To practice using the <code>instanceof</code> operator.</p></li>
+<li><p>More practice using existing classes and interfaces from the Java Standard Library, such as: 
+   <code>List</code>, <code>ArrayList</code>, <code>LinkedList</code>, and 
+   <code>Color</code>.</p></li>
+</ul>
+<div class="header">
+<h2>Given Files</h2>
+</div>
+
+<p>
+In this lab, the only provided files are the Main class, a very simple
+Point class and a starter
+set of test cases.  In the test cases file, the actual tests are commented
+out.  That is to say, the code of the tests are made into a big multi-line
+comment, starting with <code>/*</code> and ending with <code>*/</code>.  You'll
+want to progressively remove test methods from within the comments, as you
+write more of the lab.
+</p>
+
+<p>
+The given file is a <i>starter</i> test file for your code.  Be sure 
+to add to this file to make sure your code is working properly.  The
+autograder will use a much more extensive test file.
+</p>
+
+<div class="header">
+<h2>Ground Rules</h2>
+</div>
+
+<p>
+Many of the classes and interfaces you will be writing in
+this lab have counterparts in the Java Standard Library. You <b><i>may
+not</i></b> use the Java Standard Library versions in your implementation
+unless explicitly instructed to do so (see below). The Java Standard Library classes
+and interfaces you may use are identified by a complete package
+specification. For example, you will be using the <code>java.awt.Color</code>,
+<code>java.util.List</code> and <code>java.util.ArrayList</code> 
+types from the 
+Java Standard Library. You may also use the <code>java.lang.Math</code> class from the Java Standard
+Library.
+Any classes or interfaces in the specifications below (other than Color,
+List and ArrayList)
+must be entirely written by you. If you have any questions
+regarding this restriction please be sure to ask your instructor early in the
+development process.
+
+<p>
+As stated above, your classes and interfaces will use many classes that already exist in the Java Standard Library.  
+For example, to use the <code>Color</code> classes, you will need to import 
+<code>java.awt.Color</code>.
+<p>It might be possible to re-use some of your code from Lab 3, but it will need
+to be reused but will need to be re-written to match this specification.
+<div class="header">
+<h2>Task</h2>
+</div>
+
+<p>
+You must define the <code>Shape</code> interface and implement the <code>Circle</code>, 
+<code>Rectangle</code>, <code>ConvexPolygon</code>, <code>Triangle</code>, and 
+<code>Workspace</code> classes as described below. The instance variables 
+for each class
+are not explicity specified. Remember, an instance variable makes every object 
+of a class require more memory.  All instance variables should be needed
+to represent the state of an object, or it should provide a significant 
+computational efficiency or reduction in code complexity.  On the other hand,
+local variables declared in the method in which they are used are inexpensive,
+and should be used freely.
+<i>Be ready to justify your choices!</i> Make sure all your instance 
+variables are private, so that you maintain encapsulation.
+
+<p>
+You may add helper methods other than the methods specified below, but the 
+additional methods must be private.
+
+<ol>
+   <li>
+   Define a Java interface <code>Shape</code> with the following methods. (Note that the
+   input parameters for each method, if any, are intentionally not shown. You must figure
+   out what is needed):
+   <ul>
+      <li><code>Color getColor()</code> - Returns the <code>java.awt.Color</code> of
+      the <code>Shape</code>.</li>
+      <li><code>void setColor()</code> - Sets the <code>java.awt.Color</code> of the <code>Shape</code>.</li>
+      <li><code>double getArea()</code> - Returns the area of the <code>Shape</code></li>
+      <li><code>double getPerimeter()</code> - Returns the perimeter of the <code>Shape</code></li>
+      <li><code>void translate()</code> - Translates the entire shape by moving
+          it by a given delta-x and delta-y, given as double parameters
+	  in that order.  In a right-handed coordinate system, a positive
+	  delta-x moves to the right, and a positive delta-y moves up.
+   </ul>
+   </li>
+
+
+   <li>
+   <p>
+   Define a Java class <code>Circle</code> that implements the <code>Shape</code> interface. Circles have a radius,
+   a center, and a <code>Color</code>.  In addition to implementing the required methods specified by the <code>Shape</code> 
+   interface you must also implement the following methods. (Again, note that the input parameters for each method, 
+   if any, are intentionally not shown):
+   <ul>
+      <li><code>Circle()</code> - A constructor with parameters to initialize 
+      the radius, center and color, in that order.  Do not 
+      implement a zero-argument constructor.</li>
+      <li><code>double getRadius()</code> - Returns the radius of the <code>Circle</code>.</li>
+      <li><code>void setRadius()</code> - Sets the radius of the <code>Circle</code></li>
+      <li><code>Point getCenter()</code> - Returns the center of the <code>Circle</code></li>
+   </ul>
+   </br>Note: Use the constant <code>Math.PI</code> when performing any calculations involving PI.
+   </p>
+   </li>
+
+   <li>
+   <p>
+   Define a Java class <code>Rectangle</code> that implements 
+   the <code>Shape</code> interface. Rectangles have a 
+   width, a height, a Point indicating the top left corner, and 
+   a <code>java.awt.Color</code>.  
+   In addition to implementing 
+   the required methods specified by the <code>Shape</code> interface you 
+   must also implement the following methods. 
+   (Again, note that the input parameters for each method, if any, are intentionally not shown):
+   <ul>
+      <li><code>Rectangle()</code> - A constructor with parameters for
+      the width, the height, a Point representing the top-left corner,
+      and a <code>java.awt.Color</code>, in that order.
+      Do not 
+      implement a zero-argument constructor.</li>
+      <li><code>double getWidth()</code> - Returns the width of the <code>Rectangle</code>.</li>
+      <li><code>void setWidth()</code> - Sets the width of the <code>Rectangle</code></li>
+      <li><code>double getHeight()</code> - Returns the height of the <code>Rectangle</code>.</li>
+      <li><code>void setHeight()</code> - Sets the height of the <code>Rectangle</code></li>
+      <li><code>Point getTopLeft()</code> - Returns the <code>Point</code> representing the top left corner 
+      of the <code>Rectangle</code></li>
+   </ul>
+   </p>
+   </li>
+
+   <li>
+   <p>
+   Define a Java class <code>Triangle</code> that implements the <code>Shape</code> interface. Triangles have three 
+   Points indicating its vertices and a <code>Color</code>.  To simplify your solution, the vertices will always be 
+   given in counter-clockwise order.  However, there are calculations for the area of a Triangle that will work with 
+   the vertices in any order. In addition to implementing the required methods specified by the 
+   <code>Shape</code> interface you must also implement the following methods. (Again, note that the input parameters 
+   for each method, if any, are intentionally not shown):
+   <ul>
+      <li><code>Triangle()</code> - A constructor with parameters giving
+      each vertex as a <code>Point</code>, and a <code>java.awt.Color</code>,
+      in that order.  The first <code>Point</code> passed to the constructor will be vertex A, the 
+      second <code>Point</code> vertex B, and so on.</li>
+      <li><code>Point getVertexA()</code> - Returns the Point representing vertex A of the <code>Triangle</code>.</li>
+      <li><code>Point getVertexB()</code> - Returns the Point representing vertex B of the <code>Triangle</code>.</li>
+      <li><code>Point getVertexC()</code> - Returns the Point representing vertex C of the <code>Triangle</code>.</li>
+   </ul>
+   </p>
+   </li>
+
+   <li>
+   <p>
+   Define a Java class <code>ConvexPolygon</code> that implements the <code>Shape</code> interface. A ConvexPolygon 
+   must a java <code>Point</code> array (not an <code>ArrayList</code>) indicating its vertices and a <code>Color</code>.  
+   Assume the Points in the <code>Point</code> array will always be given in counter-clockwise order.  In addition 
+   to implementing the required methods specified by the <code>Shape</code> interface you must also implement the 
+   following methods. (Again, note that the input parameters for each method, if any, are intentionally not shown):
+   <ul>
+      <li><code>ConvexPolygon()</code> - A constructor taking a Java
+      <code>Point[]</code> and a <code>java.awt.Color</code>, in that
+      order.
+     Do not 
+      implement a zero-argument constructor.</li>
+      <li><code>Point getVertex()</code> - Takes an index and returns the specified vertex of the <code>ConvexPolygon</code>.  It should throw an exception
+      if the index is not legal
+      <li><code>int getNumVertices()</code> - gives the number of vertices
+   </ul>
+   </p>
+   </li>
+
+   <li>
+   <p>
+   Define a Java class <code>WorkSpace</code> to hold <code>Shape</code> objects. The <code>WorkSpace</code> class
+   shold have <i>one private instance variable</i> of type <code>List&lt;Shape&gt;</code> to hold <code>Shape</code> objects.  
+   You may choose which kind of <code>List</code> you use. The <code>WorkSpace</code> class should have the following 
+   public methods. (<i>Note that this time the parameters <b>are</b> specified!</i>):
+   <ul>
+      <li><code>WorkSpace()</code> - A zero-argument constructor to initialize its instance variable to an empty List. 
+      The constructor should not take any parameters.  (If you do nothing in this constructor, you may omit it from your code altogether.)</li>
+      <li><code>void add(Shape shape)</code> - Adds an object which implements the <code>Shape</code> interface to the end of the <code>List</code>
+      in the <code>WorkSpace</code>.</li>
+      <li><code>Shape get(int index)</code> - Returns the specified <code>Shape</code> from the <code>WorkSpace</code>.</li>
+      <li><code>int size()</code> - Returns the number of <code>Shapes</code> contained by the <code>WorkSpace</code>.</li>
+      <li><code>List&lt;Circle&gt; getCircles()</code> - Returns a <code>List</code> of all the <code>Circle</code> objects contained 
+      by the <code>WorkSpace</code>.</li>
+      <li><code>List&lt;Rectangle&gt; getRectangles()</code> - Returns a <code>List</code> of all the <code>Rectangle</code> objects contained 
+      by the <code>WorkSpace</code>.</li>
+      <li><code>List&lt;Triangle&gt; getTriangles()</code> - Returns a <code>List</code> of all the <code>Triangle</code> objects contained 
+      by the <code>WorkSpace</code>.</li>
+      <li><code>List&lt;ConvexPolygon&gt; getConvexPolygons()</code> - Returns a <code>List</code> of all the <code>ConvexPolygon</code> 
+      objects contained 
+      by the <code>WorkSpace</code>.</li>
+      <li><code>List&lt;Shape&gt; getShapesByColor(Color color)</code> - Returns a <code>List</code> of all the <code>Shape</code> 
+      objects contained 
+      by the <code>WorkSpace</code> that match the specified <code>Color</code>.</li>
+      <li><code>double getAreaOfAllShapes()</code> - Returns the sum of the areas of all the <code>Shapes</code> contained by the 
+      <code>WorkSpace</code>.</li>
+      <li><code>double getPerimeterOfAllShapes()</code> - Returns the sum of the perimeters of all the <code>Shapes</code> contained by the 
+      <code>WorkSpace</code>.</li>
+   </ul>
+   </p>
+   <p>
+   Use the <code>instanceof</code> operator in the appropriate places of your solution.
+   </p>
+   </li>
+</ol>
+
+<div class="header">
+<h3>Suggestions</h3>
+</div>
+<p>
+The following suggestions might be helpful:
+</p>
+
+<ul>
+   <li><p>Write the <code>Shape</code> interface first.</p></li>
+   <li><p>After creating the <code>Shape</code> interface, write one class at a time that implements the interface. Test and debug
+   until you are satisfied with its design, implementation, and functionality.  Then move on to the next class.</p></li>
+   <li><p>Implement the <code>WorkSpace</code> class last, and develop it incrementally, testing as you go.  Notice that many of the methods are similar and differ only by the 
+   <code>Shape</code> type that they work with.</p></li>
+   <li>The given <code>TestCases</code> tests the signatures
+   of each of your classes.  As you implement classes, remove the
+   comment characters to run the tests.
+      
+      <li><p><a href="http://www.mathwords.com/a/area_convex_polygon.htm">Mathwords</a> is a good reference for the area of a convex polygon.</p></li>
+
+</ul>
+<div class="header">
+
+<h2>Testing</h2>
+
+</div>
+
+<p>
+You are given a starting test file to help you write your tests.  It includes some
+tests for Circle, WorkSpace, and your implemenation specifics. This file is a good 
+place to find some of the expected method parameters if you are stuck.  You are 
+expected to add to this test file to thoroughly test all of your code! 
+</p>
+
+
+<div class="header">
+<h2>Submission</h2>
+</div>
+
+<p>
+Submit your code in <code>turninXXX/lab04</code> to GitHub by midnight on the due date.  
+If you'd like to submit the lab one day late with a penalty of 5%, 
+add a file called <code>late_5_percent_off.txt</code> to the 
+<code>lab04</code> directory.  If you'd like to submit the lab two 
+days late with a penalty of 15%, add a file called
+<code>late_15_percent_off.txt</code> to the <code>lab04</code>
+directory.  Make sure you add and push the late file.
+<p>
+After your code is working and submitted,
+check you submission using the <code>checkgit</code> command on the
+unix server.  If the autograder can't compile your lab for a reason that
+is caught by <code>checkgit</code>, you will get a zero on the lab.  To
+check your submission, on a Unix server type:
+<blockquote><pre>checkgit &lt;git-login> 203 lab04</pre></blockquote>
+<p>
+If it works, you will see the message "** Tests Passed **".  If not,
+you will see some kind of error message.  The error message might not tell
+you exactly what you need to change, but it should give an indication as
+to what is wrong.
+
+
+</div>
+
+</div>
+</div>
+</body>
+</html>

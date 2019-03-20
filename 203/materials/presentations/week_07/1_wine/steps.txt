@@ -1,0 +1,29 @@
+
+
+1)  Compile, get frustrated by @Override, so remove it
+
+2)  Look at the place where assertEquals() is called, stare at it for a long
+    time, and get frustrated and angry.
+
+3)  Start validating assumptions!  What does the list contain?  Are we
+    calling the method to get a WineInventoryItem?  etc.
+
+4)  Narrow the search by reducing the size of the data, down to 2.
+
+5)  Arrive in a println in equals().  Discover that it's never called.
+
+6)  Think about staring at equals().  Is there any point?  It's never called!
+
+7)  Finally put a println in hashCode.  It's never called.
+
+8)  Outside of hashCode, make a test that calls String.hashCode, and put it next
+    to a call to key.hashcode()
+
+9)  Fix name, and add back @Override
+
+10)  Patch up hashCode() so that it doesn't break on null.  Now equals() breaks.
+
+11)  Stop here.  Debug for a non-null parameter.
+
+12)  Better:  Leave the assertion in.  Use Objects.requireNonNull() if you like.
+

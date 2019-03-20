@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+<head>
+   <meta charset="utf-8"/>
+   <title>Lab 8, CSC 203</title>
+   <link rel="stylesheet" href="../../lib/assignment.css" type="text/css">
+</head>
+
+<body>
+<div class="container">
+  <div class="boxed">
+
+  <div class="header">  <h1>Lab 8, CSC 203 - depth first search</h1></div>
+<p>
+This lab explores a recursive algorighm:  a depth-first
+search on a two-dimensional grid.  This depth-first
+search is a simple "pathing" algorithm, in that it can be used to
+calculate a path from one point on the grid to another, while avoiding
+obstacles.
+</p>
+
+ <div class="header">
+ <h2>Objectives</h2>
+ </div>
+ 
+<ul>
+<li>To implement depth first search
+<li>Think about trajectory planning on a 2D grid structure
+<li>Create a test framework that can be used for the class project,
+    when it addresses pathing.
+</ul>
+
+
+<div class="header">
+<h2>Overview</h2>
+</div>
+<p>
+Begin with the base code.  Note that this code represents the world as 
+a 2D grid.  As is normally the case in computer graphics, the program
+uses a 2D coordinate system where {0, 0} is the upper left corner.
+This means that as the y value of a coordinate increases, the point is 
+<em>lower</em> on the screen. The following image shows the general 
+structure:<br>
+
+<img src="html_images/Coord.jpg">
+<p>
+The project we have been working with this quarter
+is using a similar data structure.  This lab's code is a much simpler
+version of a virutal world.
+<p>
+Test to make sure the base code works for you.  When your program starts 
+in graphical mode, it should look something like this.  The eventual goal 
+is for the wyvern to find a valid path to 
+the water, traversing only the grass and not 
+the rock obstacles:
+</p>
+<img src="html_images/start.png">
+<p>
+If you're using the text version, your screen should look like this:
+</p>
+<blockquote><pre> . . . . . . . . . . . . . . . . . . . .    
+ . . . . . . . . . . . . . . . . . . . .    
+ . . W . . . . O . . . . . . . . . . . .    
+ . . . . . . . . O . . . . . . . . . . .    
+ . . . . . . . . . O . . . . . . . . . .    
+ . . . . . . . . . . O . . . . . . . . .    
+ . . . . . . . . . . . O . . . . . . . .    
+ . . . . . . . . . . . . O . . . . . . .    
+ . . . . . . . . . . . O . . . . . . . .    
+ . . . . . . . . . . O . . . . . . . . .    
+ . . . . . . . . . O . . . . . . . . . .    
+ . O O O O O O O O . . . . . . . . . . .    
+ . . . . . . . . . . . . . . . . . . . .    
+ . . . . . . . . . . . . . . G . . . . .    
+ . . . . . . . . . . . . . . . . . . . .    
+
+</pre></blockquote>
+<p></p>
+<div class="header">
+<h2>Getting started - Background</h2>
+</div>
+<p>
+This program uses the same <a href="https://spritely.jovial.com/">Spritely</a>
+library as the class project.  It takes advantage of the fact that
+Spritely allows you display graphics whenever you want in your code,
+rather than having a main animation loop as is more typical with graphics
+programming.  Because of this, a recursive algorithm can be implemented
+directly, using recursive method calls, and still use animation to show you
+its progress.
+<p>
+Open the provided Java file and read through the code.  You will
+adapt this code to the project in an assignment.  The code creates
+a grid data structure, where it stores the state of each square.
+It then creates a <code>SpriteWindow</code> from the spritely library;
+this window does the actual display.  Then, in the <code>run()</code>
+method, it calls <code>searchForPath()</code> to look for the water.  The
+current version only looks to the right, and gives up if it hits an
+obstacle.
+<p>
+<code>Main</code> also has an option to run unit tests.  You'll see that
+the unit tests create simpler words, and apply the same algorithm.  You
+should test your algorithm on a variety of layouts that are more challenging
+than the one provided.  You might need to change existing tests, once
+your algorithm does a better job of finding the water.
+<p>
+This program uses both the 
+<a href="https://spritely.jovial.com">Spritey</a> and
+<a href="https://testy.jovial.com">Testy</a> libraries.
+
+<div class="header">
+<h2>Step 1</h2>
+</div>
+
+Implement a depth first search.  You 
+can visit the neighboring nodes in whichever order you like.  Perhaps you
+can try visiting in various orders, and ultimately select an ordering 
+that clearly illustrates that the search runs into the obstacles at 
+some point.  In other words, don't pick directions that result in never
+visiting a grid cell that is occupied by an obstacle.
+</p>
+
+<div class="header">
+<h2>Step 2</h2>
+</div>
+
+<p>
+After the search completes, make sure that the code in place to 
+display the path.  Be sure to think about how cells are being 
+added to path, and how the path is represented.
+In the below example image with a slightly modified layout, all the 
+cells with a yellow square have 
+been visited but are not a part of the current path, and the grid cells 
+that make up the current path are shown with red.  You have been provided
+with images for both, in the images directory.
+<p>
+<center><img src="html_images/path.png" width="70%"></center>
+<p>
+For avoidance of doubt, when you are finished, the wyverin should always
+find the water with the default
+layout.  Make sure that you display a frame of animation for every
+change to the grid.  That is, don't collapse more than one change into
+a single animation frame.
+
+<div class="header">
+<h2>Submission</h2>
+</div>
+
+<p>
+Submit your code in <code>turninXXX/lab08</code> to GitHub by midnight on the due date.  
+If you'd like to submit the lab one day late with a penalty of 5%, 
+add a file called <code>late_5_percent_off.txt</code> to the 
+<code>lab08</code> directory.  If you'd like to submit the lab two 
+days late with a penalty of 15%, add a file called
+<code>late_15_percent_off.txt</code> to the <code>lab08</code>
+directory.  Make sure you add and push the late file.
+<p>
+Please don't submit <code>doc_files</code> or the instructions.
+<p>
+After your code is working and submitted,
+check you submission using the <code>checkgit</code> command on the
+unix server.  If the autograder can't compile your lab for a reason that
+is caught by <code>checkgit</code>, you will get a zero on the lab.  To
+check your submission, on a Unix server type:
+<blockquote><pre>checkgit &lt;git-login> 203 lab08</pre></blockquote>
+<p>
+If it works, you will see the message "** Tests Passed **".  If not,
+you will see some kind of error message.  The error message might not tell
+you exactly what you need to change, but it should give an indication as
+to what is wrong.
+</div>
+</div>
+</body>
+</html>

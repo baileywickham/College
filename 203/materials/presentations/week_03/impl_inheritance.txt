@@ -1,0 +1,88 @@
+
+
+THIS IS NOT BUILDABLE JAVA CODE
+It's just for illustration of subclassing, aka "implementation inheritance."
+In reality, each class would be in its own .java file.
+
+
+
+
+
+package java.awt;
+
+public abstract class Component {
+
+    private Rectangle bounds;
+
+    ...
+
+    public Rectangle getBounds() {
+        return new Rectangle(bounds);
+    }
+
+    public abstract void paint(Graphics g);
+
+}
+
+
+public class Button extends Component {
+
+    private String label;
+
+    ...
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+        ... Do a bunch of stuff to re-display the button with its new label
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        ...
+    }
+}
+
+
+public class Container extends Component {
+
+    protected final Component[] children;
+
+    public Container(Component[] children) {
+        this.children = children;
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        for (int i = 0; i < children.length; i++) {
+            children[i].paint(g);
+        }
+    }
+}
+
+public class ScrollPane extends Container {
+
+    private Scrollbar verticalSB;
+    private Scrollbar horizontalSB;
+
+    public ScrollPane(Component[] children) {
+        super(children);
+        ...  do other initialization
+    }
+        //
+        // (This isn't really the ScrollPane constructor.  I'm doing this
+        // simplified example to illustrate how subclasses work, not to
+        // accurately capture AWT's design.
+        //
+
+    @Override
+    public void paint(Graphics g) {
+        System.out.println("I'm about to call my superclass.  Yay!");
+        super.paint(g);
+        ...  Other stuff.  I can access children[] here, because it's
+             protected, not private.
+    }
+}

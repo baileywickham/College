@@ -1,0 +1,8 @@
+(1) Trigger this event with the click of a mouse, anywhere. This event changes the tiles within a 3 radius of it's click loctation. It changes the colors and transforms miners to superminers.
+
+(2) This event does two main things. One is randomly changing the background of the nearest 9 tiles to the java colors. It also removes any entities, and changes minerNotFull to superMiners. 
+
+
+(3) Miners are changed to superMiners, which have a higher capacity and increased speed. All editing done in MS Paint, of course.
+
+(4) The new entity is Duke. It moves in any direction, quicker than a miner. It chases and changes miners to superminers. It also removes Duke. 
