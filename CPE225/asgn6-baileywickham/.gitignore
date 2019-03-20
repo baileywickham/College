@@ -1,0 +1,8 @@
+cmake*/
+.DS_Store
+*.swp
+*.icloud
+*.o
+*.s
+a.out
+run

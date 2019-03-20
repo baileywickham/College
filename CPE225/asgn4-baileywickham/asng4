@@ -1,0 +1,93 @@
+# HW 4
+
+## PT 1
+
+1. No, the data in FE00 is x0000, at least on initialization. 
+2. x0430
+   1. Store R1, R7 for restore
+   2. Load Display Status Register
+   3. Check if it's ready for input, if not reload it
+   4. If ready, load R0 into the Display data register
+   5. Restore R1,R7
+   6. Return
+
+
+
+.ORIG x3300
+ST R7 SAVE_R73
+JSR NOT_GETC
+ADD R0 R0 #-16
+ADD R0 R0 #-16
+ADD R0 R0 #-16
+JSR NOT_OUT
+LD R7 SAVE_R73
+RET
+SAVE_R73 .FILL x0000
+
+NOT_OUT ST R7, SAVE_R7
+ST R1, SAVE_R1
+AGAIN LDI R1, STATUS
+BRzp AGAIN
+STI  R0, DATA
+LD R1, SAVE_R1
+LD R7, SAVE_R7
+RET
+STATUS .FILL xFE04 ;Status
+DATA .FILL xFE06 ;DATA
+SAVE_R1 .FILL x0000
+SAVE_R7 .FILL x0000
+
+NOT_GETC ST R7 SAVE_R72
+P LDI R0 KBSR
+BRzp P
+LDI R0, KBDR
+LD R7, SAVE_R72
+RET
+
+SAVE_R72 .FILL x0000
+KBSR .FILL xFE00
+KBDR .FILL xFE02
+.END
+
+.ORIG x3000
+
+        ; Example of printing Question 1: Q1STR is the address of an address in
+        ;  the data file, so we have to make two passes using an LDI.
+        LDI R0, Q1STR
+        PUTS
+
+        ; Example of using GETI -- uncomment when ready to use:
+        LEA R0, ANSWER
+        PUTS
+        TRAP x26
+        ADD R1 R0 #0 ;Move offset to safe register
+        ; Example of loading the address of the Question 1 points array.
+        LD R0, Q1PTS
+        ADD R0, R0, R1 ; You probably won't want an immediate here...
+        LDR R0, R0, #0
+        ADD R6 R0 #0
+
+        LDI R0, Q2STR
+        PUTS
+        LEA R0, ANSWER
+        PUTS
+        TRAP x26
+        ADD R1 R0 #0
+        LD R0, Q2PTS
+        ADD R0 R0 R1
+        LDR R0 R0 #0
+        ADD R6 R6 R0
+
+
+
+        HALT
+
+ANSWER .STRINGZ "Answer: "
+Q1STR   .FILL x3500
+Q1PTS   .FILL x3501
+Q2STR   .FILL x3505
+Q2PTS   .FILL x3506
+Q3STR   .FILL x350A
+Q3PTS   .FILL x350B
+RESULTS .FILL x350F
+        .END
