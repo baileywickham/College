@@ -1,0 +1,65 @@
+Analyzing last putback before 2020-07-28 01:00
+
+
+***************  Grading Notes  ***************
+
+
+********************  Grade Calculation  ***************
+
+    p1:
+        Part A:  2.00 / 2.00
+        Part B:  0.00 / 2.00
+        Part C:  1.00 / 2.00
+        Part D:  2.00 / 2.00
+        Part E:  2.00 / 2.00
+    *** Total p1 ***  7.00 / 10.00
+
+    p3:
+        Part A:  2.00 / 2.00
+        Part B:  0.80 / 4.00
+        Part C:  2.00 / 2.00
+        Part D:  2.00 / 2.00
+        Part E:  0.50 / 2.00
+        Part F:  0.50 / 2.00
+        Part G:  2.00 / 2.00
+        Part H:  2.00 / 2.00
+        Part I:  2.00 / 2.00
+    *** Total p3 ***  13.80 / 20.00
+
+    p5:
+        Part A:  1.82 / 1.82
+        Part B:  3.64 / 3.64
+        Part C:  1.82 / 1.82
+        Part D:  1.82 / 1.82
+        Part E:  1.82 / 1.82
+        Part F:  0.00 / 1.82
+        Part G:  1.82 / 1.82
+        Part H:  1.82 / 1.82
+        Part I:  1.82 / 1.82
+        Part J:  0.00 / 1.82
+    *** Total p5 ***  16.36 / 20.00
+
+    p6:
+        Part A:  0.00 / 2.78
+        Part B:  2.78 / 2.78
+        Part C:  2.78 / 2.78
+        Part D:  1.39 / 1.39
+        Part E:  1.39 / 1.39
+        Part F:  1.39 / 1.39
+        Part G:  2.78 / 2.78
+        Part H:  2.78 / 2.78
+        Part I:  1.39 / 1.39
+        Part J:  1.39 / 1.39
+        Part K:  1.39 / 1.39
+        Part L:  2.78 / 2.78
+    *** Total p6 ***  22.22 / 25.00
+
+    p9: 20.31 / 25.0
+
+    Exam was turned in:  0.00 / 0.0
+
+
+
+Final score:  79.70
+
+Graded 2019-02-15 at 14:39

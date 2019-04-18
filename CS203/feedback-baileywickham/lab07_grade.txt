@@ -1,0 +1,52 @@
+Analyzing last putback before 2019-02-21 01:00
+
+
+***************  Grading Notes  ***************
+
+
+********************  Grade Calculation  ***************
+
+GOOD:  program output -> (2.0 + 7.0) => 9.0
+GOOD:  program output -> (5.0 * -3.0) => -15.0
+GOOD:  program output -> (10.0 / 8.0) => 1.25
+GOOD:  program output -> (3.0 - 7.5) => -4.5
+GOOD:  program output -> ((2.0 + (7.0 * 5.0)) - 3.0) => 34.0
+GOOD:  program output -> (-3.0 - (7.0 / 5.0)) => -4.4
+GOOD:  program output -> (((((((1.0 * 2.0) * 3.0) * 4.0) * 5.0) * 6.0) * 7.0) * 8.0) => 40320.0
+GOOD:  program output -> (foo + bar) => 20.0
+GOOD:  test Found BinaryExpression
+GOOD:  test BinaryExpression is abstract
+GOOD:  test BinaryExpression implements toString()
+GOOD:  test BinaryExpression has a two-argument constructor
+GOOD:  test BinaryExpression has a zero-argument method named getOperatorName
+GOOD:  test BinaryExpression declares abstract applyOperator(double, double)
+GOOD:  test BinaryExpression declares abstract applyOperator(double, double) using double, not Double
+GOOD:  test AddExpression extends BinaryExpresssion
+GOOD:  test AddExpression has a two-argument constructor
+GOOD:  test AddExpression has only a two-argument constructor
+GOOD:  test AddExpression has no fields
+GOOD:  test AddExpression does not override toString
+GOOD:  test AddExpression overrides applyOperator(double, double)
+GOOD:  test SubtractExpression extends BinaryExpresssion
+GOOD:  test SubtractExpression has a two-argument constructor
+GOOD:  test SubtractExpression has only a two-argument constructor
+GOOD:  test SubtractExpression has no fields
+GOOD:  test SubtractExpression does not override toString
+GOOD:  test SubtractExpression overrides applyOperator(double, double)
+GOOD:  test MultiplyExpression extends BinaryExpresssion
+GOOD:  test MultiplyExpression has a two-argument constructor
+GOOD:  test MultiplyExpression has only a two-argument constructor
+GOOD:  test MultiplyExpression has no fields
+GOOD:  test MultiplyExpression does not override toString
+GOOD:  test MultiplyExpression overrides applyOperator(double, double)
+GOOD:  test DivideExpression extends BinaryExpresssion
+GOOD:  test DivideExpression has a two-argument constructor
+GOOD:  test DivideExpression has only a two-argument constructor
+GOOD:  test DivideExpression has no fields
+GOOD:  test DivideExpression does not override toString
+GOOD:  test DivideExpression overrides applyOperator(double, double)
+
+
+Final score:  100.00
+
+Graded 2019-02-24 at 11:33

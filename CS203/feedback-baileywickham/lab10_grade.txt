@@ -1,0 +1,15 @@
+Analyzing last putback before 2019-03-14 01:00
+
+
+***************  Grading Notes  ***************
+
+
+********************  Grade Calculation  ***************
+
+GOOD (20.0 points):  Program gave a reasonable image
+GOOD (20.0 points):  Program gave a complete image (including the butterfly)
+
+
+Final score:  100.00
+
+Graded 2019-03-18 at 16:52

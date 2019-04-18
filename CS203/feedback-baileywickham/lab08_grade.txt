@@ -1,0 +1,62 @@
+Analyzing last putback before 2019-02-28 01:00
+
+
+***************  Grading Notes  ***************
+
+
+
+You step on the obstacles, obliterating them from the display.
+
+********************  Grade Calculation  ***************
+
+GOOD (15.0 points):  Program running correctly on normal input
+GOOD (15.0 points):  Program running correctly on a more challenging layout
+GOOD (15.0 points):  Program running correctly when the path is blocked.
+GOOD (10.0 points):  Program indicates that is has backtracked with a different square type
+GOOD (10.0 points):  Program doesn't say it's stuck when it's just backtracking
+
+Test layouts:
+
+    private static final String[] TUNNEL_LAYOUT = new String[] {
+        ".........O..........",
+        ".........O..........",
+        "..W....O.O..........",
+        "........OO..........",
+        ".........O..........",
+        "..........O.........",
+        "...........O........",
+        "............O.......",
+        "...........O........",
+        "..........O.........",
+        ".........O..O.......",
+        ".OOOOOOOO..O........",
+        "..........O.........",
+        ".........O....G.....",
+        "........O..........."
+    };
+
+    private static final String[] WALL_LAYOUT = new String[] {
+        ".........O..........",
+        ".........O..........",
+        "..W....O.O..........",
+        "........OO.........O",
+        ".........O........O.",
+        "..........O......O..",
+        "...........O....O...",
+        "............O..O....",
+        "...........O..O.....",
+        "..........O..O......",
+        ".........O..O.......",
+        ".OOOOOOOO..O........",
+        "..........O.........",
+        ".........O....G.....",
+        "........O..........."
+    };
+            
+
+    Other penalty (see comments, above):  -8.0 points
+
+
+Final score:  92.00
+
+Graded 2019-03-04 at 16:52

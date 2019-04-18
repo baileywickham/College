@@ -1,0 +1,170 @@
+Analyzing last putback before 2019-01-17 01:00
+
+** part1 test run results:
+assertEquals(1.7, SimpleIf.max(1.2, 1.7), DELTA)
+==> passed
+assertEquals(9.0, SimpleIf.max(9.0, 3.2), DELTA);
+==> passed
+assertEquals(19.0, SimpleIf.max(19.0, 3.2), DELTA);
+==> passed
+assertEquals(7, SimpleLoop.sum(3, 4));
+==> passed
+assertEquals(7, SimpleLoop.sum(-2, 4));
+==> passed
+assertEquals(3, SimpleLoop.sum(0, 2));
+==> passed
+Test SimpleArray.squareAll()
+==> passed
+Test SimpleArray.squareAll()
+==> passed
+Test SimpleArray.squareAll()
+==> passed
+Test SimpleList.squareAll()
+==> passed
+Test SimpleList.squareAll()
+==> passed
+Test BetterLoop.contains
+==> passed
+Test BetterLoop.contains
+==> passed
+Test BetterLoop.contains
+==> passed
+Test ExampleMap
+==> passed
+Test ExampleMap
+==> passed
+
+$GraderInternalMain$
+$start$
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+
+
+** part2 test run results:
+Test Point.getX()
+===> passed
+===> passed
+Test point constructor
+===> passed
+Test point getX()
+===> passed
+Test point getY()
+===> passed
+Test point getRadius()
+===> passed
+Test point getAngle()
+===> passed
+Test point rotate90()
+edu.calpoly.testy.TestFailed: rotate 90 Point(1, 2) : expected:  -0.7071067811865474  actual:  -2.0
+	at edu.calpoly.testy.Assert.assertEquals(Assert.java:475)
+	at GraderInternalTests.assertPointEquals(GraderInternalTests.java:168)
+	at GraderInternalTests.test6(GraderInternalTests.java:145)
+	at GraderInternalTests.lambda$doRun$10(GraderInternalTests.java:194)
+	at GraderInternalTests.doRun(GraderInternalTests.java:175)
+	at GraderInternalTests.doRun(GraderInternalTests.java:186)
+	at GraderInternalTests.run(GraderInternalTests.java:202)
+	at GraderInternalMain.main(GraderInternalMain.java:22)
+Test point rotate90()
+edu.calpoly.testy.TestFailed: rotate 90 Point(1, 0) : expected:  0.7071067811865476  actual:  0.0
+	at edu.calpoly.testy.Assert.assertEquals(Assert.java:475)
+	at GraderInternalTests.assertPointEquals(GraderInternalTests.java:168)
+	at GraderInternalTests.test9(GraderInternalTests.java:151)
+	at GraderInternalTests.lambda$doRun$11(GraderInternalTests.java:195)
+	at GraderInternalTests.doRun(GraderInternalTests.java:175)
+	at GraderInternalTests.doRun(GraderInternalTests.java:186)
+	at GraderInternalTests.run(GraderInternalTests.java:202)
+	at GraderInternalMain.main(GraderInternalMain.java:22)
+Test point rotate90()
+edu.calpoly.testy.TestFailed: rotate 90 Point(0, 1) : expected:  -0.7071067811865475  actual:  -1.0
+	at edu.calpoly.testy.Assert.assertEquals(Assert.java:475)
+	at GraderInternalTests.assertPointEquals(GraderInternalTests.java:168)
+	at GraderInternalTests.test10(GraderInternalTests.java:157)
+	at GraderInternalTests.lambda$doRun$12(GraderInternalTests.java:196)
+	at GraderInternalTests.doRun(GraderInternalTests.java:175)
+	at GraderInternalTests.doRun(GraderInternalTests.java:186)
+	at GraderInternalTests.run(GraderInternalTests.java:202)
+	at GraderInternalMain.main(GraderInternalMain.java:22)
+Test point rotate90()
+edu.calpoly.testy.TestFailed: rotate 90 Point(0, 1) : expected:  0.7071067811865475  actual:  1.0
+	at edu.calpoly.testy.Assert.assertEquals(Assert.java:475)
+	at GraderInternalTests.assertPointEquals(GraderInternalTests.java:168)
+	at GraderInternalTests.test11(GraderInternalTests.java:163)
+	at GraderInternalTests.lambda$doRun$13(GraderInternalTests.java:197)
+	at GraderInternalTests.doRun(GraderInternalTests.java:175)
+	at GraderInternalTests.doRun(GraderInternalTests.java:186)
+	at GraderInternalTests.run(GraderInternalTests.java:202)
+	at GraderInternalMain.main(GraderInternalMain.java:22)
+
+$GraderInternalMain$
+$start$
+true
+true
+true
+true
+true
+true
+true
+false
+false
+false
+false
+
+
+
+***************  Grading Notes  ***************
+
+
+********************  Grade Calculation  ***************
+
+GOOD (2.0 points):  Part 1 test 1
+GOOD (2.0 points):  Part 1 test 2
+GOOD (2.0 points):  Part 1 test 3
+GOOD (2.0 points):  Part 1 test 4
+GOOD (2.0 points):  Part 1 test 5
+GOOD (2.0 points):  Part 1 test 6
+GOOD (2.0 points):  Part 1 test 7
+GOOD (2.0 points):  Part 1 test 8
+GOOD (2.0 points):  Part 1 test 9
+GOOD (2.0 points):  Part 1 test 10
+GOOD (2.0 points):  Part 1 test 11
+GOOD (2.0 points):  Part 1 test 12
+GOOD (2.0 points):  Part 1 test 13
+GOOD (2.0 points):  Part 1 test 14
+GOOD (2.0 points):  Part 1 test 15
+GOOD (2.0 points):  Part 1 test 16
+GOOD (2.0 points):  Part 2 test 1
+GOOD (2.0 points):  Part 2 test 2
+GOOD (2.0 points):  Part 2 test 3
+GOOD (2.0 points):  Part 2 test 4
+GOOD (2.0 points):  Part 2 test 5
+GOOD (2.0 points):  Part 2 test 6
+GOOD (2.0 points):  Part 2 test 7
+MISSED (2.0 points):  Part 2 test 8
+MISSED (5.0 points):  Part 2 test 9
+MISSED (5.0 points):  Part 2 test 10
+MISSED (5.0 points):  Part 2 test 11
+GOOD (12.0 points):  Part 3 diagram contains Point class
+GOOD (5.0 points):  Part 3 diagram contains Point.getX
+GOOD (5.0 points):  Part 3 diagram contains Point.getY
+GOOD (5.0 points):  Part 3 diagram contains Point.getRadius
+GOOD (5.0 points):  Part 3 diagram contains Point.getAngle
+GOOD (5.0 points):  Part 3 diagram contains Point.rotate90
+
+
+Final score:  83.00
+
+Graded 2019-01-24 at 12:51

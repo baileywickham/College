@@ -1,0 +1,253 @@
+Analyzing last putback before 2019-01-31 01:00
+
+** test run results:
+testCircleArch(1)
+testCircleArch(2)
+testCircleArch(3)
+testRectangleArch(1)
+testRectangleArch(2)
+testRectangleArch(3)
+testTriangleArch(1)
+Triangle architecture tests...
+testTriangleArch(2)
+Triangle architecture tests...
+testTriangleArch(3)
+Triangle architecture tests...
+testConvexPolygonArch(1)
+testConvexPolygonArch(2)
+testConvexPolygonArch(3)
+testCircle(1)
+testCircle(2)
+testCircle(3)
+testCircle(4)
+testCircle(5)
+testCircle(6)
+testCircle(7)
+testCircle(8)
+testCircle(9)
+testCircle(10)
+testRectangle(1)
+testRectangle(2)
+edu.calpoly.testy.TestFailed: Rectangle.getPerimeter() : expected:  18.0  actual:  80.0
+	at edu.calpoly.testy.Assert.assertEquals(Assert.java:475)
+	at GraderInternalOriginalTests.testRectangle(GraderInternalOriginalTests.java:192)
+	at GraderInternalOriginalTests.lambda$doRun$23(GraderInternalOriginalTests.java:533)
+	at GraderInternalOriginalTests.doRun(GraderInternalOriginalTests.java:499)
+	at GraderInternalOriginalTests.doRun(GraderInternalOriginalTests.java:509)
+	at GraderInternalOriginalTests.run(GraderInternalOriginalTests.java:578)
+	at GraderInternalMain.main(GraderInternalMain.java:12)
+testRectangle(3)
+testRectangle(4)
+testRectangle(5)
+testRectangle(6)
+testRectangle(7)
+testRectangle(8)
+testRectangle(9)
+testRectangle(10)
+edu.calpoly.testy.TestFailed: Rectangle.getPerimeter() after setting new width & height : expected:  192.0  actual:  2492.0
+	at edu.calpoly.testy.Assert.assertEquals(Assert.java:475)
+	at GraderInternalOriginalTests.testRectangle(GraderInternalOriginalTests.java:224)
+	at GraderInternalOriginalTests.lambda$doRun$31(GraderInternalOriginalTests.java:541)
+	at GraderInternalOriginalTests.doRun(GraderInternalOriginalTests.java:499)
+	at GraderInternalOriginalTests.doRun(GraderInternalOriginalTests.java:509)
+	at GraderInternalOriginalTests.run(GraderInternalOriginalTests.java:578)
+	at GraderInternalMain.main(GraderInternalMain.java:12)
+testRectangle(11)
+testTriangle(1)
+edu.calpoly.testy.TestFailed: Triangle.getArea() : expected:  13.5  actual:  -11.5
+	at edu.calpoly.testy.Assert.assertEquals(Assert.java:475)
+	at GraderInternalOriginalTests.testTriangle(GraderInternalOriginalTests.java:249)
+	at GraderInternalOriginalTests.lambda$doRun$33(GraderInternalOriginalTests.java:543)
+	at GraderInternalOriginalTests.doRun(GraderInternalOriginalTests.java:499)
+	at GraderInternalOriginalTests.doRun(GraderInternalOriginalTests.java:509)
+	at GraderInternalOriginalTests.run(GraderInternalOriginalTests.java:578)
+	at GraderInternalMain.main(GraderInternalMain.java:12)
+testTriangle(2)
+testTriangle(3)
+testTriangle(4)
+testTriangle(5)
+testTriangle(6)
+testTriangle(7)
+testTriangle(8)
+testTriangle(9)
+testTriangle(10)
+testConvexPolygon(1)
+testConvexPolygon(2)
+testConvexPolygon(3)
+testConvexPolygon(4)
+testConvexPolygon(5)
+testConvexPolygon(6)
+testConvexPolygon(7)
+testConvexPolygon(8)
+testConvexPolygon(9)
+testConvexPolygon(10)
+testConvexPolygon(11)
+testConvexPolygon(12)
+testConvexPolygon(13)
+testWorkSpace(1)
+testWorkSpace(2)
+testWorkSpace(3)
+testWorkSpace(4)
+testWorkSpace(5)
+testWorkSpace(6)
+testWorkSpace(7)
+edu.calpoly.testy.TestFailed: WorkSpace.getAreaOfAllShapes() : expected:  2494.86164575  actual:  2430.8616457508756
+	at edu.calpoly.testy.Assert.assertEquals(Assert.java:475)
+	at GraderInternalOriginalTests.testWorkSpace(GraderInternalOriginalTests.java:464)
+	at GraderInternalOriginalTests.lambda$doRun$62(GraderInternalOriginalTests.java:572)
+	at GraderInternalOriginalTests.doRun(GraderInternalOriginalTests.java:499)
+	at GraderInternalOriginalTests.doRun(GraderInternalOriginalTests.java:509)
+	at GraderInternalOriginalTests.run(GraderInternalOriginalTests.java:578)
+	at GraderInternalMain.main(GraderInternalMain.java:12)
+testWorkSpace(8)
+edu.calpoly.testy.TestFailed: WorkSpace.getPerimeterOfAllShapes() : expected:  334.49002156  actual:  348.6926295653885
+	at edu.calpoly.testy.Assert.assertEquals(Assert.java:475)
+	at GraderInternalOriginalTests.testWorkSpace(GraderInternalOriginalTests.java:468)
+	at GraderInternalOriginalTests.lambda$doRun$63(GraderInternalOriginalTests.java:573)
+	at GraderInternalOriginalTests.doRun(GraderInternalOriginalTests.java:499)
+	at GraderInternalOriginalTests.doRun(GraderInternalOriginalTests.java:509)
+	at GraderInternalOriginalTests.run(GraderInternalOriginalTests.java:578)
+	at GraderInternalMain.main(GraderInternalMain.java:12)
+$GraderInternalMain$
+$start$
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+false
+true
+true
+true
+true
+true
+true
+true
+false
+true
+false
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+false
+false
+
+
+
+***************  Grading Notes  ***************
+
+
+********************  Grade Calculation  ***************
+
+GOOD (1.6 points):  Part 1 test 1
+GOOD (1.6 points):  Part 1 test 2
+GOOD (1.6 points):  Part 1 test 3
+GOOD (1.6 points):  Part 1 test 4
+GOOD (1.6 points):  Part 1 test 5
+GOOD (1.6 points):  Part 1 test 6
+GOOD (1.6 points):  Part 1 test 7
+GOOD (1.6 points):  Part 1 test 8
+GOOD (1.6 points):  Part 1 test 9
+GOOD (1.6 points):  Part 1 test 10
+GOOD (1.6 points):  Part 1 test 11
+GOOD (1.6 points):  Part 1 test 12
+GOOD (1.6 points):  Part 1 test 13
+GOOD (1.6 points):  Part 1 test 14
+GOOD (1.6 points):  Part 1 test 15
+GOOD (1.6 points):  Part 1 test 16
+GOOD (1.6 points):  Part 1 test 17
+GOOD (1.6 points):  Part 1 test 18
+GOOD (1.6 points):  Part 1 test 19
+GOOD (1.6 points):  Part 1 test 20
+GOOD (1.6 points):  Part 1 test 21
+GOOD (1.6 points):  Part 1 test 22
+GOOD (1.6 points):  Part 1 test 23
+MISSED (1.6 points):  Part 1 test 24
+GOOD (1.6 points):  Part 1 test 25
+GOOD (1.6 points):  Part 1 test 26
+GOOD (1.6 points):  Part 1 test 27
+GOOD (1.6 points):  Part 1 test 28
+GOOD (1.6 points):  Part 1 test 29
+GOOD (1.6 points):  Part 1 test 30
+GOOD (1.6 points):  Part 1 test 31
+MISSED (1.6 points):  Part 1 test 32
+GOOD (1.6 points):  Part 1 test 33
+MISSED (1.6 points):  Part 1 test 34
+GOOD (1.6 points):  Part 1 test 35
+GOOD (1.6 points):  Part 1 test 36
+GOOD (1.6 points):  Part 1 test 37
+GOOD (1.6 points):  Part 1 test 38
+GOOD (1.6 points):  Part 1 test 39
+GOOD (1.6 points):  Part 1 test 40
+GOOD (1.6 points):  Part 1 test 41
+GOOD (1.6 points):  Part 1 test 42
+GOOD (1.6 points):  Part 1 test 43
+GOOD (1.6 points):  Part 1 test 44
+GOOD (1.6 points):  Part 1 test 45
+GOOD (1.6 points):  Part 1 test 46
+GOOD (1.6 points):  Part 1 test 47
+GOOD (1.6 points):  Part 1 test 48
+GOOD (1.6 points):  Part 1 test 49
+GOOD (1.6 points):  Part 1 test 50
+GOOD (1.6 points):  Part 1 test 51
+GOOD (1.6 points):  Part 1 test 52
+GOOD (1.6 points):  Part 1 test 53
+GOOD (1.6 points):  Part 1 test 54
+GOOD (1.6 points):  Part 1 test 55
+GOOD (1.6 points):  Part 1 test 56
+GOOD (1.6 points):  Part 1 test 57
+GOOD (1.6 points):  Part 1 test 58
+GOOD (1.6 points):  Part 1 test 59
+GOOD (1.6 points):  Part 1 test 60
+GOOD (1.6 points):  Part 1 test 61
+GOOD (1.6 points):  Part 1 test 62
+MISSED (1.6 points):  Part 1 test 63
+MISSED (1.6 points):  Part 1 test 64
+
+
+Final score:  92.19
+
+Graded 2019-02-03 at 12:57

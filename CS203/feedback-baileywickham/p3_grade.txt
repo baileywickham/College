@@ -1,0 +1,71 @@
+Analyzing last putback before 2019-02-09 01:00
+
+** test run results:
+2019-02-11 18:21:36.094 java[8980:156397] +[NSXPCSharedListener endpointForReply:withListenerName:]: an error occurred while attempting to obtain endpoint for listener 'ClientCallsAuxiliary': Connection interrupted
+$GraderInternalMain$
+$start$
+true
+
+
+
+***************  Grading Notes  ***************
+
+
+********************  Grade Calculation  ***************
+
+**************************************************
+*               UML MODEL ANALYSIS               *
+**************************************************
+
+MISSED (5.0 points):  Animation supertype has at least two subtypes (hopefully
+        for entity and the daylight animation).
+MISSED (8.0 points):  Action has two subtypes (hopefully for activities and animations)
+GOOD (3.0 points):  The animation interface isn't implemented by VirtualWorld or WorldModel.
+        It's better to create a new class for this:  Consider the
+        single responsibility principle here.
+
+
+**************************************************
+*             JAVA PROGRAM ANALYSIS              *
+**************************************************
+
+GOOD (5.0 points):  Animation supertype has at least two subtypes (hopefully
+        for entity and the daylight animation).
+GOOD (8.0 points):  Action has two subtypes (hopefully for activities and animations)
+MISSED (3.0 points):  The animation interface isn't implemented by VirtualWorld or WorldModel.
+        It's better to create a new class for this:  Consider the
+        single responsibility principle here.
+GOOD (9.0 points):  An animation test was implemented by having three subtypes of
+        animatable
+GOOD (10.0 points):  Entity implements an interface (hopefully a supertype for things that are animatable)
+GOOD (10.0 points):  Action is an interface
+GOOD (0.5 points):  VirtualWorld.blacksmithTiles is static
+GOOD (0.5 points):  VirtualWorld.blacksmithTiles is final
+GOOD (0.5 points):  VirtualWorld.blobTiles is static
+GOOD (0.5 points):  VirtualWorld.blobTiles is final
+GOOD (0.5 points):  VirtualWorld.minerTiles is static
+GOOD (0.5 points):  VirtualWorld.minerTiles is final
+GOOD (0.5 points):  VirtualWorld.obstacleTiles is static
+GOOD (0.5 points):  VirtualWorld.obstacleTiles is final
+GOOD (0.5 points):  VirtualWorld.oreTiles is static
+GOOD (0.5 points):  VirtualWorld.oreTiles is final
+GOOD (0.5 points):  VirtualWorld.quakeTiles is static
+GOOD (0.5 points):  VirtualWorld.quakeTiles is final
+GOOD (0.5 points):  VirtualWorld.veinTiles is static
+GOOD (0.5 points):  VirtualWorld.veinTiles is final
+GOOD (0.5 points):  VirtualWorld.minerFullTiles is static
+GOOD (0.5 points):  VirtualWorld.minerFullTiles is final
+GOOD (5.0 points):  The lists in the VirtualWorld.xxxTiles fields are immutable
+    Run score (22 points):  100%
+GOOD (4.0 points):  You correctly stored the grass tile in a data member,
+        so that you could put the daylight animation over just
+        the grass.  It was tempting to instead test some property
+        of the tile, like its character representation, but this
+        would't be good design. What if some other tile in the future
+        uses the same character?  You'd be setting youself a trap for
+        the future if you were to do it this way.
+
+
+Final score:  84.00
+
+Graded 2019-02-11 at 18:14

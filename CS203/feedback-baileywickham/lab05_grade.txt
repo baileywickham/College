@@ -1,0 +1,64 @@
+Analyzing last putback before 2019-02-12 01:00
+
+** test run results:
+Artist comparator
+   Expected 0, got -1
+    Song 1:  "aaaa" by devo (1970)
+    Song 2:  "bbbb" by devo (1980)
+Artist comparator
+   Expected < 0, got 0
+    Song 1:  "title" by abba (1970)
+    Song 2:  "title" by devo (1970)
+Artist comparator
+   Expected > 0, got 0
+    Song 1:  "title" by zevon (1970)
+    Song 2:  "title" by devo (1970)
+Artist comparator
+   Expected > 0, got -1
+    Song 1:  "aaaa" by zevon (1970)
+    Song 2:  "bbbb" by devo (1980)
+Artist comparator
+   Expected < 0, got 0
+    Song 1:  "title" by aaaaabba (1970)
+    Song 2:  "title" by aaaadevo (1970)
+Artist comparator
+   Expected > 0, got 0
+    Song 1:  "title" by aaaazevon (1970)
+    Song 2:  "title" by aaaadevo (1970)
+Artist comparator
+   Expected > 0, got -1
+    Song 1:  "aaaa" by aaaazevon (1970)
+    Song 2:  "bbbb" by aaaadevo (1980)
+Composed:  Artist then title
+   Expected < 0, got 0
+    Song 1:  "title" by abba (1970)
+    Song 2:  "title" by devo (1970)
+Composed:  Artist then title
+   Expected > 0, got 0
+    Song 1:  "title" by zevon (1970)
+    Song 2:  "title" by devo (1970)
+Composed:  Artist then title
+   Expected < 0, got 0
+    Song 1:  "title" by aaaaabba (1970)
+    Song 2:  "title" by aaaadevo (1970)
+Composed:  Artist then title
+   Expected > 0, got 0
+    Song 1:  "title" by aaaazevon (1970)
+    Song 2:  "title" by aaaadevo (1970)
+Tests passed (of 19):
+8
+
+
+***************  Grading Notes  ***************
+
+
+********************  Grade Calculation  ***************
+
+
+**** Passed 8 tests out of 19
+
+
+
+Final score:  42.11
+
+Graded 2019-02-15 at 14:48

@@ -1,0 +1,162 @@
+Analyzing last putback before 2019-02-23 01:00
+
+
+***************  Grading Notes  ***************
+
+
+********************  Grade Calculation  ***************
+
+GOOD (5.0 points):  You submitted a program that compiles
+**************************************************
+*               UML MODEL ANALYSIS               *
+**************************************************
+
+GOOD (1.0 point):  Underscores in Java class names are undesirable.  Names should start
+        with an upper-case letter, and be in camel case (ThisIsCamelCase).
+GOOD (0.1 points):  Obstacle found
+GOOD (0.1 points):  Blacksmith found
+GOOD (0.1 points):  Ore found
+GOOD (0.1 points):  Vein found
+GOOD (0.1 points):  Quake found
+GOOD (0.1 points):  OreBlob found
+GOOD (0.1 points):  MinerFull found
+GOOD (0.1 points):  MinerNotFull found
+GOOD (0.2 points):  Entity has eight concrete subtypes
+GOOD (1.0 point):  Obstacle and Blacksmith have the same supertype(s).  They should,
+        because they don't execute activities and they're not animated.
+GOOD (1.0 point):  Ore and Vein have the same supertype(s).  They should,
+        because they execute activities and they're not animated.
+GOOD (0.5 points):  Obstacle and Ore have different supertype(s).  They should,
+        because only the second class executes activities.
+GOOD (0.5 points):  Obstacle and Vein have different supertype(s).  They should,
+        because only the second class executes activities.
+GOOD (0.5 points):  Blacksmith and Ore have different supertype(s).  They should,
+        because only the second class executes activities.
+GOOD (0.5 points):  Blacksmith and Vein have different supertype(s).  They should,
+        because only the second class executes activities.
+GOOD (0.5 points):  Obstacle and Quake have different supertype(s).  They should,
+        because only the second class is animated and has activities.
+GOOD (0.5 points):  Obstacle and OreBlob have different supertype(s).  They should,
+        because only the second class is animated and has activities.
+GOOD (0.5 points):  Obstacle and MinerFull have different supertype(s).  They should,
+        because only the second class is animated and has activities.
+GOOD (0.5 points):  Obstacle and MinerNotFull have different supertype(s).  They should,
+        because only the second class is animated and has activities.
+GOOD (0.5 points):  Blacksmith and Quake have different supertype(s).  They should,
+        because only the second class is animated and has activities.
+GOOD (0.5 points):  Blacksmith and OreBlob have different supertype(s).  They should,
+        because only the second class is animated and has activities.
+GOOD (0.5 points):  Blacksmith and MinerFull have different supertype(s).  They should,
+        because only the second class is animated and has activities.
+GOOD (0.5 points):  Blacksmith and MinerNotFull have different supertype(s).  They should,
+        because only the second class is animated and has activities.
+GOOD (0.5 points):  Ore and Quake have different supertype(s).  They should,
+        because only the second class is animated.
+GOOD (0.5 points):  Ore and OreBlob have different supertype(s).  They should,
+        because only the second class is animated.
+GOOD (0.5 points):  Ore and MinerFull have different supertype(s).  They should,
+        because only the second class is animated.
+GOOD (0.5 points):  Ore and MinerNotFull have different supertype(s).  They should,
+        because only the second class is animated.
+GOOD (0.5 points):  Vein and Quake have different supertype(s).  They should,
+        because only the second class is animated.
+GOOD (0.5 points):  Vein and OreBlob have different supertype(s).  They should,
+        because only the second class is animated.
+GOOD (0.5 points):  Vein and MinerFull have different supertype(s).  They should,
+        because only the second class is animated.
+GOOD (0.5 points):  Vein and MinerNotFull have different supertype(s).  They should,
+        because only the second class is animated.
+
+
+**************************************************
+*             JAVA PROGRAM ANALYSIS              *
+**************************************************
+
+GOOD (1.0 point):  Underscores in Java class names are undesirable.  Names should start
+        with an upper-case letter, and be in camel case (ThisIsCamelCase).
+GOOD (0.1 points):  Obstacle found
+GOOD (0.1 points):  Blacksmith found
+GOOD (0.1 points):  Ore found
+GOOD (0.1 points):  Vein found
+GOOD (0.1 points):  Quake found
+GOOD (0.1 points):  OreBlob found
+GOOD (0.1 points):  MinerFull found
+GOOD (0.1 points):  MinerNotFull found
+GOOD (0.2 points):  Entity has eight concrete subtypes
+GOOD (1.0 point):  Obstacle and Blacksmith have the same supertype(s).  They should,
+        because they don't execute activities and they're not animated.
+GOOD (1.0 point):  Ore and Vein have the same supertype(s).  They should,
+        because they execute activities and they're not animated.
+GOOD (0.5 points):  Obstacle and Ore have different supertype(s).  They should,
+        because only the second class executes activities.
+GOOD (0.5 points):  Obstacle and Vein have different supertype(s).  They should,
+        because only the second class executes activities.
+GOOD (0.5 points):  Blacksmith and Ore have different supertype(s).  They should,
+        because only the second class executes activities.
+GOOD (0.5 points):  Blacksmith and Vein have different supertype(s).  They should,
+        because only the second class executes activities.
+GOOD (0.5 points):  Obstacle and Quake have different supertype(s).  They should,
+        because only the second class is animated and has activities.
+GOOD (0.5 points):  Obstacle and OreBlob have different supertype(s).  They should,
+        because only the second class is animated and has activities.
+GOOD (0.5 points):  Obstacle and MinerFull have different supertype(s).  They should,
+        because only the second class is animated and has activities.
+GOOD (0.5 points):  Obstacle and MinerNotFull have different supertype(s).  They should,
+        because only the second class is animated and has activities.
+GOOD (0.5 points):  Blacksmith and Quake have different supertype(s).  They should,
+        because only the second class is animated and has activities.
+GOOD (0.5 points):  Blacksmith and OreBlob have different supertype(s).  They should,
+        because only the second class is animated and has activities.
+GOOD (0.5 points):  Blacksmith and MinerFull have different supertype(s).  They should,
+        because only the second class is animated and has activities.
+GOOD (0.5 points):  Blacksmith and MinerNotFull have different supertype(s).  They should,
+        because only the second class is animated and has activities.
+GOOD (0.5 points):  Ore and Quake have different supertype(s).  They should,
+        because only the second class is animated.
+GOOD (0.5 points):  Ore and OreBlob have different supertype(s).  They should,
+        because only the second class is animated.
+GOOD (0.5 points):  Ore and MinerFull have different supertype(s).  They should,
+        because only the second class is animated.
+GOOD (0.5 points):  Ore and MinerNotFull have different supertype(s).  They should,
+        because only the second class is animated.
+GOOD (0.5 points):  Vein and Quake have different supertype(s).  They should,
+        because only the second class is animated.
+GOOD (0.5 points):  Vein and OreBlob have different supertype(s).  They should,
+        because only the second class is animated.
+GOOD (0.5 points):  Vein and MinerFull have different supertype(s).  They should,
+        because only the second class is animated.
+GOOD (0.5 points):  Vein and MinerNotFull have different supertype(s).  They should,
+        because only the second class is animated.
+GOOD (3.0 points):  A superclass for MinerFull and MinerNotFull exists
+GOOD (2.0 points):  The miner superclass has at least one field, for resourceLimit
+GOOD (4.0 points):  A superclass for the moving entities exists, with three entity types
+GOOD (4.0 points):  A superclass for the animated entities exists, with four entity types
+GOOD (2.0 points):  The animated entity superclass has at least one field, for animationPeriod
+MISSED (2.0 points):  The animated entity superclass has at least two fields, for imageIndex and animationPeriod
+GOOD (3.0 points):  A superclass for the schedulable entities exists, with six entity types
+GOOD (2.0 points):  The schedulable entity superclass has at least one field, for actionPeriod
+GOOD (2.0 points):  A superclass for all entities exists, with eight entity types
+GOOD (2.0 points):  The entity superclass has at least one field (possibly inherited), for position
+
+
+********************************************
+*             MANUAL ANALYSIS              *
+********************************************
+
+MISSED (5.0 points):  You implemented a PriorityQueue that is ordered by time
+MISSED (3.0 points):  
+        	For moving entities, you implemented nextPosition() in the
+        	common superclass by adding an abstract method to determine if
+        	the path is blocked by another entity
+GOOD (3.0 points):  
+        	For miner, you made one or more abstract methods so that most of the
+        	duplicate code in transform() was lifted to the miner superclass
+
+
+    Run result:  Overall behavior is significantly incorrect
+    Run score (30 points):  60.0%
+
+
+Final score:  78.00
+
+Graded 2019-02-26 at 11:45

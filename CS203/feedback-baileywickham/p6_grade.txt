@@ -1,0 +1,405 @@
+Analyzing last putback before 2019-03-16 01:00
+
+
+I encountered an error trying to run your program.
+Error:  RunError: return code 1
+    [sudo, -u, restricted, java, -cp, .:lib/testy.jar:lib/spritely.jar, GraderInternalListTypes]
+    output:  	supc java.lang.Object
+	supi Action
+	f animatable
+	f repeatCount
+		ma Animatable
+		ma int
+	pub m <init>
+		ma EventSchedule
+	pub m executeAction
+C Animation
+	supc java.lang.Object
+	fin f action
+	fin f time
+	fin f target
+		ma Action
+		ma double
+		ma java.lang.Object
+	pub m <init>
+		ma EventSchedule
+	pub m execute
+	pub m getTarget
+	pub m getTime
+C Event
+	supc Entity
+	supi Executable
+	pro fin sta f rand
+	pro fin f actionPeriod
+		ma Point
+		ma java.util.List
+		ma int
+	pro m <init>
+		ma WorldModel
+		ma EventSchedule
+	pub m init
+		ma EventSchedule
+		ma WorldModel
+	pro m scheduleActions
+A EntityActive
+	supc java.lang.Object
+	pro fin f tiles
+	pro f position
+	pro f tileIndex
+		ma Point
+		ma java.util.List
+	pro m <init>
+	pub fin m getPosition
+	pub fin m getTiles
+	pub fin m getTile
+		ma Point
+	pub fin m setPosition
+A Entity
+		ma WorldModel
+		ma EventSchedule
+	pub abs m executeActivity
+I Executable
+	supc EntityAnimatable
+		ma Point
+	pro m <init>
+	pro m repeatCount
+		ma WorldModel
+		ma EventSchedule
+	pub m executeActivity
+C Quake
+	supc java.lang.Object
+	pub m <init>
+		ma [Ljava.lang.String;
+	pub sta m main
+		ma java.lang.String
+	pub sta m getClass
+		ma java.lang.Class
+	pub sta m printTypes
+		ma java.io.File
+		ma java.lang.String
+	sta m printTypesIn
+		ma int
+	sta m printModifiers
+		ma java.lang.reflect.Executable
+	sta m printParameters
+C GraderInternalListTypes
+	supc java.lang.Object
+	pub m <init>
+	m loadImagesTest
+	m test1
+	m test2
+	pub m runTests
+	m lambda$runTests$2
+	m lambda$runTests$1
+	m lambda$runTests$0
+C TestCases
+	supc java.lang.Object
+	supi PathingStrategy
+	f debug
+	pub m <init>
+		ma java.lang.Iterable
+		ma java.lang.Iterable
+	m paintDebug
+		ma Point
+		ma Point
+		ma java.util.function.Predicate
+		ma java.util.function.Function
+		ma java.util.function.ToIntBiFunction
+	pub m computePath
+		ma DebugGrid
+	pub m setDebugGrid
+		ma Point
+		ma Point
+		ma int
+	pro m costEstimate
+		ma java.util.Map
+		ma Point
+	m reconstructPath
+		ma java.util.Map
+		ma Point
+	sta m lambda$computePath$0
+C AStarPathingStrategy
+	supc Movers
+	pro fin f resourceLimit
+	pro f resourceCount
+		ma Point
+		ma java.util.List
+		ma int
+		ma int
+		ma int
+		ma int
+	pro m <init>
+		ma Entity
+	pkg abs m getTarget
+		ma WorldModel
+		ma EventSchedule
+	pub fin m executeActivity
+	pkg abs m transformation
+	m inventoryFull
+		ma WorldModel
+		ma Point
+	pro fin m canPassThrough
+		ma WorldModel
+		ma EventSchedule
+	m transform
+A Miner
+	supc Miner
+		ma Point
+		ma int
+		ma int
+		ma int
+	pro m <init>
+		ma Entity
+	pkg m getTarget
+	pkg m transformation
+C MinerFull
+	supc EntityAnimatable
+	fin sta f pathingStrategy
+		ma Point
+		ma java.util.List
+		ma int
+		ma int
+	pro m <init>
+	pro m repeatCount
+		ma WorldModel
+		ma Point
+	pro abs m canPassThrough
+		ma WorldModel
+		ma Entity
+		ma EventSchedule
+	pro m moveTo
+		ma Point
+	pro m potentialNeighbors
+		ma Point
+		ma Point
+	sta m stepsFromTo
+		ma WorldModel
+		ma Point
+	m nextPosition
+		ma WorldModel
+		ma Point
+	m lambda$nextPosition$0
+A Movers
+	pub abs m nextImage
+	pub abs m getAnimationPeriod
+I Animatable
+	supc EntityActive
+		ma Point
+		ma int
+	pro m <init>
+		ma WorldModel
+		ma EventSchedule
+	pub m executeActivity
+C Ore
+	supc java.lang.Object
+	fin f x
+	fin f y
+		ma int
+		ma int
+	pub m <init>
+		ma java.lang.Object
+	pub m equals
+	pub m toString
+	pub m hashCode
+	pub m getX
+	pub m getY
+		ma Point
+		ma Point
+	pub sta m distanceSquared
+		ma Point
+	pub m adjacent
+C Point
+		ma Point
+		ma Point
+		ma java.util.function.Predicate
+		ma java.util.function.Function
+		ma java.util.function.ToIntBiFunction
+	pub abs m computePath
+		ma DebugGrid
+	pub abs m setDebugGrid
+I PathingStrategy
+	supc Miner
+		ma Point
+		ma int
+		ma int
+		ma int
+	pro m <init>
+		ma Entity
+	pkg m getTarget
+	pkg m transformation
+C MinerNotFull
+	supc Miner
+		ma Point
+	pro m <init>
+		ma Entity
+	pkg m getTarget
+	pkg m transformation
+C SuperMiner
+	supc java.lang.Object
+	fin sta f VERY_SIMPLE
+	fin sta f VERY_SIMPLE_BLOCKED
+	fin sta f SIMPLE
+	fin f strategy
+	fin f debug
+	fin f gridSize
+	fin f start
+	fin f goal
+	fin f obstacles
+	fin f canPassThrough
+	fin f potentialNeighbors
+	fin f stepsFromTo
+	pkg fin sta f $assertionsDisabled
+		ma edu.calpoly.spritely.Size
+		ma Point
+		ma Point
+		ma java.util.Set
+		ma PathingStrategy
+	pub m <init>
+		ma [Ljava.lang.String;
+		ma PathingStrategy
+	pub m <init>
+		ma [Ljava.lang.String;
+	pub sta m main
+	pub m test
+		ma Point
+		ma Point
+	m adjacent
+	m setupDebug
+	m setupCanPassThrough
+	m setupPotentialNeighbors
+	m setupStepsFromTo
+		ma java.util.Set
+	m resetDebugGrid
+	pub m computeSteps
+	pub sta m runTestsAndExit
+		ma Point
+		ma Point
+	sta m lambda$setupStepsFromTo$2
+		ma Point
+	sta m lambda$setupPotentialNeighbors$1
+		ma Point
+	m lambda$setupCanPassThrough$0
+C TestPathing
+	supc java.lang.Object
+	fin f pendingEvents
+	f currentTime
+	pkg fin sta f $assertionsDisabled
+	pub m <init>
+	pub m size
+		ma java.lang.Object
+		ma Action
+		ma double
+	pub m scheduleEvent
+	pub m getCurrentTime
+		ma java.lang.Object
+	pub m unscheduleAllEvents
+		ma double
+	pub m processEvents
+		ma java.lang.Object
+		ma Event
+	sta m lambda$unscheduleAllEvents$0
+C EventSchedule
+	supc java.lang.Object
+	supi Action
+	f point
+	f w
+	f rand
+		ma Point
+		ma WorldModel
+	pub m <init>
+		ma EventSchedule
+	pub m executeAction
+C Landing
+	supc java.lang.Object
+	pub m <init>
+		ma [Ljava.lang.String;
+	pub sta m main
+	sta m usage
+	sta m runTestsAndExit
+C Main
+	supc EntityActive
+	supi Animatable
+	pro fin f animationPeriod
+		ma Point
+		ma java.util.List
+		ma int
+		ma int
+	pro m <init>
+		ma WorldModel
+		ma EventSchedule
+	pub m init
+	pro abs m repeatCount
+	pub m nextImage
+	pub fin m getAnimationPeriod
+		ma EventSchedule
+		ma WorldModel
+	pub fin m scheduleActions
+A EntityAnimatable
+	supc Entity
+		ma Point
+	pro m <init>
+C Blacksmith
+	supc java.lang.Object
+	supi Action
+	f worldModel
+	f execute
+		ma WorldModel
+		ma Executable
+	pub m <init>
+		ma EventSchedule
+	pub m executeAction
+C Activity
+	supc Movers
+		ma Point
+	pro m <init>
+		ma WorldModel
+		ma EventSchedule
+	pub m executeActivity
+		ma WorldModel
+		ma Point
+	pro m canPassThrough
+		ma Point
+	pro m potentialNeighbors
+		ma Entity
+	m isTarget
+		ma WorldModel
+		ma EventSchedule
+		ma Entity
+	m kill
+C Duke
+2019-03-20 13:20:44.599 java[21370:1262695] +[NSXPCSharedListener endpointForReply:withListenerName:]: an error occurred while attempting to obtain endpoint for listener 'ClientCallsAuxiliary': Connection interrupted
+Fatal error:  Image not found in images/duke1.png
+java.io.IOException: File not found:  images/duke1.png
+	at edu.calpoly.spritely.ImageTile.<init>(ImageTile.java:70)
+	at VirtualWorld.getImageTile(VirtualWorld.java:103)
+	at VirtualWorld.loadImages(VirtualWorld.java:124)
+	at VirtualWorld.<clinit>(VirtualWorld.java:95)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:315)
+	at GraderInternalListTypes.getClass(GraderInternalListTypes.java:18)
+	at GraderInternalListTypes.printTypesIn(GraderInternalListTypes.java:25)
+	at GraderInternalListTypes.main(GraderInternalListTypes.java:35)
+
+
+
+****  Failed to get program types ****
+
+
+***************  Grading Notes  ***************
+
+
+********************  Grade Calculation  ***************
+
+GOOD (10.0 points):  Submitted program compiles
+GOOD (10.0 points):  doc/WORLD_EVENTS.txt exists
+GOOD (20.0 points):  Program runs
+GOOD (10.0 points):  Program doesn't crash (runtime error, exception, etc.)
+GOOD (15.0 points):  At least 7 background tiles are changed
+GOOD (10.0 points):  Behavior of some other entity is changed
+GOOD (15.0 points):  A new mobile entity is created
+MISSED (10.0 points):  There are at least 9 concrete entity types
+
+
+Final score:  90.00
+
+Graded 2019-03-20 at 13:17

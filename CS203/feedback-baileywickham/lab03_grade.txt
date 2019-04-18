@@ -1,0 +1,143 @@
+Analyzing last putback before 2019-01-25 01:00
+
+** part1 test run results:
+testCircleArch(1)
+testCircleArch(3)
+testRectangleArch(1)
+testRectangleArch(3)
+testPolygonArch(1)
+testPolygonArch(3)
+testCircle(2)
+testCircle(4)
+testCircle(6)
+testRectangle(1)
+testRectangle(2)
+testRectangle(3)
+testPolygon(2)
+testPolygon(5)
+testPolygon(6)
+testPolygon(7)
+testPolygon(8)
+testPolygon(9)
+$GraderInternalMain$
+$start$
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+
+
+** part2 test run results:
+testCircleArch(1)
+testCircleArch(3)
+testRectangleArch(1)
+testRectangleArch(3)
+testPolygonArch(1)
+testPolygonArch(3)
+testCircle(2)
+testCircle(4)
+testCircle(6)
+testRectangle(1)
+testRectangle(2)
+testRectangle(3)
+testPolygon(2)
+testPolygon(5)
+testPolygon(6)
+testPolygon(7)
+testPolygon(8)
+testPolygon(9)
+$GraderInternalMain$
+$start$
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+
+
+
+***************  Grading Notes  ***************
+
+
+********************  Grade Calculation  ***************
+
+GOOD (2.4 points):  Part 1 test 01
+GOOD (2.4 points):  Part 1 test 02
+GOOD (2.4 points):  Part 1 test 03
+GOOD (2.4 points):  Part 1 test 04
+GOOD (2.4 points):  Part 1 test 05
+GOOD (2.4 points):  Part 1 test 06
+GOOD (2.4 points):  Part 1 test 07
+GOOD (2.4 points):  Part 1 test 08
+GOOD (2.4 points):  Part 1 test 09
+GOOD (2.4 points):  Part 1 test 10
+GOOD (2.4 points):  Part 1 test 11
+GOOD (2.4 points):  Part 1 test 12
+GOOD (2.4 points):  Part 1 test 13
+GOOD (2.4 points):  Part 1 test 14
+GOOD (2.4 points):  Part 1 test 15
+GOOD (2.4 points):  Part 1 test 16
+GOOD (2.4 points):  Part 1 test 17
+GOOD (2.4 points):  Part 1 test 18
+GOOD (2.4 points):  Part 1 test 19
+GOOD (2.4 points):  Part 1 test 20
+GOOD (2.4 points):  Part 1 test 21
+GOOD (2.4 points):  Part 2 test 01
+GOOD (2.4 points):  Part 2 test 02
+GOOD (2.4 points):  Part 2 test 03
+GOOD (2.4 points):  Part 2 test 04
+GOOD (2.4 points):  Part 2 test 05
+GOOD (2.4 points):  Part 2 test 06
+GOOD (2.4 points):  Part 2 test 07
+GOOD (2.4 points):  Part 2 test 08
+GOOD (2.4 points):  Part 2 test 09
+GOOD (2.4 points):  Part 2 test 10
+GOOD (2.4 points):  Part 2 test 11
+GOOD (2.4 points):  Part 2 test 12
+GOOD (2.4 points):  Part 2 test 13
+GOOD (2.4 points):  Part 2 test 14
+GOOD (2.4 points):  Part 2 test 15
+GOOD (2.4 points):  Part 2 test 16
+GOOD (2.4 points):  Part 2 test 17
+GOOD (2.4 points):  Part 2 test 18
+GOOD (2.4 points):  Part 2 test 19
+GOOD (2.4 points):  Part 2 test 20
+GOOD (2.4 points):  Part 2 test 21
+
+
+Final score:  100.00
+
+Graded 2019-01-27 at 18:37

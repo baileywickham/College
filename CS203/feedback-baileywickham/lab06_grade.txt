@@ -1,0 +1,75 @@
+Analyzing last putback before 2019-02-16 01:00
+
+** test run results:
+Tests passed (of 40):
+40
+
+
+    The log log_test_small.log matched perfectly.
+
+    For log_test_small.log, Average Views without Purchase matched.
+
+    The "Price Difference for Purchased Product" section of log_test_small.log matched.
+
+    The "Price Difference for Purchased Product" section of 
+    log_test_small.log matched when I re-sorted it.
+
+    The "Number of Views for Purchased Product" section of 
+    log_test_small.log matched.
+
+    The "Number of Views for Purchased Product" section of 
+    log_test_small.log matched when I re-sorted it.
+
+
+    The log log_test_nonum.log matched perfectly.
+
+    For log_test_nonum.log, Average Views without Purchase matched.
+
+    The "Price Difference for Purchased Product" section of log_test_nonum.log matched.
+
+    The "Price Difference for Purchased Product" section of 
+    log_test_nonum.log matched when I re-sorted it.
+
+    The "Number of Views for Purchased Product" section of 
+    log_test_nonum.log matched.
+
+    The "Number of Views for Purchased Product" section of 
+    log_test_nonum.log matched when I re-sorted it.
+
+
+    The log log_test_sample.log matched perfectly.
+
+    For log_test_sample.log, Average Views without Purchase matched.
+
+    The "Price Difference for Purchased Product" section of log_test_sample.log matched.
+
+    The "Price Difference for Purchased Product" section of 
+    log_test_sample.log matched when I re-sorted it.
+
+    The "Number of Views for Purchased Product" section of 
+    log_test_sample.log matched.
+
+    The "Number of Views for Purchased Product" section of 
+    log_test_sample.log matched when I re-sorted it.
+
+
+Performance:  On a large log file, a reference implementation was
+faster than yours by a factor of 7.571759988918201.
+
+
+***************  Grading Notes  ***************
+
+
+********************  Grade Calculation  ***************
+
+
+    Matching logs:  passed 18 tests (out of 18, 30% of grade)
+    CustomerID tests:  passed 40 tests (out of 40, 30% of grade)
+    Performance OK:  false (10% of grade)
+    Program compiled (30% of grade)
+
+
+
+Final score:  90.00
+
+Graded 2019-02-19 at 10:54

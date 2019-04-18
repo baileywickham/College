@@ -1,0 +1,124 @@
+Analyzing last putback before 2019-03-07 01:00
+
+
+    ***  Lines differ for the following rubric item ***
+        Line 2 expected:      bucket 0 contains [MapEntry(Point(0, 0), 1), MapEntry(Point(3, 1), 1), MapEntry(Point(2, 4), 1)]
+                       found:      bucket 0 contains [MyMapEntry(Point(0, 0), 1), MyMapEntry(Point(3, 1), 1), MyMapEntry(Point(2, 4), 1)]
+        Line 3 expected:      bucket 1 contains [MapEntry(Point(1, 0), 1), MapEntry(Point(4, 1), 1), MapEntry(Point(0, 3), 1), MapEntry(Point(3, 4), 1)]
+                       found:      bucket 1 contains [MyMapEntry(Point(1, 0), 1), MyMapEntry(Point(4, 1), 1), MyMapEntry(Point(0, 3), 1), MyMapEntry(Point(3, 4), 1)]
+        Line 4 expected:      bucket 2 contains [MapEntry(Point(2, 0), 1), MapEntry(Point(1, 3), 1), MapEntry(Point(4, 4), 5)]
+                       found:      bucket 2 contains [MyMapEntry(Point(2, 0), 1), MyMapEntry(Point(1, 3), 1), MyMapEntry(Point(4, 4), 1), MyMapEntry(Point(4, 4), 1), MyMapEntry(Point(4, 4), 1), MyMapEntry(Point(4, 4), 1), MyMapEntry(Point(4, 4), 1)]
+        Line 5 expected:      bucket 3 contains [MapEntry(Point(3, 0), 1), MapEntry(Point(2, 3), 1)]
+                       found:      bucket 3 contains [MyMapEntry(Point(3, 0), 1), MyMapEntry(Point(2, 3), 1)]
+        Line 6 expected:      bucket 4 contains [MapEntry(Point(4, 0), 1), MapEntry(Point(0, 2), 1), MapEntry(Point(3, 3), 4)]
+                       found:      bucket 4 contains [MyMapEntry(Point(4, 0), 1), MyMapEntry(Point(0, 2), 1), MyMapEntry(Point(3, 3), 1), MyMapEntry(Point(3, 3), 1), MyMapEntry(Point(3, 3), 1), MyMapEntry(Point(3, 3), 1)]
+        Line 7 expected:      bucket 5 contains [MapEntry(Point(1, 2), 1), MapEntry(Point(4, 3), 1)]
+                       found:      bucket 5 contains [MyMapEntry(Point(1, 2), 1), MyMapEntry(Point(4, 3), 1)]
+        Line 8 expected:      bucket 6 contains [MapEntry(Point(2, 2), 3)]
+                       found:      bucket 6 contains [MyMapEntry(Point(2, 2), 1), MyMapEntry(Point(2, 2), 1), MyMapEntry(Point(2, 2), 1)]
+        Line 9 expected:      bucket 7 contains [MapEntry(Point(0, 1), 1), MapEntry(Point(3, 2), 1)]
+                       found:      bucket 7 contains [MyMapEntry(Point(0, 1), 1), MyMapEntry(Point(3, 2), 1)]
+        Line 10 expected:      bucket 8 contains [MapEntry(Point(1, 1), 2), MapEntry(Point(4, 2), 1), MapEntry(Point(0, 4), 1)]
+                       found:      bucket 8 contains [MyMapEntry(Point(1, 1), 1), MyMapEntry(Point(1, 1), 1), MyMapEntry(Point(4, 2), 1), MyMapEntry(Point(0, 4), 1)]
+        Line 11 expected:      bucket 9 contains [MapEntry(Point(2, 1), 1), MapEntry(Point(1, 4), 1)]
+                       found:      bucket 9 contains [MyMapEntry(Point(2, 1), 1), MyMapEntry(Point(1, 4), 1)]
+
+    ***  Lines differ for the following rubric item ***
+        Line 7 expected:      Point(1, 1) seen 2 times.
+                       found:      Point(1, 1) seen 1 times.
+        Line 8 expected:      Point(1, 2) seen 1 times.
+                       found:      Point(1, 1) seen 1 times.
+        Line 9 expected:      Point(1, 3) seen 1 times.
+                       found:      Point(1, 2) seen 1 times.
+        Line 10 expected:      Point(1, 4) seen 1 times.
+                       found:      Point(1, 3) seen 1 times.
+        Line 11 expected:      Point(2, 0) seen 1 times.
+                       found:      Point(1, 4) seen 1 times.
+        Line 12 expected:      Point(2, 1) seen 1 times.
+                       found:      Point(2, 0) seen 1 times.
+        Line 13 expected:      Point(2, 2) seen 3 times.
+                       found:      Point(2, 1) seen 1 times.
+        Line 14 expected:      Point(2, 3) seen 1 times.
+                       found:      Point(2, 2) seen 1 times.
+        Line 15 expected:      Point(2, 4) seen 1 times.
+                       found:      Point(2, 2) seen 1 times.
+        Line 16 expected:      Point(3, 0) seen 1 times.
+                       found:      Point(2, 2) seen 1 times.
+        Line 17 expected:      Point(3, 1) seen 1 times.
+                       found:      Point(2, 3) seen 1 times.
+        Line 18 expected:      Point(3, 2) seen 1 times.
+                       found:      Point(2, 4) seen 1 times.
+        Line 19 expected:      Point(3, 3) seen 4 times.
+                       found:      Point(3, 0) seen 1 times.
+        Line 20 expected:      Point(3, 4) seen 1 times.
+                       found:      Point(3, 1) seen 1 times.
+        Line 21 expected:      Point(4, 0) seen 1 times.
+                       found:      Point(3, 2) seen 1 times.
+        Line 22 expected:      Point(4, 1) seen 1 times.
+                       found:      Point(3, 3) seen 1 times.
+        Line 23 expected:      Point(4, 2) seen 1 times.
+                       found:      Point(3, 3) seen 1 times.
+        Line 24 expected:      Point(4, 3) seen 1 times.
+                       found:      Point(3, 3) seen 1 times.
+        Line 25 expected:      Point(4, 4) seen 5 times.
+                       found:      Point(3, 3) seen 1 times.
+        Line 26 expected:  Printing point counts, sorted by y, then x:
+                       found:      Point(3, 4) seen 1 times.
+        Line 27 expected:  null
+                       found:      Point(4, 0) seen 1 times.
+        Line 28 expected:  null
+                       found:      Point(4, 1) seen 1 times.
+        Line 29 expected:  null
+                       found:      Point(4, 2) seen 1 times.
+        Line 30 expected:  null
+                       found:      Point(4, 3) seen 1 times.
+        Line 31 expected:  null
+                       found:      Point(4, 4) seen 1 times.
+        Line 32 expected:  null
+                       found:      Point(4, 4) seen 1 times.
+        Line 33 expected:  null
+                       found:      Point(4, 4) seen 1 times.
+        Line 34 expected:  null
+                       found:      Point(4, 4) seen 1 times.
+        Line 35 expected:  null
+                       found:      Point(4, 4) seen 1 times.
+        Line 36 expected:  null
+                       found:  Printing point counts, sorted by y, then x:
+
+I encountered an error trying to run your program.
+Error:  RunError: return code 1
+    [sudo, -u, restricted, java, -cp, .:lib/testy.jar:lib/spritely.jar, GraderInternalTestMap]
+    output:  Exception in thread "main" java.lang.IndexOutOfBoundsException: Index -227 out of bounds for length 1000
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:248)
+	at java.base/java.util.Objects.checkIndex(Objects.java:372)
+	at java.base/java.util.ArrayList.get(ArrayList.java:458)
+	at MyMap.put(MyMap.java:67)
+	at GraderInternalTestMap.tryExternal(GraderInternalTestMap.java:90)
+	at GraderInternalTestMap.runTests(GraderInternalTestMap.java:138)
+	at GraderInternalTestMap.main(GraderInternalTestMap.java:110)
+
+
+
+
+***************  Grading Notes  ***************
+
+
+********************  Grade Calculation  ***************
+
+GOOD (8.0 points):  MyMapEntry has final key and value
+MISSED (10.0 points):  Printing buckets section of output
+MISSED (10.0 points):  Point counts section of output
+GOOD (56.0 points):  Lab8Main ran to completion
+MISSED (8.0 points):  Run time with normal amount of buckets within 25x of reference time
+MISSED (8.0 points):  Run time with about 200 entries/bucket within 25x of reference time
+
+NOTE:  If your program was more than 25 times slower than the reference time,
+       it's most likely because you weren't using the hashCode results correctly.
+
+
+
+Final score:  64.00
+
+Graded 2019-03-10 at 12:08

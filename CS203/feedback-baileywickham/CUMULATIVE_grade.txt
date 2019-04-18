@@ -1,0 +1,28 @@
+*****************************************
+*     CUMULATIVE GRADE REPORT           *
+*****************************************
+
+
+     final   83.1%  32% of total grade
+     lab01   85.0%   1% of total grade
+     lab02   83.0%   1% of total grade
+     lab03  100.0%   1% of total grade
+     lab04   92.2%   1% of total grade
+     lab05   42.1%   1% of total grade
+     lab06   90.0%   1% of total grade
+     lab07  100.0%   1% of total grade
+     lab08   92.0%   1% of total grade
+     lab09   64.0%   1% of total grade
+     lab10  100.0%   1% of total grade
+   midterm   79.7%  16% of total grade
+        p1   95.0%   7% of total grade
+        p2   97.0%   7% of total grade
+        p3   84.0%   7% of total grade
+        p4   78.0%   7% of total grade
+        p5   86.0%   7% of total grade
+        p6   90.0%   7% of total grade
+
+Total grade so far:    85% -- B
+100% of the grade is in.
+
+Graded 2019-03-25 at 16:12

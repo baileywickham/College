@@ -1,0 +1,340 @@
+Analyzing last putback before 2019-01-21 01:00
+
+** EventSchedule test results:
+    Scheduling event for time 5.5 which should be 5.5 in the future.
+    Scheduling event for time 9.9 which should be 9.9 in the future.
+    Scheduling event for time 3.3 which should be 3.3 in the future.
+    Scheduling event for time 1.1 which should be 1.1 in the future.
+    Scheduling event for time 2.2 which should be 2.2 in the future.
+    Scheduling event for time 4.4 which should be 4.4 in the future.
+    Scheduling event for time 6.6 which should be 6.6 in the future.
+    Scheduling event for time 7.7 which should be 7.7 in the future.
+    Scheduling event for time 8.8 which should be 8.8 in the future.
+    Scheduling event for time 10.1 which should be 10.1 in the future.
+  Processing events through time 3.0
+    Receiving event for time 1.1 EventSchedule.getCurrentTime() gives 3.0
+    Receiving event for time 2.2 EventSchedule.getCurrentTime() gives 3.0
+  Processing events through time 6.1
+    Receiving event for time 3.3 EventSchedule.getCurrentTime() gives 6.1
+    Scheduling event for time 3.4 which should be 0.1 in the future.
+    Scheduling event for time 13.4 which should be 10.1 in the future.
+    Receiving event for time 4.4 EventSchedule.getCurrentTime() gives 6.1
+    Receiving event for time 5.5 EventSchedule.getCurrentTime() gives 6.1
+  Processing events through time 14
+    Receiving event for time 3.4 EventSchedule.getCurrentTime() gives 14.0
+    Receiving event for time 6.6 EventSchedule.getCurrentTime() gives 14.0
+    Receiving event for time 7.7 EventSchedule.getCurrentTime() gives 14.0
+    Receiving event for time 8.8 EventSchedule.getCurrentTime() gives 14.0
+    Receiving event for time 9.9 EventSchedule.getCurrentTime() gives 14.0
+    Receiving event for time 10.1 EventSchedule.getCurrentTime() gives 14.0
+    Size of event schedule:  1
+    Current time:  14.0
+
+Creating new event schedule
+  Scheduling event with target java.lang.Object@7006c658
+  Scheduling event with target java.lang.Object@34033bd0
+  Scheduling event with target java.lang.Object@34033bd0
+  Scheduling event with target java.lang.Object@47fd17e3
+  Uncheduling events with target java.lang.Object@34033bd0
+    Size of event schedule:  2
+Creating new event schedule
+  Scheduling event with null target
+  Scheduling event with target java.lang.Object@2eee9593
+  Scheduling event with target java.lang.Object@2eee9593
+  Scheduling event with target java.lang.Object@7907ec20
+  Uncheduling events with target java.lang.Object@2eee9593
+    Size of event schedule:  2
+
+$GraderInternalMain$
+$start$
+true
+false
+false
+true
+false
+false
+false
+true
+true
+true
+
+
+
+***************  Grading Notes  ***************
+
+
+********************  Grade Calculation  ***************
+
+
+Class Action
+    Group of methods that belong here:  
+        executeAction, executeActivityAction, executeAnimationAction
+    This method group's home(s) was chosen because:
+        These relate directly to what an Action does.
+    Methods you put here:
+        executeAction, executeActivityAction, executeAnimationAction
+        -> For this group, you got 6.0 out of 6.0
+
+Class Entity
+    Group of methods that belong here:  
+        moveToFull, moveToNotFull, moveToOreBlob
+    This method group's home(s) was chosen because:
+        See what's done in the implementation.  An entity's state is being
+        changed.
+    Methods you put here:
+        moveToFull, moveToNotFull, moveToOreBlob
+        -> For this group, you got 4.0 out of 4.0
+
+Class Entity
+    Group of methods that belong here:  
+        createActivityAction, createAnimationAction
+    This method group's home(s) was chosen because:
+        These metods are creating these actions *for* and Entity, which is quite
+        tightly coupled to the responsibility of an Entity.
+    Methods you explained well, even though they weren't in a preferred place:
+        createActivityAction (in class WorldModel)
+        createAnimationAction (in class WorldModel)
+
+        -> For this group, you got 2.0 out of 2.0
+
+Class Entity
+    Group of methods that belong here:  
+        scheduleActions
+    This method group's home(s) was chosen because:
+        See the implementation.  This has a lot of logic related to the Entity
+        type, making that preferred.  It is doing scheduling, but it's doing
+        that by invoking another method.
+    Methods you put here:
+        scheduleActions
+        -> For this group, you got 3.0 out of 3.0
+
+Class Entity
+    Group of methods that belong here:  
+        createBlacksmith, createMinerFull, createMinerNotFull, createObstacle,
+                createOre, createOreBlob, createQuake, createVein
+    This method group's home(s) was chosen because:
+        Entity is best here, since it is creating kinds of
+        entities.  Since there are a number of them, grouping under Entity
+        is logical.  In the future, we may have a better solution than 
+        just static methods, but in this assignment you were just asked
+        to move methods.
+    Methods you put here:
+        createBlacksmith, createMinerFull, createMinerNotFull, createObstacle,
+        createOre, createOreBlob, createQuake, createVein
+        -> For this group, you got 5.0 out of 5.0
+
+Class Entity
+    Group of methods that belong here:  
+        executeMinerFullActivity, executeMinerNotFullActivity,
+                executeOreActivity, executeOreBlobActivity,
+                executeQuakeActivity, executeVeinActivity
+    This method group's home(s) was chosen because:
+        Entity is preferred -- see what these methods are doing, and think 
+        about encapsulation.  Activity isn't unreasonable, but if you put it
+        in activity, you should have something in your document saying what
+        your thought process was, and mentioning the possibility of Entity.
+    Methods you put in an OK class:
+        executeMinerFullActivity, executeMinerNotFullActivity,
+        executeOreActivity, executeOreBlobActivity, executeQuakeActivity,
+        executeVeinActivity
+        -> For this group, you got 5.0 out of 5.0
+
+Class Entity
+    Group of methods that belong here:  
+        getAnimationPeriod
+    This method group's home(s) was chosen because:
+        This is purely getting a parameter of an Entity.
+    Methods you put here:
+        getAnimationPeriod
+        -> For this group, you got 3.0 out of 3.0
+
+Class Entity
+    Group of methods that belong here:  
+        getCurrentTile, nextImage
+    This method group's home(s) was chosen because:
+        Entity is best here, because they relate to the screen representation
+        for the entity.  See the function body.
+    Methods you put here:
+        getCurrentTile, nextImage
+        -> For this group, you got 5.0 out of 5.0
+
+Class Entity
+    Group of methods that belong here:  
+        nextPositionMiner, nextPositionOreBlob
+    This method group's home(s) was chosen because:
+        See what these methods are doing, and where they're called.
+        It's dealing with the position of the entity
+        in the world, and determining that entity's next position.
+    Methods you put here:
+        nextPositionMiner, nextPositionOreBlob
+        -> For this group, you got 3.0 out of 3.0
+
+Class Entity
+    Group of methods that belong here:  
+        transformFull, transformNotFull
+    This method group's home(s) was chosen because:
+        Entity really is the best place here, because this is using a lot of
+        internal information about what entities are, and how they behave.
+    Methods you put here:
+        transformFull, transformNotFull
+        -> For this group, you got 2.0 out of 2.0
+
+Class EventSchedule
+    Group of methods that belong here:  
+        processEvents, removePendingEvent, scheduleEvent, unscheduleAllEvents
+    This method group's home(s) was chosen because:
+        You weren't asked to change EventSchedule
+    Methods you put here:
+        processEvents, scheduleEvent, unscheduleAllEvents
+        -> For this group, you got 0.0 out of 0.0
+
+Class Point
+    Group of methods that belong here:  
+        adjacent, distanceSquared
+    This method group's home(s) was chosen because:
+        Things related to distances between points are a natural thing for
+        a Point to know how to do.  These are only used in relation to at
+        least one Entity, though, so they could reasonably be part of Entity,
+        too.
+    Methods you put here:
+        adjacent, distanceSquared
+        -> For this group, you got 2.0 out of 2.0
+
+Class VirtualWorld
+    Group of methods that belong here:  
+        addInitial, createInitialEntities, loadEntityImages, loadImages,
+                runSimulation, scheduleInitialActions, setup, setupBackground
+    This method group's home(s) was chosen because:
+        You weren't asked to move methods from VirtualWorld.
+    Methods you put here:
+        addInitial, createInitialEntities, loadEntityImages, loadImages,
+        runSimulation, scheduleInitialActions, setup, setupBackground
+        -> For this group, you got 7.0 out of 7.0
+
+Class WorldModel
+    Group of methods that belong here:  
+        paint
+    This method group's home(s) was chosen because:
+        This is painting the contents of the WorldModel to the screen.
+    Methods you explained well, even though they weren't in a preferred place:
+        paint (in class VirtualWorld)
+
+        -> For this group, you got 2.0 out of 2.0
+
+Class WorldModel
+    Group of methods that belong here:  
+        addEntity, getOccupant, getOccupantCell, isOccupied, removeEntity,
+                removeEntityAt, setOccupantCell, withinBounds
+    This method group's home(s) was chosen because:
+        These relate directly to WorldModel data structures.
+    Methods you put here:
+        addEntity, getOccupant, getOccupantCell, isOccupied, removeEntity,
+        removeEntityAt, setOccupantCell, withinBounds
+        -> For this group, you got 7.0 out of 7.0
+
+Class WorldModel
+    Group of methods that belong here:  
+        nearestEntity
+    This method group's home(s) was chosen because:
+        This is only used by findNearest, and can be made private by putting
+        it here.
+    Methods you put here:
+        nearestEntity
+        -> For this group, you got 1.0 out of 1.0
+
+Class WorldModel
+    Group of methods that belong here:  
+        findNearest, findOpenAround
+    This method group's home(s) was chosen because:
+        These are looking for stuff inside the world.  That's a pretty direct
+        relationship to world.  It might be tempting to put it in Entity, 
+        but it's looking for an entity in world, so there's no instance of 
+        Entity we can attach this method to.
+    Methods you put here:
+        findNearest, findOpenAround
+        -> For this group, you got 2.0 out of 2.0
+
+Class WorldModel
+    Group of methods that belong here:  
+        moveEntity
+    This method group's home(s) was chosen because:
+        This is operating on an WorldModel.  Entity, in this case, is just
+        the thing contained within the WorldModel.  See, for example,
+        moveEntity.  It is changing the position of the entity, but check 
+        out what it's doing to the WorldModel -- setOccupancyCell is doing
+        some pretty involved things, deeply related to WorldModel.
+    Methods you put here:
+        moveEntity
+        -> For this group, you got 1.0 out of 1.0
+
+***************  Unidentified Methods  ***************
+
+I found the following methods in your yEd UML file, but I couldn't
+find them in the scoring rubric.  There's no penalty for this; perhaps
+you're just looking ahead to some methods you'll add in the future,
+or maybe it's something the grader just isn't checking.
+However, maybe some of these are a typo, which might have prevented you
+from getting credit for them.  Take a look, and if the problem truly is
+a typo, you can consider resubmitting.  Please check to see if you'd actually
+get credit if the typo were fixed, though!
+
+I couldn't find:
+    equals in point
+    execute in event
+    getbackground in worldmodel
+    getentities in worldmodel
+    getsize in worldmodel
+    gettarget in event
+    gettime in event
+    hashcode in point
+    main in main
+    nulltest in testcases
+    runtests in testcases
+    runtestsandexit in main
+    setbackground in worldmodel
+    tostring in point
+    usage in main
+    worldmodel in worldmodel
+
+********************  Design Score ********************
+
+    Your design score is 60.0 out of 60
+
+
+
+
+Other metrics:
+
+GOOD (2.0 points):  EventSchedule events arrived in order (no events added during execute)
+        (line 75: "Execute all the pending events, in order")
+MISSED (2.0 points):  EventSchedule events arrived in order (events added during execute)
+        (line 75: "Execute all the pending events, in order")
+MISSED (2.0 points):  EventSchedule events came at correct time
+        (line 34:  "When an event's action is being executed,
+                   this will be the time of that event)"
+GOOD (1.0 point):  EventSchedule processed events up to limit (no events added during execute)
+        (line 75:  "...until we get to the time advanceToTime")
+MISSED (1.0 point):  EventSchedule processed events up to limit (events added during execute)
+        (line 75:  "...until we get to the time advanceToTime")
+MISSED (2.0 points):  EventSchedule processed all events
+        (line 75:  "until we get to the time advanceToTime")
+MISSED (0.5 points):  EventSchedule reports correct size while processing event
+        (line 87: "currently scheduled")
+GOOD (1.0 point):  EventSchedule reports correct time after processEvents()
+        (line 76: "When this method completes...")
+GOOD (0.5 points):  EventSchedule.unscheduleAllEvents works (no null targets)
+        (line 60:  "Remove all of the events ...")
+GOOD (0.5 points):  EventSchedule.unscheduleAllEvents works (with null targets)
+        (line 60:  "Remove all of the events ...")
+GOOD (15.0 points):  Extra points to compensate for difficulty of EventSchedule
+
+
+GOOD (5.0 points):  Functions was eliminated
+
+Design document score:  10 out of 10
+
+
+
+Final score:  95.00
+
+Graded 2019-02-05 at 12:39
