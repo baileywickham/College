@@ -1,0 +1,75 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{amsmath, amssymb}
+
+\begin{document}
+\begin{center}
+    {\LARGE \bf ASGN 1\\}
+    {\large Bailey Wickham}
+\end{center}
+\begin{abstract}
+    Hey! This is my first time using latex, so it probably won't look great. I also don't really know how to use latex, as you can see from this being in the abstract.
+    
+\end{abstract}
+\begin{enumerate}
+    \item Determine if the following are fields.
+\begin{enumerate}
+    \item $\mathbb{Q}$ is a field.
+    \item $\mathbb{Z}$ is not a field.
+        \begin{itemize}
+            \item  7. $\forall x \in \mathbb{Z}$ does not have an inverse. For example $x = 7 : x^{-1} = \frac{1}{7} \not\in \mathbb{Z}$
+        \end{itemize}
+    \item \{$a \in \mathbb{R}: 0 \le a$\} 
+        \begin{itemize}
+            \item 1. Fails multiplication. $-1 * -1 = 1 > 0$
+            \item 5. There is no element 1 in the set.
+            \item 6. There is no multiplictive inverse. 
+        \end{itemize} 
+    \item $\{a \in \mathbb{R}: -1 \le a \le 1\} $
+        \begin{itemize}
+            \item 1. $1 + 1 > 1$
+        \end{itemize}
+    \item \{$a + b\sqrt{2}: a,b \in \mathbb{Q}$\}
+        \begin{itemize}
+            \item 1. Any nonzero value for b produces an irrational number.
+        \end{itemize}
+    \item $\{0,1\} $ with $0 + 0 = 0, 1 + 0 = 0 + 1 = 1,$ and $1 + 1 = 0$:  Field. 
+        I think this is actually a field.
+
+    \item \{0,1,2\} with operations defined in the instructions. I think this is a Galois field?
+    \item $\{0,1,2,3\} $ Field!
+    \item the set of 2x2 matrices with entries in $\mathbb{C}$ is the same as $\mathbb{C}^2$, and after reading the textbook and the listening to the lecture in class, $F^n$ is a field. Thus $C^2$ is a field.
+\end{enumerate}
+\item let $a \neq 0$ be an element of a field $\mathbb{F}$ Prove that the element $a^{-1}$ in 7 is unique. Prove that $(a^{-1})^{-1} = a$.
+    \begin{enumerate}
+        \item let $a,b,c \in \mathbb{F}$ such that $a\cdot b = a\cdot c = 1$ 
+        \begin{align*}
+            1 &= a \cdot b \\
+            1 &= 1\cdot a \cdot b \\
+            1 &= 1 \cdot a \cdot b \\
+            1 &= a \cdot c \cdot a \cdot b \\
+            1 &= a \cdot c \cdot 1 \\
+            1 &= a\cdot c
+        \item 1 &= c \cdot \begin{align*}
+            :  &\longrightarrow  \\
+             &\longmapsto () = 
+        .\end{align*} 
+        \end{align*}
+    \item let $(a^{-1})^{-1} = b$
+        \begin{align*}
+            (a^{-1})^{-1} &= b \\
+            1 \cdot(a^{-1})^{-1} &= b \\
+            a \cdot a^{-1} (a^{-1})^{-1} &= b\\
+            a \cdot 1 &= b \\
+            a &= b
+        \end{align*}
+         
+    \end{enumerate}
+    
+\end{enumerate}
+
+
+\end{document}

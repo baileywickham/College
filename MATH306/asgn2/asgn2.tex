@@ -1,0 +1,62 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+
+\begin{document}
+\begin{center}
+    {\LARGE \bf ASGN 1\\}
+    {\large Bailey Wickham}
+\end{center}
+
+\begin{enumerate}
+
+    \item[$1.$]  \begin{enumerate}
+    \item $\{x_{1}, x_{2}, x_{3} \in  \mathbb{F}^3: x_{1} + 2x_{2} + 3x_{3} = 0\}$ Subspace
+    \item $\{x_{1}, x_{2}, x_{3} \in  \mathbb{F}^3: x_{1} + 2x_{2} + 3x_{3} = 4\}$ Not a subspace
+    \item $\{(x_{1}, x_{2}, x_{3}) \in \mathbb{F}^3 : x_{1} \cdot x_{2} \cdot x_{3}\}  $  Not a subspace
+    \item $\{(x_{1}, x_{2}, x_{3}) \in \mathbb{F}^3 : x_{1} = 5x_{3}\}  $ Subspace
+    \end{enumerate}
+\item[$3.$]  Show differentiable real-valued functions f on (-4, 4), such that \\$f'(-1) = 3f(2)$ is a subspace of $\mathbb{R}^{(-4,4)}$  
+    \begin{itemize}
+        \item let $f'(-1) = 3f(2) $ and $g'(-1) = 3g(2)$ 
+            \begin{align*}
+                &= 3f(2) + 3g(2) \\
+                &= 3(f(2) + g(2)) 
+            .\end{align*}
+            \begin{align*}
+                cf'(1) &= c(3f(2)) \\
+                &= 3(cf(2)) 
+            .\end{align*}
+            I think that's right at least...
+    \end{itemize}
+\item[$7.$] Give a nonempty subset U of $\mathbb{R}^2$ st U is closed under addition and under taking additive inverses, but U is not a subspace.
+    \begin{itemize}
+        \item $\{x \in \mathbb{R} : 2 | x\}  $ Closed under addition, any two even numbers added produces an even number, but not cloded under multiplication by non integer or odd numbers.
+    \end{itemize}
+        \item[$8.$]  Give an example of $U \text{ of } \mathbb{R}^2$ st $U$ is closed under scalar multiplication but not additon. 
+        \begin{itemize}
+            \item $[0,x] \text{ and } [x,0]$ both of which can be extended forever but when added they leave their sets. I think this can be any line through the origin but I am not sure. 
+        \end{itemize}
+        \item[$15.$] $U + U$:  $U$, addition on subspaces is defined by $u_1 + v_1 + u_2 + v_2$ which can be rewritten as $2U$, and since $U$ is closed under scalar multiplication. $U + U = U$    
+        \item[$16.$] Is addition on subspaces comutive? I think this follows from the axioms. $u + v = v + u$, and since addition is defined $u_1 + v_1 + u_2 + v_2...$ so $v_1 + u_1$ follows from associativity. \\
+
+\end{enumerate}
+\begin{enumerate}
+    \item Show that $U = \{cu: c \in \mathbb{F}\}$ and $W = \{cw: c \in  \mathbb{F}\} $ where no $u = cw$
+        \begin{itemize}
+            \item $cu + cu = 2cu$ but $2cu$ is the same as $cu$ where c is a different constant. By definition, this in $U$.   
+            \item  $kcu = cu$ for another $c \in \mathbb{F}$. This is because scaling a $c \in  \mathbb{F}$ results in another value in $\mathbb{F}$ Thus $U$ is a subspace. The same arguments follow for $w \in W$
+            \item Since the sets are disjoint, a direct sum follows by theorem.
+
+        \end{itemize}
+    \item Give a nontrivial subspace of $R^{R^{R}}$ 
+        \begin{itemize}
+            \item The set of functions $f: A\to B$ s.t. their derivtive exists. 
+        \end{itemize}
+\end{enumerate}
+
+\end{document}
