@@ -1,0 +1,10 @@
+compile_commands.json
+cmake*
+Cmake*
+fw/fw
+*.o
+*.out
+mytar/mytar
+*/CMakeLists.txt
+*.idea/
+*cmake-build-debug/

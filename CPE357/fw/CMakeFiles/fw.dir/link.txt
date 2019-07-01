@@ -1,0 +1,1 @@
+/usr/bin/cc -Wall -Werror -ansi -pedantic -g  -g   CMakeFiles/fw.dir/main.c.o CMakeFiles/fw.dir/table.c.o  -o fw 

@@ -1,0 +1,95 @@
+GNU gdb (Ubuntu 8.1-0ubuntu3) 8.1.0.20180409-git
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from example...done.
+(gdb) examp[K[K[K[K[Kb ex[K[K
+-function
+-label
+-line
+-probe
+-probe-dtrace
+-probe-stap
+-qualified
+-source
+/usr/include/stdio.h
+/usr/include/x86_64-linux-gnu/bits/libio.h
+/usr/include/x86_64-linux-gnu/bits/types.h
+/usr/lib/gcc/x86_64-linux-gnu/7/include/stddef.h
+__cxa_finalize
+__cxa_finalize@plt
+__do_global_dtors_aux
+__libc_csu_fini
+__libc_csu_init
+__stack_chk_fail
+__stack_chk_fail@plt
+_fini
+_init
+_start
+deregister_tm_clones
+example.c
+explode
+frame_dummy
+kaboom
+kerblam
+main
+printf
+printf@plt
+register_tm_clones
+(gdb) b example.c:33
+Breakpoint 1 at 0x74e: file example.c, line 33.
+(gdb) r
+Starting program: /home/y/workspace/357/labs/lab2/part3/example 
+
+Breakpoint 1, main () at example.c:33
+33	   printf("%d\n", exp->a);
+(gdb) print exp
+$1 = (struct example *) 0x7fffffffdd80
+(gdb) print *exp
+$2 = {a = 2, b = 3, c = 4, other = 0x7fffffffdd60}
+(gdb) print exp->c
+$3 = 4
+(gdb) print exp->other
+$4 = (struct example *) 0x7fffffffdd60
+(gdb) print *exp->other
+$5 = {a = 1, b = 2, c = 3, other = 0x0}
+(gdb) pi[Krint exp->other->o[Ka
+$6 = 1
+(gdb) print c[K[K[K[K[K[K[Kc
+Continuing.
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00005555555546b6 in kerblam (p=0x0) at example.c:13
+13	   *p = 0;
+(gdb) list
+8	   struct example * other;
+9	};
+10	
+11	void kerblam(int *p)
+12	{
+13	   *p = 0;
+14	}
+15	
+16	void explode()
+17	{
+(gdb) bakc[K[Kck
+#0  0x00005555555546b6 in kerblam (p=0x0) at example.c:13
+#1  0x00005555555546cd in explode () at example.c:18
+#2  0x00005555555546de in kaboom () at example.c:23
+#3  0x0000555555554771 in main () at example.c:36
+(gdb) quic[Kt
+A debugging session is active.
+
+	Inferior 1 [process 10240] will be killed.
+
+Quit anyway? (y or n) y

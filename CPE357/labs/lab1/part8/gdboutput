@@ -1,0 +1,45 @@
+break main
+run
+
+Breakpoint 1, main () at layout.c:14
+14      {
+(gdb) s
+15         int first = 111;
+(gdb) s
+16         int second = 222;
+(gdb) s
+17         int *p = &first;
+(gdb) s
+19         function_one(357);
+(gdb) print &first
+$1 = (int *) 0x7fffffffdcc8
+(gdb) print &second
+$2 = (int *) 0x7fffffffdccc
+(gdb) print &p
+$3 = (int **) 0x7fffffffdcd0
+(gdb) print p
+$4 = (int *) 0x7fffffffdcc8
+(gdb) print *p
+$5 = 111
+(gdb) s
+function_one (input=357) at layout.c:5
+5          int function_one_local = input;
+(gdb) s
+6       }
+(gdb) print fun
+function_one        function_one_local  function_two        funlockfile         funlockfile.c
+(gdb) print function_one_local
+$6 = 357
+(gdb) print &function_one_local
+$7 = (int *) 0x7fffffffdcac
+(gdb) s
+main () at layout.c:20
+20         function_two();
+(gdb) s
+function_two () at layout.c:11
+11      }
+(gdb) print &function_two_local
+Can't take address of "function_two_local" which isn't an lvalue.
+(gdb) print function_two_local
+$8 = <optimized out>
+(gdb)

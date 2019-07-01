@@ -1,0 +1,3 @@
+NAME: 00_Empty
+INPUT: 
+SHOULDFAIL: yes

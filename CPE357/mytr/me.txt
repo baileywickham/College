@@ -1,0 +1,5 @@
+Tht txtmttt tsts I/O rtdirtctitn. A < cttsts t trtgrtm tt rttd frtm tht sttcifitd fitt ts its sttndtrd inttt. A >
+cttsts t trtgrtm tt writt tt tht sttcifitd fitt ts its sttndtrd tttttt. (Systtms-ttvtt dtttits witt bt disctsstd ttttr.)
+Tht ctmtitt-tint tbtvt tsts mtny switchts ftr gcc. Tht firstt -t mytrt tttts tht ctmtittr tt ntmt tht tttttt mytr
+rtthtr thtn t.ttt. Tht stctnd switcht -Wtttt ttrns tn vtrbtst wtrnings. This cttchts mtny ctmmtn trtgrtmming
+ctn bt tstd ftr tddititntt chtcts. Ytt mtstt tf cttrstt trtvidt t Mtttfitt ftr yttr stbmissitn

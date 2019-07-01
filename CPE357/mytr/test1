@@ -1,0 +1,5 @@
+The example uses I/O redirection. A < causes a program to read from the specified file as its standard input. A >
+causes a program to write to the specified file as its standard output. (Systems-level details will be discussed later.)
+The compile-line above uses many switches for gcc. The first, -o mytr, tells the compiler to name the output mytr
+rather than a.out. The second switch, -Wall, turns on verbose warnings. This catches many common programming
+can be used for additional checks. You must, of course, provide a Makefile for your submission
