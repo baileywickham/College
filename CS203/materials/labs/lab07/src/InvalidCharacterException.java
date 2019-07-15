@@ -1,4 +1,0 @@
-class InvalidCharacterException
-    extends ScannerException
-{
-}
