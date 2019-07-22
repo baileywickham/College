@@ -106,11 +106,10 @@ def trav(node,code,requiredl):
     if node != None:
         if node.left == None and node.right == None:
             requiredl[node.char] = code
-        else:
-            if node.left != None:
-                trav(node.left,code + '0', requiredl)
-            if node.right != None:
-                trav(node.right,code + '1', requiredl)
+        if node.left != None:
+            trav(node.left,code + '0', requiredl)
+        if node.right != None:
+            trav(node.right,code + '1', requiredl)
     return requiredl
 
 def huffman_decode(encoded_file,decode_file):
