@@ -1,0 +1,2 @@
+Is not two-colorable
+1 connected component(s)
