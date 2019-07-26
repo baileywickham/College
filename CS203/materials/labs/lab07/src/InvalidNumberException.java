@@ -1,4 +1,0 @@
-class InvalidNumberException
-    extends ScannerException
-{
-}

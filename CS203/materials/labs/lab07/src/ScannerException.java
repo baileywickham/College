@@ -1,5 +1,0 @@
-class ScannerException
-    extends Exception
-{
-}
-
