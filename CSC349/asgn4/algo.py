@@ -1,5 +1,5 @@
 import sys
-import pprint
+from dataclasses import dataclass
 
 
 class te:
