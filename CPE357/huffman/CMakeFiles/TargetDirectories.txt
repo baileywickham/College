@@ -1,3 +1,0 @@
-/home/y/workspace/357/huffman/CMakeFiles/rebuild_cache.dir
-/home/y/workspace/357/huffman/CMakeFiles/huffman.dir
-/home/y/workspace/357/huffman/CMakeFiles/edit_cache.dir

@@ -1,1 +1,0 @@
-/usr/bin/cc -Wall -Werror -ansi -pedantic -g  -g   CMakeFiles/huffman.dir/hencode.c.o CMakeFiles/huffman.dir/huffman.c.o CMakeFiles/huffman.dir/hdecode.c.o  -o huffman 
