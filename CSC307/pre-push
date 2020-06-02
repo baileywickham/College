@@ -1,0 +1,4 @@
+#!/bin/bash
+# Deploys site to github pages, must be put in .git/hooks repo
+cd react-assignment1
+npm run deploy
