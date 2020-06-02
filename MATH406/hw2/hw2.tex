@@ -1,0 +1,140 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsthm, amssymb, amsmath, amsfonts, extramarks}
+
+
+\title{HW 2}
+% Probably bad format to put this here
+\author{Bailey Wickham \\ MATH 406}
+
+\date\today
+
+\newenvironment{homeworkProblem}[1]{
+    \section*{Problem #1}
+}
+
+
+\begin{document}
+\maketitle
+
+\begin{homeworkProblem}{1}
+    Find the Gram-Schmidt basis for $(0,1,4),(2,0,8),(3,6,0)$
+\end{homeworkProblem}
+\begin{proof}
+    \begin{gather*}
+        e_1 = \frac{1}{\sqrt{17}}(0,1,4), \\
+        e_2 = \frac{v_2 - \langle v_2, e_1 \rangle e_1}{\|v_2 - \langle v_2, e_1\rangle e_1 \|} = \frac{(2,0,8) - \frac{32}{\sqrt{17}}(\frac{1}{\sqrt{17}}(0,1,4))}{\|(2,0,8) - \frac{32}{17}(0,1,4)\|} = \frac{(2,\frac{-32}{17}, \frac{8}{17})}{\sqrt{ \frac{2244}{289}}} \\
+        e_3 = \frac{v_3 - \langle v_3, e_1 \rangle e_1 - \langle v_3, e_2 \rangle e_2 }{\|v_3 - \langle v_3, e_1\rangle e_1 - \langle v_3, e_2 \rangle e_2 \|} =  \\
+        \frac{(3,6,0) - \frac{6}{\sqrt{17}}(\frac{1}{\sqrt{17}}(0,1,4)) - \frac{-90}{17\sqrt{\frac{2244}{289}}}(\frac{(2,\frac{-32}{17}, \frac{8}{17})}{\sqrt{\frac{2244}{289}}}  }{\|(3,6,0) - \frac{6}{\sqrt{17}}(\frac{1}{\sqrt{17}}(0,1,4)) - \frac{-90}{17\sqrt{\frac{2244}{289}}}(\frac{(2,\frac{-32}{17}, \frac{8}{17})}{\sqrt{\frac{2244}{289}}}  \|}
+    \end{gather*}
+\end{proof}
+\begin{homeworkProblem}{2}
+    Show that if $v_1,v_2,v_3$ are orthonormal in $V$, then applying Gram-Schmidt has no effect.
+\end{homeworkProblem}
+\begin{proof}
+    We can prove this for any $v_1\dots v_n$ without much extra work, so we will do that! Since $v_1$ is already orthonormal, $e_1=v_1$. Our basis is orthonormal, so any $v_i, i\ne1$ will be orthogonal to $e_1$ meaning the inner product of $\langle v_{i\ne1},e_1 \rangle = 0 $, This reduces $e_2$ to:
+    \begin{gather*}
+        e_2 = \frac{v_2 - 0e_1}{\|v_2 - 0e_1\|} = v_2
+    \end{gather*}
+
+    We can then induct this procedure, knowing that our $v_1\dots v_n$ are already orthonormal. This reduces the Gram-Schmidt procedure to:
+    \begin{gather*}
+        e_j = \frac{v_j - 0e_1 - \dots - 0e_{j-1}}{\|v_j - 0e_1 - \dots - 0e_{j-1}\|} = v_j
+    \end{gather*}
+    for any $1 < j\le n$
+    \begin{gather*}
+        \therefore \text{Each iteration of GS leaves our vectors unchanged}
+    \end{gather*}
+\end{proof}
+
+\begin{homeworkProblem}{3}
+    Say we have applied GS to turn the linearly independent list $v_1, v_2, v_3, v_4$ into the orthonormal list $e_1, e_2, e_3, e_4$, prove
+    \begin{gather*}
+        span(v_1,v_2,v_3) = span(e_1,e_2,e_3)
+    \end{gather*}
+\end{homeworkProblem}
+\begin{proof}
+    Let $GS$ be the Gram-Schmidt procedure and take
+    \begin{gather*}
+        e_1, e_2, e_3 = GS(v_1, v_2, v_3)
+    \end{gather*}
+    Then $span(e_1, e_2, e_3) = span(v_1, v_2, v_3)$ by definition of the Gram-Schmidt procedure. Now take $e_1, e_2, e_3, e_3 = GS(v_1,v_2,v_3,v_4)$. By our inductive definition of $GS$, $e_1,e_2,e_3$ are unchanged and our basis has been expanded to $e_1\dots e_4$.
+    \begin{gather*}
+        \therefore span(e_1, e_2, e_3) = span(v_1, v_2, v_3)
+    \end{gather*}
+\end{proof}
+
+\begin{homeworkProblem}{Axler 2}
+    Suppose that $e_1,\dots, e_m$ is an orthonormal list of vectors in $V$. Let $v\in V$, prove that
+    \begin{gather*}
+        \|v\|^2 = | \langle v,e_1 \rangle |^2 + \dots + |\langle v,e_m \rangle | ^2
+    \end{gather*}
+    iff $v\in span(e_1,\dots, e_m)$
+\end{homeworkProblem}
+\begin{proof}
+    $\implies$ Let $\|v\|^2 = | \langle v,e_1 \rangle |^2 + \dots + |\langle v,e_m \rangle | ^2$
+    There are two cases: $v\in span(e_1,\dots,e_m)$. If this is true, we are done. So for contradiction, assume $v \not\in span(e_1,\dots,e_m)$. We can then extend our list to $e_1,\dots, e_m, v$, where $v$ can be made of a linear combination of these vectors. Apply $GS$ to our new list to get $GS(e_1, \dots, e_m, v) = e_1,\dots,e_k$ where $k> m$ or else $v$ would have been in the span. Taking the norm and squaring it, we get:
+    \begin{gather*}
+        \|v\|^2 = | \langle v,e_1 \rangle |^2 + \dots + |\langle v,e_k \rangle | ^2 \ne | \langle v,e_1 \rangle |^2 + \dots + |\langle v,e_m \rangle | ^2
+    \end{gather*}
+    which is a contradiction of our assumption.
+
+
+    $\impliedby$ Let $v\in span(e_1,\dots, e_m)$ Then $v=a_1e_1+\dots+a_me_m$ and by $6.30$ in Axler, $v=\langle v,e_1 \rangle e_1+ \dots + \langle v, e_m \rangle e_m$. Taking the norm as in Axler $6.25$ and squaring it:
+    \begin{gather*}
+        \|v\|^2 = |\langle v,e_1 \rangle | ^2 + \dots + | \langle v, e_m \rangle | ^2
+    \end{gather*}
+\end{proof}
+
+\begin{homeworkProblem}{Axler 7}
+    Find a polynomial $q \in P_2(\mathbb{R})$ such that
+    \begin{gather*}
+        p(\frac{1}{2}) = \int_{0}^{1} p(x)q(x)dx
+    \end{gather*}
+    for every $p \in P_2(\mathbb{R}$
+\end{homeworkProblem}
+\begin{proof}
+    We are being asked to find the Riesz representation, $\phi(v) = p(\frac{1}{2} = \int_0^1 p(x)q(x)dx$. We need to find a $q \in P_2(\mathbb{R})$.  We have a orthonormal basis for $P_2$ of $e_1=1, e_2 = 2\sqrt{3}(x-\frac{1}{2}), e_3 = 6\sqrt{5}(x^2 - x + \frac{1}{6})$. The Riesz representation theorem says that we can find our $q(x)$ by
+    \begin{gather*}
+        q = \overline{\phi(e_1)}e_1 + \dots + \overline{\phi(e_n)}e_n \\
+        q = -\frac{3}{2} + 15x + -15x^2
+    \end{gather*}
+\end{proof}
+
+
+\begin{homeworkProblem}{Axler 12}
+    Suppose $V$ is a finite dim inner product space, with $\langle \cdot,\cdot \rangle _1 $ and $\langle \cdot,\cdot \rangle _2 $. Prove there exists $c$, $\|v\|_1 \le c\|v\|_2$
+\end{homeworkProblem}
+\begin{proof}
+    Take $e_1, \dots, e_n$ to be our orthonormal basis under $\langle \cdot, \cdot \rangle_2 $. Let $c=max(\|e_1\|_1 \dots \|e_n\|_1)$. The reasoning behind this is that if we scale every element by the largest possibility, then we should get an inequality. Taking norms, we get:
+    \begin{gather*}
+        \|v\|_2^2 = \|a_1\|^2e_1 + \dots + \|a_n\|^2e_n \text{ and } \\
+        \|v\|_1^2 = \|a_1e_1 + \dots + a_ne_n\|_1^2  \\ \text{ and using the triangle inequality } \\
+        \|v\|_1^2 \le (\|a_1e_1\|_1 + \dots \|a_ne_n\|_1)^2 \\ \text{and knowing that $c$ is the max the norm of any $e_i$could possibly be, distribute}  \\
+        \|v\|_1^2 \le (c\|a_1e_1\|_2 + \dots c\|a_ne_n\|_2)^2 \\
+        \|v\|_1^2 \le c^2\|v\|_2^2 \\
+        \|v\|_1 \le c\|v\|_2 \\
+        \therefore \text{a $c$ exists such that the norms differ by a constant factor}
+    \end{gather*}
+\end{proof}
+\begin{homeworkProblem}{Axler 14}
+    Suppose $e_1, \dots e_n$ is an orthonormal basis for $V$, and $v_1, \dots, v_n$ are vectors such that
+    \begin{gather*}
+        \|e_j - v_j\| < \frac{1}{\sqrt{n} }
+    \end{gather*}
+\end{homeworkProblem}
+\begin{proof}
+    We want to show linear independence. To do this, set $a_1v_1 + \dots + a_nv_n = 0$ and $a_1e_1, \dots, a_ne_n$ with the same coefficients, where at least one $a_j \ne 0$. Take the sum and the triangle inequality:
+    \begin{gather*}
+        \|a_1v_1 + \dots a_nv_n - a_1e_n + \dots  + a_ne_n \| \le \|a_1v_1 + \dots a_nv_n \| - \|a_1e_1 + \dots + a_ne_n\| \\
+       = (a_1v_1 + \dots + a_nv_n)-(a_1e_1 + \dots +a_ne_n) \\
+       = a_1(v_1 - e_1) + \dots + a_n( v_1 - e_1)
+    \end{gather*}
+\end{proof}
+
+\begin{homeworkProblem}{Axler 16}
+    Working this one out on paper, will try to finish this weekend.
+\end{homeworkProblem}
+\end{document}
+

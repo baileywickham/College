@@ -1,0 +1,171 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsthm, amssymb, amsmath, amsfonts, extramarks}
+
+
+\title{HW 4}
+% Probably bad format to put this here
+\author{Bailey Wickham \\ MATH 406}
+
+\date\today
+
+\newenvironment{homeworkProblem}[1]{
+    \section*{Problem #1}
+}
+
+
+\begin{document}
+\maketitle
+
+\begin{homeworkProblem}{1}
+    Define $T: \mathbb{C}^2\to\mathbb{C}^3$ by
+    \begin{gather*}
+        T(z_1, z_2) = (z_1 - 3z_2, z_1, 2z_1 + 5z_2)
+    \end{gather*}
+    Find $T^*$
+\end{homeworkProblem}
+\begin{proof}
+    \begin{align*}
+        \langle (x_1, x_2), T^*(y_1, y_2, y_3) \rangle &= \langle T(x_1, x_2), (y_1, y_2, y_3) \rangle \\
+        &= \langle (x_1 - 3x_2, x_1, 2x_1 + 5x_2), (y_1, y_2, y_3) \rangle \\
+        &= x_1y_1 - 3x_2y_1 + x_1y_2 + 2x_1y_3 + 5x_2y_3 \\
+        &= x_1(y_1 + 2y_3 + y_2) - x_2(3y_1 + 5y_3) \\
+        \therefore & T^*(y_1, y_2, y_3) = (y_1 + y_2 + 2y_3, 3y_1 + 5y_3)
+    \end{align*}
+\end{proof}
+\begin{homeworkProblem}{2}
+    Let $P_2(\mathbb{R})$ be equipped by the usual polynomial inner product. Define $T: P_2(\mathbb{R})\to P_2(\mathbb{R})$ by $T(a + bx + cx^2)=bx$.
+    \begin{enumerate}
+        \item Show that $T$ is not self adjoint
+        \item Show that $M(T)$ equals it's conjugate transpose. Does this violate 7.10?
+    \end{enumerate}
+\end{homeworkProblem}
+\begin{proof}
+    \begin{enumerate}
+        \item To show: $T^* \ne T$ or $\langle Tv, w \rangle \ne \langle v, Tw \rangle $ \\
+    Take
+    \begin{gather*}
+        \langle 1, T(2x) \rangle = \langle T(1), 2x \rangle \\
+        \langle 1, 2x \rangle = \langle 0, x \rangle \\
+        1 \ne 0
+    \end{gather*}
+\item To show: $M(T) = M(T^*)$
+    $$ M(T) =
+    \begin{bmatrix}
+        0 & 0 & 0 \\
+        0 & 1 & 0 \\
+        0 & 0 & 0
+    \end{bmatrix}$$
+    Taking the conjugate transpose, we get $M(T^*)=M(T)$. This is not a contradiction because theorem 7.10 is an if then, not an if and only if. Equal matricies do not imply an orthonormal basis.
+    \end{enumerate}
+\end{proof}
+\begin{homeworkProblem}{3}
+    Let $U$ be a subspace of the complex finite dimensional IPS V. Prove or disprove $P_U$ must be self adjoint.
+\end{homeworkProblem}
+\begin{proof}
+    Let $z = x + y; v = u + w, u, x\in U, w,y \in U^{\perp}$. To show: $Pv = P^*v$, or $\langle Pv, z  \rangle = \langle v, Pz \rangle $
+    \begin{gather*}
+        \langle Pv, z \rangle = \\
+        \langle u, z \rangle  \\
+        \langle u, x \rangle + \langle u, y \rangle \text{ u, y are orthogonal }\\
+        \langle u, x \rangle + 0  \\
+        \langle u, x \rangle + \langle w, x \rangle \\
+        \langle v, x \rangle  \\
+        \langle v, Pz \rangle  \\
+        \therefore P_U \text{ is self adjoint }
+    \end{gather*}
+\end{proof}
+\begin{homeworkProblem}{4}
+Discuss whether the set of self adjoint operators to a finite dimentional IPS is a subspace.
+\end{homeworkProblem}
+\begin{proof}
+    The sum of two self adjoint operators is always self adjoint. The zero map is a self adjoint operator. The only time when the the self adjoint operators don't form a subspace is under scalar multiplication over a complex field. They form a subspace over a real field. Axler 7.15 says $T$ is self adjoint iff $Tv, v \in \mathbb{R}$, but under complex scalar multiplication, this isn't always true.
+\end{proof}
+
+\begin{homeworkProblem}{Axler 3}
+    Suppose $T\in L(V)$, prove $U$ is invariant under T iff $U^{\perp}$ is invariant under $T^*$
+\end{homeworkProblem}
+\begin{proof}
+    Suppose $U$ is invariant under $T$. Then $u \in U \implies Tu \in U$. Let $w \in U^{\perp}, u \in U$
+    \begin{gather*}
+        0 = \langle u, w \rangle  \\
+        0 = \langle Tu, w \rangle \\
+        0 = \langle u, T^{*}w \rangle \\
+        \therefore T^*u \in U^{\perp} \\
+    \end{gather*}
+    So $U^{\perp}$ is invariant under $T^*$ \\
+    Suppose $U^{\perp}$ is invariant under $T^*$ Let $w \in U^{\perp}, u \in U$
+    \begin{gather*}
+        0 = \langle Tu, w \rangle  \\
+        0 = \langle u, T^*w \rangle  \\
+        \therefore w \in U^{\perp} \text{ using our hypothesis }
+        \therefore u, Tu \in U
+        \therefore \text{ $U$ invariant under $T$}
+    \end{gather*}
+\end{proof}
+\begin{homeworkProblem}{Axler 4}
+    Let $T \in L(V, W) $. Prove
+    \begin{enumerate}
+        \item $T$ is injective iff $T^*$ is surjective
+        \item $T$ is surjective iff $T^*$ is injective
+    \end{enumerate}
+\end{homeworkProblem}
+\begin{proof}
+    \begin{enumerate}
+        \item $\impliedby$ Let $T$ be injective. Axler 7.7 says that $nullT^* = (rangeT)^{\perp}$, so we want to show that $(rangeT)^{\perp} = 0$, implying that $T^*$ is surjective. From my proof of 4 in last weeks homework, we can say that $(rangeT)^{\perp} = nullT$, and since $T$ is injective $nullT=0$, so $T^*$ is surjective. \\
+            $\implies$ Let $T^{*}$ be surjective. Then $nullT = (rangeT^*)^{\perp}$. But $T^*$ is surjective, so $(rangeT^{*})^{\perp} = 0$.
+            \begin{gather*}
+                \therefore nullT = 0
+                \therefore T \text{ is injective }
+            \end{gather*}
+
+        \item This proof follows from 1. by replacing $T$ with $T^*$ and $T^*$ with $T$
+    \end{enumerate}
+\end{proof}
+\begin{homeworkProblem}{Axler 12}
+   Suppose that $T$ is normal and 3,4 are eigenvalues of T. Prove there exists a $v\in V$ s.t. $\|v\| = \sqrt{2} $and $\|Tv\|=5$
+\end{homeworkProblem}
+\begin{proof}
+    Recall that distinct eigenvalues generate orthogonal eigenvectors for normal operators. Let $u,v$ be the eigenvectors, take $w$ to be their sum.
+    \begin{gather*}
+       w = u + v \\
+       \|w\|^2 = (|a|\|u\|)^2 + (|b|\|v\|)^2 \text{ where u,v can be scaled to a $\|u\|, \|v\|$ of 1}\\
+       2 = a^2 + b^2 \\
+    \end{gather*}
+    Now apply $T$.
+    \begin{gather*}
+       w = u + v \\
+       Tw = Tu + Tv \\
+       Tw = |3|\|u\| + |4|\|v\| \\
+       \|Tw\|^2 = 3^2 + 4^2
+    \end{gather*}
+\end{proof}
+\begin{homeworkProblem}{Axler 14}
+    Suppose $T$ is normal on $V$, $v,w\in V$ satisfy
+    \begin{gather*}
+        \|v\| = \|w\| = 2, Tv =3v, Tw =4w \\
+    \end{gather*}
+    Show that $\|T(v+w)\|=10$
+\end{homeworkProblem}
+\begin{proof}
+    Since $v, w$ are eigenvectors, they are orthogonal, so we can use the pythagorean thm.
+    \begin{gather*}
+        \|T(v, w)\|^2 = \|T(v) + T(w)\|^2 \\
+        \|3v\|^2 + \|4w\|^2 \\
+        9\|v\|^2 + 16\|w\|^2 \\
+        9(4)^2 + 16(4)^2 = 10^2
+    \end{gather*}
+\end{proof}
+\begin{homeworkProblem}{Axler 16}
+    Suppose $T\in L(V)$ is normal. Prove
+    \begin{gather*}
+        rangeT = rangeT^*
+    \end{gather*}
+\end{homeworkProblem}
+\begin{proof}
+    Using 7.20, we can see that anything $T$ sends to 0, $T^*$ sends to 0, so $nullT=nullT^*$. Using Axler 7.7 we can say that $(rangeT)=(nullT^*)^{\perp}$ and $rangeT^* = (nullT^*)^{\perp}$, so $rangeT=rangeT^{*}$
+\end{proof}
+
+\end{document}
+

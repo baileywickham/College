@@ -1,0 +1,164 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsthm, amssymb, amsmath, amsfonts, extramarks}
+
+
+\title{HW 3}
+% Probably bad format to put this here
+\author{Bailey Wickham \\ MATH 406}
+
+\date\today
+
+\newenvironment{homeworkProblem}[1]{
+    \section*{Problem #1}
+}
+
+
+\begin{document}
+\maketitle
+
+\begin{homeworkProblem}{Axler 6.A.12}
+    Prove:
+    \begin{gather*}
+        (x_1 + \dots + x_n)^2 = n(x_1^2 + \dots + x_n^2)
+    \end{gather*}
+\end{homeworkProblem}
+\begin{proof}
+    Take the Cauchy-Schwarz Inequality with $y=1$ and square both sides
+    \begin{gather*}
+        (1*x_1 + \dots + 1*x_n)^2 \le (1 + 1 + \dots+ 1)_{n times} (x_1^2 + \dots + x_n^2) \\
+        (x_1 + \dots + x_n)^2 \le n(x_1^2 + \dots + x_n^2)
+    \end{gather*}
+\end{proof}
+
+\begin{homeworkProblem}{2}
+    Consider $V = 2x-5y+3z \in \mathbb{R}^3$. Show that $V$ is a subspace and find it's orthogonal complement.
+\end{homeworkProblem}
+\begin{proof}
+    Let $u = 2x_1 - 5x_2 + 3x_3$ and $v = 2y_1 - 5y_2 + 3y_3$ be in the plane.
+    \begin{gather*}
+        u + v = 2(x_1 + y_2) - 5(x_2 + y_2) + 3(x_3+y_3) \in V \\
+        \lambda u = 2\lambda x_1 - 5\lambda x_2 + 3\lambda x_3 \in V \\
+        0 = 2(0) -5(0) + 3(0) \in V \\
+        \therefore V \text{ is a subspace of $\mathbb{R}^3$}
+    \end{gather*}
+    Now we create an orthonormal basis for our subspace: $e_1 = (\frac{1}{\sqrt{3}}, \frac{1}{\sqrt{3}}, \frac{1}{\sqrt{3}}), e_2 = (\frac{-4\sqrt{2}}{\sqrt{57}}, \frac{1}{\sqrt{114}}, \frac{7}{\sqrt{114}})$. Now adding any linearly independent vector will give us a spanning set. Therefore, adding any linearly independent vector and Gram-Schmidting it will leave $e_1, e_2$ unchanged and give us a third orthogonal vector, with that $e_3$ determing the orthogonal complement.
+    \begin{gather*}
+        \therefore e_3 = ( \sqrt{\frac{2}{19}}, -\frac{5}{\sqrt{38}}, \frac{3}{\sqrt{38}})
+    \end{gather*}
+\end{proof}
+
+\begin{homeworkProblem}{Axler 1}
+   Suppose $v_1,\dots,v_m \in V $. Prove
+   \begin{gather*}
+       \{v_1,\dots,v_m\}^{\perp} = (span(v_1,\dots,v_m))^{\perp}
+   \end{gather*}
+\end{homeworkProblem}
+\begin{proof}
+    Let $u \in \{v_1,\dots,v_m\}^{\perp}$. Then $\langle u,v_i\rangle = 0$ for any $i \in \{1...m\}$. Our span is
+    \begin{gather*}
+        a_1v_1 + \dots + a_mv_m, a_i \in \mathbb{F}, v_i \in V \\
+        \text{ Inner producting u with our span } \\
+        \langle u, a_1v_1 + \dots a_mv_m \rangle
+        \text{ splitting over addition gives us } \\
+        \langle u, a_1v_1 \rangle + \dots + \langle u, a_mv_m \rangle \\
+        \text{ but $u$ is orthogonal to all $v_i$, so } \\
+        0 = \langle u, a_1v_1 \rangle = \dots = \langle u, a_mv_m \rangle \\
+        \therefore u \in (span(v_1,\dots,v_m))^{\perp}
+    \end{gather*}
+    Let $u \in (span(v_1,\dots,v_m))^{\perp}$. Then
+    \begin{gather*}
+        0 = \langle u, a_1v_1 \rangle = \dots = \langle u, a_mv_m \rangle \\
+        \text{ and let $a_1, \dots, a_m = 1$} \\
+        0 = \langle u, v_1 \rangle = \dots = \langle u, v_m \rangle \\
+        \therefore u \in \{v_1,\dots,v_m\}^{\perp}
+    \end{gather*}
+\end{proof}
+
+\begin{homeworkProblem}{Axler 2}
+    Suppose $U$ is a finite dimentional subspace of $V$. Prove $U^{\perp} = \{0\}$ iff $U=V$
+\end{homeworkProblem}
+\begin{proof}
+    Suppose $U^{\perp}=\{0\}$. Then $\langle v, 0 \rangle = 0$ for all v $v \in V$, and $v\in\{0\}^{\perp}$. Therefore $V=U$ \\
+    Suppose $U=V$. Then $U^{\perp}=\{0\}$ follows imediately from 6.46c.
+\end{proof}
+
+\begin{homeworkProblem}{Axler 3}
+    Suppose $U$ is a subspace of $V$ with basis $u_1,\dots u_m$ and
+    \begin{gather}
+        u_1,\dots, u_m,w_1, \dots, w_n
+    \end{gather}
+    is a basis for $V$. Prove that GS applied to the basis of $V$ producing $e_1, \dots, e_m, \\f_1, \dots f_n$. Then $e_{1}, \dots, e_m$ is an orthonormal basis for $U$ and $f_1,\dots, f_n$ is an orthonormal basis for $U^{\perp}$
+\end{homeworkProblem}
+\begin{proof}
+    Take $e_1, \dots, e_m = GS(u_1, \dots, u_m)$ to be an orthonormal basis for $U$. Note $V$ is dimention $n+m$, so $V$ is finite dimentional. Axler 6.50 says
+    \begin{gather*}
+        dimU^{\perp} = dim V-dim U \\
+        \therefore dimU^{\perp} = n+m-m =n
+    \end{gather*}
+    We know that $V=U\bigoplus U^{\perp}$, so the basis of $U^{\perp}$ will be dimension $n$. We only have $n$ remaining vectors, and they are linearly independent because they are part of a basis, so $GS(w_1, \dots, w_n) = f_1, \dots, f_n$ must form a basis for $U^{\perp}$.
+\end{proof}
+\begin{homeworkProblem}{12}
+    Find $p\in P_3(\mathbb{R})$ and $p(0)=0, p^{`}(0)=0$ that makes
+    \begin{gather*}
+        \int_{-\pi}^{\pi} |sinx - p(x)|^2dx
+    \end{gather*}
+    as small as possible
+\end{homeworkProblem}
+\begin{proof}
+    Take our normal inner product on functions and set $q(x) = 2 + 3x$. To find a minimum, we are going to need to use projections, and for that we must define a $U$. Let $U= p\in P_3(\mathbb{R})$ with $p(0) = 0, p'(0) = 0$. Now we can project onto $U$ to find our closest point. To do this we will find an orthonormal basis. Take
+    $x^2, x^3$ for a basis for $U$, so we must now apply GS and get:
+    \begin{gather*}
+        e_1 = \sqrt{5}x^2 \\
+        e_2 = \sqrt{7}(-5x^2 + 6x^3)
+    \end{gather*}
+    Now we must find our minimum vector $v$ given by Axler 6.55i.
+    \begin{gather*}
+        v = \langle 2+3x, e_1 \rangle e_1 + \langle 2+3x, e_2 \rangle e_2 \\
+        v = 24x^2 - \frac{203}{10}x^3
+    \end{gather*}
+    which is the closest polynomial by Axler 6.56
+
+\end{proof}
+
+\begin{homeworkProblem}{4}
+    Let V be a finite dimentional IPS. Prove that if $T$ is a contraction such that $T^2 = T$, then $T=P_U$ for some subspace $U$ of $V$
+\end{homeworkProblem}
+\begin{proof}
+    Let $T$ be a contraction and $T^2 = T$, so we know $\|Tv\| \le \|v\|$. To prove this claim, we need to show that given $v = u + w$ with $u \in U$, $w \in U^{\perp}$, and any $v \in V$, we have $Tv = u$.   \\We claim that $U = rangeT$. We then need to show that $U^{\perp} = nullT$. We know that the basis for $nullT, rangeT$ are linearly independent by the proof in 306 (and we are finite dimentional), so if we can show that the right number of linear independent vectors remain after creating our basis for $U$, the remaining vectors must be a basis for $U^{\perp}$. Note we must apply Gram Schmidt to ensure they are orthogonal. 6.50 in Axler says:
+    \begin{gather*}
+        dimU^{\perp} = dimV - dimU
+    \end{gather*}
+    And the only vectors remaning after creating a basis for $rangeT$ and those in the nullspace.
+    \begin{gather*}
+        \therefore U^{\perp} = nullT
+    \end{gather*}
+    Now to see if we have a projection, we apply $T$ to a vector in $V$:
+    \begin{gather*}
+        Tv = Tu + Tw
+    \end{gather*}
+    Since $w \in nullT$ we know $Tw=0$. So we are left to show that $Tu=u$. $T$ is a linear operator, so the range of $T$ is $rangeT$, therefore for any $v \in V, Tx=v$ for some $x \in V$. From here, we can show that any element in the range is unchanged. Let $u \in rangeT = Tx$. Then $Tu = T^2x = Tx =  u$.
+    \begin{gather*}
+        \therefore Tv = Tu + Tw \\
+        \therefore Tv = u + 0 \\
+        \therefore T=P_U, U=rangeT
+    \end{gather*}
+\end{proof}
+\begin{homeworkProblem}{5}
+    The vectors $(1,1,0,0)$ and $(1,1,1,2)$ span a hyperplane in $\mathbb{R}^4$. \\
+    (a) Show whether the vector $(4,3,2,1)$ belongs to the hyperplane. \\
+    (b) What is the distance from $(4,3,2,1)$ to the hyperplane?
+\end{homeworkProblem}
+\begin{proof}
+    We will do (b) first, seeing as it will answer (a). Take an orthonormal basis for our subspace: $e_1 = (\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}, 0,0), e_2 = (0,0,\frac{1}{\sqrt{5}} \frac{2}{\sqrt{5}})$. We know that the minimum distance will be the projection onto the subspace, $P_Uv$ where $v=(4,3,2,1)$. Use 6.55i in Axler and Gram Schmidting to get $P_Uv$.
+    \begin{gather*}
+        P_Uv = e_3 = \begin{pmatrix}\sqrt{\frac{5}{46}}&-\sqrt{\frac{5}{46}}&\frac{6\sqrt{2}}{\sqrt{115}}&-\frac{3\sqrt{2}}{\sqrt{115}}\end{pmatrix} \\
+        \text{ Now to find this distance take }\\
+        \|v-P_Uv\| = \|(4,3,2,1) - e_3)\| = \sqrt{-2\sqrt{\frac{5}{46}}+31-\frac{18\sqrt{2}}{\sqrt{115}}}
+    \end{gather*}
+    Note this is not $0$, so $v\not\in U$, and the vector is not in the hyperplane.
+\end{proof}
+
+\end{document}
+

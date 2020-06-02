@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[]{amsthm}
+\usepackage[]{amssymb}
+\usepackage{amsmath}
+
+\title{HW 0}
+\author{Bailey Wickham}
+\date\today
+
+\newtheorem*{theorem}{Kronecker's Theorem}
+
+\begin{document}
+\maketitle
+
+%Section and subsection automatically number unless you put the asterisk next to them.
+\subsection*{Problem 1}
+\begin{theorem}
+    Let $F$ be a field and $p \in F[x]$ a irreducible polynomial. Then there exsts an extention field $E$ of $F$ and an element $a \in E$ such that $p(a) = 0$
+\end{theorem}
+\begin{proof}
+First, we claim that $E = F[x]/\langle p(x)\rangle$ is that extention field. To show that $E$ is an extention field of $F$, we define
+\begin{equation*}
+   \varphi: F\to F[x]/\langle p(x)\rangle.
+\end{equation*}
+We can quickly check that $\varphi$ is a ring homomorphism. We know $E$ contains the elements of $F$, so we must now check that $\varphi$ is one-to-one. To check that $\varphi$ is one-to-one, assume that $\varphi(a) = \varphi(b)$, where $a + p(x) = \varphi(a), b + p(x) = \varphi(b)$. We know $ker \varphi$ is a prime ideal with $a,b \in ker\varphi$, so $a-b \in ker\varphi $. Since $ker\varphi$ is prime, $a-b=c(x)p(x)$ for some polynomial $c(x)$.
+\begin{gather*}
+\therefore a-b=0 \\
+\therefore a=b \\
+\therefore \varphi \text{ is one-to-one over } F
+\end{gather*}
+\\ Now we must show that $p(x)$ has a root in $E$. We claim $\alpha = x + p(x)$ is the root in $E$.
+\begin{align*}
+    p(x) &= a_0 + a_1 x \dots a_n x^{n-1}\\
+    p(\alpha) &= a_0 + a_1(x + \langle p(x) \rangle ) + \dots (a_nx^n + \langle p(x) \rangle ) \\
+    p(\alpha) &= a_0 + a_1x + \dots + a_nx^n + \langle p(x) \rangle \\
+    p(\alpha) &= 0 + \langle p(x) \rangle
+\end{align*}
+\begin{gather*}
+    \therefore p(x) \text{ has a root in } E \text{ and E is an extention field containing } F
+\end{gather*}
+
+
+\end{proof}
+\end{document}

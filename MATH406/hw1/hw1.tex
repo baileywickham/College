@@ -1,0 +1,161 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath, amsfonts}
+\usepackage{extramarks}
+
+
+\title{HW 1}
+\author{Bailey Wickham}
+\date\today
+
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+
+
+\newenvironment{homeworkProblem}[1]{
+    \section*{Problem #1}
+}
+
+
+\begin{document}
+\maketitle
+
+\begin{homeworkProblem}{1}
+    Let $V$ be a Real inner product space. Show that if $u,v\in V$ have the same norm, then $u+v$, $u-v$ are orthogonal.
+\end{homeworkProblem}
+
+\begin{proof}
+    First, we are in a Real product space, so our terms commute. We also know that $\langle u,u \rangle = \langle v,v \rangle $. We will show inner product of $u+v, u-v$ is $0$ to show they are orthogonal
+    \begin{gather*}
+        \langle u + v, u - v \rangle\\
+        \langle u, u-v \rangle + \langle v, u-v \rangle \\
+        \langle u,u \rangle - \langle v,v \rangle + \langle u,v \rangle - \langle u,v \rangle \\
+        \text{here we know $\langle u,u \rangle = \langle v,v \rangle $ because $u,v$ have the same norm} \\
+        \therefore 0 \\
+        \therefore \text{$u+v, u-v$ are orthogonal}
+    \end{gather*}
+\end{proof}
+
+\begin{homeworkProblem}{2}
+    Give examples of $u,v$ and an inner product space $V$ where
+    \begin{gather*}
+        \| u+v \| = \|u\|^2 + \| v \|^2
+    \end{gather*}
+    despite the fact $u$ is not orthogonal to $v$.
+\end{homeworkProblem}
+
+\begin{proof}
+    Take our inner product space to be $\mathbb{C}$ under the normal inner product, $u=1, v=1+i$. Our vectors are not orthogonal, $\langle u,v \rangle = 1-i$.
+    \begin{align*}
+        \| 2 + i\|^2 &= \| 1 \|^2 + \| 1 + i \|^2 \\
+        \sqrt{4 - 1}^2 &= \sqrt{1}^2 + \sqrt{2}^2 \\
+        3 &= 3
+    \end{align*}
+\end{proof}
+
+\begin{homeworkProblem}{3}
+    Let the vector space $\mathcal{P}_2{(\mathbb{R})}$ be equipped with an inner product given by
+    \begin{gather*}
+        \langle p,q \rangle = \int_{0}^{1} p(x)q(x)dx
+    \end{gather*}
+    Find all polynomials that are orthogonal to the polynomial $x$. Is this infinite? Is this a subspace?
+\end{homeworkProblem}
+
+\begin{proof}
+    To get all orthogonal polynomials, we want to set our inner product equal to $0$.
+    \begin{align*}
+        0 &= \int_0^1 x(a_0+a_1x+a_2x^2)dx \\
+        0 &= \int_0^1 a_0x+a_1x^2+a_2x^3dx \\
+    0&=\frac{a_0}{2}x^2 + \frac{a_1}{3}x^3 + \frac{a_2}{4}x^4 \biggr\rvert_0^1 \\
+    0&=\frac{a_0}{2} + \frac{a_1}{3} + \frac{a_2}{4}
+    \end{align*}
+    This is an infinite collection by varying $a_0,a_1,a_2$. This is dim 2 subspace.
+
+\end{proof}
+
+\begin{homeworkProblem}{4}
+    Let $V$ be an IPS equipped with $\langle \cdot, \cdot \rangle $, and let $T \in \mathcal{L}(V)$. Show that
+    \begin{gather*}
+        \langle u, v \rangle _{cousin} = \langle Tu,Tv \rangle
+    \end{gather*}
+    is an inner product on $V$ iff $T$ is injective
+\end{homeworkProblem}
+
+\begin{proof}
+    $\implies$ Let $\langle u,v \rangle _{cousin} $ be an inner product.
+    We want to show that $0$ is the only vector in the null space. Assume $Tu = 0$. Then $\langle Tu, Tu \rangle =0$ because $\langle \cdot,\cdot \rangle$ is an inner product. This is equivalent to $\langle u,u \rangle_{cousin} = 0$. Since $\langle \cdot, \cdot \rangle_{cousin}$ is an inner product,
+    \begin{gather*}
+        \therefore u = 0 \\
+        \therefore T \text{ is injective}
+    \end{gather*}
+
+    $\impliedby$ Let $T$ be injective. We must show $\langle \cdot, \cdot \rangle_{cousin}$ is an inner product. \\
+    \textbf{positivity:} Take $\langle v,v \rangle_{cousin} = \langle Tv, Tv  \rangle $. $\langle Tv, Tv \rangle \ge 0$ Since $\langle \cdot, \cdot \rangle$ is an inner product. Therefore $\langle \cdot, \cdot \rangle $ satisfies positivity. \\
+    \textbf{definiteness:} Take $\langle v,v \rangle_{cousin} = 0$, therefore $\langle Tv,Tv \rangle = 0$ and $Tv = 0$ since $T$ is injective, $v=0$, and $\langle \cdot,\cdot \rangle_{cousin}$ is definite. \\
+    The following properties follow the same structure as the first two and do not require the injectivity of $T$.
+    \begin{gather*}
+        \therefore \langle \cdot, \cdot \rangle_{cousin} \text{ is an inner product.}
+    \end{gather*}
+
+\end{proof}
+
+\begin{homeworkProblem}{Axler 5}
+    Suppose $T \in \mathcal{L}(V)$ is such that $\|Tv\| \le \|v\|$ Prove that $T - \sqrt{2}I $ is invertible.
+\end{homeworkProblem}
+
+\begin{proof}
+    We know $\sqrt{2} $ is an eigenvalue of $T$ iff $null(T-\lambda I) \ne 0$, taking the contrapositive, $null(T - \lambda I) = 0$ iff $\sqrt{2} $ is not an eigenvalue. Assume $\sqrt{2}$ is an eigenvalue. Then
+    \begin{gather*}
+       \|Tv\| \le \|v\| \\
+       \|\sqrt{2}v\| \le \|v\| \\
+       \sqrt{2} \|v\| \le \|v\|
+    \end{gather*}
+    Which is a contradiction. Therefore $\sqrt{2} $ is not an eigenvalue, and $T-\sqrt{2}I $ is invertible.
+\end{proof}
+
+\begin{homeworkProblem}{Axler 8}
+    Suppose $u, v \in V$ and $\|u\| = \|v\| = 1$ and $\langle u,v  \rangle = 1$. Prove $u=v$
+\end{homeworkProblem}
+\begin{proof}
+    Take $u=v, u-v = 0$ if we take our norm, substituting using our assumptions,
+    \begin{align*}
+        \|u-v\| &= \langle u,u \rangle - \langle u,v \rangle - \langle v,u \rangle + \langle v,v \rangle \\
+        \|u-v\| &= 0
+    \end{align*}
+\end{proof}
+
+\begin{homeworkProblem}{Axler 11}
+    Prove $16 \le (a + b + c + d)(\frac{1}{a} + \frac{1}{b} + \frac{1}{c} + \frac{1}{d})$
+\end{homeworkProblem}
+\begin{proof}
+    Since we are in $\mathbb{R}$, we can take the Cauchy-Schwarz Inequality example in 6.17.a.
+    \begin{gather*}
+        |x_1y_1+\dots+x_ny_n|^2 \le (x_1^2+\dots+x_n^2)(y_1^2+\dots+y_n^2) \\
+        4^2 \le (a + b + c + d)(\frac{1}{a} + \frac{1}{b} + \frac{1}{c} + \frac{1}{d})
+    \end{gather*}
+\end{proof}
+
+\begin{homeworkProblem}{Axler 19}
+    Prove $\langle u,v \rangle = \frac{\|u+v\|^2 - \|u-v\|^2}{4}$
+\end{homeworkProblem}
+\begin{proof}
+    Take our proof for Axler 20 and set the complex component to $0$.
+\end{proof}
+\begin{homeworkProblem}{Axler 20}
+    Prove $\langle u,v \rangle = \frac{\|u+v\|^2 - \|u-v\|^2 + \|u + iv\|^2i - \|u-iv\|^2i}{4}$
+\end{homeworkProblem}
+\begin{proof}
+    I did this on paper and it took about a page, this is the summarized version.
+    \begin{gather*}
+    \langle u,v \rangle = \frac{\langle u+v,u+v \rangle - \langle u-v, u-v\rangle + \langle u+vi, u+vi \rangle i + \langle u-vi, u-vi \rangle i} {4} \\
+    \langle u,v \rangle = \frac{4\langle u,v \rangle  + 2\langle u,vi \rangle i + 2\langle iv, u \rangle i} {4} \\
+    \langle u,v \rangle = \frac{4\langle u,v \rangle} {4}
+    \end{gather*}
+\end{proof}
+\end{document}
+
