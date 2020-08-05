@@ -2,7 +2,7 @@
 memsize = 100
 def firstPass(infile):
     l = []
-    n = 0
+    n = 0 # Num of chunks
     with open(infile, 'r') as f:
         for line in f:
             l.append(int(line.strip('\n')))
@@ -13,6 +13,7 @@ def firstPass(infile):
                         outfile.write(f'{i}\n')
                     n += 1
                     l = []
+        # Write final bytes
         with open(f'chunks/outfile{n}', 'w') as outfile:
             l.sort()
             for i in l:
@@ -26,7 +27,7 @@ def secondPass(n):
     buffer = []
     files = []
     outfile = open('sorted', 'w')
-    bufsize = 100//n
+    bufsize = memsize//n
 
     for i in range(n):
         files.append(open(f'chunks/outfile{i}', 'r'))
