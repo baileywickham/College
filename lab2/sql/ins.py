@@ -9,9 +9,9 @@ parser = argparse.ArgumentParser()
 def get_type(n):
     try:
         f = float(n)
-        if f.is_integer():
-            return 'INT'
-        return 'DECIMAL(10,2)'
+        if '.' in n:
+            return 'DECIMAL(10,2)'
+        return 'INT'
     except:
         return 'VARCHAR(100)'
 
@@ -32,7 +32,7 @@ def parse_data(table, filepath):
         r = csv.reader(f)
         header = next(r)
         # hack
-        if 'rows' in globals():
+        if 'rows' in globals(): #hack
             cols = ','.join([header[x] for x in rows])
         else:
             cols = ','.join(header)#.strip('\n')
