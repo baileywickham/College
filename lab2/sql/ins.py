@@ -6,19 +6,40 @@ import os
 parser = argparse.ArgumentParser()
 #rows = [0,5,6]
 
-def parse(table, filepath):
+def get_type(n):
+    try:
+        f = float(n)
+        if f.is_integer():
+            return 'INT'
+        return 'DECIMAL(10,2)'
+    except:
+        return 'VARCHAR(100)'
+
+def gen_table(table, filepath):
+    with open(filepath, 'r') as f:
+        r = csv.reader(f)
+        header = next(r)
+        data = next(r)
+        s = f'CREATE TABLE {table} ('
+        for i,item in enumerate(header):
+                s += f'{item} {get_type(data[i])},\n'
+        print(s)
+
+
+def parse_data(table, filepath):
     seen = []
     with open(filepath, 'r') as f:
         r = csv.reader(f)
         header = next(r)
-        if rows:
+        # hack
+        if 'rows' in globals():
             cols = ','.join([header[x] for x in rows])
         else:
             cols = ','.join(header)#.strip('\n')
         for line in r:
             if line == []:
                 return
-            if rows:
+            if 'rows' in globals():
                 line = [line[x] for x in rows]
             values = ','.join(f"'{w.strip()}'" if not w.isdigit() else f'{w}' for w in line)
             tmp = f'''INSERT INTO {table} ({cols}) VALUES ({values});'''
@@ -27,11 +48,11 @@ def parse(table, filepath):
                 seen.append(tmp)
 
 if __name__ == "__main__":
-    parser.add_argument('filepath', help='table name')
+    parser.add_argument('filepath', help='path to file to parse')
     parser.add_argument('-t', '--table', help='table name')
     args = parser.parse_args()
 
     if args.table:
-        parse(args.table, args.filepath)
+        parse_data(args.table, args.filepath)
     else:
-        parse(os.path.basename(sys.argv[1]).split('.')[0], args.filepath)
+        parse_data(os.path.basename(sys.argv[1]).split('.')[0], args.filepath)
