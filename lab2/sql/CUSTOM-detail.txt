@@ -1,4 +1,0 @@
-a) https://www.kaggle.com/jeffreybraun/chipotle-locations
-b) I defined three tables. The first table was the store number, just a uuid int. The second table contained GPS cordinates for a loctaion, refering to the id. The third table contains the street address.
-c) None
-d) uhh there aren't many because this dataset was so limited. You could find all chipotle locations that share the last three decimals of their gps coordinates. You could find all chipotle addresses in Oregon. You could find all chipotles within a 6 mile square based on their GPS data.
