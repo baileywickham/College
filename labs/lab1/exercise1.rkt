@@ -38,4 +38,11 @@
   (- (revenue ticket-price)
      (cost ticket-price)))
 
-(profit 5)
+; returns the income in interest based on amount deposited
+(define (interest amount)
+  (cond
+    [(<= amount 1000) (* amount .04)]
+    [(<= amount 5000) (* amount .045)]
+    [(> amount 5000) (* amount .05)]))
+(check-equal? (interest 1000) 40.0)
+(check-equal? (interest 10000) 500.0)
