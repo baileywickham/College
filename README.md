@@ -13,8 +13,8 @@ Monorepo!! All class documents will be stored here. Mostly programming assignmen
   - CSC445: Theory of computation
   - CSC365: Databases
  - Math
-  - MATH 306: Linear algebra 2
-  - MATH 406: Linear algebra 3
+    - MATH 306: Linear algebra 2
+    - MATH 406: Linear algebra 3
 
 ## Files
 - deploy.sh: used for deploying to unix servers. Treats the servers as a read only copy of a repo which is squashed when pulled.
