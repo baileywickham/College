@@ -1,9 +1,9 @@
 #lang typed/racket
 (require typed/rackunit)
 
-; => implies, evaluates a => b as in set theory
+; => implies, evaluates a => b as in set theory where a,b are bools
 (define (==> [sunny : Boolean] [friday : Boolean]) : Boolean
-  (if (or friday (not sunny) ) #t #f))
+  (or friday (not sunny)))
 (check-equal? (==> #t #f) #f)
 (check-equal? (==> #t #t) #t)
 
@@ -50,7 +50,6 @@
     [(<= amount 5000) (* amount .045)]
     [(> amount 5000) (* amount .05)]
     [else 5]))
-
 (check-equal? (interest 1000) 40.0)
 (check-equal? (interest 10000) 500.0)
 
@@ -66,6 +65,7 @@
                    [shelf-width : Real])
   #:transparent)
 
+; takes furnature, returns the footprint as an area
 (define (furnature-footprint [f : Furnature]) : Real
   (match f
     [(Desk l h w) (* l w)]
@@ -75,5 +75,3 @@
 (check-equal? (furnature-footprint (Desk 0 10 10)) 0)
 (check-equal? (furnature-footprint (Bookshelf 10 10 10)) 100)
 (check-equal? (furnature-footprint (Bookshelf 1 3 2.5 )) 2.5)
-
-
