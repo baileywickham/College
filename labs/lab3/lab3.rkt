@@ -53,7 +53,8 @@
     [(list '+ a b) (plusS (parse1 a) (parse1 b))]
     [(list '* a b) (multS (parse1 a) (parse1 b))]
     [(list '- a b) (bminusS (parse1 a) (parse1 b))]
-    [(list '- a) (uminusS (parse1 a))]))
+    [(list '- a) (uminusS (parse1 a))]
+    [other (error 'parse1 "Unable to parse: ~e" other)]))
 
 (define (desugar [s : ArithS]) : ArithC
   (match s
@@ -72,7 +73,9 @@
     [(list '+ a b) (plusC (parse2 a) (parse2 b))]
     [(list '* a b) (multC (parse2 a) (parse2 b))]
     [(list '- a b) (plusC (parse2 a) (multC (numC -1) (parse2 b)))]
-    [(list '- a) (multC (numC -1) (parse2 a))]))
+    [(list '- a) (multC (numC -1) (parse2 a))]
+    [other (error 'parse1 "Unable to parse: ~e" other)]))
+
 
 (define (top-interp2 [s : Sexp]): Real
   (interp (parse2 s)))
