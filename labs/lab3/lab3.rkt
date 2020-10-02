@@ -7,27 +7,34 @@
     [(list (? number?) 'chris (? symbol?)) #t]
     [other #f]))
 
+; matches (list number chris sym and returns the sym
 (define (parse001 [s : Sexp]) : (U Boolean Symbol)
   (match s
     [(list (? number?) 'chris (? symbol? sym)) sym]
     [other #f]))
 
+; matches a list whose second element is a list of real numbers,
+; returns the list of real numbers
 (define (parse002 [s : Sexp]) : (U Boolean (Listof Real))
   (match s
     [(list _ (list (? real? items) ...) _) (cast items (Listof Real))]
     [other #f]))
 
+; returns okay if v is type real, rasies error otherwise
 (define (ohno [v : Any]) : Symbol
   (match v
     [(? real?) 'okay]
     [other (error 'ohno "Not a number: ~e" other)]))
 
 
+; Core language structs
 (struct numC ([n : Real])#:transparent)
 (struct plusC ([l : ArithC] [r : ArithC])#:transparent)
 (struct multC ([l : ArithC] [r : ArithC])#:transparent)
+; Define core language
 (define-type ArithC (U numC plusC multC))
 
+; Define syntax to be read by interp, including sytatic sugar
 (struct numS ([n : Real])#:transparent)
 (struct plusS ([l : ArithS] [r : ArithS])#:transparent)
 (struct multS ([l : ArithS] [r : ArithS])#:transparent)
@@ -35,18 +42,21 @@
 (struct uminusS ([l : ArithS])#:transparent)
 (define-type ArithS (U numS plusS multS bminusS uminusS))
 
+; takes a core language struct and evaluates it
 (define (interp [a : ArithC]) : Real
   (match a
     [(numC n) n]
     [(plusC l r) (+ (interp l) (interp r))]
     [(multC l r) (* (interp l) (interp r))]))
 
+; counts the number of addition expressions in an ArithC
 (define (num-adds [a : ArithC]) : Natural
   (match a
     [(numC a) 0]
     [(multC l r) (+ (num-adds l) (num-adds r))]
     [(plusC l r) (+ 1 (num-adds l) (num-adds r))]))
 
+; parse takes a sexp and parses it into a ArithS
 (define (parse1 [s : Sexp]) : ArithS
   (match s
     [(? real? n) (numS n)]
@@ -56,6 +66,7 @@
     [(list '- a) (uminusS (parse1 a))]
     [other (error 'parse1 "Unable to parse: ~e" other)]))
 
+; Desugar converts an ArithS to a core language implimentation
 (define (desugar [s : ArithS]) : ArithC
   (match s
     [(numS n) (numC n)]
@@ -64,9 +75,11 @@
     [(uminusS l) (multC (numC -1) (desugar l))]
     [(bminusS l r) (plusC (desugar l) (multC (numC -1) (desugar r)))]))
 
+; parses, desugars, and interps concrete syntax
 (define (top-interp [s : Sexp]): Real
   (interp (desugar (parse1 s))))
 
+; parse2 combines desugar and parse into a single function
 (define (parse2 [s : Sexp]) : ArithC
   (match s
     [(? real? n) (numC n)]
@@ -76,7 +89,11 @@
     [(list '- a) (multC (numC -1) (parse2 a))]
     [other (error 'parse1 "Unable to parse: ~e" other)]))
 
+; For our language it makes sense to use parse2. If our language were
+; longer with more sugar, we should probably break it up into seperate steps
+; but since we have so few expressions we can do it more consisely in one.
 
+; uses parse2 intead of desugar/parse1
 (define (top-interp2 [s : Sexp]): Real
   (interp (parse2 s)))
 ;; Tests
@@ -114,8 +131,10 @@
 (check-exn (regexp (regexp-quote "Not a number"))
            (lambda () (ohno 'a)))
 
+; interp
 (check-equal? (interp (plusC (numC 2) (numC 4))) 6)
 (check-equal? (interp (multC (numC 2) (numC 4))) 8)
 
+; num-adds
 (check-equal? (num-adds (plusC (numC 2) (numC 2))) 1)
 (check-equal? (num-adds (plusC (plusC (numC 2) (numC 2)) (numC 2))) 2)
