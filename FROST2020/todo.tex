@@ -1,0 +1,90 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsthm, amssymb, amsmath, amsfonts, extramarks, gensymb, enumitem, tikz-cd}
+\usepackage{general-poly}
+
+% For creating checkmarks
+%
+% For a task do:
+%   \item[\done]
+%   \item[\wontfix]
+% to insert checkmark or cross.
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
+\usepackage{pifont}
+\newcommand{\cmark}{\color{red} \ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\cmark}}%
+\hspace{-2.5pt}}
+\newcommand{\wontfix}{\rlap{$\square$}{\large\hspace{1pt}\xmark}}
+
+\title{Rediscovery of $\mathbb{H}^\times$}
+\author{Frost}
+\date{June 2020}
+
+\begin{document}
+
+\maketitle
+\section{Table of Contents}
+This is all over \bR (for now)
+\begin{itemize}
+    \item [x] Intro to Quaternions
+    \item Moduli space \bC->\bH
+    \item Conjugacy Classes for \bH and for embeddings of \bC
+    \item Generate picture? (2 sphere)
+    \item Wedderburn's Theorem
+    \item Functor $k->A_{a,b}$
+    \item $A_{a,b}$, give cases of  a,b over R
+    \item Describe C, RxR, nilpotent case
+    \item Generate picture of moduli space
+    
+    \item Short Exact Sequence (This might be able to generalize to k). [what are short exact sequences?]
+    \item Conjugacy of types of planes {\color{blue} We still have not written this up formally}. 
+    \item Sphere moduli space of the planes (and probability distribution of plane types within isomorphism classes.ntro
+\end{itemize}
+
+Short Exact Sequence (This might be able to generalize to k). 
+Conjugacy of types of planes {\color{blue} We still have not written this up formally}. 
+Sphere moduli space of the planes (and probability distribution of plane types within isomorphism classes.
+
+Are we doing anything over arbitrary fields $k$? \bQ? {\bQ}_p?
+
+\section{Paper/Poster Todo}
+\begin{todolist}
+    \item[\wontfix] Check the sphere of planes for different choices of a, b. More generally, check that it is preserved within the isomorphism class.
+    \item Create mathemetica plots of the two sphere's of planes.
+    \item Create mathematica plots of the different plane types (identifying the orthonormal unit to the identity as well as the sqrt(-1)'s, idempotent's, and nilpotent's)
+    \item Determine relevant graphics/pretty pictures to make our poster look real good
+\end{todolist}
+
+\section{Chaotic TODO}
+\begin{todolist}
+    \item Find cosets of $S^3$/$S^1$ 
+    \item Write up Orbits and Stabilizers 
+    \item Describe Orbit of element in H, stabilizer of element. 
+    \item[\done] Zero divisors correspond to non division rings (Yes for generalized quaternions)? 
+    \item Write up Moduli space for $\mathbb{R} \longrightarrow \bH$, $M_2(\mathbb{R})$, $\bR \times \bR$, nilpotent case. 
+    \item Prove (R[x]/p(x)) quotient rings entirely determine sub algebras, prove $\bR \times \bR$, nilpotent, \bC are all and only cases. Prove multiplication works.
+    \item Write up proof for no commutative sub alg of dim 3, proof for dim 4.  hurwitz thm?
+    \item Understand Functor of Points [lol]
+    \item[\done] Decide if Functor of points should be included in the writeup. (yes)
+    \item Write up proof of existence of proof of wedderburn?
+    \item Show cases of generalized quaternions, what choice of  $a, b, k$ does what. What about over $Q_p$
+    \item Possibly include R and Qp solutions to norm poly => M2R or H (Probably not)
+\end{todolist}
+
+\section{Questions: 7/24 Meeting}
+\begin{itemize}
+    \item Can no longer reduce to $SL_2$ without now having two orbits ($\pm$)
+    \item How does the moduli space go from a sphere in the Quaternions to a separated plane in       $M_2(\bR)$
+    \item Are there $a, b$ such that the variety of the norm polynomial has nontrivial solutions over \bR but not over \bQ? Try to find. Guess coprime numbers - Ian 
+\end{itemize}
+
+\section{Notes: 7/27 Meeting}
+\begin{todolist}
+    \item Have two orbits of $M_2(\bR)$ if conjugating group is $SL_2(\bR)$. Believe that any element of -1*SL2(k) sends the two orbits to each other. Need to check that this is the case.
+    \item[\done] In the Split Plane and the Degenerate Plane we want to find the orthogonal unit to the 1 of the embedded real line. (Got around this by using the pure imaginary elements.
+    \item[\done] Can generate a moduli space of all of the planes inside of $M_2(\bR)$ which is an $S_2$ worth. Orthogonal complement of the real line inside of $M_2(\bR)$ is a 3 dimensional space, and the collection of points of distance one from this origin in the space must each define a plane.
+\end{todolist}
+
+\end{document}

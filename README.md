@@ -1,6 +1,6 @@
 # college
 
-Monorepo!! All class documents will be stored here. Mostly programming assignments with my LaTeX from math classes as well. 
+Monorepo! All class documents will be stored here. Mostly programming assignments with my LaTeX from math classes as well.
 
 ## Classes
 - Programming
@@ -14,6 +14,8 @@ Monorepo!! All class documents will be stored here. Mostly programming assignmen
  - Math
   - MATH 306
   - MATH 406
+ - Poly Sci
+  - POLS 361 (R)
 
 ## Files
 - deploy.sh: used for deploying to unix servers. Treats the servers as a read only copy of a repo which is squashed when pulled.

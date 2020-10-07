@@ -1,0 +1,63 @@
+\documentclass[tikz,border=3mm]{standalone}
+\usepackage{pgfplots}
+
+\pgfplotsset{compat=1.16}
+\pgfplotsset{
+    colormap={genqs}{
+        rgb255=(0,0,128)
+        rgb255=(0,0,128)
+        rgb255=(0,0,128)
+        rgb255=(128,0,0)
+        rgb255=(0,128,32)
+        rgb255=(0,128,32)
+        rgb255=(0,128,32)
+        rgb255=(0,128,32)
+        rgb255=(0,128,32)
+        rgb255=(0,128,32)
+        rgb255=(0,128,32)
+        rgb255=(0,128,32)
+        rgb255=(0,128,32)
+        rgb255=(0,128,32)
+        rgb255=(0,128,32)
+        rgb255=(0,128,32)
+        rgb255=(0,128,32)
+        rgb255=(0,128,32)
+        rgb255=(128,0,0)
+        rgb255=(0,0,128)
+        rgb255=(0,0,128)
+        rgb255=(0,0,128)
+    },
+}
+    
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[view={60}{10},
+    colormap access=piecewise const
+    width=10cm,
+    height=10cm,
+    axis lines = center,
+    xlabel = {$x$},
+    ylabel = {$y$},
+    zlabel = {$z$},
+    ticks=none,
+    enlargelimits=0.3,
+    z buffer=sort,
+    view/h=45,
+    scale uniformly strategy=units only]
+    
+    \addplot3 [
+        surf,
+        z buffer=sort,
+        samples=30,
+        domain=0:2*pi,
+        y domain=0:pi
+    ] (
+        {cos(deg(x)) * sin(deg(y))},
+        {sin(deg(x)) *sin(deg(y))},
+        {cos(deg(y))}
+    );
+    \draw (1,0,0) -- (1.5,0,0) (0,-1,0)   -- (0,-1.5,0) (0,0,1)   -- (0,0,1.5);
+\end{axis}
+\end{tikzpicture}
+
+\end{document}

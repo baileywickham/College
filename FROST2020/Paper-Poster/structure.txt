@@ -1,0 +1,41 @@
+Just some of my thoughts for how we want to structure the poster material (Ian):
+
+-------------------------------------------------------------------------
+Background: 
+
+We don't want to enter into this vague dialogue of the generalized quaternions as being fundamental number systems without being more rigorous about what we mean by a fundamental number system. I know that we have talked about this a little on Slack but it seems like it needs to be more fleshed out.
+
+How much time do we want to devote her to the history of the quaternions versus introducing the generalized quaternions and relevant properties?
+
+We need to give a good explanation of what we mean by oriented planes and how they relate to the choice of orthonormal basis of a plane and the conjugacy classes of those basis elements.
+
+A basic definition of our norm, conjugation, S^3, and SL2/GL2 seems relevant.
+-------------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+Embeddings of Complex Planes into H:
+
+I see this as a motivational section that deals with a well known subject which we use to lay the groundwork for the 2x2 matrices case. Let me know if you see it differently.
+
+I feel as though this should be structured based on the embedding homomorphism's like we talked about previously and like Bailey and I did in 482. But more importantly it should be consistent with the structure that we use for the three planes in the 2x2 matrices.
+
+Include sphere moduli space for the complex planes here.
+-------------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+Embedding of Planes into M2(R):
+
+Here I feel like we should first start with a brief explanation of the three types of planes, maybe even going so far as giving a simplified construction based on quotient rings of R[x] by quadratic ideals. 
+
+This could be paired with the individual embeddings into the 2x2 matrices where we talk about the relevant Imaginary, Nilpotent, Idempotent matrices and their conjugacy under GL2/SL2. The mathematica images for the three moduli spaces could be included here but may not be neccessary or informative. However, I think that an image of the split plane should be included at the bare minimum. 
+
+This seems like the best time to introduce the idea of the sphere moduli space of all the planes using the orthogonal components of the real axis to uniquely identify different oriented planes.
+-------------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+Conclusion and Further Work:
+
+The conclusion is a key summary of what we include on the poster up to this point so it should be a lot easier to write once the meat and potatoes is done.
+
+For the further work I feel like this could be giving an explicit construction of Wedderburn's theorem, formalizing this notion of a probability distribution of plane types in the 2x2 matrices, extending this plane probability approach to finite fields where the number of planes can be explicitly counted, using quadratic forms/Q_p/other to try to do further work over Q instead of R, etc.
+-------------------------------------------------------------------------

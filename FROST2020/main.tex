@@ -1,0 +1,241 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc} 
+\usepackage{amsthm, amssymb, amsmath, amsfonts, extramarks,gensymb}
+\usepackage{tikz-cd, fontenc}
+\usepackage{general-poly}
+
+\title{Rediscovery of $\bH^\times$}
+\author{Andy Haase, Ian Gallagher, Bailey Wickham \\ Dr. Eric Brussel}
+\date{June 2020}
+
+\begin{document}
+
+\maketitle
+\section{Introduction}
+Students are likely familiar with the real number system \bR as well as its 2-dimensional counterpart, the complex number system \bC. The development of the quaternions stems from the attempt to extend this to a 3-dimensional number system by Irish mathematician William Rowan Hamilton. Hamilton would eventually realize that no such system exists, but that a 4-dimensional number system, whose construction from \bC mimics the construction of \bC from \bR,
+{\it does} exist. This system is called the ring of {\it quaternions}, denoted by \bH.
+
+We first seek to classify the embeddings of \bC into \bH, including a representation of the embeddings and the corresponding conjugacy classes. From there, we will generalize our construction of the quaternions, and answer the same questions over this general object.
+
+\section{Quaternions}
+The initial object of study is the quaternions. Similar to $\bR$ and $\bC$, the quaternions form a number system. This means the quaternions form a ring {\color{blue} need to redefine number system -bw}: they have an addition and a distributive multiplication. A vector space with a multiplication is called an \emph{algebra} and since \bH is a 4 dimensional vector space over \bR, \bH forms an \bR -Algebra.
+The quaternions are formally defined in a similar way to $\bC$:
+\begin{gather*}
+    \bH = \{t + xi + yj + zk : t,x,y,z \in \bR\} \\
+    \text{ where } i^2 = j^2 = k^2 = -1 \text{ and } ij =-ji = k
+\end{gather*}
+Note that $ij = -ji$ implies that the quaternions are not commutative, unlike $\bR$ and $\bC$. $\bH$ is not a field because of its noncommutivity, but it does share another field property: multiplicative inverses, making it a division algebra. Check: 
+\begin{gather*}
+    (t + xi + yj + zk)^{-1}= (t-xi-yj-zk)(t^2 + x^2 + y^2 + z^2)
+\end{gather*}
+\bH is a division algebra, so the group of units is everything but the additive identity:
+\begin{gather*}
+    \bH^{\times} = \bH - \{0\}
+\end{gather*}
+\subsection{Vector representation of \bH}
+Elements of $\bH^\times$ are often represented as a tuple containing the real part ($t$) in the first entry, and the imaginary part ($xi+yj+zk$) in the form of a vector($<x, y, z>$) in $\bR^3$ in the second entry. For example, the quaternion $1+2i+3j+4k$ would be represented ($1,<2,3,4>$). The primary purpose for this is that it lends clarity to many of the operations done on elements of $\bH^\times$. For example, multiplication can be interpreted geometrically and, perhaps even more impressively, the vector representation of the quaternions lends a beautiful geometric representation to the conjugacy classes of  $\bH^\times$. Both of these geometric interpretations will be discussed in due course.
+
+\subsection{Emdebbings of \bC into \bH}
+One interesting fact about the quaternions is that it is simple to find subgroups which are isomorphic to \bC. As we know, \bC can be described as a vector space in two dimensions with basis 1 and $i$, which is defined to be a number whose square is -1. Any isomorphism between two rings must fix the identity element. Thus any subgroup of \bH isomorphic to \bC must send 1 in $\bH$ to 1 in $\bC$. The same is true for -1. Therefore, we can restrict our choice of element which our isomorphism sends to $i$ to square roots of -1 in $\bH$. A simple calculation will show that these are the pure imaginary elements ($xi+yj+zk$) such that $x^2+y^2+z^2=1$. 
+
+Each point on this sphere gives us a unique embedding of \bC into \bH. This gives us a geometric representation of the set of all possible embeddings. A geometric representation of this form is a called a moduli space. We can describe the moduli space for this set of unique isomorphisms between subgroups of \bC and \bH as a sphere with radius 1. There is an entire sphere of embeddings of $\bC$ into $\bH$! In addition, since each quaternion with some imaginary component can be scaled up or down such that its imaginary part is norm 1 by multiplying by some element of $\bR^{pos}$, each element of $\bH$ that is not purely real lies on exactly two of these "oriented complex planes," specifically the one where its scaled imaginary part represents $i$ and the one where its scaled imaginary part represents $-i$. Note these are geometrically the same plane, but with a different orientation of the axes. 
+
+
+%There are many such interesting observations to make about the quaternions and, as a result, they have many interesting applications in Mathematics and Physics, but for now we are primarily interested the conjugacy classes of $\bH$. We observe that $\bH \simeq \bR^{pos} \times S^3$, a statement which is similar to Polar decomposition in $\bC$ which gives us hope that studying the conjugacy classes of $S^3$ may be extended to the conjugacy classes of $\bH^\times$. 
+
+
+{\color{blue}Add a transition here? Or image? I feel like this should get more attention -bw}
+
+
+\subsection{Restriction to $S^3$}
+Let $q=(t +bi+cj+dk)$, we can define a norm on $\bH$ as follows: 
+\begin{align*}
+    norm(q) &= q\overline{q}  \\
+    &= (t + xi+yj+zk)(t-xi-yj-zk) \\
+    &= t^2 + x^2 + y^2 + z^2
+\end{align*}
+Using this norm, we define all the points of norm (distance) 1 from the origin as the three sphere.
+\begin{gather*}
+    S^3 = \{q : q \in \bH, Norm(q) = 1\}
+\end{gather*}
+ We note that norm is multiplicative in $\bH^\times$. In other words, $Norm(ab)= Norm(a)*Norm(b)$ for $a,b \in \bH^\times$. Checking this is a routine calculation. Therefore, conjugation by any element of $\bH^\times$, preserves the norm of that element. Elements can only be conjugate if their norms are equal, so conjugation preserves $S^3$, which is composed of all elements in $\bH$ of norm $1$.  
+
+If we can find a set of conjugacy classes for $S^3$, we will then be able to generate all conjugacy classes for $\bH^\times$ by multiplying each element of the conjugacy classes generated for $S^3$ by a constant, since
+\begin{gather*}
+    a(cb)a^{-1}=c(aba^{-1}),  \forall a \in \bH^\times, b \in S^3 \text{ and } c \in \bR
+\end{gather*} 
+In other words, the conjugacy classes of $S^3$ completely determine the conjugacy classes of $\bH^{\times}$. By noting that conjugation fixes the real part of a given quaternion, we can further restrict our search for the conjugacy class for a given element in $S^3$ to other elements sharing its real component. 
+
+\subsection{Geometric Formula for Conjugation}
+
+First note that for $a,b$ in $\bH^\times$, writing $a=(t,\mathbf{v})$ and $b=(s,\mathbf{w})$ gives a general formula for conjugation:
+\begin{align*}
+    aba^{-1} = \left( s, \frac{1}{t^2+|\mathbf{v}|^2} ((\mathbf{v}\cdot\mathbf{w})\mathbf{v} +  t^2\mathbf{w} + 2t(\mathbf{v}\times\mathbf{w})+\mathbf{v}\times(\mathbf{v}\times\mathbf{w}) \right)
+\end{align*}
+
+This confirms our observation above that conjugation preserves the real component of a quaternion. The non-commutivity of the cross product shows that quaternions commute if and only if their imaginary vectors are parallel. Therefore, $aba^{-1} = b$ if and only if $a$ and $b$ have parallel imaginary vector.
+It also follows that elements of $\text{Im}(\bH)$ are clearly closed under conjugation by elements of $\bH$. In this way, we have a group action by $\bH$, and therefore by the subgroup $S^3$, acting on the set $\text{Im}(\bH)=\bR^3$.
+
+%Here we probably don't have to include something about conjugation being a rigid motion of 3-space (In $0_3$).
+%A natural question to ask here is does conjugation represent a rotation? If so, does it have a %representation in $\bR^3$. 
+
+A motivating example for understanding conjugation is conjugating $i$ by $\frac{i + j}{\sqrt{2}}$. Computing, we see that this conjugates $i \rightarrow j$, $j\rightarrow i$ and $k\rightarrow -k$, We also note that $\frac{i+j}{\sqrt{2}}$ is the midpoint between $i$ and $j$. A natural question to ask is what is the geometric interpretation of this conjugation? Does it form a rotation? 
+
+\subsection{Pure Imaginary Elements of $S^3$ are Conjugate}    
+
+From here we begin to investigate the nature of the conjugation operation. It is important to note before moving on that conjugation is a linear transformation and, because it represents a group action on Im($\bH^\times$), it is a linear operator on $\bR^3$. By examining the images of certain pure imaginary elements of $\bH^\times$ (represented by elements of $\bR^3$) when conjugated by other pure imaginary elements of $\bH^\times$, we can gain insight into what linear transformation is taking place. 
+
+In addition, if two vectors $\mathbf{v},\mathbf{w} \in \mathbf{R}^2 = \text{Im}(\bH^\times)$ are orthogonal and $|\mathbf{v}| = 1$, then it is simple to show that $\mathbf{v} \times (\mathbf{v} \times \mathbf{w}) = -\mathbf{w}$.  So, by way of the above geometric formula for conjugation, if we conjugate an element $b \in S^3$, where $b=(s, \mathbf{w})$, by a purely imaginary element $a \in S^3$, where $a=(0,\mathbf{v})$ such that $\mathbf{v} \cdot \mathbf{w} = 0$, then $aba^{-1} = \bar{b} = (s, -\mathbf{w})$.
+
+So conjugation by an element orthogonal to our given imaginary element negates the element. Since there is an entire plane of vector representations of elements of Im($\bH^\times$) orthogonal to any vector in $\bR^3$, it is easy to describe how conjugation by a given element of Im($\bH^\times$) acts on another element of Im($\bH^\times$). In addition, since the cross product eliminates parallel elements, the conjugation of some element (0,v) by a parallel element sends it to (0,$({|v|}^2 / {|v|}^2)v$)=(0,v), thus fixing the element. Thus the operation of conjugation by an element acts on the basis created by that element and some basis for the perpendicular plane by fixing the conjugating element in place and negating the perpendicular ones. Indeed, this confirms our suspicion above. It is a rotation of $180\degree$ of the conjugated element around the axis represented by the conjugating element.
+
+At this point, we have found a simple way to conjugate any pure imaginary element of $S^3$ to any other pure imaginary element. If we pick the midpoint on the sphere of our starting vector and our target vector, then conjugating our starting vector by that midpoint will send it to the target vector. 
+
+\subsection{Conjugacy Classes of $\bH^\times$}
+
+We are well equipped to answer the question we initially posed, that of determining the conjugacy classes of $\bH^\times$. We know that elements can only be conjugate if they have the same norm and if their real parts are equal. Furthermore, since pure imaginary elements of $S^3$ are all conjugate and conjugation is $\bR\text{-linear}$, we can conclude that elements of $\bH^\times$ are conjugate precisely when they have the same norm and they have the same real part. This fully characterizes the conjugacy classes. So for $a \in \bH^\times$,
+
+\begin{align*}
+    [a] &= \left \{b \in \bH^\times \big | b = cac^{-1} \text{ for some } c \in \bH^\times \right \} \\
+        &= \left \{b \in \bH^\times \big | |a| = |b| \text{ and Re} (/a) = \text{Re}(b) \right \}
+\end{align*}
+
+%Here we could put a pretty pretty picture of the rotation of the sphere around the given axis giving us the desired conjugation. It is a pretty pretty picture so we should maybe include it later. Andy has definitely been volunteered for this and is responsible for the implementation of this pretty pretty picture.
+
+\section{The Generalized Quaternions}
+In our definition of quaternions, our choice of $\bR, i$, and $j$ were arbitrary. By redefining these, we get a more general object, namely the Generalized Quaternions. 
+
+Let $k$ be a field, fix $a,b \in k$, then the generalized quaternions are a central simple $k-$algebra (CSA) of the form 
+\begin{gather*}
+    A_{a,b}(k) = \{t + bi + cj + dk : t,b,c,d \in k\} \\
+    \text{ where }i^2 =a, j^2 = b, \text{ and } ij = -ji=k
+\end{gather*}
+The quaternions we previously considered are the case $A_{-1, -1}(\bR)$. 
+
+Checking $A_{1,1}$, We have an isomorphism:
+\begin{gather*}
+    A_{1,1} \mapsto M_2(\bR) \\
+    (t,x,y,z) \mapsto
+    \begin{bmatrix}
+    t+x & y + z \\
+    y-z & t-x
+    \end{bmatrix}
+\end{gather*}
+
+Wedderburn's theorem says that for a Central Simple $k$-algebra $A$, then $A\simeq M_n(D)$ for some $k$-division algebra $D$. 
+
+We know that \bH forms a CSA, but \bH is also a Division Algebra, so $\bH \simeq M_1(\bH)$. This raises some obvious questions about the generalized quaternions: for which $a,b$ do we get \bH? What other objects can we get? How does our choice of field change our object? 
+
+\subsection{Development of Wedderburn's Theorem for Generalized Quaternions over \bR}
+In this section, we aim to show that a given $A_{a,b}(\bR)$  is isomorphic either to $H$ or to $M_2(\bR)$. Doing so requires a bit of ground work. First, we need an understanding of the Central Simple Algebra (or CSA). A CSA is a ring which is also a vector space about its center (which must be a field). In the case of $A_{a,b}$, it is trivial to show that its center is $Re(A_{a,b})$ or \bR. A CSA must also not have any non-trivial (that is, nonzero) 2-sided ideals.
+Wedderburn's Theorem states that any CSA, $A$, is isomorphic to $M_n(eAe)$ where $Ae$ is a minimal non-trivial left ideal in A generated by an element $e$. Suppose we generate this ideal with  (that is, an element $e$ such that $e^2=e$), then $A$ is not a division algebra and $A$ is actually isomorphic to $M_2(eAe)$
+
+
+\subsection{Classification of $a,b$}
+Let $k=\bR$. We will show there are two CSAs of dimension 4 over \bR, namely \bH and $M_2(\bR)$. 
+
+We can define a set of isomorphisms which gives us these relationships:
+\begin{gather*}
+    A_{a,b} \simeq A_{b,a} \simeq A_{a, -ab} \simeq A_{b,-ab} \simeq A_{ac^2, bd^2}
+\end{gather*}
+Using these isomorphisms, we can reduce $A_{a,b}(\bR)$ to finite isomorphism classes determined by the sign of $a,b$. If $k^{\times}/k^{\times 2}$ is finite, than there are finitely many isomorphism classes. Over \bR, this reduces us to four conjugacy classes determined by the sign of $a$ and $b$. Using $A_{a,b} \simeq A_{b,-ba}$, we can further reduce to two conjugacy classes: $A_{-1, -1} \simeq \bH$ and $A_{1,1} \simeq M_2(\bR)$. 
+
+
+
+\subsection{General Quaternion Norm}
+Notice in the quaternions, the kernel of the norm map, the set of elements with norm 1, is $S^3$. 
+The Norm for a $q\in A_{a,b}(k)$ is defined as such: 
+\begin{gather*}
+    Norm(q) = q\overline{q} = (t^2 -ax^2 -by^2 +abz^2) \in k
+\end{gather*}
+For $M_2(\bR)$, our norm is the determinant, which matches our $q\overline{q}$ computation. The kernel of the norm in $M_2(\bR)$ is the set of determinate 1 matricies, or $SL_2$. 
+We generalize this concept to study an analogous space in the generalized quaternions. We note that the kernel of the Norm map forms a variety, $V(t^2 - ax^2 -by^2 + abz^2)$. A variety is the set of solutions to a polynomial, with elements referred to as points on a geometric surface. We know that \bH is a divison algebra, so it has no nonzero zero divisors. Therefore if $V$ has a point, we are over $M_2(\bR)$. We have a "detector" of matrices. This gives us a correspondence between zeros of a polynomial and the structure of $A_{a,b}(k)$; that is, nontrivial zeros of the norm polynomial indicate that $A_{a,b}(k)$ is a ring of two by two matrices over $k$ when applying the appropriate dimension restrictions to Wedderburn's Theorem.
+
+\subsection{Finite Fields}
+Ian, c-warning 
+
+\section{Embeddings into $M_2(\bR)$}
+Next, we are interested in the embeddings of $\bR$ algebras into $M_2(\bR)$ which fix $\bR$ (also known as $\bR$-linear embeddings. We are specifically interested in the commutative subalgebras. To study these we look at quotient rings of $\bR[x]$, specifically the degree 2 extensions. To create a degree 2 extension, we must quotient out by a degree 2 polynomial, we find that the resulting ring is entirely determined by the discriminant of this polynomial. Note that this polynomial can be simplified to be monic by dividing by the coefficient of the highest power term which is necessarily nonzero. For $p(x) = x^2 + ax + b$, we have 3 cases: 
+\begin{gather}
+    a^2 - 4b < 0 \\
+    a^2 - 4b > 0 \\
+    a^2 - 4b = 0 
+\end{gather}
+
+Note: We can consider each of these extensions as a vector space over $\bR$ having basis $1, \overline{x}$. The three cases are determined by the behavior of $\overline{x}^2$. For $\bC$, $\overline{x} = i, \overline{x}^2 = -1 $. For $\bR\times \bR$, we have $\overline{x}^2 = \overline{x}$, an idempotent element. For our degenerate case, we have $\overline{x}^2 = 0$, a nilpotent element.
+
+\subsection{Discriminant Negative}
+
+In the case of $(1)$, $p(x)$ has complex roots $\alpha, \overline{\alpha}$ with nonzero imaginary components. So $p(x)$ is irreducible over \bR and this is simply a Kroenecker extension of \bR. If follows that:
+\begin{align*}
+    \frac{\bR[x]}{(p(x))} \cong \bR[\alpha] \cong \bC 
+\end{align*}
+
+\subsection{Discriminant Positive}
+
+    In the case of $(2)$, we get $\bR \times \bR$. 
+
+\subsection{Discriminant Zero}
+
+In the case of $(3)$, the degenerate case, we get a nilpotent element. 
+
+In this case, the polynomial $p(x)$ has a single repeated root in \bR. That is to say, $p(x) = (x-\alpha)^2$ for some $\alpha \in \bR$. The quotient ring is then a 2-dimensional vector space over \bR with basis $1, \overline{x}$ where we choose $\overline{x} = x - \alpha + (p(x))$. It follows that $\overline{x}^2 = 0$ in the quotient ring $\bR[x]/(p(x))$. This is enough to describe the multiplication of general elements of the quotient ring:
+
+\begin{align*}
+    (a\overline{x} + b) * (c\overline{x} + d) &= (ad+bc)\overline{x}+bd \\
+    (a,b) * (c,d) &= (ad+bc, bd)
+\end{align*}
+
+In the second equation the basis of $1,\overline{x}$ is dropped as it can be assumed from context. {\color{blue} Still need to include images of the different planes with the *-potent elements identified Also, aren't the nilpotent elements all orthogonal to the Real axis. Nilpotent elements are of the form (a,0) as shown above, and (0,1) is the multiplicative identity, so it's span is the real axis. -ig}
+
+\section{Conjugacy of Embeddings into $M_2(\bR)$}
+We have determined there are three cases of dimension 2 sub-algebras of $M_2(\bR)$ characterised by their determinants. 
+
+Recall that matrices are similar if they have the same eigenvalues with the same geometric multiplicity. Suppose a basis is found for an embedding of \bC into $M_2(\bR)$. We know that such a basis consists of the identity matrix, as well as a matrix whose square is -1. It can be shown that such matrices have eigenvalues of
+
+
+\section{Exact Sequences}
+An exact sequences is a set of morphisms and objects such that the image of a map is the kernel of the next map. They provide a useful way of describing relationships between objects. 
+For example, in \bH, we have an exact sequence:
+\begin{equation}
+    \begin{tikzcd}
+        1 \arrow{r} & \bR^{\times} \arrow{r} & \bH^{\times} \arrow{r} & inn(\bH^{\times})
+    \end{tikzcd}
+\end{equation}
+where the first two maps are the inclusion map, and the kernel of the inner automorphisms is the center: $\bR^{\times}$. Note that the first object being $1$ implies that the kernel of $\bR^{\times} \rightarrow \bH^{\times}$ is $0$.
+
+This exact sequences is the generalization of the sequence above.
+\begin{equation}
+\begin{tikzcd}
+1 \arrow{r} & \{\pm 1\} \arrow[r, "\phi"] & S^3 \arrow[r, "\psi"] & SO_3 \arrow[r, "?"] & 1
+\end{tikzcd}
+\end{equation}
+where $SO_3$ represents the rigid 
+
+
+
+\section{A Functor Representation}
+In the previous section, our definition of $A_{a,b}$ did not depend on our selected field $k$, which implies there may be a more general relation between these objects. We have have a covariant functor $F: Field \rightarrow Alg$, where $ob(Field)$ are fields, $ob(Alg)$ are algebras, and $mor(Field)$ and ring homomorphisms, and $mor(Alg)$ are $k$ linear homomorphisms. 
+Fix an $a,b \in k^{\times}$. Then we have a functor:
+\begin{align*}
+    F: Field &\rightarrow Alg \\
+    k & \mapsto A_{a,b}(k) \\
+    (\phi: k \rightarrow l) & \mapsto (\gamma: A_{a,b}(k) \rightarrow A_{a,b}(l))
+\end{align*}
+Notice that our Functor is really a statement of inclusion. Each ring homomorphism remains unchanged in $Alg$.  
+\begin{proof}
+We need to show that $F$ assigns each object in $Field$ to an object in $Alg$. We also need to show $F(id_C) = id_D$ and $F(\phi \circ \psi) = F(\phi) \circ F(\psi)$. 
+
+Our definition of $A_{a,b}(k)$ is defined generally for any $k$, so for each field $k$, we have an associated $A_{a,b}(k)$. 
+
+$id_{Field} = 1$ because $1\circ f = f \circ 1 = f$ for any $f \in Mor(Field)$. Similarly $id_{Alg} = 1$. Since our Functor sends ring homomorphisms to $k-$linear ring homomorphisms: $F(1_{Field}) = 1_{Alg}$. 
+
+Let $\phi, \psi$ be ring homomorphisms in $Field$. 
+\begin{align*}
+    F(\phi \circ \psi) &= \\
+    \phi \circ \psi &= \\
+    F(\phi) \circ F(\psi) &=
+\end{align*}
+We are evaluating the same ring homomorphism in a different field, which preserves composition. 
+\end{proof}
+\end{document}

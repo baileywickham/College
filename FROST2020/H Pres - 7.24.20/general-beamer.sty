@@ -1,0 +1,427 @@
+% general-beamer.sty
+% General command file
+
+\NeedsTeXFormat{LaTeX2e}[1999/06/01]
+
+\ProvidesPackage{general-beamer}[2008/02/17 Common commands]
+
+
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{amsthm}
+%\RequirePackage{amsrefs}
+\RequirePackage{latexsym}
+%\RequirePackage{ifthen}
+%\RequirePackage{cite}
+\RequirePackage{verbatim}
+\RequirePackage{enumerate}
+\RequirePackage{xspace}
+\RequirePackage[mathscr]{eucal}
+%\RequirePackage{layout}
+%\RequirePackage{amscd}
+\RequirePackage[all]{xy}
+%\RequirePackage{fancyhdr}
+%\RequirePackage{extramarks}
+\RequirePackage{graphics}
+\RequirePackage{bbm}
+
+
+%==========================================
+% Continuous proclamation numbering style
+%==========================================
+
+%\theoremstyle{plain}
+%\newtheorem{theorem}{Theorem}%[chapter]
+%\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{cor}[theorem]{Corollary}
+%\newtheorem{corol}{Corollary}
+\newtheorem{prop}[theorem]{Proposition}
+%\newtheorem*{propn}{Proposition}
+%\newtheorem{conj}{Conjecture}
+%\newtheorem{question}{Question}
+
+\theoremstyle{definition}
+\newtheorem{defn}[theorem]{Definition}
+\newcounter{example}
+%\newtheorem{ex}[example]{Example}
+\newtheorem{exm}[theorem]{Example}
+%\newtheorem*{thm}{Theorem}
+
+%\theoremstyle{remark}
+%\newtheorem{remark}[theorem]{Remark}
+%\newtheorem*{rem}{Remark}
+%\newtheorem*{definition}{Defn}
+%\newtheorem*{caution}{Caution}
+
+%\newtheorem{xca}[theorem]{Exercise}
+
+%\numberwithin{equation}{section}
+%\numberwithin{theorem}{chapter}
+
+%==========================================
+% Erin's custom commands
+%==========================================
+
+%common symbols, objects
+\newcommand{\asin}{\ensuremath{\sin^{-1}}\xspace} %arcsine
+\newcommand{\bC}{\ensuremath{\protect\mathbb{C}}\xspace} %blackboard bold C for Complex numbers
+\newcommand{\bD}{\ensuremath{\protect\mathbb{D}}\xspace} %blackboard bold D for test functions
+\newcommand{\Dist}{\ensuremath{\protect\bD'}\xspace} %blackboard bold D' for Distributions
+\newcommand{\bE}{\ensuremath{\mathbb{E}}\xspace} %blackboard bold E for Euclidean space
+\newcommand{\bEd}{\ensuremath{\mathbb{E}^d}\xspace} %blackboard bold E for Euclidean space
+\newcommand{\bEn}[1][n]{\ensuremath{\mathbb{E}^{#1}}\xspace} %blackboard bold E for Euclidean space
+\newcommand{\bN}{\ensuremath{\protect\mathbb{N}}\xspace} %blackboard bold N for Natural numbers
+\newcommand{\bZ}{\ensuremath{\protect\mathbb{Z}}\xspace} %blackboard bold Z for Integers
+\newcommand{\bZd}[1][d]{\ensuremath{\protect\bZ^{#1}}\xspace} %blackboard bold Z for Integers
+\newcommand{\bQ}{\ensuremath{\protect\mathbb{Q}}\xspace} %blackboard bold Q for Rational numbers
+\newcommand{\bR}{\ensuremath{\protect\mathbb{R}}\xspace} %blackboard bold R for Real numbers
+\newcommand{\bH}{\ensuremath{\protect\mathbb{H}}\xspace} %blackboard bold H for quaternions 
+\newcommand{\bRt}{\ensuremath{\protect\mathbb{R}^2}\xspace} %blackboard bold R2 for the plane
+\newcommand{\bRT}{\ensuremath{\protect\mathbb{R}^3}\xspace} %blackboard bold R3 for 3-space
+\newcommand{\bRn}[1][n]{\ensuremath{\protect\mathbb{R}^{#1}}\xspace} %blackboard bold Rn for Real vector space
+\newcommand{\bRd}{\ensuremath{\protect\mathbb{R}^d}\xspace} %blackboard bold Rd for Real vector space
+\newcommand{\bT}{\ensuremath{\protect\mathbb{T}}\xspace} %blackboard bold T for torus
+\newcommand{\bTd}[1][d]{\ensuremath{\protect\mathbb{T}^{#1}}\xspace} %blackboard bold T for torus
+\newcommand{\circled}[2][12]{\ensuremath{\bigcirc \negsp[{#1}] #2}}
+\newcommand{\conv}{\ensuremath{\protect\ast}} %asterisk star for convolution
+\newcommand{\del}{\ensuremath{\protect\partial}} %del, for boundary, partial derivs, etc
+\newcommand{\iy}{\ensuremath{\protect\infty}\xspace} %infinity
+\renewcommand{\i}{\ensuremath{i}\xspace} %the index i
+\newcommand{\ii}{\ensuremath{\protect\mathbbm{i}}\xspace} %the index i
+\renewcommand{\j}{\ensuremath{j}\xspace} %the index j
+\newcommand{\ith}{\ensuremath{i^{\text{th}}}\xspace} %i-th
+\newcommand{\jth}{\ensuremath{j^{\text{th}}}\xspace} %j-th
+\newcommand{\kth}{\ensuremath{k^{\text{th}}}\xspace} %k-th
+\newcommand{\nth}[1][n]{\ensuremath{#1^{\text{th}}}\xspace} %n-th
+\newcommand{\slantfrac}[2][1]{\ensuremath{{\raise0.5ex\hbox{$\scriptstyle #1$}\kern-0.1em/\kern-0.1em\lower0.25ex\hbox{$\scriptstyle #2$}}}}
+\newcommand{\limas}[2][\iy]{\xrightarrow{\hstr[1] #2 \to #1 \hstr[1]}}
+\newcommand{\limmode}[1][\text{unif}]{\xrightarrow{\hstr[1] #1 \hstr[1]}}
+\newcommand{\less}{\setminus}%{-}%\setminus} %
+\newcommand{\minus}{\sim} %set subtraction
+\newcommand{\dis}{d} %distance / metric
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\eax}[1][\ge]{\approx_{#1}}  %epsilon-approximately
+\newcommand{\inbo}{\ensuremath{\dot \del}\xspace}
+\newcommand{\ddt}[1][t]{\tfrac{\del}{\del #1}\xspace} %partial derivative w/r #1
+\newcommand{\ddx}[2][t]{\tfrac{\del #2}{\del #1}\xspace} %partial derivative of #2 w/r #1
+\newcommand{\ddxi}[1][i]{\tfrac{\del}{\del x_{#1}}\xspace} % (#1)th-partial derivative
+\newcommand{\dfdxi}[2][i]{\tfrac{\del #2}{\del x_{#1}}\xspace} % (#1)th-partial derivative of #2
+\newcommand{\ve}[1][x]{\ensuremath{\textbf{#1}}\xspace} %vectors {\ensuremath{\boldsymbol{#1}}\xspace} %vectors
+\newcommand{\suth}{ \ensuremath{\protect \; \raisebox{1pt}{$_.$} \mspace{-5mu} \raisebox{3.5pt}{$_.$} \mspace{-5mu} \raisebox{5.9pt}{$_.$} \;} } %such that (for sets)  %\mid
+\newcommand{\such}{\hstr[0.1] \raisebox{1pt}{$_.$} \mspace{-5mu} \raisebox{3.5pt}{$_.$} \mspace{-5mu} \raisebox{5.9pt}{$_.$} \hstr[0.1]} %such that for subscripts
+\newcommand{\sldsuth}{ \ensuremath{\protect \; \raisebox{2pt}{$_.$}
+  \mspace{-4.2mu} \raisebox{5pt}{$_.$}
+  \mspace{-4.2mu} \raisebox{7.5pt}{$_.$} \;} } %such that (for sets) for slides
+
+\newcommand{\edit}[2]{\ifthenelse{\equal{\draught}{true}}{#1}{#2}}
+ %command for making a draught version suitable for editing.
+ %Suppose you have the line
+ %  \edit{The draught version.}{The final version.}
+ %when \draught=true, only "The draught version." will be visible in the DVI output
+ %when \draught=true, only "The final version." will be visible in the DVI output
+
+%relations
+\newcommand{\geqs}{\geqslant}
+\newcommand{\leqs}{\leqslant}
+\newcommand{\grg}{\muchgreater}
+\newcommand{\muchgreater}{\ensuremath{> \mspace{-8mu} >}}  % >>
+
+%tops & bottoms
+\newcommand{\cj}[1]{\overline{#1}}  %conjugate
+\newcommand{\ul}[1]{\underline{#1}}  %underline
+\newcommand{\wtil}[1]{\ensuremath\widetilde{#1}}    %wide tilde
+
+%functions and operators
+\newcommand{\area}{\operatorname{area}}
+\newcommand{\bdy}{\del} %boundary operator
+\newcommand{\chf}[1]{\mathbf{1}_{#1}} %characteristic fn/indicator fn
+\newcommand{\charfn}[1]{\ensuremath{{\raise0.2ex\hbox{\gc}}_{\raise-0.2ex\hbox{$_{#1}$}}}\xspace}
+
+\newcommand{\dist}{\operatorname{dist}} %distance
+\newcommand{\dom}{\operatorname{dom}} %domain
+\newcommand{\erf}{\operatorname{erf}} %error function
+\newcommand{\exo}{\operatorname{exo}} %exoskeleton of a set
+\newcommand{\reach}{\operatorname{reach}} %reach of a set
+\newcommand{\grad}{\nabla} % gradient
+%\newcommand{\arg}{\operatorname{arg}} %argument of
+\newcommand{\Arg}{\operatorname{Arg}} %argument of
+\renewcommand{\Re}{\operatorname{Re}} %real part
+\renewcommand{\Im}{\operatorname{Im}} %imaginary part
+\newcommand{\im}{\operatorname{Im}} %Image of a map
+\newcommand{\img}{\ensuremath{\operatorname{img}}}
+\newcommand{\inter}{\operatorname{int}} %interior of a set
+\renewcommand{\ker}{\operatorname{Ker}} %Kernel of a map
+\renewcommand{\limsup}{\mathop{\operatorname{limsup}}}  %\cj{\lim}}} %lim sup
+\renewcommand{\liminf}{\mathop{\operatorname{liminf}}} %\underline{\lim}}} %lim inf
+\newcommand{\Nor}{\ensuremath{\operatorname{Nor}}}
+\newcommand{\Par}{\ensuremath{\operatorname{Par}}}
+\newcommand{\ran}{\ensuremath{\operatorname{ran}}}
+\newcommand{\evald}[2][]{\ensuremath{\negsp[4]\left.\vstr[2.0] \right|_{#2}^{#1}}} %evaluation from #2 to #1
+\newcommand{\restr}[2]{\ensuremath{\left.\vstr[1.7]#1\right|_{#2}\negsp[5]}} %restriction of first arg to second arg
+\newcommand{\relint}{\ensuremath{\operatorname{relint}}}
+\newcommand{\res}[2][\gw]{\operatorname{res}\left(#2;#1\right)} %residue at #1 of #2
+\newcommand{\sig}{\ensuremath{\operatorname{sgn}}}
+\newcommand{\sff}{\ensuremath{\operatorname{II}}\xspace} %second fundamental form
+\newcommand{\spt}{\operatorname{spt}} %support of a fn/meas
+\newcommand{\trace}{\ensuremath{\operatorname{trace}}}
+\newcommand{\vol}[1][1]{\ensuremath{\operatorname{vol_{\text{\ensuremath{#1}}}}}\xspace} %lebesgue measure
+\newcommand{\we}{\wedge}
+
+%spacing
+\newcommand{\pgap}[1][0.3cm]{\vspace{#1 plus 0.1cm minus 0.1cm}}
+\newcommand{\gap}{\vspace{1cm}}
+\newcommand{\vstr}[1][3]{\rule{0ex}{#1ex}}
+\newcommand{\hstr}[1][3]{\rule{#1ex}{0ex}}
+\newcommand{\negsp}[1][20]{\mspace{-#1mu}}
+\newcommand{\hr}{\makebox[1.3in]{\;}\raisebox{1ex}{\makebox[3in]{\hrulefill}}}
+\newcommand{\mshift}[2][5]{\ensuremath{\mspace{#1mu} #2 \mspace{-#1mu}}} %slides an element to the left by #1mu within the flow of a sentence
+
+%theorem and proof commands
+\newcommand{\deftitle}[1]{\emph{(#1).} \hfill \\} %Definition title
+\newcommand{\thmtitle}[1]{\emph{(#1).} \hfill \\} %Theorem title
+\newcommand{\imp}{\quad \implies \quad} % implication rightarrow
+\newcommand{\fwd}{\ensuremath{\left(\Rightarrow\right)}\xspace}%{$\boxed{\Rightarrow}$ \;} %forward direction of a proof
+\newcommand{\bwd}{\ensuremath{\left(\Leftarrow \right)}\xspace}%{$\boxed{\Leftarrow}$ \;} %reverse direction of a proof
+\newcommand{\happy}{\ensuremath{\bigcirc \mspace{-11mu} ^\shortparallel \mspace{-10mu}_\smallsmile}} %happy face
+\newcommand{\sad}{\ensuremath{\bigcirc \mspace{-11mu} ^\shortparallel \mspace{-8mu}_\smallfrown}} %sad face
+\newcommand{\Qed}{\makebox[0.1ex]{\;} \hfill \ensuremath \blacksquare}   %{\rule[-.23ex]{1.4ex}{1.4ex}} % solid box, lowered
+%\newcommand{\qed}{\makebox[0.1ex]{\;} \hfill \ensuremath \square}
+\newcommand{\dago}{\ensuremath{\dagger}}
+\newcommand{\cont}{\ensuremath{\raisebox{0.18cm}{$<$} \mspace{-18mu} \raisebox{-0.08cm}{$\swarrow$}}} %contradiction
+
+\newcommand{\captionsize}{\footnotesize}
+
+%bibliography commands
+\newcommand{\bibart}[7]{#1, #2, \emph{#3} #4 \textbf{#5} (#6), #7.}
+    %author(s) title journal number volume year pages
+\newcommand{\bibbook}[5]{#1, \emph{#2}, #3, #4, #5.}
+    %author(s) title publisher location year
+\newcommand{\bibgap}{0.1cm}
+
+
+%custom lists
+
+\newcounter{FlatListNumber}
+\newenvironment{FlatList}[1][1ex]  %no indentation
+    {\begin{list}{Step \arabic{FlatListNumber}:}
+      {\setlength{\itemsep}{#1 plus 0.2ex minus 0ex}
+       \setlength{\topsep}{1ex plus 0.2ex minus 0ex}
+       \setlength{\labelwidth}{-1ex}
+       \setlength{\leftmargin}{0ex}
+       \setlength{\itemindent}{5ex}
+       \usecounter{FlatListNumber}}}
+    {\end{list}}
+
+\newcounter{CommentNumber}
+\newenvironment{Comments}[1][2ex]
+    {\begin{list}{(\arabic{CommentNumber})}
+    {\setlength{\itemsep}{#1 plus 0.2ex minus 0ex}
+         \setlength{\topsep}{1.5ex plus 0.2ex minus 0ex}
+         %\setlength{\bottomsep}{1.5ex plus 0.2ex minus 0ex}
+     \usecounter{CommentNumber}}}
+    {\end{list}}
+\newenvironment{ReComments}
+    {\begin{list}{(\arabic{CommentNumber}')}
+    {\setlength{\itemsep}{3ex plus 0.2ex minus 0ex}
+         \setlength{\topsep}{1.5ex plus 0.2ex minus 0ex}
+         %\setlength{\bottomsep}{1.5ex plus 0.2ex minus 0ex}
+     \usecounter{CommentNumber}}}
+    {\end{list}}
+
+\newcounter{ProblemNumber}
+\newenvironment{Prob}[1][4ex]
+    {\begin{list}{\arabic{ProblemNumber}.}
+    {\setlength{\itemsep}{#1 plus 0.2ex minus 0ex}
+     \usecounter{ProblemNumber}}}
+    {\end{list}}
+
+\newcounter{ExampleNumber}
+\newenvironment{Exmp}[1][4ex]
+    {\begin{list}{Example (\arabic{ExampleNumber})}
+    {\setlength{\itemsep}{#1 plus 0.2ex minus 0ex}
+     \usecounter{ExampleNumber}}}
+    {\end{list}}
+
+\newcounter{SubProblemNumber}[ProblemNumber]
+\newenvironment{Sub}[1][3ex]
+    {\begin{list}{(\alph{SubProblemNumber})}
+        {\setlength{\itemsep}{#1 plus 0.2ex minus 0ex}
+         \setlength{\topsep}{1ex plus 0.2ex minus 0ex}
+         \usecounter{SubProblemNumber}}}
+    {\end{list}}
+
+\newcounter{ConditionNumber}[SubProblemNumber]
+\newenvironment{Cond}[1][1ex]
+    {\begin{list}{(\roman{ConditionNumber})}
+                {\setlength{\itemsep}{#1 plus 0.2ex minus 0ex}
+                 \setlength{\topsep}{1ex plus 0.2ex minus 0ex}
+                 \usecounter{ConditionNumber}}}
+    {\end{list}}
+
+\newcounter{CaseNumber}
+\newenvironment{Case}[1][1ex]
+    {\begin{list}{\text{case } (\arabic{CaseNumber})}
+                {\setlength{\itemsep}{#1 plus 0.2ex minus 0ex}
+                 \setlength{\topsep}{1ex plus 0.2ex minus 0ex}
+                 \usecounter{CaseNumber}}}
+    {\end{list}}
+
+\newenvironment{BlankList}[1][1ex]
+    {\begin{list}{}
+                {\setlength{\itemsep}{#1 plus 0.2ex minus 0ex}
+                 \setlength{\topsep}{1ex plus 0.2ex minus 0ex}
+                 }}
+    {\end{list}}
+
+%==========================================
+% the following came with the original file
+%==========================================
+
+% Sets
+\newcommand{\ci}{\subseteq}% contained in with equality
+\newcommand{\nc}{\nsubseteq}% not \ci
+\newcommand{\sci}{\subset}% strictly contained in
+\newcommand{\nci}{\nc}% not \ci
+\newcommand{\ce}{\supseteq}% containing with equality
+\newcommand{\nce}{\nsupseteq}% not \ce
+\newcommand{\nin}{\notin}% not \in
+\newcommand{\es}{\varnothing}% the empty set
+\newcommand{\set}[1]{\{#1\}}% set
+\newcommand{\setm}[2]{\{\,#1\mid#2\,\}}% set with a middle
+\def\vv<#1>{\langle#1\rangle}% vector
+
+% Partial ordering
+\newcommand{\nle}{\nleq}% not \leq
+
+% Script capitals
+\newcommand{\sA}{\ensuremath{\mathcal{A}}\xspace}
+\newcommand{\sB}{\ensuremath{\mathcal{B}}\xspace}
+\newcommand{\sC}{\ensuremath{\mathcal{C}}\xspace}
+\newcommand{\sD}{\ensuremath{\mathcal{D}}\xspace}
+\newcommand{\sE}{\ensuremath{\mathcal{E}}\xspace}
+\newcommand{\sF}{\ensuremath{\mathcal{F}}\xspace}
+\newcommand{\sG}{\ensuremath{\mathcal{G}}\xspace}
+\newcommand{\sH}{\ensuremath{\mathcal{H}}\xspace}
+\newcommand{\sI}{\ensuremath{\mathcal{I}}\xspace}
+\newcommand{\sJ}{\ensuremath{\mathcal{J}}\xspace}
+\newcommand{\sK}{\ensuremath{\mathcal{K}}\xspace}
+\newcommand{\sL}{\ensuremath{\mathcal{L}}\xspace}
+\newcommand{\sM}{\ensuremath{\mathcal{M}}\xspace}
+\newcommand{\sN}{\ensuremath{\mathcal{N}}\xspace}
+\newcommand{\sO}{\ensuremath{\mathcal{O}}\xspace}
+\newcommand{\sP}{\ensuremath{\mathcal{P}}\xspace}
+\newcommand{\sQ}{\ensuremath{\mathcal{Q}}\xspace}
+\newcommand{\sR}{\ensuremath{\mathcal{R}}\xspace}
+\newcommand{\sS}{\ensuremath{\mathcal{S}}\xspace}
+\newcommand{\sT}{\ensuremath{\mathcal{T}}\xspace}
+\newcommand{\sU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\sV}{\ensuremath{\mathcal{V}}\xspace}
+\newcommand{\sW}{\ensuremath{\mathcal{W}}\xspace}
+\newcommand{\sX}{\ensuremath{\mathcal{X}}\xspace}
+\newcommand{\sY}{\ensuremath{\mathcal{Y}}\xspace}
+\newcommand{\sZ}{\ensuremath{\mathcal{Z}}\xspace}
+
+% Greek letters
+\newcommand{\ga}{\ensuremath{\alpha}\xspace}
+\newcommand{\gb}{\ensuremath{\beta}\xspace}
+\newcommand{\gc}{\ensuremath{\chi}\xspace}
+\newcommand{\gd}{\ensuremath{\delta}\xspace}
+\renewcommand{\ge}{\ensuremath{\varepsilon}\xspace} % use \geq for >=
+\newcommand{\gf}{\ensuremath{\varphi}\xspace}
+\renewcommand{\gg}{\ensuremath{\gamma}\xspace} % old use >>
+\newcommand{\gh}{\ensuremath{\eta}\xspace}
+\newcommand{\gi}{\ensuremath{\iota}\xspace}
+\newcommand{\gk}{\ensuremath{\kappa}\xspace}
+\newcommand{\gl}{\ensuremath{\lambda}\xspace}
+\newcommand{\gm}{\ensuremath{\mu}\xspace}
+\newcommand{\gn}{\ensuremath{\nu}\xspace}
+\newcommand{\go}{\ensuremath{\omega}\xspace}
+\newcommand{\gp}{\ensuremath{\pi}\xspace}
+\newcommand{\gq}{\ensuremath{\theta}\xspace}
+\newcommand{\gr}{\ensuremath{\rho}\xspace}
+\newcommand{\gs}{\ensuremath{\sigma}\xspace}
+\newcommand{\gt}{\ensuremath{\tau}\xspace}
+\newcommand{\gu}{\ensuremath{\upsilon}\xspace}
+\newcommand{\gv}{\ensuremath{\vartheta}\xspace}
+\newcommand{\gw}{\ensuremath{\omega}\xspace}
+\newcommand{\gx}{\ensuremath{\xi}\xspace}
+\newcommand{\gy}{\ensuremath{\psi}\xspace}
+\newcommand{\gz}{\ensuremath{\zeta}\xspace}
+
+\newcommand{\gG}{\ensuremath{\Gamma}\xspace}
+\newcommand{\gD}{\ensuremath{\Delta}\xspace}
+\newcommand{\gF}{\ensuremath{\Phi}\xspace}
+\newcommand{\gL}{\ensuremath{\Lambda}\xspace}
+\newcommand{\gO}{\ensuremath{\Omega}\xspace}
+\newcommand{\gP}{\ensuremath{\Pi}\xspace}
+\newcommand{\gR}{\ensuremath{R}\xspace}
+\newcommand{\gQ}{\ensuremath{\Theta}\xspace}
+\newcommand{\gS}{\ensuremath{\Sigma}\xspace}
+\newcommand{\gU}{\ensuremath{\Upsilon}\xspace}
+\newcommand{\gW}{\ensuremath{\Omega}\xspace}
+\newcommand{\gX}{\ensuremath{\Xi}\xspace}
+\newcommand{\gY}{\ensuremath{\Psi}\xspace}
+
+% Gothic letters
+\newcommand{\xa}{\ensuremath{\mathfrak{a}}\xspace}
+\newcommand{\xb}{\ensuremath{\mathfrak{b}}\xspace}
+\newcommand{\xc}{\ensuremath{\mathfrak{c}}\xspace}
+%\newcommand{\xd}{\ensuremath{\mathfrak{d}}\xspace}
+\newcommand{\xe}{\ensuremath{\mathfrak{e}}\xspace}
+\newcommand{\xf}{\ensuremath{\mathfrak{f}}\xspace}
+\newcommand{\xg}{\ensuremath{\mathfrak{g}}\xspace}
+\newcommand{\xh}{\ensuremath{\mathfrak{h}}\xspace}
+\newcommand{\xxi}{\ensuremath{\mathfrak{i}}\xspace}
+\newcommand{\xj}{\ensuremath{\mathfrak{j}}\xspace}
+\newcommand{\xk}{\ensuremath{\mathfrak{k}}\xspace}
+\newcommand{\xl}{\ensuremath{\mathfrak{l}}\xspace}
+\newcommand{\xm}{\ensuremath{\mathfrak{m}}\xspace}
+\newcommand{\xn}{\ensuremath{\mathfrak{n}}\xspace}
+\newcommand{\xo}{\ensuremath{\mathfrak{o}}\xspace}
+\newcommand{\xp}{\ensuremath{\mathfrak{p}}\xspace}
+\newcommand{\xq}{\ensuremath{\mathfrak{q}}\xspace}
+\newcommand{\xr}{\ensuremath{\mathfrak{r}}\xspace}
+\newcommand{\xs}{\ensuremath{\mathfrak{s}}\xspace}
+\newcommand{\xt}{\ensuremath{\mathfrak{t}}\xspace}
+\newcommand{\xu}{\ensuremath{\mathfrak{u}}\xspace}
+\newcommand{\xv}{\ensuremath{\mathfrak{v}}\xspace}
+\newcommand{\xw}{\ensuremath{\mathfrak{w}}\xspace}
+\newcommand{\xx}{\ensuremath{\mathfrak{x}}\xspace}
+%\newcommand{\xy}{\ensuremath{\mathfrak{y}}\xspace} %conflict with xy-pic
+\newcommand{\xz}{\ensuremath{\mathfrak{z}}\xspace}
+
+\newcommand{\xA}{\ensuremath{\mathfrak{A}}\xspace}
+\newcommand{\xB}{\ensuremath{\mathfrak{B}}\xspace}
+\newcommand{\xC}{\ensuremath{\mathfrak{C}}\xspace}
+\newcommand{\xD}{\ensuremath{\mathfrak{D}}\xspace}
+\newcommand{\xE}{\ensuremath{\mathfrak{E}}\xspace}
+\newcommand{\xF}{\ensuremath{\mathfrak{F}}\xspace}
+\newcommand{\xG}{\ensuremath{\mathfrak{G}}\xspace}
+\newcommand{\xH}{\ensuremath{\mathfrak{H}}\xspace}
+\newcommand{\xI}{\ensuremath{\mathfrak{I}}\xspace}
+\newcommand{\xJ}{\ensuremath{\mathfrak{J}}\xspace}
+\newcommand{\xK}{\ensuremath{\mathfrak{K}}\xspace}
+\newcommand{\xL}{\ensuremath{\mathfrak{L}}\xspace}
+\newcommand{\xM}{\ensuremath{\mathfrak{M}}\xspace}
+\newcommand{\xN}{\ensuremath{\mathfrak{N}}\xspace}
+\newcommand{\xO}{\ensuremath{\mathfrak{O}}\xspace}
+\newcommand{\xP}{\ensuremath{\mathfrak{P}}\xspace}
+\newcommand{\xQ}{\ensuremath{\mathfrak{Q}}\xspace}
+\newcommand{\xR}{\ensuremath{\mathfrak{R}}\xspace}
+\newcommand{\xS}{\ensuremath{\mathfrak{S}}\xspace}
+\newcommand{\xT}{\ensuremath{\mathfrak{T}}\xspace}
+\newcommand{\xU}{\ensuremath{\mathfrak{U}}\xspace}
+\newcommand{\xV}{\ensuremath{\mathfrak{V}}\xspace}
+\newcommand{\xW}{\ensuremath{\mathfrak{W}}\xspace}
+\newcommand{\xX}{\ensuremath{\mathfrak{X}}\xspace}
+\newcommand{\xY}{\ensuremath{\mathfrak{Y}}\xspace}
+\newcommand{\xZ}{\ensuremath{\mathfrak{Z}}\xspace}
+
+
+% Miscellaneous
+\newcommand{\nl}{\newline}
+\newcommand{\q}{\quad}% spacing
+\newcommand{\qq}{\qquad}% more spacing
+
+\endinput

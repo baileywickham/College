@@ -1,0 +1,31 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc} \usepackage{amsthm, amssymb, amsmath, amsfonts, extramarks,gensymb}
+\usepackage{tikz-cd, tikz-3dplot, fontenc}
+\usepackage{general-poly}
+
+\title{Tikz Images}
+\author{Frost}
+\date{Present}
+
+\begin{document}
+
+\tdplotsetmaincoords{70}{135}
+
+\begin{tikzpicture}[scale=3,line join=bevel,tdplot_main_coords, fill opacity=.5]
+\tdplotsphericalsurfaceplot{72}{36}{1}{black}%
+    {blue!80!}%
+    {\draw[color=black,thick,->] (0,0,0) -- (2,0,0) node[anchor=north east]{$x$};}%
+    {\draw[color=black,thick,->] (0,0,0) -- (0,2,0) node[anchor=north west]{$y$};}%
+    {\draw[color=black,thick,->] (0,0,0) -- (0,0,2) node[anchor=south]{$z$};}%
+\end{tikzpicture}
+
+\begin{tikzpicture}[scale=3,line join=bevel,tdplot_main_coords, fill opacity=.5]
+\tdplotsphericalsurfaceplot[parametricfill]{72}{36}{1}{black}%
+    {\tdplottheta}%
+    {\draw[color=black,thick,->] (0,0,0) -- (2,0,0) node[anchor=north east]{$x$};}%
+    {\draw[color=black,thick,->] (0,0,0) -- (0,2,0) node[anchor=north west]{$y$};}%
+    {\draw[color=black,thick,->] (0,0,0) -- (0,0,2) node[anchor=south]{$z$};}%
+    \tdplotshowargcolorguide{3}{-.2}{.1}{1}
+\end{tikzpicture}
+
+\end{document}

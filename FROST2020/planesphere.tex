@@ -1,0 +1,302 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc} \usepackage{amsthm, amssymb, amsmath, amsfonts, extramarks,gensymb}
+\usepackage{tikz-cd, fontenc}
+\usepackage{general-poly}
+
+\title{Ian's BS}
+\author{Frost}
+\date{June 2020}
+
+\begin{document}
+
+\maketitle
+\section{Isomorphism Classes of $A_{a,b}(\bR)$}
+
+\begin{theorem}
+$A_{a,b} \simeq A_{b,a} \simeq A_{b, -ab} \simeq A_{b,-ab} \simeq A_{ac^2, bd^2}$
+\end{theorem}
+
+\begin{proof}
+This is best done by constructing isomorphism maps explicitly. To do so, it suffices to show where the basis elements $1,i,j,k$ are sent.
+\begin{align*}
+    A_{a,b} &\simeq A_{b,a} & A_{a,b} &\simeq A_{a,-ab} & A_{a,b} &\simeq A_{b,-ab} & A_{a,b} &\simeq A_{ac^2,bd^2} \\
+    1 &\mapsto 1 & 1 &\mapsto 1 & 1 &\mapsto 1 & 1 &\mapsto 1\\
+    i &\mapsto j & i &\mapsto i & i &\mapsto \frac{1}{b}k & i &\mapsto \frac{1}{c}i\\
+    j &\mapsto i & j &\mapsto \frac{1}{a}k & j &\mapsto i & j &\mapsto \frac{1}{d}j\\
+    k &\mapsto k & k &\mapsto j & k &\mapsto j & k &\mapsto \frac{1}{cd}k
+\end{align*}
+\end{proof}
+
+As already known, since $\bR^\times/ \bR^{\times2} \simeq \bZ_2$, the above isomorphisms tells us that there are only two distinct isomorphism classes of $A_{a,b}(\bR)$. Namely, they end up being \bH and $M_2(\bR)$.
+
+\section{Commutative Sub-algebras}
+{\color{blue} Need to write out why there are guaranteed to be no 3D commutative subalgebras}
+In $A_{a,b}(\bR)$ the set of elements $\{i, j, k\}$ form a basis of the orthogonal complement of the embedding of \bR. In this way, it is natural to see that the set of points of the form $q = xi+yj+zk$ where $x,y,z \in \bR$ and $x^2+y^2+z^2 = 1$ uniquely define all oriented planes in $A_{a,b}(\bR)$ containing \bR. Furthermore, we know that the minimum polynomial $m_q(X)$ of any of these points $q$ is guaranteed to be a quadratic since $q$ is not contained in \bR. {\color{blue} might want to add more detail here} This means that each of these oriented planes is actually a commutative sub-algebra of $A_{a,b}(\bR)$ of dimension 2. The plane types can be determined by the structure of the quotient ring $\bR[X]/(m_q(X))$, of which there are three distinct types. They are the complex plane \bC, the split plane $\bR\times\bR$, and the nilpotent plane. The resulting plane type is entirely determined by the sign of the discriminant of $m_q(X)$. If it is negative, the plane is a copy of \bC. If it is positive, the plane is $\bR \times \bR$. If it is zero, the plane is the nilpotent plane. So for $A_{a,b}(\bR)$, the following holds:
+\begin{align*}
+    1 &= x^2+y^2+z^2 \text{ where } x,y,z \in \bR \\
+    q &= xi + yj +zk \\ %q as defined above
+    \overline{q} &= -xi -yj -zk \\ 
+    q+\overline{q} &= 0 \\
+    q\overline{q} &= - ax^2 - by^2 + abz^2 \\
+    m_q(X) &= X^2 - ax^2 - by^2 + abz^2 \\
+    disc(m_q(X)) &= 4(ax^2 + by^2 - abz^2)
+\end{align*}
+It turns out that these are the only nontrivial commutative subalgebras in $A_{a,b}(\bR)$. To show that there are no subalgebras of dimension 3, we introduce a vector notation $(t,x,y,z) = (t,\textbf{v})$ where $\textbf{v} = (x,y,z)$. In addition, we need to define a "generalized dot product and cross product." That is define $\cdot_{a,b}$ and $\times_{a,b}$ as follows:
+\begin{align*}
+    \textbf{v}\cdot_{a,b}\textbf{w} &= -ax_1x_2 + -y_1y_2 + abz_1z_2 \\ 
+    \textbf{v}\times_{a,b}\textbf{w} &= (b(y_2z_1 - y_1z_2), a(x_1z_2 - x_2z_1), x_1y_2-x_2y_1)
+\end{align*}
+In the vector notation,
+\begin{align*}
+    (t,\textbf{v})(s,\textbf{w}) = (ts - \textbf{v}\cdot_{a,b}\textbf{w},  t\textbf{w} + s\textbf{v} + \textbf{v}\times_{a,b}\textbf{w})
+\end{align*}
+
+\subsection{Examples}
+\subsubsection{$A_{-1,-1}(\bR) = \bH$}
+\begin{align*}
+    q\overline{q} &= x^2 + y^2 + z^2 = 1 \\
+    m_q(X) &= X^2 + 1 \\
+    disc(m_q(X)) &= -4(x^2 + y^2 + z^2) = -4 < 0\\
+\end{align*}
+
+\subsubsection{$A_{1,1}(\bR) \simeq M_2(\bR)$}
+\begin{align*}
+    q\overline{q} &= - x^2 - y^2 + z^2 = 2z^2 - 1 \\
+    m_q(X) &= X^2 + 2z^2 - 1 \\
+    disc(m_q(X)) &= 4(1-2z^2)
+        \begin{cases} 
+          > 0 & \text{if } z^2 < \frac{1}{2} \\
+          = 0 & \text{if } z^2 = \frac{1}{2} \\
+          < 0 & \text{if } z^2 > \frac{1}{2}
+       \end{cases}
+\end{align*}
+
+%\subsubsection{$A_{2,3}(\bR) \simeq M_2(\bR)$}
+%\begin{align*}
+%    q\overline{q} &= \\
+%    m_q(X) &= \\
+%    disc(m_q(X)) &=
+%        \begin{cases} 
+%          > 0 & \text{if } \\
+%          = 0 & \text{if } \\
+%          < 0 & \text{if } \\
+%       \end{cases}
+%\end{align*}
+
+\subsection{Plane Probabilities}
+What has been done so far gives hope that we can develop a notion of the probability of a random oriented plane being \bC, $\bR \times \bR$, or nilpotent based on the surface areas of the regions on this "Sphere of Oriented Planes" which is preserved within the individual isomorphism classes. Since there are only complex planes \bC in the isomorphism class of quaternions \bH, we are left to check that this notion holds for the isomorphism class $M_2(\bR)$. It is also worthwhile to consider the same scenario over \bQ but this would require significant modifications.
+
+\subsection{Sphere to Ellipsoid}
+\begin{align*}
+    \phi: A_{1,1}(\bR) &\simeq A_{c^2,d^2}(\bR) \\
+    1 &\mapsto 1 \\
+    i &\mapsto \frac{1}{c}i \\
+    j &\mapsto \frac{1}{d}j \\
+    k &\mapsto \frac{1}{cd}k
+\end{align*}
+
+\begin{align*}
+    Im(S^3)       &= \left\{xi + yj + zk : x,y,z \in \bR, x^2 + y^2 + z^2 = 1\right\} \\
+    \phi(Im(S^3)) &=  \left\{\phi(xi + yj + zk) : x,y,z \in \bR, x^2 + y^2 + z^2 = 1\right\} \\
+                  &= \left\{\frac{x}{c}i + \frac{y}{d}j + \frac{z}{cd}k) : x,y,z \in \bR, x^2 + y^2 + z^2 = 1\right\} \\
+\end{align*}
+
+This is the surface (In $A_{c^2,d^2}(\bR)$):
+
+\begin{gather*}
+    c^2x^2+d^2y^2+(cd)^2z^2 = 1 
+\end{gather*}
+
+So the circles of nilpotent planes at $z = \pm \frac{1}{\sqrt{2}}$ in $A_{1,1}(\bR)$ becomes ellipses at $z = \pm \frac{1}{cd\sqrt{2}}$ in $A_{c^2, d^2}(\bR)$. Question whether the ratio of surface for the regions created by these ellipses is the same as in $A_{1,1}(\bR)$ ( Probably Not :( ). 
+
+\section{Conjugacy Classes of Oriented Planes in $M_2(\bR)$}
+
+To determine the conjugacy classes of the oriented planes inside of $M_2(\bR)$ under the action of $SL_2(\bR)$, it is sufficient to determine  the conjugacy classes of the square roots of $-I$, the (nontrivial) idempotents, and the (nontrivial) nilpotents inside of $M_2(\bR)$, again under the action of $SL_2(\bR)$.
+
+These matrices can be characterized as follows:
+\begin{align*}
+    \text{Complex} &\longleftrightarrow Det(A)=1,Tr(A)=0\\
+    \text{Idempotent} &\longleftrightarrow Det(A)=0,Tr(A)=1\\
+    \text{Nilpotent} &\longleftrightarrow Det(A)=0,Tr(A)=0,A\neq0\\
+\end{align*}
+
+\subsection{Complex}
+{\color{blue} Might rephrase in terms of embeddings -ig, I think this is a good idea, embeddings are more intuitive to at least me - bw} 
+
+In order for a matrix $A \in M_2(\bR)$ to satisfy the condition $A^2 = -I$ it must be of the form:
+
+\begin{align*}
+A = 
+\left(
+\begin{matrix}
+    a & b \\
+    -\frac{a^2+1}{b} & -a 
+\end{matrix} 
+\right) \quad a \in \bR, \quad b \in \bR-\{0\}
+\end{align*}
+
+One can easily check that this matrix A has complex eigenvalues $i,-i$ with the corresponding complex eigenvectors 
+$\left(
+\begin{matrix}
+    1 \\
+    -\frac{a-i}{b}
+\end{matrix}
+\right)$
+,
+$\left(
+\begin{matrix}
+    1 \\
+    -\frac{a+i}{b}
+\end{matrix}
+\right)$.
+Using these eigenvector's we can create matrices representing a change of basis. The necessary matrices are defined below.
+\begin{align*}
+    P &= \left(
+    \begin{matrix}
+        1 & 1\\
+        -\frac{a-i}{b} & -\frac{a+i}{b}
+    \end{matrix}
+    \right) \\
+    Q &= \left(
+    \begin{matrix}
+        1 & 1\\
+        i & -i 
+    \end{matrix}
+    \right) \\
+    R &= \left(
+    \begin{matrix}
+        1 & 1\\
+        -i & i
+    \end{matrix}
+    \right)
+\end{align*}
+
+These three matrices $P,Q,R$ allow conjugation of $A$ to either $S$ or $T$ as shown: 
+\begin{align*}
+    S = \left(\begin{matrix}
+        0 & 1\\
+        -1 & 0 
+    \end{matrix}\right) &= QP^{-1}APQ^{-1} \\
+    T = \left(\begin{matrix}
+        0 & -1\\
+        1 & 0 
+    \end{matrix}\right) &= RP^{-1}APR^{-1}
+\end{align*}
+
+Naively, it seems as though we are conjugating by matrices in $GL_2(\bC)$. However, we can check the two matrices $PQ^{-1}$ and $PR^{-1}$ to see if they are in $GL_2(\bR)$. 
+
+where:
+\begin{align*}
+    PQ^{-1} &= \left(\begin{matrix}
+        1 & 0\\
+        -\frac{a}{b} & \frac{1}{b} 
+    \end{matrix}\right) \\
+    PR^{-1} &= \left(\begin{matrix}
+        1 & 0\\
+        -\frac{a}{b} & -\frac{1}{b} 
+    \end{matrix}\right) \\
+\end{align*}
+
+They are indeed in $GL_2(\bR)$. So if $b > 0$, we can divide $PQ^{-1}$ by $\sqrt{\frac{1}{b}}$ and get a matrix in $SL_2(\bR)$. In this case, we have that $A$ is conjugate to $S$ under $SL_2(\bR)$. Similarly, if $b < 0$ we can divide $PR^{-1}$ by $\sqrt{-\frac{1}{b}}$ and conclude that $A$ is conjugate to $T$ under $SL_2(\bR)$.
+
+The above shows that there are a maximum of two conjugacy classes of complex planes in $M_2(\bR)$ when conjugating by $SL_2(\bR)$ corresponding to $[S]$ and $[T]$. It remains to show that $S \nsim T$ under $SL_2(\bR)$.
+
+\subsection{Idempotent}
+{\color{blue} This is just a filler explanation that needs to be actually fleshed out}
+
+These are precisely the matrices with both the eigenvalues $0$ and $1$. It is easy to show that all nontrivial idempotent matrices are conjugate under $SL_2(\bR)$ since you always have an orthonormal basis of eigenvectors that can be placed in the columns of a change of basis matrix. If this matrix has determinant -1, then one of the eigenvectors can be multiplied by -1 to produce a change of basis matrix in $SL_2(\bR)$. Applying the conjugation, one gets the matrix:
+
+\begin{align*}
+    \left(\begin{matrix}
+        1 & 0 \\
+        0 & 0 
+    \end{matrix}\right)
+\end{align*}
+
+We can conclude that all of the nontrivial idempotent matrices are conjugate under $SL_2(\bR)$ and so all of the oriented idempotent planes are conjugate under $SL_2(\bR)$.
+
+\subsection{Nilpotent}
+
+Nontrivial nilpotent matrices have a single eigenvalue $\lambda = 0$ such that $E(0,T)$ is dimension $1$ (Where the nilpotent matrix is the representation of the linear map $T$ with respect to the standard basis on $\bR^2$). That is to say that $Null(T)\neq\bR^2$. Such a matrix can be one of two forms:
+
+\begin{align*}
+A &= \left(\begin{matrix}
+    a & b \\
+    -\frac{a^2}{b} & -a 
+\end{matrix}\right) & a \in \bR, \quad b \in \bR-\{0\} \\
+B &= \left(\begin{matrix}
+    c & -\frac{c^2}{d}\\
+    d & -c 
+\end{matrix}\right) & c \in \bR, \quad d \in \bR-\{0\} \\
+\end{align*}
+For $A$ we can construct a change of basis matrix $P$ out of a basis of generalized eigenvectors of $A$. A similar matrix $Q$ is constructed for the matrix $B$.
+
+\begin{align*}
+P &= \left(\begin{matrix}
+    b & 0 \\
+    -a & 1 
+\end{matrix}\right) \\
+Q &= \left(\begin{matrix}
+    c & 1\\
+    d & 0 
+\end{matrix}\right) \\
+\end{align*}
+We also can construct the matrices $P'$ and $Q'$ by multiplying the first column vectors of the matrices $P$ and $Q$ by $-1$:
+
+\begin{align*}
+P' &= \left(\begin{matrix}
+    -b & 0 \\
+    a & 1 
+\end{matrix}\right) \\
+Q' &= \left(\begin{matrix}
+    -c & 1\\
+    -d & 0 
+\end{matrix}\right) \\
+\end{align*}
+
+Using these matrices we can conjugate both $A$ and $B$ to the matrices $S$ and $T$ below
+
+\begin{align*}
+    S = \left(\begin{matrix}
+        0 & 1\\
+        0 & 0 
+    \end{matrix}\right) &= P^{-1}AP = Q^{-1}BQ \\
+    T = \left(\begin{matrix}
+        0 & -1\\
+        0 &  0 
+    \end{matrix}\right) &= P'^{-1}AP' = Q'^{-1}BQ' \\
+\end{align*}
+
+\section{Bailey}
+Our norm in $A_{1,1} = q\overline{q} = (t^2 - x^2 - y^2 + z^2)$. Using the euclidean norm on $M_2(\bR)$ and our homomorphism:
+\begin{gather}
+    (t,x,y,z) \mapsto  \begin{bmatrix} 
+    t + x & y + z \\
+    y-z & t-x 
+    \end{bmatrix}
+\end{gather}
+We have our norm on $M_2(\bR)$ as 
+\begin{gather*}
+    (t+x)^2 + (y+z)^2 + (y-z)^2 + (t-x)^2 = 2(t^2 + x^2 + y^2 + z^2)
+\end{gather*}
+This worries me because our norms are not equal and will have a different kernel. i.e. $(1,1,1,1)$ is in the kernel of $norm(A_{1,1})$ but not $norm(M_2(\bR))$. Does isomorphism not preserve norm, our is our norm different between objects? which norm should we use? What acts on what then?
+
+If you multiply $q\overline{q}$ in matrix form, you get what you expect:
+\begin{gather*}
+    \begin{bmatrix}
+        t^2 -x^2-y^2+z^2 & 0 \\ 
+        0 & t^2 -x^2 -y^2 + z^2
+    \end{bmatrix} = (t^2 - x^2 - y^2 + z^2)I
+\end{gather*}
+Checking the determinate yields 
+\begin{gather*}
+    Det(\begin{bmatrix} 
+        t+x & y+z \\
+        y-z & t-x
+    \end{bmatrix}) = t^2 - x^2 - y^2 + z^2
+\end{gather*}
+What we expect. Check
+
+The kernel of our norm is SL2.
+
+\end{document}
