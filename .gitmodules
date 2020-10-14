@@ -1,0 +1,6 @@
+[submodule "CSC307/my-contacts-frontend"]
+	path = CSC307/my-contacts-frontend
+	url = git@github.com:baileywickham/my-contacts-frontend.git
+[submodule "CSC307/my-contacts-backend"]
+	path = CSC307/my-contacts-backend
+	url = git@github.com:baileywickham/my-contacts-backend.git
