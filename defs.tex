@@ -76,14 +76,49 @@ A sequence $(a_n)$ converges to $a$ if there exists an $n \in \bN$ such that all
 
 \subsection{Bounded}
 A sequence is bounded iff the set of all elements of the sequence is bounded.
-\subsection{Increasing}
-A sequence is increasing if for all $n \in \bN$, $a_n \le a_{n+1}$
 
 \subsection{Eventually}
 A sequence $(a_n)$ is eventually in a set $A$ if there exists an $N$ s.t. $a_n \in A$ for all $n \ge N$
 
 \subsection{Frequently}
 A sequence $(a_n)$ is eventually in a set $A$ if for every $N$  there exists an $n \ge N$ s.t. $a_n \in A$.
+
+\section*{Chapter 2}
+\subsection*{2.4 The Monotone Convergence Theorem.}
+
+\subsubsection*{Increasing}
+A sequence is increasing if for all $n \in \bN$, $a_n \le a_{n+1}$
+\subsubsection*{Decreasing}
+A sequence is decreasing if for all $n \in \bN$, $a_n \ge a_{n+1}$
+
+\subsubsection*{Monotone}
+A sequence is monotone if it is increasing or decreasing.
+
+\subsubsection*{Infinite Series}
+An infinite series is a expression in the form of:
+\begin{equation*}
+\sum_{n=1}^{\infty} b_n = b_1 + b_2 + ...
+\end{equation*}
+The sequence of partial sums $(s_m)$ by $s_m = b_1 + b_2 + ... + b_m$. We say the series converges to $B$ if the sequence of partial sums converges to $B$, denoted:
+\begin{equation*}
+\sum_{n=1}^{\infty} b_n = B
+\end{equation*}
+
+\subsection*{2.5 Subsequences}
+\subsubsection*{Subsequence}
+Let $(a_n)$ be a sequence of real numbers and let $n_1 < n_2 ...$ be an increasing sequence of natural numbers.
+Then the sequence $(a_{n_1}, a_{n_2},...)$ is a subsequence of $(a_n)$ and is denoted by $(a_{n_k})$.
+
+\subsection*{2.6 The Cauchy Criterion}
+\subsubsection*{Cauchy Sequence}
+A sequence $(a_n)$ is called a Cauchy sequence if for every $\epsilon > 0$ there exists an $N \in \bN$ such that whenever $m,n>N$ it follows that $|a_n -a_m|<\epsilon$
+
+\subsection*{2.7 Series}
+\subsubsection*{Absolute and Conditional Convergence}
+if the series $\sum_{n=1}^{\infty} |a_n|$ converges we say the original series $\sum_{n=1}^{\infty} a_n$ converges absolutely. If the original series converges but the series of absolute values diverges, then we say the sequence converges conditionally.
+
+\subsubsection*{Rearagements}
+Let $\sum_{n=1}^{\infty} a_n$ be a series. A series $\sum_{n=1}^{\infty} b_n$ is called a rearrangement of the original series if there exists a bijection between the the series.
 
 
 
