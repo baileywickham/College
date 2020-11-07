@@ -1,0 +1,92 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsthm, amssymb, amsmath, amsfonts, extramarks}
+\usepackage{gen}
+
+
+\title{Definitions}
+\author{Bailey Wickham \\ MATH 412}
+
+\date\today
+
+\newenvironment{homeworkProblem}[1]{
+    \section*{Problem #1}
+}
+
+
+\begin{document}
+\maketitle
+
+\section{Chapter 1}
+\subsection{Maximum}
+Let $A \subset \bR, m \in \bR$. We say that the \textbf{maximum} of $A$ is $m$ if
+\begin{enumerate}
+    \item for all $x \in A, m \ge x$
+    \item $m \in A$
+\end{enumerate}
+
+\subsection{Upper bound}
+Let $A$ be a nonempty subset of \bR, let $u \in \bR$. $u$ is an \textbf{upper bound} if for all $x\in A$ $x \le u$
+
+\subsection{Supremum}
+Let $A$ be a nenempty subset of \bR, Let $l \in \bR$. $l$ is the \textbf{supremum} of $A$ if for all $a \in A, a \le l$ and for all $m \in \bR$ if all $a \in A, a \le m$ then $l\le m$. $l$ is the least upper bound.
+
+\subsection{Minium}
+Let $A \subset \bR, m \in \bR$. We say that the \textbf{minimum} of $A$ is $m$ if
+\begin{enumerate}
+    \item for all $x \in A, m \le x$
+    \item $m \in A$
+\end{enumerate}
+
+\subsection{Infimum}
+Let $A$ be a nenempty subset of \bR, Let $l \in \bR$. $l$ is the \textbf{infimum} of $A$ if for all $a \in A, a \ge l$ and for all $m \in \bR$ if all $a \in A, a \ge m$ then $l\ge m$. $l$ is the least upper bound.
+
+\subsection{Bounded Above}
+A subset $A \subset \bR$ is \textbf{bounded above} if there exists a supremum for $A$.
+\subsection{Bounded Below}
+A subset $A \subset \bR$ is \textbf{bounded below} if there exists a infimum for $A$.
+
+\subsection{Bounded}
+A set is \textbf{bounded} if it is bounded below and bounded above
+
+\subsection{Bijection}
+A function $f$ is a bijection if it is one to one and onto.
+
+\subsection{Card}
+Sets $A,B$ have the same Card if there exists a bijection between them.
+
+\subsection{Finite}
+Let $A$ be a set, $A$ is finite if there exists an $n \in \bN$ s.t.$A$ has card $n$
+
+\subsection{Countable}
+A set is countable if there is a bijection between $\bN$ and $A$.
+
+\subsection{Sequence}
+A sequences is a function whose domain is \bN
+
+\subsection{Convergence}
+A sequence $(a_n)$ converges to a real number a if for every positive number $\epsilon$ there exists an $N \in \bN$ such that for all $n \ge N$, then $|a_n - a| < \epsilon$
+
+\subsection{$\epsilon$ Neighborhood}
+$V_\epsilon (a) = {x \in \bR : |x-a| < \epsilon}$
+
+\subsection{Topological Convergence}
+A sequence $(a_n)$ converges to $a$ if there exists an $n \in \bN$ such that all terms after $n$ are in an $\epsilon neighborhood$
+
+\subsection{Bounded}
+A sequence is bounded iff the set of all elements of the sequence is bounded.
+\subsection{Increasing}
+A sequence is increasing if for all $n \in \bN$, $a_n \le a_{n+1}$
+
+\subsection{Eventually}
+A sequence $(a_n)$ is eventually in a set $A$ if there exists an $N$ s.t. $a_n \in A$ for all $n \ge N$
+
+\subsection{Frequently}
+A sequence $(a_n)$ is eventually in a set $A$ if for every $N$  there exists an $n \ge N$ s.t. $a_n \in A$.
+
+
+
+
+\end{document}
+
