@@ -68,8 +68,8 @@ A sequences is a function whose domain is \bN
 \subsection{Convergence}
 A sequence $(a_n)$ converges to a real number a if for every positive number $\epsilon$ there exists an $N \in \bN$ such that for all $n \ge N$, then $|a_n - a| < \epsilon$
 
-\subsection{$\epsilon$ Neighborhood}
-$V_\epsilon (a) = {x \in \bR : |x-a| < \epsilon}$
+\subsection{$\epsilon$-Neighborhood}
+$V_\epsilon (a) = \{x \in \bR : |x-a| < \epsilon\}$
 
 \subsection{Topological Convergence}
 A sequence $(a_n)$ converges to $a$ if there exists an $n \in \bN$ such that all terms after $n$ are in an $\epsilon neighborhood$
@@ -120,7 +120,20 @@ if the series $\sum_{n=1}^{\infty} |a_n|$ converges we say the original series $
 \subsubsection*{Rearagements}
 Let $\sum_{n=1}^{\infty} a_n$ be a series. A series $\sum_{n=1}^{\infty} b_n$ is called a rearrangement of the original series if there exists a bijection between the the series.
 
+\section{Intro to Topology}
+\subsection*{3.2 Open and Closed Sets}
+\subsubsection*{Open}
+A set $O \subseteq \bR$ is open if for all points $a \in O$ there exists an $\epsilon$-neighborhood $V_{\epsilon}(a) \subseteq O$.
 
+\subsubsection*{Limit Point}
+A point $x$ is a limit point of of a set $A$ if every $\epsilon$-neighborhood $V_\epsilon (x)$ of $x$ intersects $A$ at some point other than $x$.
+Alternatively, $x$ is a limit point if and only if $x=lim(a_n)$ for some sequence $(a_n)$ contained in $A$ satisfying $a_n \ne x$ for all $n \in \bN$.
+
+\subsubsection*{Isolated Point}
+A point $a \in A$ is an isolated point if it is not a limit point.
+
+\subsubsection*{Closed Set}
+A set $F \subseteq \bR$ is closed if it contains its limit points. Alternatively, a set is closed if and only if every Cauchy sequence contained in $F$ has a limit that is also in $F$.
 
 
 \end{document}
