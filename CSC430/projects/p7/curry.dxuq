@@ -1,0 +1,7 @@
+{let {add = {fn {nlf1} {fn {nlf2}
+            {fn {f} {fn {a} {{nlf1 f} {{nlf2 f} a}}}}}}}
+                             {one = {fn {f} {fn {a} {f a}}}}
+                             {two = {fn {f} {fn {a} {f {f a}}}}}
+                             {double = {fn {x} {* 2 x}}}
+                             in {if {equal? {{{{add one} two} double} 1} 8}
+                                    "Result Correct" "Result Incorrect"}}
