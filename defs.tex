@@ -32,7 +32,7 @@ Let $A$ be a nonempty subset of \bR, let $u \in \bR$. $u$ is an \textbf{upper bo
 \subsection{Supremum}
 Let $A$ be a nenempty subset of \bR, Let $l \in \bR$. $l$ is the \textbf{supremum} of $A$ if for all $a \in A, a \le l$ and for all $m \in \bR$ if all $a \in A, a \le m$ then $l\le m$. $l$ is the least upper bound.
 
-\subsection{Minium}
+\subsection{Minimum}
 Let $A \subset \bR, m \in \bR$. We say that the \textbf{minimum} of $A$ is $m$ if
 \begin{enumerate}
     \item for all $x \in A, m \le x$
@@ -53,8 +53,8 @@ A set is \textbf{bounded} if it is bounded below and bounded above
 \subsection{Bijection}
 A function $f$ is a bijection if it is one to one and onto.
 
-\subsection{Card}
-Sets $A,B$ have the same Card if there exists a bijection between them.
+\subsection{Cardinality}
+Sets $A,B$ have the same cardinality if there exists a bijection between them.
 
 \subsection{Finite}
 Let $A$ be a set, $A$ is finite if there exists an $n \in \bN$ s.t.$A$ has card $n$
@@ -104,6 +104,12 @@ The sequence of partial sums $(s_m)$ by $s_m = b_1 + b_2 + ... + b_m$. We say th
 \sum_{n=1}^{\infty} b_n = B
 \end{equation*}
 
+\subsubsection*{Geometric Series}
+Let $r,a \in \bR$. A geometric series is of the form
+\begin{equation*}
+\sum_{n=1}^{\infty} ar^n
+\end{equation*}
+
 \subsection*{2.5 Subsequences}
 \subsubsection*{Subsequence}
 Let $(a_n)$ be a sequence of real numbers and let $n_1 < n_2 ...$ be an increasing sequence of natural numbers.
@@ -151,5 +157,35 @@ An open cover of A is a collection of open subsets of $A$ such that their union 
 \subsection*{3.4 Connected Sets}
 \subsubsection*{Seperated and Disconnected Sets}
 Two nonempty sets $A, B \subseteq \bR$ are seperated if $\overline{A}\cap B = \overline{B} \cap A = \{\}$. A set is disconnected if it can be written as the union of two seperated sets.
+
+\section{Functional limits and continuity}
+\subsection*{4.2 Functional Limits}
+\subsubsection*{Functional Limit}
+Let $f:A\to \bR$, and let $c$ be a limit point in the domain of $A$ we say that $lim_{x \to c}f(x)=L$ provided that for all $\epsilon > 0$ there exists a $\delta > 0$ such that whenever $0 < |x-c| < \delta$ it follows that $|f(x) - L| < \epsilon$. Alternatively, if for every epsilon neighborhood $V_{\epsilon}(L)$ there exists a $V_{\delta}(c)$ such that for all $x \in V_{\delta}c$ different than c it follows that $f(x) \in V_{\epsilon}(L)$
+
+\subsection*{4.3 Continous Functions}
+\subsubsection*{Continuity}
+A function $f:A\to \bR$ is continuous at a point $c \in A$ if for all $\epsilon > 0$ there exists a $\delta > 0$ such that whenever $0 < |x-c| < \delta$ it follows that $|f(x) - f(c)| < \epsilon$.
+
+\subsection*{4.4 Continous Functions on Compact Sets}
+\subsubsection*{Uniform Continuity}
+Let $f:A\to \bR$, $f$ is uniformly continuous on $A$ if for all $\epsilon > 0$ there exists a $\delta > 0$ such that whenever $x,y \in A$, $|x-y| < \delta$ implies $|f(x) - f(y)| < \epsilon$.
+
+\subsection*{4.5 The IVT}
+\subsubsection*{IVP}
+A function has the intermediate value property on $[a,b]$ if for all $x<y$ in $[a,b]$, and all $L$ between $f(x) and f(y)$it is always possible to find a point $c \in (x,y)$ where $f(c)=L$
+
+\section{Derivatives}
+\subsection*{5.2 Differentiability}
+\subsubsection*{Differentiability}
+Let $g:A\to \bR$ be a function defined on an interval $A$. given $c \in A $, the derivative of $g$ at c s defined by
+$g'(c) = lim_{x-c} \frac{g(x) - g(c)}{x-c}$
+we say that $g$ is differentiable at $c$, or on $A$ if $g$ is differentiable over all of $A$.
+
+\subsection*{infinity}
+given $g:A \to \bR$ and a limit point c of A, we say that $lim_{x\to c} g(x) = \infty$ if for every $M>0$ there exists a $\delta >0$ such that whenever $0 < |x-c| < \delta$ it follows that $g(x) > M$.
+
+
+
 \end{document}
 
