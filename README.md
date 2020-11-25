@@ -13,10 +13,11 @@ Monorepo! All class documents will be stored here. Mostly programming assignment
   - CSC445: Theory of Computation
   - CSC365: Databases
   - CSC430: Programming Languages
- - Math
-    - MATH 306: Linear Algebra 2
-    - MATH 406: Linear Algebra 3
- - Poly Sci
+- Math
+  - MATH 306: Linear Algebra 2
+  - MATH 406: Linear Algebra 3
+  - MATH 412: Real Analysis
+- Poly Sci
   - POLS 361 (R)
 
 ## Files
