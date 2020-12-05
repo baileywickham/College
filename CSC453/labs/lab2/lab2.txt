@@ -1,0 +1,45 @@
+#lab2.txt
+#Wickham, Bailey
+
+cat /proc/modules | wc -l
+232x01: 129 modules
+unix1: 77 modules
+EC2: 21 modules
+
+The longest boot time of any desktop was the cal poly unix servers. The unix
+server booted in a little over two minutes, while quite long, this should be
+expected as the servers have much more data on them, including many VMs. Some
+of the services that take the longest to boot are dev-mapper which is used to
+map devices. The single user machine has fewer devices to map than the entire
+linux servers. The swap service also took longer to mount. The process that
+took the longest blocking time to start was the lm_sensor.service, I'm not
+sure what this is for. sav-protect.service also took longer than expected to
+boot. All of this fits with what we would expect out of a large multi user
+mainframe. For the desktop instance, boot times are long (~30 seconds) but
+not unexpcetd for a desktop. The service which took the longest to start was
+the network manager. This takes equally as long on my laptop, so I am not
+surprised. The VMWare service also took longer than expected. The EC2
+instance took the shortest time to boot. The EC2 instance took ~15 seconds
+to get into linux, with the only proccess blocking for a significant amount
+of time was the cloudinit service. This is a service for setting up instances
+as the boot, which makes sense seeing as this is a cloud server.
+
+The kernel boot times of each machine are short and similar. It's the
+userspace boot times that differ greatly between machines.
+
+The desktop machine is using the largest number of modules. This is somewhat
+surprising to me because I would expect single user desktops to use fewer
+kernel moduels than a system with many users on it. The EC2 instance is using
+the fewest modules. This is to be expected becaues EC2 instances are designed
+to be light weight and spun up quickly. An EC2 instance is not used a desktop
+environment, instead it is typically used to perform a single set of tasks,
+allowing it to have fewer modules.
+
+
+I think the thing that surprised me the most was the differences between the
+unix instances and the EC2 instance. I knew that EC2 instances are typically
+quick, but I didn't expect them to have so few modules. On the other hand the
+unix instance was surprising slow to start, especially for hosting so many
+people. The number of kernel modules in the user instance was more than I
+expected, and nearly 5 times the number of modules on the EC2 instance.
+Amazon linux does a good job of making EC2 instances quick to startup.
