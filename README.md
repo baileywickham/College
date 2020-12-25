@@ -19,7 +19,7 @@ Monorepo! All class documents will be stored here. Mostly programming assignment
   - [MATH 406](/MATH406): Linear Algebra 3
   - [MATH 412](/MATH412): Real Analysis
 - Poly Sci
-  - POLS 361 (R)
+  - [POLS 361](/POLS361) (R)
 
 ## Files
 - deploy.sh: used for deploying to unix servers. Treats the servers as a read only copy of a repo which is squashed when pulled.
