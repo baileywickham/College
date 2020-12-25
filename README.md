@@ -4,19 +4,20 @@ Monorepo! All class documents will be stored here. Mostly programming assignment
 
 ## Classes
 - Programming
-  - CSC202: Data Structures
-  - CSC203: Java
-  - CPE225: Computer Archetecture
-  - CPE357: Systems Programming
-  - CSC348: Discrete Structures
-  - CSC349: Algorithms
-  - CSC445: Theory of Computation
-  - CSC365: Databases
-  - CSC430: Programming Languages
+  - [CSC 202](/CSC202): Data Structures
+  - [CSC 203](/CSC203): Java
+  - [CPE 225](/CPE225): Computer Archetecture
+  - [CPE 357](/CPE357): Systems Programming
+  - [CSC 348](/CSC348): Discrete Structures
+  - [CSC 349](/CSC349): Algorithms
+  - [CSC 365](/CSC365): Databases
+  - [CSC 430](/CSC430): Programming Languages
+  - [CSC 445](/CSC445): Theory of Computation
+  - [CSC 453](/CSC453): Operating Systems
 - Math
-  - MATH 306: Linear Algebra 2
-  - MATH 406: Linear Algebra 3
-  - MATH 412: Real Analysis
+  - [MATH 306](/MATH306): Linear Algebra 2
+  - [MATH 406](/MATH406): Linear Algebra 3
+  - [MATH 412](/MATH412): Real Analysis
 - Poly Sci
   - POLS 361 (R)
 
