@@ -1,39 +1,124 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Lab1 {
     public static void main(String[] args) {
-        final int stores = 100;
-        final int customers = 1000;
+        final int storesNum = 100;
+        final int customersNum = 1000;
+        final int salesNum = 2000;
+        final int productNum = 2000;
+        final int lineItemNum = 4000;
+
         ArrayList<String> addrs = loadAddress();
         ArrayList<String> companyNames = loadFromFile("./src/companynames.txt");
         ArrayList<String> names = loadFromFile("./src/names.txt");
+        ArrayList<String> products = loadFromFile("./src/products.txt");
 
-        writeStore(stores, addrs, companyNames);
-        writeCustomer(customers, addrs, names);
+        writeStore(storesNum, addrs, companyNames);
+        writeCustomer(customersNum, addrs, names);
+        writeSales(salesNum, storesNum, customersNum);
+        writeProduct(productNum, products);
+        writeLineItem(lineItemNum, salesNum, productNum);
 
     }
-    public static void writeCustomer(int n, ArrayList<String> addrs, ArrayList<String> names) {
-        for (int i = 0; i < n; i++) {
-            System.out.println(String.format("%d, %s, %s, %s, %s",
-                    i, genFromArr(names), genDate(), genFromArr(addrs), genPhoneNumber()));
+    public static void writeProduct(int n, ArrayList<String> products) {
+        FileWriter fw;
+        try {
+            fw = new FileWriter("products");
+            for (int i = 0; i < n; i++) {
+                fw.write(String.format("%d, %s, %s\n",
+                        i, genFromArr(products), genPrice()));
 
+            }
+            fw.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
+
+    public static void writeCustomer(int n, ArrayList<String> addrs, ArrayList<String> names) {
+        FileWriter fw;
+        try {
+            fw = new FileWriter("customers");
+            for (int i = 0; i < n; i++) {
+                fw.write(String.format("%d, %s, %s, %s, %s\n",
+                        i, genFromArr(names), genDate(),
+                        genFromArr(addrs), genPhoneNumber()));
+
+            }
+            fw.close();
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
     public static void writeStore(int n, ArrayList<String> addrs, ArrayList<String> companyNames) {
-        for (int i = 0; i < n; i++) {
-           System.out.println(String.format("%d, %s, %s, %s",
-                   i, genFromArr(companyNames), genFromArr(addrs), genPhoneNumber()));
+        FileWriter fw = null;
+        try {
+            fw = new FileWriter("stores");
+            for (int i = 0; i < n; i++) {
+                fw.write(String.format("%d, %s, %s, %s\n",
+                        i, genFromArr(companyNames), genFromArr(addrs), genPhoneNumber()));
+            }
+            fw.close();
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
+
+    public static void writeLineItem(int n, int salesNum, int productNum) {
+        FileWriter fw = null;
+        Random rand = new Random();
+        try {
+            fw = new FileWriter("lineItem");
+            for (int i = 0; i < n; i++) {
+                fw.write(String.format("%d, %d, %d, %d\n",
+                        i, rand.nextInt(salesNum) , rand.nextInt(productNum), rand.nextInt(1000)));
+            }
+            fw.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    public static void writeSales(int n, int stores, int customers) {
+        FileWriter fw = null;
+        Random rand = new Random();
+        try {
+            fw = new FileWriter("sales");
+            for (int i = 0; i < n; i++) {
+                //13, 2017/1/1, 13:23:11, 23, 56
+                fw.write(String.format("%d, %s, %s, %s, %s\n",
+                        i, genDate(), genTime(), i % stores, i % customers));
+            }
+            fw.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    // The sales file should contain ID, date, time, storeID, customerID. :
+
     public static String genDate() {
         Random rand = new Random();
         int year = 1960 + rand.nextInt(60);
         int month = 1 + rand.nextInt(12);
         int day = 1 + rand.nextInt(30);
         return String.format("%d/%02d/%02d", year, month, day);
+    }
+
+    public static String genPrice() {
+        Random rand = new Random();
+        return String.format("%3.2f", 1000*rand.nextDouble());
+    }
+    public static String genTime() {
+        Random rand = new Random();
+        int one = rand.nextInt(24);
+        int two =  rand.nextInt(60);
+        int three =  rand.nextInt(60);
+        return String.format("%02d:%02d:%02d", one, two, three);
     }
     public static String genPhoneNumber() {
         Random rand = new Random();
