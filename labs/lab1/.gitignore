@@ -1,1 +1,6 @@
 out/
+./customers
+./sales
+./stores
+./lineItem
+./products
