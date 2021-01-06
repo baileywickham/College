@@ -7,17 +7,20 @@ import java.util.Random;
 
 public class Lab1 {
     public static void main(String[] args) {
+        // Number of records to generate
         final int storesNum = 100;
         final int customersNum = 1000;
         final int salesNum = 2000;
-        final int productNum = 2000;
+        final int productNum = 100;
         final int lineItemNum = 4000;
 
+        // Data from files
         ArrayList<String> addrs = loadAddress();
         ArrayList<String> companyNames = loadFromFile("./src/companynames.txt");
         ArrayList<String> names = loadFromFile("./src/names.txt");
         ArrayList<String> products = loadFromFile("./src/products.txt");
 
+        // Generate data, pass in data from files
         writeStore(storesNum, addrs, companyNames);
         writeCustomer(customersNum, addrs, names);
         writeSales(salesNum, storesNum, customersNum);
@@ -32,7 +35,6 @@ public class Lab1 {
             for (int i = 0; i < n; i++) {
                 fw.write(String.format("%d, %s, %s\n",
                         i, genFromArr(products), genPrice()));
-
             }
             fw.close();
         } catch (Exception e) {
@@ -99,7 +101,6 @@ public class Lab1 {
             System.out.println(e);
         }
     }
-    // The sales file should contain ID, date, time, storeID, customerID. :
 
     public static String genDate() {
         Random rand = new Random();
@@ -137,7 +138,7 @@ public class Lab1 {
                 addrs.add(String.format("%s, %s", line0, line1));
             }
         } catch (Exception e) {
-            System.out.println("Unable to open");
+            System.out.println(e);
         }
         return addrs;
     }
@@ -149,7 +150,7 @@ public class Lab1 {
                 names.add(line);
             }
         } catch (Exception e) {
-            System.out.println("Unable to open");
+            System.out.println(e);
         }
         return names;
 
