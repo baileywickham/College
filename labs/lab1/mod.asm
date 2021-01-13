@@ -2,8 +2,11 @@
 #
 #   CPE 315
 #
+# java code:
+# public static int mod(int a, intb) {
+#	return a&(b-1)
+#}
 #
-# a&(b-1)
 
 
 
