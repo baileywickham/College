@@ -1,6 +1,10 @@
 # Demo Program
 #
 #   CPE 315
+#
+#
+# a&(b-1)
+
 
 
 # declare global so programmer can see actual addresses.
@@ -65,8 +69,9 @@ main:
 	syscall
 	# $v0 now has the value of the second integer
 
-	# Add 2nd integer to sum
-	addu    $s0, $v0, $s0
+	# a & (b-1)
+	addi 	$v0, $v0, -1
+	and		$s0, $s0, $v0
 
 	# Display the sum text
 	ori     $v0, $0, 4
