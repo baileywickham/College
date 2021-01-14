@@ -4,20 +4,19 @@ import org.apache.hadoop.mapreduce.*;
 import org.apache.hadoop.mapreduce.Reducer.*;
 
 
-public class TemperatureReducer 
+public class IntReducer
   extends Reducer<Text, IntWritable, Text, DoubleWritable> {
-   
+
    @Override
-   public void reduce(Text date, 
-	Iterable<IntWritable> temperatures, Context context) 
+   public void reduce(Text isDivByThree,
+	Iterable<IntWritable> count, Context context)
         throws IOException, InterruptedException {
-        double sum=0;        
-        int count = 0;
-        for(IntWritable el: temperatures){
-          sum += el.get();
-          count += 1;
-        } 
-        context.write(date, new DoubleWritable(sum/count));
+        double sum=0;
+        int c = 0;
+        for(IntWritable el: count){
+          c += 1;
+        }
+        context.write(isDivByThree, new IntWritable(c));
     }
 }
 
