@@ -5,7 +5,7 @@ import org.apache.hadoop.mapreduce.Reducer.*;
 
 
 public class IntReducer
-  extends Reducer<Text, IntWritable, Text, DoubleWritable> {
+  extends Reducer<Text, IntWritable, Text, IntWritable> {
 
    @Override
    public void reduce(Text isDivByThree,
