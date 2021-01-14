@@ -11,7 +11,7 @@ public class TemperatureReducer
    public void reduce(Text date,
 	Iterable<IntWritable> temperatures, Context context)
         throws IOException, InterruptedException {
-        double max=0;
+        double max=-1;
         int count = 0;
         for(IntWritable el: temperatures){
             if (el.get() > max) {
