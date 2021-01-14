@@ -20,8 +20,8 @@ public class IntDriver extends Configured implements Tool {
         job.setOutputValueClass(DoubleWritable.class); //output value class for reduce function
         job.setMapOutputKeyClass(Text.class); //output key class for map function
         job.setMapOutputValueClass(IntWritable.class); //output value class for map function
-        job.setMapperClass(TemperatureMapper.class);//sets the mapper
-        job.setReducerClass(TemperatureReducer.class);//sets the reducer
+        job.setMapperClass(IntMapper.class);//sets the mapper
+        job.setReducerClass(IntReducer.class);//sets the reducer
         FileInputFormat.setInputPaths(job, new Path(args[0]));
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
         boolean status = job.waitForCompletion(true); //runs the job, returns true if executed successfully
