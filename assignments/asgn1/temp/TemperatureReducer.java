@@ -15,7 +15,7 @@ public class TemperatureReducer
         int count = 0;
         for(IntWritable el: temperatures){
             if (el.get() > max) {
-                max = el.get()
+                max = el.get();
             }
         }
         context.write(date, new DoubleWritable(max));
