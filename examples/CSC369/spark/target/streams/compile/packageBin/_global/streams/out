@@ -1,0 +1,9 @@
+[0m[[0m[0mdebug[0m] [0m[0mPackaging /home/lubo/CSC369/spark/target/scala-2.11/fun_2.11-0.1.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	example[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/lubo/CSC369/spark/target/scala-2.11/classes/example[0m
+[0m[[0m[0mdebug[0m] [0m[0m	example/App.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/lubo/CSC369/spark/target/scala-2.11/classes/example/App.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	example/App$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/lubo/CSC369/spark/target/scala-2.11/classes/example/App$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m
