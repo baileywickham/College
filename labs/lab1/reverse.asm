@@ -4,8 +4,12 @@
 #   CPE 315
 #
 # java code:
-# public static int mod(int a, intb) {
-#	return a&(b-1)
+# public static int rev(int a) {
+#	for (int i = 0; i < 32; i++) {
+#		sum += a & 1
+#		sum << 1
+#		a >> 1
+#	}
 #}
 #
 
@@ -20,13 +24,13 @@
 .data
 
 welcome:
-	.asciiz " This program mods two numbers \n\n"
+	.asciiz " This program reverses a number \n\n"
 
 prompt:
 	.asciiz " Enter an integer: "
 
 sumText:
-	.asciiz " \n a%b = "
+	.asciiz " \n reversed = "
 
 #Text Area (i.e. instructions)
 .text
@@ -47,40 +51,45 @@ main:
 	# This is the starting address of the prompt (notice the
 	# different address from the welcome message)
 	lui     $a0, 0x1001
-	ori     $a0, $a0,0x22
+	ori     $a0, $a0,0x23
 	syscall
 
 	# Read 1st integer from the user (5 is loaded into $v0, then a syscall)
 	ori     $v0, $0, 5
 	syscall
 
+	andi	$s1, $s1, 0
+	add		$s1, $v0, 0
 	# Clear $s0 for the sum
 	ori     $s0, $0, 0
 
-	# Add 1st integer to sum
-	# (could have put 1st integer into $s0 and skipped clearing it above)
-	addu    $s0, $v0, $s0
+	# Here v0 contains our number, s0 is empty
+	# beg while loops
+	andi	$s0, $0, 0
+	and		$t2, $t0, $0
+	ori 	$t2, $0, 31
+
+while:
+	andi 	$t0, $s1, 1
+	add		$s0, $t0, $s0
+	sll 	$s0, $s0, 1
+	srl 	$s1, $s1, 1
+	add 	$t1, $t1, 1
+	bne		$t1, $t2, while
+	j exit
 
 	# Display prompt (4 is loaded into $v0 to display)
 	# 0x22 is hexidecimal for 34 decimal (the length of the previous welcome message)
+exit:
 	ori     $v0, $0, 4
 	lui     $a0, 0x1001
 	ori     $a0, $a0,0x22
 	syscall
 
-	# Read 2nd integer
-	ori	$v0, $0, 5
-	syscall
-	# $v0 now has the value of the second integer
-
-	# a & (b-1)
-	addi 	$v0, $v0, -1
-	and		$s0, $s0, $v0
-
 	# Display the sum text
 	ori     $v0, $0, 4
 	lui     $a0, 0x1001
-	ori     $a0, $a0,0x36
+	ori     $a0, $a0,0x37
 	syscall
 
 	# Display the sum
