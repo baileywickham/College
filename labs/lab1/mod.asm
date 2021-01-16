@@ -1,8 +1,8 @@
 #!/usr/bin/spim -f
-# Demo Program
-#
-#   CPE 315
-#
+# Name: Marcelo Jimenez Bailey Wickham
+# Section: 315-01
+# Description: takes two integers and performs the mod function. 
+# 
 # java code:
 # public static int mod(int a, intb) {
 #	return a&(b-1)
