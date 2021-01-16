@@ -1,6 +1,8 @@
 #!/usr/bin/spim -f
-# Demo Program
-#
+# Reverse
+# Name: Marcelo Jimenez Bailey Wickham
+# Section: 315-01
+# Description: bitwise reverses the integer entered
 #   CPE 315
 #
 # java code:
@@ -12,7 +14,6 @@
 #	}
 #}
 #
-
 
 
 # declare global so programmer can see actual addresses.
