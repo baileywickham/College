@@ -4,9 +4,9 @@ import org.apache.hadoop.mapreduce.*;
 import org.apache.hadoop.mapreduce.Mapper.*;
 import org.apache.log4j.Logger;
 
-public class IntMapper extends
+public class SalesMapper extends
           Mapper<LongWritable, Text, Text, IntWritable> {
-   private static Logger THE_LOGGER = Logger.getLogger(IntDriver.class);
+   private static Logger THE_LOGGER = Logger.getLogger(SalesDriver.class);
 
    @Override
    public void map(LongWritable key, Text value, Context context)

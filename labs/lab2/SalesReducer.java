@@ -4,7 +4,7 @@ import org.apache.hadoop.mapreduce.*;
 import org.apache.hadoop.mapreduce.Reducer.*;
 
 
-public class IntReducer
+public class SalesReducer
   extends Reducer<Text, IntWritable, Text, IntWritable> {
 
    @Override

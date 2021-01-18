@@ -1,8 +1,15 @@
-NAME=Int
+OLD=Int
+NAME=Sales
 
 default:
 	hadoop com.sun.tools.javac.Main *.java
 	jar cvf $(NAME).jar	*.class
+
+move_name:
+	sed -i 's/$(OLD)Driver/$(NAME)Driver/g' *.java
+	sed -i 's/$(OLD)Mapper/$(NAME)Mapper/g' *.java
+	sed -i 's/$(OLD)Reducer/$(NAME)Reducer/g' *.java
+
 
 run:
 	hadoop fs -rm -r -f /user/$(USER)/output
