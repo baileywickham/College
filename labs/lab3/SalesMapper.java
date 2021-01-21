@@ -16,7 +16,7 @@ public class SalesMapper extends
       THE_LOGGER.debug("I AM IN LOGGER");
 
 
-      String valueAsString = value.toString().trim();
+      String valueAsString = value.toString().trim().replace("\n", "");
       String[] tokens = valueAsString.split(" ");
 
       if (tokens.length != 5) {

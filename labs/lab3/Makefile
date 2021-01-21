@@ -1,8 +1,9 @@
 OLD=Int
 NAME=Sales
 
-all: default run
-default:
+all: build run output
+
+build:
 	hadoop com.sun.tools.javac.Main *.java
 	jar cvf $(NAME).jar	*.class
 
@@ -26,3 +27,5 @@ copy_input:
 
 clean:
 	rm *.class *.jar
+
+.PHONY: clean all
