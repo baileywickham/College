@@ -22,7 +22,7 @@ public class SalesMapper extends
       if (tokens.length != 5) {
          return;
       }
-      context.write(new Text(tokens[1]), new Text(valueAsString));
+      context.write(new Text(tokens[1].trim()), new Text(valueAsString));
    }
 }
 
