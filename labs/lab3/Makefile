@@ -1,6 +1,7 @@
 OLD=Int
 NAME=Sales
 
+all: default run
 default:
 	hadoop com.sun.tools.javac.Main *.java
 	jar cvf $(NAME).jar	*.class
