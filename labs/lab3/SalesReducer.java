@@ -13,8 +13,9 @@ public class SalesReducer
         throws IOException, InterruptedException {
         String out = new String();
         for(Text sale: sales){
-            String[] tokens = sale.toString().split(",");
-            out = out + String.format("%s %s %s %s", date, tokens[2], tokens[3], tokens[4]);
+            String[] tokens = sale.toString().strip().split(",");
+            out = out + String.format("%s %s %s %s\n", date, tokens[2].strip(),
+                    tokens[3].strip(), tokens[4].strip());
         }
         context.write(date, new Text(out));
     }
