@@ -17,9 +17,9 @@ public class SalesDriver extends Configured implements Tool {
         job.setJarByClass(SalesDriver.class);
         job.setJobName("SalesDriver"); //same as java class name
         job.setOutputKeyClass(Text.class); //output key class for reduce function
-        job.setOutputValueClass(DoubleWritable.class); //output value class for reduce function
+        job.setOutputValueClass(Text.class); //output value class for reduce function
         job.setMapOutputKeyClass(Text.class); //output key class for map function
-        job.setMapOutputValueClass(IntWritable.class); //output value class for map function
+        job.setMapOutputValueClass(Text.class); //output value class for map function
         job.setMapperClass(SalesMapper.class);//sets the mapper
         job.setReducerClass(SalesReducer.class);//sets the reducer
         FileInputFormat.setInputPaths(job, new Path(args[0]));
