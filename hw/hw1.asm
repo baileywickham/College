@@ -1,15 +1,19 @@
 # 2.6.1a
 lw $t0, 8($s6)
+# Clear s0
+and $s0, $s0, $0
 add $s0, $s0, $t0
 
 # 2.6.1b
 # Load A[i] -> t0
 lw $t0, $s6
-add $t0, $t0, $s3
+sll $s2, $s2, 2
+add $t0, $t0, $s2
 lw $t0, $t0
 
 # Load A[j] -> t1
-lw $t1, $s6
+lw $t1, $s6 # ld
+sll $s3, $s3, 2
 add $t1, $t1, $s3
 lw $t1, $t1
 
@@ -40,9 +44,9 @@ STARTJ
 slt $t4, $t1, $s1 # 1 if j < b else
 beq $t4, $0, ENDJ
 
-add $t5, $t1, $t0
-sll $t6, $t1, 2 #4*j
-add $t6, $s2, $t4 #offset of arr
+add $t5, $t1, $t0 # i + j
+sll $t6, $t1, 2 #t6=4*j
+add $t6, $s2, $t6 #$s2 = D, offset of arr
 sw 	0($t5), $t6
 
 addi $t1, $t1, 1
@@ -56,10 +60,20 @@ ENDI:
 #2.19.4a
 f:
 #a, b are already in a0, a1
+addi $sp, $sp, -8
+sw $s0, 0($sp)
+sw $ra, 4($sp)
+
+add $s0, $a2, $a3
 jal func
 add $a0, $v0, $0
-add $a1, $a2, $a3
+add $a1, $0, $s0
 jal func
+
+lw $s0, $sp
+lw $ra, 4(sp)
+addi $sp, $sp, 8
+
 jr $ra
 
 
