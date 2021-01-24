@@ -18,7 +18,7 @@ public class SecondarySortReducer
     	throws IOException, InterruptedException {
     	String result="";
     	for (Text value : values) {
-            result += (value.toString()+", ");
+            result += (value.toString()+", " + value.getId() + ", ");
 	}
         result = result.substring(0, result.length()-2);
         context.write(key.getDate(), new Text(result));
