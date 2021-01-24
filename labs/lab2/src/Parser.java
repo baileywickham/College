@@ -7,17 +7,62 @@ import java.util.regex.Pattern;
 
 public class Parser {
     public HashMap<String, Integer> labels;
+    public static HashMap<String, Integer> regs;
+    static {
+        regs = new HashMap<>();
+        // need to change, add all regs
+        regs.put("$a0", 0);
+    }
 
     public Parser() {
         this.labels = new HashMap<>();
     }
+
     public void parse(String path) {
         // |>
-        secondPass(firstPass(fileToString(path)));
+        ArrayList<Instruction> insts = secondPass(firstPass(fileToString(path)));
     }
-    public void secondPass(String[] lines) {
+    public void printInsts(ArrayList<Instruction> insts) {
 
     }
+    public void printInstsBin(ArrayList<Instruction> insts) {
+
+    }
+    public ArrayList<Instruction> secondPass(String[] lines) {
+        ArrayList<Instruction> insts = new ArrayList<>();
+        for (int i = 0; i < lines.length; i++) {
+            try {
+                Instruction inst = parseLine(lines[i], i);
+                if (inst != null) {
+                    insts.add(inst);
+                }
+            } catch (Exception e)  {
+                System.out.println(String.format("Error parsing line %d", i));
+                System.out.println(e);
+                return null;
+            }
+        }
+        return insts;
+    }
+
+    public Instruction parseLine(String line, int lineNum) throws Exception {
+        Pattern inst = Pattern.compile("^\\s*\\w+");
+        Matcher m = inst.matcher(line);
+        if (m.find()) {
+            switch (m.group()) {
+                case "and":
+                case "or":
+                case "add":
+                    return parseR(line);
+            }
+        }
+        return null;
+    }
+
+    public Instruction parseR(String line) throws Exception {
+        return null;
+    }
+
     public String fileToString(String path) {
         String content = "";
         try
@@ -33,7 +78,8 @@ public class Parser {
     }
     public String[] firstPass(String data) {
         // This could break on windows... oh well
-        Pattern  label = Pattern.compile("^\\w+:");
+        // need to test regex
+        Pattern  label = Pattern.compile("^\s*\\w+:");
         String[] lines = data.split("\n");
         for (int i = 0; i < lines.length; i++) {
             Matcher m = label.matcher(lines[i]);
