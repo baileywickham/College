@@ -1,4 +1,5 @@
 interface Instruction {
+
     String opcode = null;
     String toBinary();
     String toString();
