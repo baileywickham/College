@@ -1,5 +1,5 @@
 OLD=Int
-NAME=Sales
+NAME=SecondarySort
 
 all: build run output
 

@@ -27,6 +27,8 @@ public class Sale
     private final Text id = new Text();
 
 
+    public Sale() {
+    }
     public Sale(String date, String time, String id) {
         this.date.set(date);
         this.time.set(time);
@@ -36,16 +38,16 @@ public class Sale
 
     @Override
     public void write(DataOutput out) throws IOException {
-        date.write(out);
-        time.write(out);
-        id.write(out);
+        this.date.write(out);
+        this.time.write(out);
+        this.id.write(out);
     }
 
     @Override
     public void readFields(DataInput in) throws IOException {
-        date.readFields(in);
-        time.readFields(in);
-        id.readFields(in);
+        this.date.readFields(in);
+        this.time.readFields(in);
+        this.id.readFields(in);
     }
 
     @Override
