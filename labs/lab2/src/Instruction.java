@@ -1,8 +1,12 @@
 interface Instruction {
-
     String opcode = null;
     String toBinary();
     String toString();
+    int lineNum = 0;
+    int labelLocation = 0;
+    // Need to add static instuction -> opcode number
+    // Need to add static register name -> number
+    // label jumps will be added in the parser
 }
 class RInstruction implements Instruction {
     public String opcode;

@@ -33,6 +33,7 @@ public class Parser {
         for (int i = 0; i < lines.length; i++) {
             try {
                 Instruction inst = parseLine(lines[i], i);
+                // inst will be null if the line is empty
                 if (inst != null) {
                     insts.add(inst);
                 }
@@ -64,6 +65,7 @@ public class Parser {
     }
 
     public String fileToString(String path) {
+        // stolen from stack overflow
         String content = "";
         try
         {
@@ -84,6 +86,8 @@ public class Parser {
         for (int i = 0; i < lines.length; i++) {
             Matcher m = label.matcher(lines[i]);
             if (m.find()) {
+                // Strip labels from code
+                lines[i] = lines[i].substring(m.end());
                 this.labels.put(m.group(), i);
             }
             // Strip comments
