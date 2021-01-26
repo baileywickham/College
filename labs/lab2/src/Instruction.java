@@ -9,12 +9,40 @@ interface Instruction {
     // label jumps will be added in the parser
 }
 class RInstruction implements Instruction {
-    public String opcode;
-    public String rs;
-    public String rt;
-    public String rd;
+    public int opcode;
+    public String opName;
+
+    public String rsCode;
+
+    public String rsName;
+    public int rsRegNum;
+    public int rsOffset;
+    public String rtCode;
+    public int rtRegNum;
+    public String rtName;
+    public int rtOffset;
+    public String rdCode;
+    public String rdName;
+    public int rdRegNum;
+    public int rdOffset;
+
     public String shamt;
     public String funct;
+    public RInstruction(String opname,
+                        String rsName, int rsRegNum, int rsOffset,
+                        String rtName, int rtRegNum, int rtOffset,
+                        String rdName, int rdRegNum, int rdOffset)  {
+        this.opName = opname;
+        this.rsName = rsName;
+        this.rsRegNum = rsRegNum;
+        this.rsOffset = rsOffset;
+        this.rtName = rtName;
+        this.rtRegNum = rtRegNum;
+        this.rtOffset = rtOffset;
+        this.rdName = rdName;
+        this.rdRegNum = rdRegNum;
+        this.rdOffset = rdOffset;
+    }
 
     @Override
     public String toBinary() {

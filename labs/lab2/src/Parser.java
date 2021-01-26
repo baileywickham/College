@@ -47,6 +47,7 @@ public class Parser {
     }
 
     public Instruction parseLine(String line, int lineNum) throws Exception {
+        // addi $1 1
         Pattern inst = Pattern.compile("^\\s*\\w+");
         Matcher m = inst.matcher(line);
         if (m.find()) {
@@ -61,15 +62,57 @@ public class Parser {
     }
 
     public Instruction parseR(String line) throws Exception {
+        // This is an awful mess...
         // Should match all instructions of type R
-        // ^\s*\w+ -?\d*\(?\$\w+\)?,\s*-?\d*\(?\$\w+\)?,\w*-?\d*\(?\$\w+\)?\s*$
+        // ^\s*\w+ -?\d*\(?\$\w+\)?,\s*-?\d*\(?\$\w+\)?,\s*-?\d*\(?\$\w+\)?\s*$
         if (Pattern.matches(
-                 "^\\s*\\w+ -?\\d*\\(?\\$\\w+\\)?,\\s*-?\\d*\\(?\\$\\w+\\)?,\\w*-?\\d*\\(?\\$\\w+\\)?\\s*$",
+                 "^\\s*\\w+ -?\\d*\\(?\\$\\w+\\)?,\\s*-?\\d*\\(?\\$\\w+\\)?,\\s*-?\\d*\\(?\\$\\w+\\)?\\s*$",
                  line)) {
             // parse Instruction
+            String[] regs = new String[3];
+            int[] offsets = new int[3];
+            int [] regNums = new int[3];
+            int regNum = -1;
+            String[] splits = line.split("\s+", 2);
+            String inst = splits[0];
+            splits = splits[1].split(",");
+            for (int i = 0; i < 3; i++) {
+                splits[i] = splits[i].strip();
+                // We contain an offset
+                // We are assuming balanced parens
+                if (splits[i].contains("(") && splits[i].contains(")")) {
+                    // Parse offset in front of number
+                    int offset = Integer.parseInt(splits[i].substring(0, splits[i].indexOf("(")));
+                    String reg = splits[i].substring(splits[i].indexOf("(")+1, splits[i].indexOf(")"));
+                    if ((regNum = getRegNum(reg)) != -1) {
+                        regs[i] = reg;
+                        offsets[i] = offset;
+                        regNums[i] = regNum;
+                    } else {
+                        throw new Exception("Invalid register");
+                    }
+                } else {
+                    if ((regNum = getRegNum(splits[i])) != -1) {
+                        regs[i] = splits[i];
+                        regNums[i] = regNum;
+                    } else {
+                        throw new Exception("Invalid register");
+                    }
+                }
+            }
+            return new RInstruction(inst,
+                    regs[0], regNums[0], offsets[0],
+                    regs[1], regNums[1], offsets[1],
+                    regs[2], regNums[2], offsets[2]);
+        } else {
+            throw new Exception("Instruction does not match R format");
         }
-
-        return null;
+    }
+    public int getRegNum(String reg) {
+        if (this.labels.containsKey(reg)) {
+            return this.labels.get(reg);
+        }
+        return -1;
     }
 
     public String fileToString(String path) {
@@ -87,20 +130,33 @@ public class Parser {
         return content;
     }
     public String[] firstPass(String data) {
-        // This could break on windows... oh well
         // need to test regex
+        // Linenum only matches real lines, not blank or empty ones
+        int lineNum = 0;
+        // This could break on windows... oh well
         Pattern  label = Pattern.compile("^\s*\\w+:");
+        Pattern inst = Pattern.compile("^\\s*\\w+");
+
         String[] lines = data.split("\n");
         for (int i = 0; i < lines.length; i++) {
             Matcher m = label.matcher(lines[i]);
-            if (m.find()) {
-                // Strip labels from code
-                lines[i] = lines[i].substring(m.end());
-                this.labels.put(m.group(), i);
-            }
-            // Strip comments
+            lines[i] = lines[i].strip();
             if (lines[i].contains("#")) {
                 lines[i] = lines[i].substring(0, lines[i].indexOf('#'));
+            }
+            Matcher in = inst.matcher(lines[i]);
+            if (m.find()) {
+                System.out.print("here: ");
+                System.out.println(lines[i]);
+                // Strip labels from code
+                // label: add i  -> add
+                lines[i] = lines[i].substring(m.end());
+                this.labels.put(m.group(), lineNum);
+                lineNum++;
+            } else if (in.find()) {
+                System.out.print("here: ");
+                System.out.println(lines[i]);
+                lineNum++;
             }
         }
         return lines;
