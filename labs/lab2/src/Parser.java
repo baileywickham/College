@@ -61,6 +61,14 @@ public class Parser {
     }
 
     public Instruction parseR(String line) throws Exception {
+        // Should match all instructions of type R
+        // ^\s*\w+ -?\d*\(?\$\w+\)?,\s*-?\d*\(?\$\w+\)?,\w*-?\d*\(?\$\w+\)?\s*$
+        if (Pattern.matches(
+                 "^\\s*\\w+ -?\\d*\\(?\\$\\w+\\)?,\\s*-?\\d*\\(?\\$\\w+\\)?,\\w*-?\\d*\\(?\\$\\w+\\)?\\s*$",
+                 line)) {
+            // parse Instruction
+        }
+
         return null;
     }
 
