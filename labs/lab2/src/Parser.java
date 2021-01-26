@@ -11,7 +11,8 @@ public class Parser {
     static {
         regs = new HashMap<>();
         // need to change, add all regs
-        regs.put("$a0", 0);
+        // This needs to be checked, not sure if $0->0
+        regs.put("$0", 0);
     }
 
     public Parser() {
@@ -73,7 +74,7 @@ public class Parser {
             int[] offsets = new int[3];
             int [] regNums = new int[3];
             int regNum = -1;
-            String[] splits = line.split("\s+", 2);
+            String[] splits = line.split("$", 2);
             String inst = splits[0];
             splits = splits[1].split(",");
             for (int i = 0; i < 3; i++) {
