@@ -79,11 +79,26 @@ public class Parser {
         return null;
     }
 
-    private Instruction parseJR(String line) {
+    public Instruction parseJR(String line) throws Exception {
+        int reg = -1;
+        if (Pattern.matches(
+                "\\s*jr\\s*$\\w+",
+                line)) {
+            String[] splits = line.split("$");
+            if ((reg = getRegNum(splits[1].trim())) >= 0) {
+                return new RInstruction("jr", splits[1].trim(), reg, 0, "", 0, 0, "", 0, 0, 0);
 
+            } else {
+                throw new Exception("Invalid register") ;
+            }
+        } else {
+            throw new Exception("Invalid instruction");
+        }
     }
 
-    private Instruction parseJ(String line) {
+
+    public Instruction parseJ(String line) {
+
     }
 
     private Instruction parseI(String line) {
