@@ -6,7 +6,8 @@ public class Main {
         for (String line : p.firstPass(p.fileToString(args[0]))) {
             System.out.println(line);
         }
-        System.out.println(Arrays.asList(p.labels));
-        p.parseR("add $v0, 32($v0), $0");
+        //System.out.println(Arrays.asList(p.labels));
+        System.out.println(p.parseR("add$v0,$v0,$0"));
+        System.out.println(p.parseR("sll $a0, $a1,10"));
     }
 }
