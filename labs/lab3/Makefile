@@ -28,4 +28,7 @@ copy_input:
 clean:
 	rm *.class *.jar
 
+java:
+	javac CountDates.java
+	java CountDates
 .PHONY: clean all
