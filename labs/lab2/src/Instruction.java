@@ -15,33 +15,27 @@ class RInstruction implements Instruction {
     public String rsCode;
     public String rsName;
     public int rsRegNum;
-    public int rsOffset;
     public String rtCode;
     public int rtRegNum;
     public String rtName;
-    public int rtOffset;
     public String rdCode;
     public String rdName;
     public int rdRegNum;
-    public int rdOffset;
 
     public int shamt;
     public String funct;
     public RInstruction(String opname,
-                        String rsName, int rsRegNum, int rsOffset,
-                        String rtName, int rtRegNum, int rtOffset,
-                        String rdName, int rdRegNum, int rdOffset,
+                        String rsName, int rsRegNum,
+                        String rtName, int rtRegNum,
+                        String rdName, int rdRegNum,
                         int shamt)  {
         this.opName = opname;
         this.rsName = rsName;
         this.rsRegNum = rsRegNum;
-        this.rsOffset = rsOffset;
         this.rtName = rtName;
         this.rtRegNum = rtRegNum;
-        this.rtOffset = rtOffset;
         this.rdName = rdName;
         this.rdRegNum = rdRegNum;
-        this.rdOffset = rdOffset;
         this.shamt = shamt;
     }
 
@@ -50,9 +44,9 @@ class RInstruction implements Instruction {
         return null;
     }
     public String toString() {
-        return String.format("%s %s+%d, %s+%d, %s+%d shamt: %d",
-                this.opName, this.rsName, this.rsOffset, this.rtName, this.rtOffset,
-                this.rdName, this.rdOffset, this.shamt);
+        return String.format("%s %s, %s, %s shamt: %d",
+                this.opName, this.rsName, this.rtName,
+                this.rdName, this.shamt);
     }
 }
 class IInstruction implements Instruction {

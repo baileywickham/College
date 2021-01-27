@@ -10,9 +10,35 @@ public class Parser {
     public static HashMap<String, Integer> regs;
     static {
         regs = new HashMap<>();
-        // need to change, add all regs
-        // This needs to be checked, not sure if $0->0
         regs.put("$0", 0);
+        regs.put("$v0", 2);
+        regs.put("$v1", 3);
+        regs.put("$a0", 4);
+        regs.put("$a1", 5);
+        regs.put("$a2", 6);
+        regs.put("$a3", 7);
+        regs.put("$t0", 8);
+        regs.put("$t1", 9);
+        regs.put("$t2", 10);
+        regs.put("$t3", 11);
+        regs.put("$t4", 12);
+        regs.put("$t5", 13);
+        regs.put("$t6", 14);
+        regs.put("$t7", 15);
+        regs.put("$s0", 16);
+        regs.put("$s1", 17);
+        regs.put("$s2", 18);
+        regs.put("$s3", 19);
+        regs.put("$s4", 20);
+        regs.put("$s5", 21);
+        regs.put("$s6", 22);
+        regs.put("$s7", 23);
+        regs.put("$t8", 24);
+        regs.put("$t9", 25);
+        regs.put("$t9", 25);
+        regs.put("$t9", 25);
+        regs.put("$sp", 29);
+        regs.put("$ra", 31);
     }
 
     public Parser() {
@@ -86,7 +112,7 @@ public class Parser {
                 line)) {
             String[] splits = line.split("$");
             if ((reg = getRegNum(splits[1].trim())) >= 0) {
-                return new RInstruction("jr", splits[1].trim(), reg, 0, "", 0, 0, "", 0, 0, 0);
+                return new RInstruction("jr", splits[1].trim(), reg, "", 0, "", 0,  0);
 
             } else {
                 throw new Exception("Invalid register") ;
@@ -126,35 +152,21 @@ public class Parser {
                 splits[i] = splits[i].trim();
                 // We contain an offset
                 // We are assuming balanced parens
-                if (splits[i].contains("(") && splits[i].contains(")")) {
-                    // Parse offset in front of number
-                    // This path should not be taken
-                    int offset = Integer.parseInt(splits[i].substring(0, splits[i].indexOf("(")));
-                    String reg = splits[i].substring(splits[i].indexOf("(")+1, splits[i].indexOf(")"));
-                    if ((regNum = getRegNum(reg)) != -1) {
-                        regs[i] = reg;
-                        offsets[i] = offset;
+                if (splits[i].charAt(0) == '$') {
+                    if ((regNum = getRegNum(splits[i])) != -1) {
+                        regs[i] = splits[i];
                         regNums[i] = regNum;
                     } else {
                         throw new Exception("Invalid register");
                     }
                 } else {
-                    if (splits[i].charAt(0) == '$') {
-                        if ((regNum = getRegNum(splits[i])) != -1) {
-                            regs[i] = splits[i];
-                            regNums[i] = regNum;
-                        } else {
-                            throw new Exception("Invalid register");
-                        }
-                    } else {
-                        shmt = Integer.parseInt(splits[i]);
-                    }
+                    shmt = Integer.parseInt(splits[i]);
                 }
             }
             return new RInstruction(inst,
-                    regs[0], regNums[0], offsets[0],
-                    regs[1], regNums[1], offsets[1],
-                    regs[2], regNums[2], offsets[2],
+                    regs[0], regNums[0],
+                    regs[1], regNums[1],
+                    regs[2], regNums[2],
                     shmt);
         } else {
             throw new Exception("Instruction does not match R format");
