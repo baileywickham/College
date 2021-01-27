@@ -78,7 +78,7 @@ public class Parser {
             String inst = splits[0];
             splits = splits[1].split(",");
             for (int i = 0; i < 3; i++) {
-                splits[i] = splits[i].strip();
+                splits[i] = splits[i].trim();
                 // We contain an offset
                 // We are assuming balanced parens
                 if (splits[i].contains("(") && splits[i].contains(")")) {
@@ -135,13 +135,13 @@ public class Parser {
         // Linenum only matches real lines, not blank or empty ones
         int lineNum = 0;
         // This could break on windows... oh well
-        Pattern  label = Pattern.compile("^\s*\\w+:");
+        Pattern  label = Pattern.compile("^\\s*\\w+:");
         Pattern inst = Pattern.compile("^\\s*\\w+");
 
         String[] lines = data.split("\n");
         for (int i = 0; i < lines.length; i++) {
             Matcher m = label.matcher(lines[i]);
-            lines[i] = lines[i].strip();
+            lines[i] = lines[i].trim();
             if (lines[i].contains("#")) {
                 lines[i] = lines[i].substring(0, lines[i].indexOf('#'));
             }
