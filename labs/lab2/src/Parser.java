@@ -127,7 +127,11 @@ public class Parser {
 
     }
 
-    private Instruction parseI(String line) {
+    public Instruction parseI(String line) {
+        if (Pattern.matches(
+                "",
+                line)) {
+        }
     }
 
     public Instruction parseR(String line) throws Exception {
@@ -173,11 +177,10 @@ public class Parser {
         }
     }
     public int getRegNum(String reg) {
-        return 1;
-        //if (this.labels.containsKey(reg)) {
-        //    return this.labels.get(reg);
-        //}
-        //return -1;
+        if (this.labels.containsKey(reg)) {
+            return this.labels.get(reg);
+        }
+        return -1;
     }
 
     public String fileToString(String path) {
@@ -195,7 +198,6 @@ public class Parser {
         return content;
     }
     public String[] firstPass(String data) {
-        // need to test regex
         // Linenum only matches real lines, not blank or empty ones
         int lineNum = 0;
         // This could break on windows... oh well
@@ -211,16 +213,12 @@ public class Parser {
             }
             Matcher in = inst.matcher(lines[i]);
             if (m.find()) {
-                //System.out.print("here: ");
-                //System.out.println(lines[i]);
                 // Strip labels from code
                 // label: add i  -> add
                 lines[i] = lines[i].substring(m.end());
                 this.labels.put(m.group(), lineNum);
                 lineNum++;
             } else if (in.find()) {
-                //System.out.print("here: ");
-                //System.out.println(lines[i]);
                 lineNum++;
             }
         }
