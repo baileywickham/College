@@ -56,12 +56,12 @@ class IInstruction implements Instruction {
     public String rt;
     public int rtCode;
     public int immediate;
-    public IInstruction(String opName, String rt, int rtCode, String rs, int rsCode, int immediate) {
+    public IInstruction(String opName, String rs, int rsCode, String rt, int rtCode, int immediate) {
         this.opName = opName;
-        this.rt = rs;
-        this.rtCode = rtCode;
         this.rs = rs;
         this.rsCode = rsCode;
+        this.rt = rt;
+        this.rtCode = rtCode;
         this.immediate = immediate;
     }
 
