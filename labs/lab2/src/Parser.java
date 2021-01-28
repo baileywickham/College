@@ -40,23 +40,26 @@ public class Parser {
         regs.put("$t9", 25);
         regs.put("$sp", 29);
         regs.put("$ra", 31);
-        regs.put("$zero", 0);
     }
 
     public Parser() {
         this.labels = new HashMap<>();
     }
 
-    public void parse(String path) {
-        // |>
+    public void parseToString(String path) {
         ArrayList<Instruction> insts = secondPass(firstPass(fileToString(path)));
+        for (Instruction i : insts) {
+            System.out.println(i.toString());
+        }
     }
-    public void printInsts(ArrayList<Instruction> insts) {
+    public void parseToBin(String path) {
+        ArrayList<Instruction> insts = secondPass(firstPass(fileToString(path)));
+        for (Instruction i : insts) {
+            System.out.println(i.toBinary());
+        }
 
     }
-    public void printInstsBin(ArrayList<Instruction> insts) {
 
-    }
     public ArrayList<Instruction> secondPass(String[] lines) {
         ArrayList<Instruction> insts = new ArrayList<>();
         for (int i = 0; i < lines.length; i++) {

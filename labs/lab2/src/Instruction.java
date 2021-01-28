@@ -1,5 +1,6 @@
+import java.util.HashMap;
+
 interface Instruction {
-    String opcode = null;
     String toBinary();
     String toString();
     int lineNum = 0;
@@ -9,33 +10,34 @@ interface Instruction {
     // label jumps will be added in the parser
 }
 class RInstruction implements Instruction {
-    public int opcode;
+    public static HashMap<String, String> ops;
+    static {
+        ops = new HashMap<>();
+        ops.put("add", "00000");
+    }
     public String opName;
 
-    public String rsCode;
-    public String rsName;
-    public int rsRegNum;
-    public String rtCode;
-    public int rtRegNum;
-    public String rtName;
-    public String rdCode;
     public String rdName;
-    public int rdRegNum;
+    public int rdCode;
+    public String rsName;
+    public int rsCode;
+    public String rtName;
+    public int rtCode;
 
     public int shamt;
     public String funct;
-    public RInstruction(String opname,
-                        String rsName, int rsRegNum,
-                        String rtName, int rtRegNum,
-                        String rdName, int rdRegNum,
+    public RInstruction(String opName,
+                        String rdName, int rdCode,
+                        String rsName, int rsCode,
+                        String rtName, int rtCode,
                         int shamt)  {
-        this.opName = opname;
-        this.rsName = rsName;
-        this.rsRegNum = rsRegNum;
-        this.rtName = rtName;
-        this.rtRegNum = rtRegNum;
+        this.opName = opName;
         this.rdName = rdName;
-        this.rdRegNum = rdRegNum;
+        this.rdCode = rdCode;
+        this.rsName = rsName;
+        this.rsCode = rsCode;
+        this.rtName = rtName;
+        this.rtCode = rtCode;
         this.shamt = shamt;
     }
 
