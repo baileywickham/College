@@ -233,9 +233,9 @@ public class Parser {
                 }
             }
             return new RInstruction(inst,
-                    regsNames[0], regs.get(regsNames[0]),
                     regsNames[1], regs.get(regsNames[1]),
                     regsNames[2], regs.get(regsNames[2]),
+                    regsNames[0], regs.get(regsNames[0]),
                     shamt);
         } else {
             throw new Exception("Instruction does not match R format");

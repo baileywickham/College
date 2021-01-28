@@ -4,6 +4,9 @@ abstract class Instruction {
     abstract String toBinary();
     public String intToNBits(int i, int n) {
         String s = Integer.toBinaryString(i);
+        if (s.length() > n) {
+            return s.substring(0,n);
+        }
         while (s.length() < n) {
             s = "0" + s;
         }
@@ -33,19 +36,17 @@ class RInstruction extends Instruction {
         ops.put("jr", new instCode("000000", "001000"));
     }
     public String opName;
-
     public String rdName;
     public int rdCode;
     public String rsName;
     public int rsCode;
     public String rtName;
     public int rtCode;
-
     public int shamt;
     public RInstruction(String opName,
-                        String rdName, int rdCode,
                         String rsName, int rsCode,
                         String rtName, int rtCode,
+                        String rdName, int rdCode,
                         int shamt)  {
         this.opName = opName;
         this.rdName = rdName;
@@ -127,6 +128,7 @@ class JInstruction extends Instruction {
         this.name = name;
 
     }
+
     @Override
     public String toBinary() {
         return String.format("%s %s",
