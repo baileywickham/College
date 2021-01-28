@@ -166,8 +166,7 @@ public class Parser {
 
     public Instruction parseR(String line) throws Exception {
         // This is an awful mess...
-        // Should match all instructions of type R
-        // ^\s*\w+ -?\d*\(?\$\w+\)?,\s*-?\d*\(?\$\w+\)?,\s*-?\d*\(?\$\w+\)?\s*$
+        // Should match most instructions of type R
         if (Pattern.matches(
                  "^\\s*\\w+\\s*-?\\d*\\(?\\$\\w+\\)?,\\s*-?\\d*\\(?\\$\\w+\\)?,\\s*-?\\d*\\(?\\$?\\w+\\)?\\s*$",
                  line)) {
