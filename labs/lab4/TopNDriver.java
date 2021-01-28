@@ -64,14 +64,14 @@ public class TopNDriver extends Configured implements Tool {
      * tracker.
      */
     public static void main(String[] args) throws Exception {
-        if (args.length != 3) {
+        if (args.length != 2) {
             THE_LOGGER.warn("usage TopNDriver <N> <input> <output>");
             System.exit(1);
         }
 
-        THE_LOGGER.info("N=" + args[0]);
-        THE_LOGGER.info("inputDir=" + args[1]);
-        THE_LOGGER.info("outputDir=" + args[2]);
+        //THE_LOGGER.info("N=" + args[0]);
+        //THE_LOGGER.info("inputDir=" + args[1]);
+        //THE_LOGGER.info("outputDir=" + args[2]);
         int returnStatus = ToolRunner.run(new TopNDriver(), args);
         System.exit(returnStatus);
     }
