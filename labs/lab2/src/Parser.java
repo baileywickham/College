@@ -37,6 +37,7 @@ public class Parser {
         regs.put("$t9", 25);
         regs.put("$sp", 29);
         regs.put("$ra", 31);
+        regs.put("$zero", 0);
     }
 
     public Parser() {
@@ -60,11 +61,12 @@ public class Parser {
                 Instruction inst = parseLine(lines[i], i);
                 insts.add(inst);
                 // inst will be null if the line is empty
-                if (inst != null) {
+                if (inst != null)  {
                     insts.add(inst);
                 }
             } catch (Exception e)  {
                 System.out.println(String.format("Error parsing line %d", i));
+                System.out.println(lines[i]);
                 System.out.println(e);
                 return null;
             }
