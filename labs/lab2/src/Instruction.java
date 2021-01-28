@@ -67,10 +67,16 @@ class IInstruction implements Instruction {
     }
 }
 class JInstruction implements Instruction {
-    public String address;
+    public String opName;
+    public int address;
 
     @Override
     public String toBinary() {
         return null;
+    }
+    public String toString() {
+        
+        return String.format("%s, %d",
+                this.opName, this.address);
     }
 }

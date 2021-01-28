@@ -1,9 +1,12 @@
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.swing.text.StyleContext.SmallAttributeSet;
 
 public class Parser {
     public HashMap<String, Integer> labels;
@@ -11,6 +14,7 @@ public class Parser {
     static {
         regs = new HashMap<>();
         regs.put("$0", 0);
+        regs.put("$zero", 0); //maybe?
         regs.put("$v0", 2);
         regs.put("$v1", 3);
         regs.put("$a0", 4);
@@ -59,7 +63,7 @@ public class Parser {
         ArrayList<Instruction> insts = new ArrayList<>();
         for (int i = 0; i < lines.length; i++) {
             try {
-                Instruction inst = parseLine(lines[i], i);
+                Instruction inst = parseLine(lines[i]);
                 insts.add(inst);
                 // inst will be null if the line is empty
                 if (inst != null) {
@@ -74,10 +78,12 @@ public class Parser {
         return insts;
     }
 
-    public Instruction parseLine(String line, int lineNum) throws Exception {
+    public Instruction parseLine(String rawLine) throws Exception {
         // addi $1 1
         //  and, or, add, addi, sll, sub, slt, beq, bne, lw, sw, j, jr, and jal.
         Pattern inst = Pattern.compile("^\\s*\\w+");
+        String line = rawLine.trim();
+        System.out.println(line);
         Matcher m = inst.matcher(line);
         if (m.find()) {
             switch (m.group()) {
@@ -110,58 +116,69 @@ public class Parser {
 
     public Instruction parseStoreLoad(String line) throws Exception {
         int offset = 0;
-        String rs = "";
+        // String rs = "";
+        String ins = line.substring(0, 2);
         if (Pattern.matches(
                 "\\s*(sw|lw)\\s*$\\w+\\s*,\\s*,-?\\d*\\(?$?\\w?\\)?",
-                line)) {
+                line) || ins.equals("lw") || ins.equals("sw") ) {
 
-            String[] splits = line.split("$", 2);
+            // String[] splits = line.split("$", 2);
+            String[] splits = line.split( "[\\s,]+" );
+            // System.out.println(Arrays.asList(splits));
             String opName = splits[0].trim();
-            splits = splits[1].split(",");
-            String rd = splits[0].trim();
-            if (!regs.containsKey(rd)) {
-                throw new InvalidRegister(rd);
+            
+            String rt = splits[1].split(",")[0].trim();
+            String[] sec = splits[2].split("\\(");
+            // System.out.println(Arrays.asList(sec));
+            String rs = sec[1].substring(0, sec[1].length() - 1).trim();
+            int imm = Integer.parseInt(sec[0].trim());
+            if (!regs.containsKey(rt)) {
+                throw new InvalidRegister(rt);
             }
-            if (splits[1].contains("(") && splits[1].contains(")")) {
-                offset = Integer.parseInt(splits[1].substring(0, splits[1].indexOf("(")));
-                rs = splits[1].substring(splits[1].indexOf("("), splits[1].indexOf(")"));
-            } else {
-                rs = splits[1].trim();
-            }
+            // if (splits[1].contains("(") && splits[1].contains(")")) {
+            //     offset = Integer.parseInt(splits[1].substring(0, splits[1].indexOf("(")));
+            //     rs = splits[1].substring(splits[1].indexOf("("), splits[1].indexOf(")"));
+            // } else {
+            //     rs = splits[1].trim();
+            // }
 
             if (!regs.containsKey(rs)) {
                 throw new InvalidRegister(rs);
             }
-            return new IInstruction(opName, rd, regs.get(rd), rs, regs.get(rs), offset);
+            return new IInstruction(opName, rt, regs.get(rt), rs, regs.get(rs), imm);
         } else {
             throw new Exception("Invaid w instructions");
         }
     }
 
     public Instruction parseJR(String line) throws Exception {
-        if (Pattern.matches(
-                "\\s*jr\\s*$\\w+",
-                line)) {
-            String[] splits = line.split("$", 2);
-            if (!regs.containsKey(splits[1].trim())) {
-                throw new InvalidRegister(splits[1]);
-            }
-            return new RInstruction("jr", splits[1].trim(), regs.get(splits[1]), "", 0, "", 0,  0);
-        } else {
-            throw new Exception("Invalid instruction");
-        }
+        System.out.println(line);
+        String[] splits = line.split( "[\\s,]+" );
+        System.out.println(Arrays.asList(splits));
+        String rs = splits[1].trim();
+        // if (Pattern.matches(
+        //         "\\s*jr\\s*$\\w+",
+        //         line)) {
+            // String[] splits = line.split("$", 2);
+            // if (!regs.containsKey(splits[1].trim())) {
+            //     throw new InvalidRegister(splits[1]);
+            // }
+            return new RInstruction("jr", rs, regs.get(rs), "", 0, "", 0,  0);
+        // } 
+        // else {
+        //     throw new Exception("Invalid instruction");
+        // }
     }
 
 
     public Instruction parseJ(String line) {
+        // System.out.println("j ins" + line);
+        return new JInstruction();
 
     }
 
     public Instruction parseI(String line) {
-        if (Pattern.matches(
-                "",
-                line)) {
-        }
+        return new RInstruction("jr", "splits[1].trim()", 1, "", 0, "", 0,  0);
     }
 
     public Instruction parseR(String line) throws Exception {
@@ -173,30 +190,61 @@ public class Parser {
                  line)) {
             // parse Instruction
             String[] regsNames = new String[3];
+            
             int shmt = 0;
-
-            String[] splits = line.split("\\$", 2);
-            String inst = splits[0].trim();
-            splits[1] = "$" + splits[1];
-            splits = splits[1].split(",");
-            for (int i = 0; i < 3; i++) {
+            String[] splits = line.split( "[\\s,]+" );
+            for (int i = 0; i < splits.length; i++) {
                 splits[i] = splits[i].trim();
-                // We contain an offset
-                // We are assuming balanced parens
-                if (splits[i].charAt(0) == '$') {
-                    if (!regs.containsKey(splits[i])) {
-                        throw new InvalidRegister(splits[i]);
-                    }
-                    regsNames[i] = splits[i];
-                } else {
-                    shmt = Integer.parseInt(splits[i]);
-                }
             }
-            return new RInstruction(inst,
-                    regsNames[0], regs.get(regsNames[0]),
-                    regsNames[1], regs.get(regsNames[1]),
-                    regsNames[2], regs.get(regsNames[2]),
+            
+            System.out.println(splits[0]);
+            System.out.println(splits[1]);
+            String ins = splits[0];
+            // String rs = "$" + splits[1].substring(0, splits[1].length() - 1);
+            // String rt = "$" + splits[2].substring(0, splits[2].length() - 1);
+            // String rd = "$" + splits[3];
+            String rs = splits[1];
+            String rt = splits[2];
+            String rd = splits[3];
+            if (rd.matches("-?\\d+"))
+            {
+                shmt = Integer.parseInt(rd);
+                rd = "";
+            }
+            else if (!regs.containsKey(rd)) {
+                throw new InvalidRegister(rd);
+            }
+            System.out.println(ins);
+            System.out.println(rs);
+            System.out.println(rt);
+            System.out.println(rd);
+            System.out.println(shmt);
+            return new RInstruction(ins,
+                    rs, regs.get(rs),
+                    rt, regs.get(rt),
+                    rd, regs.get(rd),
                     shmt);
+            // String inst = splits[0].trim();
+            // splits[1] = "$" + splits[1];
+            // splits = splits[1].split(",");
+            // for (int i = 0; i < 3; i++) {
+            //     splits[i] = splits[i].trim();
+            //     // We contain an offset
+            //     // We are assuming balanced parens
+            //     if (splits[i].charAt(0) == '$') {
+            //         if (!regs.containsKey(splits[i])) {
+            //             throw new InvalidRegister(splits[i]);
+            //         }
+            //         regsNames[i] = splits[i];
+            //     } else {
+            //         shmt = Integer.parseInt(splits[i]);
+            //     }
+            // }
+            // return new RInstruction(inst,
+            //         regsNames[0], regs.get(regsNames[0]),
+            //         regsNames[1], regs.get(regsNames[1]),
+            //         regsNames[2], regs.get(regsNames[2]),
+            //         shmt);
         } else {
             throw new Exception("Instruction does not match R format");
         }
