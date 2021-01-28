@@ -29,7 +29,7 @@ public class TopNDriver extends Configured implements Tool {
         Job job = Job.getInstance();
         job.setJarByClass(TopNDriver.class);
         //   HadoopUtil.addJarsToDistributedCache(job, "/lib/");
-        int n = Integer.parseInt(args[0]); // top N
+        int n = 10; // Integer.parseInt(args[0]); // top N
         job.getConfiguration().setInt("N", n);
         job.setJobName("TopNDriver");
 
@@ -48,8 +48,8 @@ public class TopNDriver extends Configured implements Tool {
 
         // args[1] = input directory
         // args[2] = output directory
-        FileInputFormat.setInputPaths(job, new Path(args[1]));
-        FileOutputFormat.setOutputPath(job, new Path(args[2]));
+        FileInputFormat.setInputPaths(job, new Path(args[0]));
+        FileOutputFormat.setOutputPath(job, new Path(args[1]));
         job.setNumReduceTasks(1);
         boolean status = job.waitForCompletion(true);
         THE_LOGGER.info("run(): status=" + status);
