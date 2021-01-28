@@ -229,7 +229,10 @@ public class Parser {
                     regsNames[i] = splits[i];
                 } else {
                     shamt = Integer.parseInt(splits[i]);
-                    regsNames[i] = "$0";
+                    // Special case sll
+                    regsNames[2] = regsNames[1];
+                    regsNames[1] = "$0";
+
                 }
             }
             return new RInstruction(inst,
@@ -268,7 +271,7 @@ public class Parser {
             Matcher m = label.matcher(lines[i]);
             lines[i] = lines[i].trim();
             if (lines[i].contains("#")) {
-                lines[i] = lines[i].substring(0, lines[i].indexOf('#'));
+                lines[i] = lines[i].substring(0, lines[i].indexOf('#')).trim();
             }
             Matcher in = inst.matcher(lines[i]);
             if (m.find()) {
