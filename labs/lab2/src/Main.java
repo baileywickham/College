@@ -7,7 +7,7 @@ public class Main {
             // System.out.println(line);
             p.parseLine(line);
         }
-        //System.out.println(Arrays.asList(p.labels));
+        // System.out.println(Arrays.asList(p.labels));
         // System.out.println(p.parseR("add$v0,$v0,$0"));
         // System.out.println(p.parseR("sll $a0, $a1,10"));
     }

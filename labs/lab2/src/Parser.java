@@ -83,7 +83,7 @@ public class Parser {
         //  and, or, add, addi, sll, sub, slt, beq, bne, lw, sw, j, jr, and jal.
         Pattern inst = Pattern.compile("^\\s*\\w+");
         String line = rawLine.trim();
-        System.out.println(line);
+        // System.out.println(line);
         Matcher m = inst.matcher(line);
         if (m.find()) {
             switch (m.group()) {
@@ -152,9 +152,9 @@ public class Parser {
     }
 
     public Instruction parseJR(String line) throws Exception {
-        System.out.println(line);
+        // System.out.println(line);
         String[] splits = line.split( "[\\s,]+" );
-        System.out.println(Arrays.asList(splits));
+        // System.out.println(Arrays.asList(splits));
         String rs = splits[1].trim();
         // if (Pattern.matches(
         //         "\\s*jr\\s*$\\w+",
@@ -171,9 +171,18 @@ public class Parser {
     }
 
 
-    public Instruction parseJ(String line) {
-        // System.out.println("j ins" + line);
-        return new JInstruction();
+    public Instruction parseJ(String line) throws Exception{
+        String[] splits = line.split("\\s+");
+        // System.out.println(Arrays.asList(splits));
+        String opName = splits[0].trim().replaceAll("\\s+","");
+        int address = 0;
+        String name = splits[1].trim().replaceAll("\\s+","");
+        if (!labels.containsKey(name))
+        {
+            throw new InvalidLabel(name);
+        }
+        address = labels.get(name);
+        return new JInstruction(opName, address, name);
 
     }
 
@@ -183,68 +192,37 @@ public class Parser {
 
     public Instruction parseR(String line) throws Exception {
         // This is an awful mess...
-        // Should match all instructions of type R
-        // ^\s*\w+ -?\d*\(?\$\w+\)?,\s*-?\d*\(?\$\w+\)?,\s*-?\d*\(?\$\w+\)?\s*$
+        // Should match most instructions of type R
         if (Pattern.matches(
                  "^\\s*\\w+\\s*-?\\d*\\(?\\$\\w+\\)?,\\s*-?\\d*\\(?\\$\\w+\\)?,\\s*-?\\d*\\(?\\$?\\w+\\)?\\s*$",
                  line)) {
             // parse Instruction
             String[] regsNames = new String[3];
-            
-            int shmt = 0;
-            String[] splits = line.split( "[\\s,]+" );
-            for (int i = 0; i < splits.length; i++) {
+            int shamt = 0;
+
+            String[] splits = line.split("\\$", 2);
+            String inst = splits[0].trim();
+            splits[1] = "$" + splits[1];
+            splits = splits[1].split(",");
+            for (int i = 0; i < 3; i++) {
                 splits[i] = splits[i].trim();
+                // We contain an offset
+                // We are assuming balanced parens
+                if (splits[i].charAt(0) == '$') {
+                    if (!regs.containsKey(splits[i])) {
+                        throw new InvalidRegister(splits[i]);
+                    }
+                    regsNames[i] = splits[i];
+                } else {
+                    shamt = Integer.parseInt(splits[i]);
+                    regsNames[i] = "$0";
+                }
             }
-            
-            System.out.println(splits[0]);
-            System.out.println(splits[1]);
-            String ins = splits[0];
-            // String rs = "$" + splits[1].substring(0, splits[1].length() - 1);
-            // String rt = "$" + splits[2].substring(0, splits[2].length() - 1);
-            // String rd = "$" + splits[3];
-            String rs = splits[1];
-            String rt = splits[2];
-            String rd = splits[3];
-            if (rd.matches("-?\\d+"))
-            {
-                shmt = Integer.parseInt(rd);
-                rd = "";
-            }
-            else if (!regs.containsKey(rd)) {
-                throw new InvalidRegister(rd);
-            }
-            System.out.println(ins);
-            System.out.println(rs);
-            System.out.println(rt);
-            System.out.println(rd);
-            System.out.println(shmt);
-            return new RInstruction(ins,
-                    rs, regs.get(rs),
-                    rt, regs.get(rt),
-                    rd, regs.get(rd),
-                    shmt);
-            // String inst = splits[0].trim();
-            // splits[1] = "$" + splits[1];
-            // splits = splits[1].split(",");
-            // for (int i = 0; i < 3; i++) {
-            //     splits[i] = splits[i].trim();
-            //     // We contain an offset
-            //     // We are assuming balanced parens
-            //     if (splits[i].charAt(0) == '$') {
-            //         if (!regs.containsKey(splits[i])) {
-            //             throw new InvalidRegister(splits[i]);
-            //         }
-            //         regsNames[i] = splits[i];
-            //     } else {
-            //         shmt = Integer.parseInt(splits[i]);
-            //     }
-            // }
-            // return new RInstruction(inst,
-            //         regsNames[0], regs.get(regsNames[0]),
-            //         regsNames[1], regs.get(regsNames[1]),
-            //         regsNames[2], regs.get(regsNames[2]),
-            //         shmt);
+            return new RInstruction(inst,
+                    regsNames[0], regs.get(regsNames[0]),
+                    regsNames[1], regs.get(regsNames[1]),
+                    regsNames[2], regs.get(regsNames[2]),
+                    shamt);
         } else {
             throw new Exception("Instruction does not match R format");
         }
@@ -283,7 +261,7 @@ public class Parser {
                 // Strip labels from code
                 // label: add i  -> add
                 lines[i] = lines[i].substring(m.end());
-                this.labels.put(m.group(), lineNum);
+                this.labels.put(m.group().substring(0, m.group().length() - 1), lineNum);
                 lineNum++;
             } else if (in.find()) {
                 lineNum++;
