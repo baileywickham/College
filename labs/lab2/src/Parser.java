@@ -35,8 +35,6 @@ public class Parser {
         regs.put("$s7", 23);
         regs.put("$t8", 24);
         regs.put("$t9", 25);
-        regs.put("$t9", 25);
-        regs.put("$t9", 25);
         regs.put("$sp", 29);
         regs.put("$ra", 31);
     }
@@ -154,7 +152,7 @@ public class Parser {
 
 
     public Instruction parseJ(String line) {
-
+        return null;
     }
 
     public Instruction parseI(String line) throws Exception {
@@ -164,6 +162,7 @@ public class Parser {
         } else {
             throw new Exception("Invalid instruction");
         }
+        return null;
     }
 
     public Instruction parseR(String line) throws Exception {
@@ -191,6 +190,7 @@ public class Parser {
                     regsNames[i] = splits[i];
                 } else {
                     shamt = Integer.parseInt(splits[i]);
+                    regsNames[i] = "$0";
                 }
             }
             return new RInstruction(inst,
