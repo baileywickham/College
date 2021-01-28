@@ -134,7 +134,7 @@ public class Parser {
             }
             return new IInstruction(opName, rd, regs.get(rd), rs, regs.get(rs), offset);
         } else {
-            throw new Exception("Invaid w instructions");
+            throw new Exception("Invalid w instructions");
         }
     }
 
@@ -157,10 +157,12 @@ public class Parser {
 
     }
 
-    public Instruction parseI(String line) {
+    public Instruction parseI(String line) throws Exception {
         if (Pattern.matches(
-                "",
+                "\\s*\\w+\\s*$\\w+\\s*,\\s*$\\w+\\s*,\\s*-?\\d?",
                 line)) {
+        } else {
+            throw new Exception("Invalid instruction");
         }
     }
 
@@ -172,7 +174,7 @@ public class Parser {
                  line)) {
             // parse Instruction
             String[] regsNames = new String[3];
-            int shmt = 0;
+            int shamt = 0;
 
             String[] splits = line.split("\\$", 2);
             String inst = splits[0].trim();
@@ -188,14 +190,14 @@ public class Parser {
                     }
                     regsNames[i] = splits[i];
                 } else {
-                    shmt = Integer.parseInt(splits[i]);
+                    shamt = Integer.parseInt(splits[i]);
                 }
             }
             return new RInstruction(inst,
                     regsNames[0], regs.get(regsNames[0]),
                     regsNames[1], regs.get(regsNames[1]),
                     regsNames[2], regs.get(regsNames[2]),
-                    shmt);
+                    shamt);
         } else {
             throw new Exception("Instruction does not match R format");
         }
