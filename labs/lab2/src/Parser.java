@@ -62,8 +62,6 @@ public class Parser {
         for (int i = 0; i < lines.length; i++) {
             try {
                 Instruction inst = parseLine(lines[i]);
-                insts.add(inst);
-                // inst will be null if the line is empty
                 if (inst != null)  {
                     insts.add(inst);
                 }
@@ -78,11 +76,9 @@ public class Parser {
     }
 
     public Instruction parseLine(String rawLine) throws Exception {
-        // addi $1 1
         //  and, or, add, addi, sll, sub, slt, beq, bne, lw, sw, j, jr, and jal.
         Pattern inst = Pattern.compile("^\\s*\\w+");
         String line = rawLine.trim();
-        // System.out.println(line);
         Matcher m = inst.matcher(line);
         if (m.find()) {
             switch (m.group().trim()) {
@@ -93,7 +89,6 @@ public class Parser {
                 case "sub":
                 case "slt":
                     return parseR(line);
-                    // special case JR cause it's a pain
                 case "jr":
                     return parseJR(line);
                 case "addi":
@@ -116,25 +111,20 @@ public class Parser {
     public Instruction parseStoreLoad(String line) throws Exception {
         int offset = 0;
         String rs = "";
-        String ins = line.substring(0, 2);
         if (Pattern.matches(
-                "\\s*(sw|lw)\\s*$\\w+\\s*,\\s*,-?\\d*\\(?$?\\w?\\)?",
-                line) || ins.equals("lw") || ins.equals("sw") ) {
+                "\\s*(sw|lw)\\s*\\$\\w+\\s*,\\s*-?\\d*\\(?\\$?\\w+\\)?",
+                line)) {
 
             String[] splits = line.split("\\$", 2);
             String opName = splits[0].trim();
-
-            String rt = splits[1].split(",")[0].trim();
-            String[] sec = splits[2].split("\\(");
-            // System.out.println(Arrays.asList(sec));
-            String rs = sec[1].substring(0, sec[1].length() - 1).trim();
-            int imm = Integer.parseInt(sec[0].trim());
-            if (!regs.containsKey(rt)) {
-                throw new InvalidRegister(rt);
+            splits = splits[1].split(",");
+            String rd = "$" + splits[0].trim();
+            if (!regs.containsKey(rd)) {
+                throw new InvalidRegister(rd);
             }
             if (splits[1].contains("(") && splits[1].contains(")")) {
-                offset = Integer.parseInt(splits[1].substring(0, splits[1].indexOf("(")));
-                rs = splits[1].substring(splits[1].indexOf("("), splits[1].indexOf(")"));
+                offset = Integer.parseInt(splits[1].substring(0, splits[1].indexOf("(")).trim());
+                rs = splits[1].substring(splits[1].indexOf("(")+1, splits[1].indexOf(")"));
             } else {
                 rs = splits[1].trim();
             }
@@ -142,7 +132,7 @@ public class Parser {
             if (!regs.containsKey(rs)) {
                 throw new InvalidRegister(rs);
             }
-            return new IInstruction(opName, rt, regs.get(rt), rs, regs.get(rs), imm);
+            return new IInstruction(opName, rd, regs.get(rd), rs, regs.get(rs), offset);
         } else {
             throw new Exception("Invalid w instructions");
         }
@@ -153,6 +143,7 @@ public class Parser {
                 "\\s*jr\\s*\\$\\w+",
                 line)) {
             String[] splits = line.split("\\$", 2);
+            splits[1] = "$" + splits[1];
             if (!regs.containsKey(splits[1].trim())) {
                 throw new InvalidRegister(splits[1]);
             }
