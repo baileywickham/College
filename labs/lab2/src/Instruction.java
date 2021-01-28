@@ -83,7 +83,7 @@ class IInstruction extends Instruction {
     public static HashMap<String, String> ops;
     static {
         ops = new HashMap<>();
-        ops.put("addi", "0010000");
+        ops.put("addi", "001000");
         ops.put("beq", "000100");
         ops.put("bne", "000101");
         ops.put("lw", "100011");
@@ -118,8 +118,8 @@ class JInstruction extends Instruction {
     public static HashMap<String, String> ops;
     static {
         ops = new HashMap<>();
-        ops.put("j", "0000010");
-        ops.put("jal", "0000011");
+        ops.put("j", "000010");
+        ops.put("jal", "000011");
     }
     public JInstruction(String opName, int address, String name) {
         this.opName = opName;
