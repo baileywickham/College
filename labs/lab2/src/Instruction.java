@@ -50,9 +50,17 @@ class RInstruction implements Instruction {
     }
 }
 class IInstruction implements Instruction {
+    public String opName;
     public String rs;
+    public int rsCode;
     public String rt;
-    public String immediate;
+    public int rtCode;
+    public int immediate;
+    public IInstruction(String opName, String rd, int rdCode, String rs, int rsCode, int immediate) {
+        this.opName = opName;
+        this.rs = rs;
+        this.rd
+    }
 
     @Override
     public String toBinary() {
