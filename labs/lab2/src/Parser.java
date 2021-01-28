@@ -85,7 +85,7 @@ public class Parser {
         // System.out.println(line);
         Matcher m = inst.matcher(line);
         if (m.find()) {
-            switch (m.group()) {
+            switch (m.group().trim()) {
                 case "and":
                 case "or":
                 case "add":
@@ -115,15 +115,13 @@ public class Parser {
 
     public Instruction parseStoreLoad(String line) throws Exception {
         int offset = 0;
-        // String rs = "";
+        String rs = "";
         String ins = line.substring(0, 2);
         if (Pattern.matches(
                 "\\s*(sw|lw)\\s*$\\w+\\s*,\\s*,-?\\d*\\(?$?\\w?\\)?",
                 line) || ins.equals("lw") || ins.equals("sw") ) {
 
-            // String[] splits = line.split("$", 2);
-            String[] splits = line.split( "[\\s,]+" );
-            // System.out.println(Arrays.asList(splits));
+            String[] splits = line.split("\\$", 2);
             String opName = splits[0].trim();
 
             String rt = splits[1].split(",")[0].trim();
@@ -134,12 +132,12 @@ public class Parser {
             if (!regs.containsKey(rt)) {
                 throw new InvalidRegister(rt);
             }
-            // if (splits[1].contains("(") && splits[1].contains(")")) {
-            //     offset = Integer.parseInt(splits[1].substring(0, splits[1].indexOf("(")));
-            //     rs = splits[1].substring(splits[1].indexOf("("), splits[1].indexOf(")"));
-            // } else {
-            //     rs = splits[1].trim();
-            // }
+            if (splits[1].contains("(") && splits[1].contains(")")) {
+                offset = Integer.parseInt(splits[1].substring(0, splits[1].indexOf("(")));
+                rs = splits[1].substring(splits[1].indexOf("("), splits[1].indexOf(")"));
+            } else {
+                rs = splits[1].trim();
+            }
 
             if (!regs.containsKey(rs)) {
                 throw new InvalidRegister(rs);
@@ -151,22 +149,17 @@ public class Parser {
     }
 
     public Instruction parseJR(String line) throws Exception {
-        // System.out.println(line);
-        String[] splits = line.split( "[\\s,]+" );
-        // System.out.println(Arrays.asList(splits));
-        String rs = splits[1].trim();
-        // if (Pattern.matches(
-        //         "\\s*jr\\s*$\\w+",
-        //         line)) {
-            // String[] splits = line.split("$", 2);
-            // if (!regs.containsKey(splits[1].trim())) {
-            //     throw new InvalidRegister(splits[1]);
-            // }
-            return new RInstruction("jr", rs, regs.get(rs), "", 0, "", 0,  0);
-        // }
-        // else {
-        //     throw new Exception("Invalid instruction");
-        // }
+        if (Pattern.matches(
+                "\\s*jr\\s*\\$\\w+",
+                line)) {
+            String[] splits = line.split("\\$", 2);
+            if (!regs.containsKey(splits[1].trim())) {
+                throw new InvalidRegister(splits[1]);
+            }
+            return new RInstruction("jr", splits[1].trim(), regs.get(splits[1]), "", 0, "", 0,  0);
+        } else {
+            throw new Exception("Invalid instruction");
+        }
     }
 
 
@@ -185,8 +178,32 @@ public class Parser {
 
     }
 
-    public Instruction parseI(String line) {
-        return new RInstruction("jr", "splits[1].trim()", 1, "", 0, "", 0,  0);
+    public Instruction parseI(String line) throws Exception {
+        if (Pattern.matches(
+                "\\s*\\w+\\s*\\$\\w+\\s*,\\s*\\$\\w+\\s*,\\s*-?\\w+\\s*",
+                line)) {
+            String[] splits = line.split("\\$", 2);
+            String inst = splits[0].trim();
+            splits = splits[1].split(",");
+            String rt = "$" + splits[0].trim();
+            if (!regs.containsKey(rt)) {
+                throw new InvalidRegister(rt);
+            }
+            String rs = splits[1].trim();
+            if (!regs.containsKey(rs)) {
+                throw new InvalidRegister(rs);
+            }
+            String immediate = splits[2].trim();
+            if (inst.equals("addi")) {
+                return new IInstruction(inst, rt, regs.get(rt), rs, regs.get(rs), Integer.parseInt(immediate));
+            }
+            if (!labels.containsKey(splits[2].trim())) {
+                throw new InvalidLabel(splits[2].trim());
+            }
+            return new IInstruction(inst, rt, regs.get(rt), rs, regs.get(rs), labels.get(immediate));
+        } else {
+            throw new Exception("Invalid instruction");
+        }
     }
 
     public Instruction parseR(String line) throws Exception {
