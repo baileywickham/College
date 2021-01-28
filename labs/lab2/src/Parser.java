@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.swing.text.StyleContext.SmallAttributeSet;
 
 public class Parser {
     public HashMap<String, Integer> labels;
@@ -126,7 +125,7 @@ public class Parser {
             String[] splits = line.split( "[\\s,]+" );
             // System.out.println(Arrays.asList(splits));
             String opName = splits[0].trim();
-            
+
             String rt = splits[1].split(",")[0].trim();
             String[] sec = splits[2].split("\\(");
             // System.out.println(Arrays.asList(sec));
@@ -164,7 +163,7 @@ public class Parser {
             //     throw new InvalidRegister(splits[1]);
             // }
             return new RInstruction("jr", rs, regs.get(rs), "", 0, "", 0,  0);
-        // } 
+        // }
         // else {
         //     throw new Exception("Invalid instruction");
         // }
