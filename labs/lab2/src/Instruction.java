@@ -56,9 +56,13 @@ class IInstruction implements Instruction {
     public String rt;
     public int rtCode;
     public int immediate;
-    public IInstruction(String opName, String rd, int rdCode, String rs, int rsCode, int immediate) {
+    public IInstruction(String opName, String rt, int rtCode, String rs, int rsCode, int immediate) {
         this.opName = opName;
+        this.rt = rs;
+        this.rtCode = rtCode;
         this.rs = rs;
+        this.rsCode = rsCode;
+        this.immediate = immediate;
     }
 
     @Override
