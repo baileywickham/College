@@ -1,9 +1,11 @@
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 
 public class Parser {
     public HashMap<String, Integer> labels;
@@ -11,6 +13,7 @@ public class Parser {
     static {
         regs = new HashMap<>();
         regs.put("$0", 0);
+        regs.put("$zero", 0); //maybe?
         regs.put("$v0", 2);
         regs.put("$v1", 3);
         regs.put("$a0", 4);
@@ -58,7 +61,7 @@ public class Parser {
         ArrayList<Instruction> insts = new ArrayList<>();
         for (int i = 0; i < lines.length; i++) {
             try {
-                Instruction inst = parseLine(lines[i], i);
+                Instruction inst = parseLine(lines[i]);
                 insts.add(inst);
                 // inst will be null if the line is empty
                 if (inst != null)  {
@@ -74,10 +77,12 @@ public class Parser {
         return insts;
     }
 
-    public Instruction parseLine(String line, int lineNum) throws Exception {
+    public Instruction parseLine(String rawLine) throws Exception {
         // addi $1 1
         //  and, or, add, addi, sll, sub, slt, beq, bne, lw, sw, j, jr, and jal.
         Pattern inst = Pattern.compile("^\\s*\\w+");
+        String line = rawLine.trim();
+        // System.out.println(line);
         Matcher m = inst.matcher(line);
         if (m.find()) {
             switch (m.group().trim()) {
@@ -111,16 +116,21 @@ public class Parser {
     public Instruction parseStoreLoad(String line) throws Exception {
         int offset = 0;
         String rs = "";
+        String ins = line.substring(0, 2);
         if (Pattern.matches(
                 "\\s*(sw|lw)\\s*$\\w+\\s*,\\s*,-?\\d*\\(?$?\\w?\\)?",
-                line)) {
+                line) || ins.equals("lw") || ins.equals("sw") ) {
 
             String[] splits = line.split("\\$", 2);
             String opName = splits[0].trim();
-            splits = splits[1].split(",");
-            String rd = splits[0].trim();
-            if (!regs.containsKey(rd)) {
-                throw new InvalidRegister(rd);
+
+            String rt = splits[1].split(",")[0].trim();
+            String[] sec = splits[2].split("\\(");
+            // System.out.println(Arrays.asList(sec));
+            String rs = sec[1].substring(0, sec[1].length() - 1).trim();
+            int imm = Integer.parseInt(sec[0].trim());
+            if (!regs.containsKey(rt)) {
+                throw new InvalidRegister(rt);
             }
             if (splits[1].contains("(") && splits[1].contains(")")) {
                 offset = Integer.parseInt(splits[1].substring(0, splits[1].indexOf("(")));
@@ -132,7 +142,7 @@ public class Parser {
             if (!regs.containsKey(rs)) {
                 throw new InvalidRegister(rs);
             }
-            return new IInstruction(opName, rd, regs.get(rd), rs, regs.get(rs), offset);
+            return new IInstruction(opName, rt, regs.get(rt), rs, regs.get(rs), imm);
         } else {
             throw new Exception("Invalid w instructions");
         }
@@ -153,8 +163,19 @@ public class Parser {
     }
 
 
-    public Instruction parseJ(String line) {
-        return null;
+    public Instruction parseJ(String line) throws Exception{
+        String[] splits = line.split("\\s+");
+        // System.out.println(Arrays.asList(splits));
+        String opName = splits[0].trim().replaceAll("\\s+","");
+        int address = 0;
+        String name = splits[1].trim().replaceAll("\\s+","");
+        if (!labels.containsKey(name))
+        {
+            throw new InvalidLabel(name);
+        }
+        address = labels.get(name);
+        return new JInstruction(opName, address, name);
+
     }
 
     public Instruction parseI(String line) throws Exception {
@@ -256,7 +277,7 @@ public class Parser {
                 // Strip labels from code
                 // label: add i  -> add
                 lines[i] = lines[i].substring(m.end());
-                this.labels.put(m.group(), lineNum);
+                this.labels.put(m.group().substring(0, m.group().length() - 1), lineNum);
                 lineNum++;
             } else if (in.find()) {
                 lineNum++;
