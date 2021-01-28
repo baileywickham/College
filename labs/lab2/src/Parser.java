@@ -1,5 +1,3 @@
-import sun.util.resources.ext.CurrencyNames_is_IS;
-
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -104,14 +102,13 @@ public class Parser {
                 case "jal":
                     return parseJ(line);
                 default:
-                    throw new Exception((String.format("invalid instruction: %s", m.group())));
+                    throw new InvalidInstruction(m.group());
             }
         }
         return null;
     }
 
     public Instruction parseStoreLoad(String line) throws Exception {
-        int reg = -1;
         int offset = 0;
         String rs = "";
         if (Pattern.matches(
@@ -123,18 +120,21 @@ public class Parser {
             splits = splits[1].split(",");
             String rd = splits[0].trim();
             if (!regs.containsKey(rd)) {
-                throw new Exception("invalid register: %s");
+                throw new InvalidRegister(rd);
             }
             if (splits[1].contains("(") && splits[1].contains(")")) {
                 offset = Integer.parseInt(splits[1].substring(0, splits[1].indexOf("(")));
                 rs = splits[1].substring(splits[1].indexOf("("), splits[1].indexOf(")"));
-                if (!regs.containsKey(rs)) {
-                    throw new Exception(String.format("invalid register: %s", rs));
-                }
-                return new IInstruction(opName, rd, regs.get(rd), rs, regs.get(rs), offset);
             } else {
-               return new IInstruction(opName, rd, )
+                rs = splits[1].trim();
             }
+
+            if (!regs.containsKey(rs)) {
+                throw new InvalidRegister(rs);
+            }
+            return new IInstruction(opName, rd, regs.get(rd), rs, regs.get(rs), offset);
+        } else {
+            throw new Exception("Invaid w instructions");
         }
     }
 
@@ -144,7 +144,7 @@ public class Parser {
                 line)) {
             String[] splits = line.split("$", 2);
             if (!regs.containsKey(splits[1].trim())) {
-                throw new Exception(String.format("invalid register: %s", splits[1]));
+                throw new InvalidRegister(splits[1]);
             }
             return new RInstruction("jr", splits[1].trim(), regs.get(splits[1]), "", 0, "", 0,  0);
         } else {
@@ -173,8 +173,6 @@ public class Parser {
                  line)) {
             // parse Instruction
             String[] regsNames = new String[3];
-            int[] offsets = new int[3];
-            int regNum = -1;
             int shmt = 0;
 
             String[] splits = line.split("\\$", 2);
@@ -187,7 +185,7 @@ public class Parser {
                 // We are assuming balanced parens
                 if (splits[i].charAt(0) == '$') {
                     if (!regs.containsKey(splits[i])) {
-                        throw new Exception(String.format("invalid register: %s", splits[i]));
+                        throw new InvalidRegister(splits[i]);
                     }
                     regsNames[i] = splits[i];
                 } else {
@@ -202,12 +200,6 @@ public class Parser {
         } else {
             throw new Exception("Instruction does not match R format");
         }
-    }
-    public int getRegNum(String reg) {
-        if (this.labels.containsKey(reg)) {
-            return this.labels.get(reg);
-        }
-        return -1;
     }
 
     public String fileToString(String path) {
