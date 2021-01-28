@@ -85,6 +85,7 @@ public class Parser {
         Matcher m = inst.matcher(line);
         if (m.find()) {
             switch (m.group().trim()) {
+                // RInstructions
                 case "and":
                 case "or":
                 case "add":
@@ -94,6 +95,8 @@ public class Parser {
                     return parseR(line);
                 case "jr":
                     return parseJR(line);
+
+                    // IInstructions
                 case "addi":
                 case "beq":
                 case "bne":
@@ -101,6 +104,7 @@ public class Parser {
                 case "sw":
                 case "lw":
                     return parseStoreLoad(line);
+                    // JInstructions
                 case "j":
                 case "jal":
                     return parseJ(line);
