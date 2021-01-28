@@ -66,6 +66,11 @@ class IInstruction implements Instruction {
     }
 
     @Override
+    public String toString() {
+        return String.format("%s %s %s immediate: %s", opName, rs, rt, immediate);
+    }
+
+    @Override
     public String toBinary() {
         return null;
     }
