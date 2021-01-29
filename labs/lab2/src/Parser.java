@@ -66,7 +66,7 @@ public class Parser {
         for (int i = 0; i < lines.length; i++) {
             try {
                 String line = lines[i];
-                if (!line.isBlank() ||  !line.isEmpty())
+                if (!line.isEmpty())
                 {
                     valid += 1;
                     // System.out.println(line);
@@ -206,11 +206,8 @@ public class Parser {
                 throw new InvalidLabel(splits[2].trim());
             }
             int imm = labels.get(immediate);
-            // System.out.println(imm);
-            
-            int newImmediate = i - imm - 1;
-            newImmediate =  ~newImmediate;// & 0xff;
-            // System.out.println(newImmediate);
+
+            int newImmediate = imm - i;
             return new IInstruction(inst, rt, regs.get(rt), rs, regs.get(rs), newImmediate);
         } else {
             throw new Exception("Invalid instruction");
