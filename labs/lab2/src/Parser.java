@@ -1,7 +1,7 @@
+import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -47,32 +47,25 @@ public class Parser {
     }
 
     public void parseToString(String path) {
-        ArrayList<Instruction> insts = secondPass(firstPass(fileToString(path)));
+        ArrayList<Instruction> insts = secondPass(firstPass(Parser.fileToString(path)));
         for (Instruction i : insts) {
             System.out.println(i.toString());
         }
     }
     public void parseToBin(String path) {
-        ArrayList<Instruction> insts = secondPass(firstPass(fileToString(path)));
+        ArrayList<Instruction> insts = secondPass(firstPass(Parser.fileToString(path)));
     }
 
-    public ArrayList<Instruction> secondPass(String[] lines) {
+    public ArrayList<Instruction> secondPass(ArrayList<String> lines) {
         ArrayList<Instruction> insts = new ArrayList<>();
-        int valid = 0;
-        for (int i = 0; i < lines.length; i++) {
+        for (int i = 0; i < lines.size(); i++ ) {
             try {
-                String line = lines[i];
-                if (!line.isEmpty())
-                {
-                    valid += 1;
-                    // System.out.println(line);
-                    Instruction inst = parseLine(lines[i], valid);
-                    System.out.println(inst.toBinary());
-                    insts.add(inst);
-                }
-            } catch (InvalidInstruction e)  {
-                //System.out.println(String.format("Error parsing line %d", i));
-                //System.out.println(lines[i]);
+                // This accounts for having a line with a label removed.
+                // They could be removed from the array, but that would throw our offset off
+                Instruction inst = parseLine(lines.get(i), i);
+                System.out.println(inst.toBinary());
+                insts.add(inst);
+            } catch (InvalidInstruction e) {
                 System.out.println(e.toString());
                 return null;
             } catch (Exception e) {
@@ -84,7 +77,6 @@ public class Parser {
     }
 
     public Instruction parseLine(String rawLine, int i) throws Exception {
-        //  and, or, add, addi, sll, sub, slt, beq, bne, lw, sw, j, jr, and jal.
         Pattern inst = Pattern.compile("^\\s*\\w+");
         String line = rawLine.trim();
         Matcher m = inst.matcher(line);
@@ -168,7 +160,6 @@ public class Parser {
 
     public Instruction parseJ(String line) throws Exception{
         String[] splits = line.split("\\s+");
-        // System.out.println(Arrays.asList(splits));
         String opName = splits[0].trim().replaceAll("\\s+","");
         int address = 0;
         String name = splits[1].trim().replaceAll("\\s+","");
@@ -205,7 +196,7 @@ public class Parser {
             }
             int imm = labels.get(immediate);
 
-            int newImmediate = imm - i;
+            int newImmediate = imm - (i + 1);
             return new IInstruction(inst, rt, regs.get(rt), rs, regs.get(rs), newImmediate);
         } else {
             throw new Exception("Invalid instruction");
@@ -253,7 +244,43 @@ public class Parser {
         }
     }
 
-    public String fileToString(String path) {
+    public ArrayList<String> firstPass(String data) {
+        // Linenum only matches real lines, not blank or empty ones
+        int lineNum = 0;
+        // This could break on windows... oh well
+        Pattern  labelP = Pattern.compile("^\\s*\\w+:");
+        Pattern instP = Pattern.compile("^\\s*\\w+");
+        ArrayList<String> parsedLines = new ArrayList<>();
+
+        String[] lines = data.split("\n");
+        for (String line : lines) {
+            Matcher labelM = labelP.matcher(line);
+            line = line.trim();
+            // Strip comments
+            if (line.contains("#")) {
+                line = line.substring(0, line.indexOf('#')).trim();
+            }
+
+            Matcher instM = instP.matcher(line);
+
+            if (labelM.find()) {
+                // Strip labels from code
+                // label: add i  -> add i
+                line = line.substring(labelM.end());
+                this.labels.put(labelM.group().substring(0, labelM.group().length() - 1), lineNum);
+                if (!line.isEmpty()) {
+                    parsedLines.add(line);
+                }
+                lineNum++;
+            } else if (instM.find()) {
+                parsedLines.add(line);
+                lineNum++;
+            }
+        }
+        return parsedLines;
+    }
+
+    public static String fileToString(String path) {
         // stolen from stack overflow
         String content = "";
         try
@@ -262,36 +289,9 @@ public class Parser {
         }
         catch (Exception e)
         {
-            System.out.println(e);
+            System.out.println(e.toString());
         }
 
         return content;
-    }
-    public String[] firstPass(String data) {
-        // Linenum only matches real lines, not blank or empty ones
-        int lineNum = 0;
-        // This could break on windows... oh well
-        Pattern  label = Pattern.compile("^\\s*\\w+:");
-        Pattern inst = Pattern.compile("^\\s*\\w+");
-
-        String[] lines = data.split("\n");
-        for (int i = 0; i < lines.length; i++) {
-            Matcher m = label.matcher(lines[i]);
-            lines[i] = lines[i].trim();
-            if (lines[i].contains("#")) {
-                lines[i] = lines[i].substring(0, lines[i].indexOf('#')).trim();
-            }
-            Matcher in = inst.matcher(lines[i]);
-            if (m.find()) {
-                // Strip labels from code
-                // label: add i  -> add
-                lines[i] = lines[i].substring(m.end());
-                this.labels.put(m.group().substring(0, m.group().length() - 1), lineNum);
-                lineNum++;
-            } else if (in.find()) {
-                lineNum++;
-            }
-        }
-        return lines;
     }
 }
