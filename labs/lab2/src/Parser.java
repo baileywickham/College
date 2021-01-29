@@ -65,12 +65,11 @@ public class Parser {
         for (int i = 0; i < lines.length; i++) {
             try {
                 Instruction inst = parseLine(lines[i]);
-                if (inst != null)  {
-                    insts.add(inst);
-                }
+                insts.add(inst);
+                System.out.println(inst.toBinary());
             } catch (Exception e)  {
-                System.out.println(String.format("Error parsing line %d", i));
-                System.out.println(lines[i]);
+                //System.out.println(String.format("Error parsing line %d", i));
+                //System.out.println(lines[i]);
                 System.out.println(e);
                 return null;
             }
