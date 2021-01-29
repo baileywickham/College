@@ -107,6 +107,8 @@ class IInstruction extends Instruction {
 
     @Override
     public String toBinary() {
+        // System.out.println(opName);
+        // System.out.println(immediate);
         return String.format("%s %s %s %s",
                 ops.get(opName), intToNBits(rsCode, 5),
                 intToNBits(rtCode, 5), intToNBits(immediate, 16));

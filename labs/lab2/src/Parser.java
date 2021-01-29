@@ -62,11 +62,19 @@ public class Parser {
 
     public ArrayList<Instruction> secondPass(String[] lines) {
         ArrayList<Instruction> insts = new ArrayList<>();
+        int valid = 0;
         for (int i = 0; i < lines.length; i++) {
             try {
-                Instruction inst = parseLine(lines[i]);
-                insts.add(inst);
-                System.out.println(inst.toBinary());
+                String line = lines[i];
+                if (!line.isBlank() ||  !line.isEmpty())
+                {
+                    valid += 1;
+                    // System.out.println(line);
+                    Instruction inst = parseLine(lines[i], valid);
+                    if (inst != null)  {
+                        insts.add(inst);
+                    }
+                }
             } catch (Exception e)  {
                 //System.out.println(String.format("Error parsing line %d", i));
                 //System.out.println(lines[i]);
@@ -77,7 +85,7 @@ public class Parser {
         return insts;
     }
 
-    public Instruction parseLine(String rawLine) throws Exception {
+    public Instruction parseLine(String rawLine, int i) throws Exception {
         //  and, or, add, addi, sll, sub, slt, beq, bne, lw, sw, j, jr, and jal.
         Pattern inst = Pattern.compile("^\\s*\\w+");
         String line = rawLine.trim();
@@ -99,7 +107,7 @@ public class Parser {
                 case "addi":
                 case "beq":
                 case "bne":
-                    return parseI(line);
+                    return parseI(line, i);
                 case "sw":
                 case "lw":
                     return parseStoreLoad(line);
@@ -175,7 +183,7 @@ public class Parser {
 
     }
 
-    public Instruction parseI(String line) throws Exception {
+    public Instruction parseI(String line, int i) throws Exception {
         if (Pattern.matches(
                 "\\s*\\w+\\s*\\$\\w+\\s*,\\s*\\$\\w+\\s*,\\s*-?\\w+\\s*",
                 line)) {
@@ -197,7 +205,13 @@ public class Parser {
             if (!labels.containsKey(splits[2].trim())) {
                 throw new InvalidLabel(splits[2].trim());
             }
-            return new IInstruction(inst, rt, regs.get(rt), rs, regs.get(rs), labels.get(immediate));
+            int imm = labels.get(immediate);
+            // System.out.println(imm);
+            
+            int newImmediate = i - imm - 1;
+            newImmediate =  ~newImmediate;// & 0xff;
+            // System.out.println(newImmediate);
+            return new IInstruction(inst, rt, regs.get(rt), rs, regs.get(rs), newImmediate);
         } else {
             throw new Exception("Invalid instruction");
         }
