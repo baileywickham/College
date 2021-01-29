@@ -1,4 +1,5 @@
 all: compile
+lab2: compile
 
 compile:
 	javac *.java
