@@ -54,10 +54,6 @@ public class Parser {
     }
     public void parseToBin(String path) {
         ArrayList<Instruction> insts = secondPass(firstPass(fileToString(path)));
-        for (Instruction i : insts) {
-            System.out.println(i.toBinary());
-        }
-
     }
 
     public ArrayList<Instruction> secondPass(String[] lines) {
@@ -71,9 +67,8 @@ public class Parser {
                     valid += 1;
                     // System.out.println(line);
                     Instruction inst = parseLine(lines[i], valid);
-                    if (inst != null)  {
-                        insts.add(inst);
-                    }
+                    System.out.println(inst.toBinary());
+                    insts.add(inst);
                 }
             } catch (Exception e)  {
                 //System.out.println(String.format("Error parsing line %d", i));

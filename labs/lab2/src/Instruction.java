@@ -36,7 +36,7 @@ class RInstruction extends Instruction {
     static {
         ops = new HashMap<>();
         ops.put("add", new instCode("000000", "100000"));
-        ops.put("sub", new instCode("000000", "101000"));
+        ops.put("sub", new instCode("000000", "100010"));
         ops.put("or", new instCode("000000", "100101"));
         ops.put("and", new instCode("000000", "100100"));
         ops.put("sll", new instCode("000000", "000000"));
