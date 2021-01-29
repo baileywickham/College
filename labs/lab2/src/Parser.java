@@ -70,9 +70,12 @@ public class Parser {
                     System.out.println(inst.toBinary());
                     insts.add(inst);
                 }
-            } catch (Exception e)  {
+            } catch (InvalidInstruction e)  {
                 //System.out.println(String.format("Error parsing line %d", i));
                 //System.out.println(lines[i]);
+                System.out.println(e.toString());
+                return null;
+            } catch (Exception e) {
                 System.out.println(e);
                 return null;
             }

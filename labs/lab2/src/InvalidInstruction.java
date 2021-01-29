@@ -1,5 +1,12 @@
 public class InvalidInstruction extends Exception {
+    String inst = "";
     public InvalidInstruction(String inst) {
-        super(String.format("invalid instruction: %s", inst));
+        super("invalid instruction: " + inst);
+        this.inst = inst;
+    }
+
+    @Override
+    public String toString() {
+        return "invalid instruction: " + inst;
     }
 }
