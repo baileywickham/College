@@ -3,20 +3,16 @@ import java.util.HashMap;
 abstract class Instruction {
     abstract String toBinary();
     public String intToNBits(int i, int n) {
-        boolean neg = false;
+        String ext = "0";
         if (i < 0) {
-            neg = true;
+            ext = "1";
         }
         String s = Integer.toBinaryString(i);
         if (s.length() > n) {
-            return s.substring(s.length()-n,s.length());
+            return s.substring(s.length()-n);
         }
         while (s.length() < n) {
-            if (neg) {
-                s = "1" + s;
-            } else {
-                s = "0" + s;
-            }
+            s = ext + s;
         }
         return s;
     }
