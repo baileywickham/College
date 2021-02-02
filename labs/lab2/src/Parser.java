@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -46,24 +45,11 @@ public class Parser {
         this.labels = new HashMap<>();
     }
 
-    public void parseToString(String path) {
-        ArrayList<Instruction> insts = secondPass(firstPass(Parser.fileToString(path)));
-        for (Instruction i : insts) {
-            System.out.println(i.toString());
-        }
-    }
-    public void parseToBin(String path) {
-        ArrayList<Instruction> insts = secondPass(firstPass(Parser.fileToString(path)));
-    }
-
     public ArrayList<Instruction> secondPass(ArrayList<String> lines) {
         ArrayList<Instruction> insts = new ArrayList<>();
         for (int i = 0; i < lines.size(); i++ ) {
             try {
-                // This accounts for having a line with a label removed.
-                // They could be removed from the array, but that would throw our offset off
                 Instruction inst = parseLine(lines.get(i), i);
-                System.out.println(inst.toBinary());
                 insts.add(inst);
             } catch (InvalidInstruction e) {
                 System.out.println(e.toString());
@@ -74,6 +60,25 @@ public class Parser {
             }
         }
         return insts;
+    }
+
+    public void parseOut(String path) {
+        parsetoBin(firstPass(fileToString(path)));
+    }
+
+    public void parsetoBin(ArrayList<String> lines) {
+        for (int i = 0; i < lines.size(); i++ ) {
+            try {
+                Instruction inst = parseLine(lines.get(i), i);
+                System.out.println(inst.toBinary());
+            } catch (InvalidInstruction e) {
+                System.out.println(e.toString());
+                return;
+            } catch (Exception e) {
+                System.out.println(e);
+                return;
+            }
+        }
     }
 
     public Instruction parseLine(String rawLine, int i) throws Exception {
