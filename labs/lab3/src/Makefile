@@ -15,7 +15,7 @@ test: compile
 	diff -w -B test4_parser.out test4_parser.expected
 
 clean:
-	rm *.out
-	rm *.class
+	rm -f *.out
+	rm -f *.class
 
 .PHONY: clean

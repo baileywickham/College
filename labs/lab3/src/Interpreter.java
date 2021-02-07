@@ -12,6 +12,64 @@ public class Interpreter {
         this.pc = 0;
     }
 
+    public void help() {
+        //todo
+    }
+    public void dumpRegs() {
+        //todo
+    }
+    public void incPC() {
+        if (pc < insts.size()) {
+            pc++;
+            execute(insts.get(pc));
+        }
+    }
+    public void step(int s) {
+        for (int i = 0; i < s; i++) {
+            incPC();
+        }
+    }
+
+    public void parseCmd(String[] args) {
+        switch (args[0]) {
+            case "h":
+                help();
+                break;
+            case "d":
+                dumpRegs();
+                break;
+            case "s":
+                if (args.length == 2) {
+                    step(Integer.parseInt(args[1]));
+                } else {
+                    step(1);
+                }
+                break;
+            case "r":
+                // hack
+                for (int i = 0; i < insts.size(); i++) {
+                    incPC();
+                }
+                break;
+            case "m":
+                for (int i = Integer.parseInt(args[1]); i < Integer.parseInt(args[2]); i++) {
+                    System.out.printf("[%d] = %d", i, memory[i]);
+                }
+                break;
+            case "c":
+                this.memory = new int[8192];
+                this.regs = new int[32];
+                break;
+            case "q":
+                // todo
+                return;
+            default:
+                // todo
+                System.out.println("Bad cmd");
+                break;
+        }
+    }
+
     public void execute(Instruction _inst) {
         switch (_inst.opName) {
             case "add": {
@@ -66,7 +124,7 @@ public class Interpreter {
                 IInstruction inst = (IInstruction) _inst;
                 regs[inst.rtCode] = memory[regs[inst.rsCode] + inst.immediate];
             }
-            // IInstruction
+           // IInstruction
            // case "addi":
            // case "beq":
            // case "bne":
