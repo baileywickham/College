@@ -1,6 +1,7 @@
 import java.util.HashMap;
 
 abstract class Instruction {
+    public String opName;
     abstract String toBinary();
     public String intToNBits(int i, int n) {
         String ext = "0";
@@ -39,7 +40,6 @@ class RInstruction extends Instruction {
         ops.put("slt", new instCode("000000", "101010"));
         ops.put("jr", new instCode("000000", "001000"));
     }
-    public String opName;
     public String rdName;
     public int rdCode;
     public String rsName;
@@ -78,7 +78,6 @@ class RInstruction extends Instruction {
 
 }
 class IInstruction extends Instruction {
-    public String opName;
     public String rs;
     public int rsCode;
     public String rt;
@@ -119,7 +118,6 @@ class IInstruction extends Instruction {
     }
 }
 class JInstruction extends Instruction {
-    public String opName;
     public int address;
     public String name;
     public static HashMap<String, String> ops;

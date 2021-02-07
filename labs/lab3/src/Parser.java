@@ -3,7 +3,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.*;
-import java.util.regex.*;
 
 
 public class Parser {
