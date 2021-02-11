@@ -186,17 +186,17 @@ public class Parser {
             String[] splits = line.split("\\$", 2);
             String inst = splits[0].trim();
             splits = splits[1].split(",");
-            String rt = "$" + splits[0].trim();
-            if (!regs.containsKey(rt)) {
-                throw new InvalidRegister(rt);
-            }
-            String rs = splits[1].trim();
+            String rs = "$" + splits[0].trim();
             if (!regs.containsKey(rs)) {
                 throw new InvalidRegister(rs);
             }
+            String rt = splits[1].trim();
+            if (!regs.containsKey(rt)) {
+                throw new InvalidRegister(rt);
+            }
             String immediate = splits[2].trim();
             if (inst.equals("addi")) {
-                return new IInstruction(inst, rs, regs.get(rs), rt, regs.get(rt), Integer.parseInt(immediate));
+                return new IInstruction(inst, rt, regs.get(rt), rs, regs.get(rs), Integer.parseInt(immediate));
             }
             if (!labels.containsKey(splits[2].trim())) {
                 throw new InvalidLabel(splits[2].trim());
@@ -204,7 +204,7 @@ public class Parser {
             int imm = labels.get(immediate);
 
             int newImmediate = imm - (i + 1);
-            return new IInstruction(inst, rs, regs.get(rs), rt, regs.get(rt), newImmediate);
+            return new IInstruction(inst, rt, regs.get(rt), rs, regs.get(rs), newImmediate);
         } else {
             throw new Exception("Invalid instruction");
         }
