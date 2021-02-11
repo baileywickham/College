@@ -46,38 +46,41 @@ public class Interpreter {
     }
 
     public void parseCmd(String[] args) {
-        switch (args[0]) {
-            case "h":
+        char cmd = args[0].charAt(0);
+        switch (cmd) {
+            case 'h':
                 help();
                 break;
-            case "d":
+            case 'd':
                 dumpRegs();
                 break;
-            case "s":
+            case 's':
                 if (args.length == 2) {
-                    step(Integer.parseInt(args[1]));
+                    String s = args[1].replaceAll("\\D+","");
+                    Integer numSteps = Integer.parseInt(s);
+                    step(numSteps);
                 } else {
                     step(1);
                 }
                 break;
-            case "r":
+            case 'r':
                 // hack
                 while (pc < insts.size()) {
                     incPC();
                 }
                 break;
-            case "m":
+            case 'm':
                 System.out.println();
                 for (int i = Integer.parseInt(args[1]); i < Integer.parseInt(args[2]); i++) {
                     System.out.printf("[%d] = %d\n", i, memory[i]);
                 }
                 break;
-            case "c":
+            case 'c':
                 System.out.println("\tSimulator reset\n");
                 this.memory = new int[8192];
                 this.regs = new int[32];
                 break;
-            case "q":
+            case 'q':
                 return;
             default:
                 System.out.println("Bad cmd");
@@ -120,6 +123,7 @@ public class Interpreter {
             case "jr": {
                 RInstruction inst = (RInstruction) _inst;
                 this.pc = regs[inst.rsCode];
+                this.pc -= 1;
                 break;
             }
             case "addi": {
@@ -131,6 +135,7 @@ public class Interpreter {
                 IInstruction inst = (IInstruction) _inst;
                 if (regs[inst.rsCode] == regs[inst.rtCode]) {
                     this.pc = pc + inst.immediate;
+                    this.pc -= 1;
                 }
                 break;
             }
@@ -138,6 +143,7 @@ public class Interpreter {
                 IInstruction inst = (IInstruction) _inst;
                 if (regs[inst.rsCode] != regs[inst.rtCode]) {
                     this.pc = pc + inst.immediate;
+                    this.pc -= 1;
                 }
                 break;
             }
@@ -154,12 +160,16 @@ public class Interpreter {
             case "j": {
                 JInstruction inst = (JInstruction) _inst;
                 pc = inst.address;
+                this.pc -= 1;
+                break;
             }
             case "jal": {
                 JInstruction inst = (JInstruction) _inst;
                 // may not be +1
                 regs[31] = pc + 1;
                 pc = inst.address;
+                this.pc -= 1;
+                break;
             }
             default: {
                 System.out.println("bad cmd");
