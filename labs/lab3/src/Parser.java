@@ -196,7 +196,7 @@ public class Parser {
             }
             String immediate = splits[2].trim();
             if (inst.equals("addi")) {
-                return new IInstruction(inst, rt, regs.get(rt), rs, regs.get(rs), Integer.parseInt(immediate));
+                return new IInstruction(inst, rs, regs.get(rs), rt, regs.get(rt), Integer.parseInt(immediate));
             }
             if (!labels.containsKey(splits[2].trim())) {
                 throw new InvalidLabel(splits[2].trim());
@@ -204,7 +204,7 @@ public class Parser {
             int imm = labels.get(immediate);
 
             int newImmediate = imm - (i + 1);
-            return new IInstruction(inst, rt, regs.get(rt), rs, regs.get(rs), newImmediate);
+            return new IInstruction(inst, rs, regs.get(rs), rt, regs.get(rt), newImmediate);
         } else {
             throw new Exception("Invalid instruction");
         }
