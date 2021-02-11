@@ -94,7 +94,7 @@ class IInstruction extends Instruction {
         ops.put("sw", "101011");
     }
 
-    public IInstruction(String opName, String rs, int rsCode, String rt, int rtCode, int immediate) {
+    public IInstruction(String opName, String rt, int rtCode, String rs, int rsCode, int immediate) {
         this.opName = opName;
         this.rs = rs;
         this.rsCode = rsCode;
