@@ -62,7 +62,7 @@ public class Interpreter {
                 break;
             case "r":
                 // hack
-                for (int i = 0; i < insts.size(); i++) {
+                while (pc < insts.size()) {
                     incPC();
                 }
                 break;
@@ -130,14 +130,14 @@ public class Interpreter {
             case "beq": {
                 IInstruction inst = (IInstruction) _inst;
                 if (regs[inst.rsCode] == regs[inst.rtCode]) {
-                    this.pc = pc + inst.immediate + 1;
+                    this.pc = pc + inst.immediate;
                 }
                 break;
             }
             case "bne": {
                 IInstruction inst = (IInstruction) _inst;
                 if (regs[inst.rsCode] != regs[inst.rtCode]) {
-                    this.pc = pc + inst.immediate + 1;
+                    this.pc = pc + inst.immediate;
                 }
                 break;
             }
@@ -150,6 +150,19 @@ public class Interpreter {
                 IInstruction inst = (IInstruction) _inst;
                 regs[inst.rtCode] = memory[regs[inst.rsCode] + inst.immediate];
                 break;
+            }
+            case "j": {
+                JInstruction inst = (JInstruction) _inst;
+                pc = inst.address;
+            }
+            case "jal": {
+                JInstruction inst = (JInstruction) _inst;
+                // may not be +1
+                regs[31] = pc + 1;
+                pc = inst.address;
+            }
+            default: {
+                System.out.println("bad cmd");
             }
            // IInstruction
            // case "addi":
