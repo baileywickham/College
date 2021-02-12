@@ -16,6 +16,6 @@
 	java lab3 lab3_fib.asm lab3_fib.script > lab3_fib.asm.out
 	diff -w -B lab3_fib.asm.out lab3_fib.expected
     echo "Passed Test2"
-	#java lab3 lab3_test3.asm lab3_test3.script > lab3_test3.asm.out
-	#diff -w -B lab3_test3.asm.out lab3_test3.expected
-    #echo "Passed Test3"
+	java lab3 lab3_test3.asm lab3_test3.script > lab3_test3.asm.out
+	diff -w -B lab3_test3.asm.out lab3_test3.expected
+    echo "Passed Test3"

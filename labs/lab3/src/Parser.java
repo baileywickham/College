@@ -204,7 +204,7 @@ public class Parser {
             int imm = labels.get(immediate);
 
             int newImmediate = imm - (i + 1);
-            // flip registers on branches idk why
+            // flip registers on branches 
             return new IInstruction(inst, rs, regs.get(rs), rt, regs.get(rt), newImmediate);
         } else {
             throw new Exception("Invalid instruction");
