@@ -174,15 +174,6 @@ public class Interpreter {
             default: {
                 System.out.println("bad cmd");
             }
-           // IInstruction
-           // case "addi":
-           // case "beq":
-           // case "bne":
-           //     return parseI(line, i);
-           // case "sw":
-           // case "lw":
-           //     return parseStoreLoad(line);
-
         }
 
     }
