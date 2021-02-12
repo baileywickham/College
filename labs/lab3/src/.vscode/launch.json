@@ -23,7 +23,8 @@
             "request": "launch",
             "mainClass": "lab3",
             "projectName": "src_51794991",
-            "args": ["sum_10.asm", "sum_10.script"]
+            // "args": ["sum_10.asm", "sum_10.script"]
+            "args": ["lab3_fib.asm", "lab3_fib.script"]
         }
     ]
 }

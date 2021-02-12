@@ -96,16 +96,16 @@ class IInstruction extends Instruction {
 
     public IInstruction(String opName, String rt, int rtCode, String rs, int rsCode, int immediate) {
         this.opName = opName;
-        this.rs = rs;
-        this.rsCode = rsCode;
         this.rt = rt;
         this.rtCode = rtCode;
+        this.rs = rs;
+        this.rsCode = rsCode;
         this.immediate = immediate;
     }
 
     @Override
     public String toString() {
-        return String.format("%s %s %s immediate: %s", opName, rs, rt, immediate);
+        return String.format("%s rs: %s rt: %s immediate: %s", opName, rs, rt, immediate);
     }
 
     @Override

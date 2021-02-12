@@ -129,9 +129,9 @@ public class Parser {
             String[] splits = line.split("\\$", 2);
             String opName = splits[0].trim();
             splits = splits[1].split(",");
-            String rd = "$" + splits[0].trim();
-            if (!regs.containsKey(rd)) {
-                throw new InvalidRegister(rd);
+            String rt = "$" + splits[0].trim();
+            if (!regs.containsKey(rt)) {
+                throw new InvalidRegister(rt);
             }
             if (splits[1].contains("(") && splits[1].contains(")")) {
                 offset = Integer.parseInt(splits[1].substring(0, splits[1].indexOf("(")).trim());
@@ -143,7 +143,7 @@ public class Parser {
             if (!regs.containsKey(rs)) {
                 throw new InvalidRegister(rs);
             }
-            return new IInstruction(opName, rd, regs.get(rd), rs, regs.get(rs), offset);
+            return new IInstruction(opName, rt, regs.get(rt), rs, regs.get(rs), offset);
         } else {
             throw new Exception("Invalid w instructions");
         }
@@ -186,13 +186,13 @@ public class Parser {
             String[] splits = line.split("\\$", 2);
             String inst = splits[0].trim();
             splits = splits[1].split(",");
-            String rs = "$" + splits[0].trim();
-            if (!regs.containsKey(rs)) {
-                throw new InvalidRegister(rs);
-            }
-            String rt = splits[1].trim();
+            String rt = "$" + splits[0].trim();
             if (!regs.containsKey(rt)) {
                 throw new InvalidRegister(rt);
+            }
+            String rs = splits[1].trim();
+            if (!regs.containsKey(rs)) {
+                throw new InvalidRegister(rs);
             }
             String immediate = splits[2].trim();
             if (inst.equals("addi")) {
@@ -204,7 +204,8 @@ public class Parser {
             int imm = labels.get(immediate);
 
             int newImmediate = imm - (i + 1);
-            return new IInstruction(inst, rt, regs.get(rt), rs, regs.get(rs), newImmediate);
+            // flip registers on branches idk why
+            return new IInstruction(inst, rs, regs.get(rs), rt, regs.get(rt), newImmediate);
         } else {
             throw new Exception("Invalid instruction");
         }
