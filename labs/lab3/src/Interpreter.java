@@ -135,7 +135,7 @@ public class Interpreter {
                 IInstruction inst = (IInstruction) _inst;
                 if (regs[inst.rsCode] == regs[inst.rtCode]) {
                     this.pc = pc + inst.immediate;
-                    this.pc -= 1;
+                    // this.pc -= 1;
                 }
                 break;
             }
@@ -143,7 +143,7 @@ public class Interpreter {
                 IInstruction inst = (IInstruction) _inst;
                 if (regs[inst.rsCode] != regs[inst.rtCode]) {
                     this.pc = pc + inst.immediate;
-                    this.pc -= 1;
+                    // this.pc -= 1;
                 }
                 break;
             }
