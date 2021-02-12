@@ -71,7 +71,9 @@ public class Interpreter {
                 break;
             case 'm':
                 System.out.println();
-                for (int i = Integer.parseInt(args[1]); i < Integer.parseInt(args[2]); i++) {
+                String args1 = args[1].replaceAll("\\D+","");
+                String args2 = args[2].replaceAll("\\D+","");
+                for (int i = Integer.parseInt(args1); i < Integer.parseInt(args2) + 1; i++) {
                     System.out.printf("[%d] = %d\n", i, memory[i]);
                 }
                 break;
