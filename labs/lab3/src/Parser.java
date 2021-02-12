@@ -143,7 +143,7 @@ public class Parser {
             if (!regs.containsKey(rs)) {
                 throw new InvalidRegister(rs);
             }
-            return new IInstruction(opName, rs, regs.get(rs), rd, regs.get(rd), offset);
+            return new IInstruction(opName, rd, regs.get(rd), rs, regs.get(rs), offset);
         } else {
             throw new Exception("Invalid w instructions");
         }
