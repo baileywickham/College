@@ -27,4 +27,4 @@ jobs:
       - name: Run lab2 tests
         run: cd labs/lab2/src && make test
       - name: Run lab3 tests
-        run: cd ../../lab3/src && make test
+        run: cd $HOME && cd labs/lab3/src && make test
