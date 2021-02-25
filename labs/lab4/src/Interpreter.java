@@ -6,17 +6,17 @@ public class Interpreter {
     int[] regs = new int[32];
     String if_id = "empty", id_exe = "empty", exe_mem = "empty", mem_wb = "empty";
     int pc;
-    int stall;
-    int squash;
     int instructions;
     int cycles;
+    boolean jump = false;
+    boolean br_taken = false;
+    boolean ld_used = false;
+
 
     public Interpreter(String path) {
         Parser p = new Parser();
         this.insts = p.parse(path);
         this.pc = 0;
-        this.stall = 0;
-        this.squash = 0;
         this.instructions = 0;
         this.cycles = 0;
     }
@@ -54,37 +54,15 @@ public class Interpreter {
         }
     }
 
-    public void step(int s) {
+    public void stepCycle(int s) {
+        cycles++;
 
     }
 
     public void stepPipeline() {
-        if (if_id.equals("jal")  || if_id.equals("jr") || if_id.equals("j")) {
-            id_exe = if_id;
-            if_id = "stall";
-        }
-
-        if (stall) {
-            mem_wb = exe_mem;
-            exe_mem = "stall";
-            id_exe = "stall";
-            if_id = "stall";
-        }
-        if (stall > 0) {
-            stall--;
-            if (id_exe != "stall") {
-                mem_wb = exe_mem;
-                exe_mem = id_exe;
-                id_exe = "stall";
-            }
-        } else if (squash > 0) {
-
-        } else {
-            incPC();
-            mem_wb = exe_mem;
-            exe_mem = id_exe;
-            id_exe = if_id;
-        }
+        mem_wb = exe_mem;
+        exe_mem = id_exe;
+        id_exe = if_id;
     }
 
     public void parseCmd(String[] args) {
