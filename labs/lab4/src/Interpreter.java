@@ -4,6 +4,7 @@ public class Interpreter {
     ArrayList<Instruction> insts;
     int[] memory = new int[8192];
     int[] regs = new int[32];
+    String if_id = "empty", id_exe = "empty", exe_mem = "empty", mem_wb = "empty";
     int pc;
 
     public Interpreter(String path) {
@@ -48,6 +49,10 @@ public class Interpreter {
     public void parseCmd(String[] args) {
         char cmd = args[0].charAt(0);
         switch (cmd) {
+            case 'p':
+                System.out.println("pc if/id id/exe exe/mem mem/wb\n");
+                System.out.printf("%d   %s   %s     %s    %s", pc, if_id, id_exe, exe_mem, mem_wb);
+                break;
             case 'h':
                 help();
                 break;
@@ -81,6 +86,10 @@ public class Interpreter {
                 System.out.println("\tSimulator reset\n");
                 this.memory = new int[8192];
                 this.regs = new int[32];
+                if_id = "empty";
+                id_exe = "empty";
+                exe_mem = "empty";
+                mem_wb = "empty";
                 break;
             case 'q':
                 return;
