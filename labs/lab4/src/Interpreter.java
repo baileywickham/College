@@ -49,25 +49,40 @@ public class Interpreter {
     }
     public void incPC() {
         if (pc < insts.size()) {
-            
             execute(insts.get(pc));
             pc++;
         }
     }
-    public void checkHazard(String insName){
-        if (control.contains(insName))
-        {
-            System.out.println("CONTROL HAZARD");
+
+    public void stepInst(int s) {
+        if (ld_used) {
+            ld_used = false;
+            mem_wb = exe_mem;
+            exe_mem = id_exe;
+            id_exe = "stall";
+            // not sure here
+            return;
         }
 
-    }
-    public void stepInst(int s) {
-        String insName = insts.get(pc).opName;
-        if (labNum == 3){
+        if (jump) {
+            jump = false;
+            mem_wb = exe_mem;
+            exe_mem = id_exe;
+            id_exe = if_id;
+            if_id = "squash";
+        }
+        if (br_taken) {
+            mem_wb = exe_mem;
+            exe_mem = "squash";
+            id_exe = "squash";
+            if_id = "squash";
+        }
+        Instruction inst = insts.get(pc);
+
+        if (labNum == 3) {
             System.out.printf("\t%d instruction(s) executed\n", s);
         }
         if (labNum == 4){
-            checkHazard(insName);
             mem_wb = exe_mem;
             exe_mem = id_exe;
             id_exe = if_id;
@@ -111,7 +126,7 @@ public class Interpreter {
             case 's':
                 if (args.length == 2) {
                     String s = args[1].replaceAll("\\D+","");
-                    Integer numSteps = Integer.parseInt(s);
+                    int numSteps = Integer.parseInt(s);
                     stepInst(numSteps);
                 } else {
                     stepInst(1);
@@ -181,6 +196,7 @@ public class Interpreter {
                 break;
             }
             case "jr": {
+                jump = true;
                 RInstruction inst = (RInstruction) _inst;
                 this.pc = regs[inst.rsCode];
                 this.pc -= 1;
@@ -194,6 +210,7 @@ public class Interpreter {
             case "beq": {
                 IInstruction inst = (IInstruction) _inst;
                 if (regs[inst.rsCode] == regs[inst.rtCode]) {
+                    br_taken = true;
                     this.pc = pc + inst.immediate;
                     // this.pc -= 1;
                 }
@@ -202,6 +219,7 @@ public class Interpreter {
             case "bne": {
                 IInstruction inst = (IInstruction) _inst;
                 if (regs[inst.rsCode] != regs[inst.rtCode]) {
+                    br_taken = true;
                     this.pc = pc + inst.immediate;
                     // this.pc -= 1;
                 }
@@ -218,12 +236,14 @@ public class Interpreter {
                 break;
             }
             case "j": {
+                jump = true;
                 JInstruction inst = (JInstruction) _inst;
                 pc = inst.address;
                 this.pc -= 1;
                 break;
             }
             case "jal": {
+                jump = true;
                 JInstruction inst = (JInstruction) _inst;
                 // may not be +1
                 regs[31] = pc + 1;
