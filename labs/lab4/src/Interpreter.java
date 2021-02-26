@@ -11,6 +11,7 @@ public class Interpreter {
     boolean jump = false;
     boolean br_taken = false;
     boolean ld_used = false;
+    int labNum = 0;
 
 
     public Interpreter(String path) {
@@ -48,16 +49,23 @@ public class Interpreter {
             pc++;
         }
     }
+    public void checkControl(){
+
+    }
     public void stepInst(int s) {
-        // System.out.printf("\t%d instruction(s) executed\n", s);
+        if (labNum == 3){
+            System.out.printf("\t%d instruction(s) executed\n", s);
+        }
+        if (labNum == 4){
+            mem_wb = exe_mem;
+            exe_mem = id_exe;
+            id_exe = if_id;
+            if_id = insts.get(pc).opName;
+            printPipeline();
+        }
         for (int i = 0; i < s; i++) {
             incPC();
         }
-        mem_wb = exe_mem;
-        exe_mem = id_exe;
-        id_exe = if_id;
-        if_id = insts.get(pc - 1).opName;
-        printPipeline();
     }
 
     public void stepCycle(int s) {
