@@ -168,7 +168,7 @@ public class Interpreter {
     }
 
     public void parseCmd(String[] args) {
-        char cmd = args[0].charAt(0);
+        char cmd = args[0].trim().charAt(0);
         switch (cmd) {
             case 'p':
                 printPipeline();
@@ -335,14 +335,15 @@ public class Interpreter {
         String nextS = insts.get(pc + 1).opName;
         if (Rins.contains(nextS)){
             RInstruction nextInst = (RInstruction) insts.get(pc + 1);
-            if (nextInst.rsCode  == inst.rtCode || nextInst.rtCode  == inst.rtCode){
+            if ((inst.rtCode != 0 && nextInst.rsCode  == inst.rtCode) || (nextInst.rtCode != 0 && nextInst.rtCode  == inst.rtCode)) {
                 // idk what jr has in rt
+
                 ld_wait = true;
             }
         }
         if (Iins.contains(nextS)){
             IInstruction nextInst = (IInstruction) insts.get(pc + 1);
-            if (nextInst.rsCode  == inst.rtCode){
+            if (nextInst.rsCode  == inst.rtCode && nextInst.rsCode != 0){
                 ld_wait = true;
             }
         }

@@ -1,0 +1,188 @@
+mips> s
+
+pc if/id id/exe exe/mem mem/wb
+1   lw  empty  empty  empty
+
+mips> s
+
+pc if/id id/exe exe/mem mem/wb
+2   add  lw  empty  empty
+
+mips> s
+
+pc if/id id/exe exe/mem mem/wb
+2   add  stall  lw  empty
+
+mips> s
+
+pc if/id id/exe exe/mem mem/wb
+3   lw  add  stall  lw
+
+mips> s
+
+pc if/id id/exe exe/mem mem/wb
+4   add  lw  add  stall
+
+mips> s
+
+pc if/id id/exe exe/mem mem/wb
+4   add  stall  lw  add
+
+mips> s
+
+pc if/id id/exe exe/mem mem/wb
+5   lw  add  stall  lw
+
+mips> s
+
+pc if/id id/exe exe/mem mem/wb
+6   add  lw  add  stall
+
+mips> s
+
+pc if/id id/exe exe/mem mem/wb
+7   lw  add  lw  add
+
+mips> s
+
+pc if/id id/exe exe/mem mem/wb
+8   sub  lw  add  lw
+
+mips> s
+
+pc if/id id/exe exe/mem mem/wb
+8   sub  stall  lw  add
+
+mips> s
+
+pc if/id id/exe exe/mem mem/wb
+9   lw  sub  stall  lw
+
+mips> s
+
+pc if/id id/exe exe/mem mem/wb
+10   sub  lw  sub  stall
+
+mips> r
+
+pc if/id id/exe exe/mem mem/wb
+10   sub  stall  lw  sub
+
+
+pc if/id id/exe exe/mem mem/wb
+11   lw  sub  stall  lw
+
+
+pc if/id id/exe exe/mem mem/wb
+12   sub  lw  sub  stall
+
+
+pc if/id id/exe exe/mem mem/wb
+13   lw  sub  lw  sub
+
+
+pc if/id id/exe exe/mem mem/wb
+14   slt  lw  sub  lw
+
+
+pc if/id id/exe exe/mem mem/wb
+14   slt  stall  lw  sub
+
+
+pc if/id id/exe exe/mem mem/wb
+15   lw  slt  stall  lw
+
+
+pc if/id id/exe exe/mem mem/wb
+16   slt  lw  slt  stall
+
+
+pc if/id id/exe exe/mem mem/wb
+16   slt  stall  lw  slt
+
+
+pc if/id id/exe exe/mem mem/wb
+17   lw  slt  stall  lw
+
+
+pc if/id id/exe exe/mem mem/wb
+18   slt  lw  slt  stall
+
+
+pc if/id id/exe exe/mem mem/wb
+19   lw  slt  lw  slt
+
+
+pc if/id id/exe exe/mem mem/wb
+20   addi  lw  slt  lw
+
+
+pc if/id id/exe exe/mem mem/wb
+21   lw  addi  lw  slt
+
+
+pc if/id id/exe exe/mem mem/wb
+22   addi  lw  addi  lw
+
+
+pc if/id id/exe exe/mem mem/wb
+22   addi  stall  lw  addi
+
+
+pc if/id id/exe exe/mem mem/wb
+23   lw  addi  stall  lw
+
+
+pc if/id id/exe exe/mem mem/wb
+24   addi  lw  addi  stall
+
+
+pc if/id id/exe exe/mem mem/wb
+25   lw  addi  lw  addi
+
+
+pc if/id id/exe exe/mem mem/wb
+26   lw  lw  addi  lw
+
+
+pc if/id id/exe exe/mem mem/wb
+27   lw  lw  lw  addi
+
+
+pc if/id id/exe exe/mem mem/wb
+28   lw  lw  lw  lw
+
+
+pc if/id id/exe exe/mem mem/wb
+28   lw  stall  lw  lw
+
+
+pc if/id id/exe exe/mem mem/wb
+29   lw  lw  stall  lw
+
+
+pc if/id id/exe exe/mem mem/wb
+30   add  lw  lw  stall
+
+
+pc if/id id/exe exe/mem mem/wb
+30   add  stall  lw  lw
+
+
+pc if/id id/exe exe/mem mem/wb
+30   empty  add  stall  lw
+
+
+pc if/id id/exe exe/mem mem/wb
+30   empty  empty  add  stall
+
+
+pc if/id id/exe exe/mem mem/wb
+30   empty  empty  empty  add
+
+
+pc if/id id/exe exe/mem mem/wb
+30   empty  empty  empty  empty
+
+CPI = 1.400 Cycles = 42 Instructions = 30
+mips> q
