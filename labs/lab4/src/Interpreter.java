@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Interpreter {
     ArrayList<Instruction> insts;
@@ -12,6 +15,8 @@ public class Interpreter {
     boolean br_taken = false;
     boolean ld_used = false;
     int labNum = 0;
+    final Set<String> control = new HashSet<String>(
+       Arrays.asList("beq", "bne", "j", "jal", "jr"));
 
 
     public Interpreter(String path) {
@@ -49,18 +54,24 @@ public class Interpreter {
             pc++;
         }
     }
-    public void checkControl(){
+    public void checkHazard(String insName){
+        if (control.contains(insName))
+        {
+            System.out.println("CONTROL HAZARD");
+        }
 
     }
     public void stepInst(int s) {
+        String insName = insts.get(pc).opName;
         if (labNum == 3){
             System.out.printf("\t%d instruction(s) executed\n", s);
         }
         if (labNum == 4){
+            checkHazard(insName);
             mem_wb = exe_mem;
             exe_mem = id_exe;
             id_exe = if_id;
-            if_id = insts.get(pc).opName;
+            if_id = insName;
             printPipeline();
         }
         for (int i = 0; i < s; i++) {
