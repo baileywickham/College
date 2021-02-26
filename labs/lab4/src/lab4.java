@@ -4,7 +4,6 @@ import java.util.Scanner;
 public class lab4 {
     public static void main(String[] args) {
         Interpreter i = new Interpreter(args[0]);
-        i.labNum = 4;
         if (args.length == 2) {
             String[] lines = Parser.fileToString(args[1]).split("\n");
             for (String line : lines) {
