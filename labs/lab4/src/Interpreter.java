@@ -43,15 +43,21 @@ public class Interpreter {
     }
     public void incPC() {
         if (pc < insts.size()) {
+            
             execute(insts.get(pc));
             pc++;
         }
     }
     public void stepInst(int s) {
-        System.out.printf("\t%d instruction(s) executed\n", s);
+        // System.out.printf("\t%d instruction(s) executed\n", s);
         for (int i = 0; i < s; i++) {
             incPC();
         }
+        mem_wb = exe_mem;
+        exe_mem = id_exe;
+        id_exe = if_id;
+        if_id = insts.get(pc - 1).opName;
+        printPipeline();
     }
 
     public void stepCycle(int s) {
@@ -64,13 +70,18 @@ public class Interpreter {
         exe_mem = id_exe;
         id_exe = if_id;
     }
+    public void printPipeline(){
+        System.out.println();
+        System.out.println("pc if/id id/exe exe/mem mem/wb");
+        System.out.printf("%d   %s  %s  %s  %s\n", pc, if_id, id_exe, exe_mem, mem_wb);
+        System.out.println();
+    }
 
     public void parseCmd(String[] args) {
         char cmd = args[0].charAt(0);
         switch (cmd) {
             case 'p':
-                System.out.println("pc if/id id/exe exe/mem mem/wb\n");
-                System.out.printf("%d   %s   %s     %s    %s", pc, if_id, id_exe, exe_mem, mem_wb);
+                printPipeline();
                 break;
             case 'h':
                 help();
@@ -82,9 +93,9 @@ public class Interpreter {
                 if (args.length == 2) {
                     String s = args[1].replaceAll("\\D+","");
                     Integer numSteps = Integer.parseInt(s);
-                    step(numSteps);
+                    stepInst(numSteps);
                 } else {
-                    step(1);
+                    stepInst(1);
                 }
                 break;
             case 'r':
