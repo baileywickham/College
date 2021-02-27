@@ -26,5 +26,14 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run lab2 tests
         run: cd labs/lab2/src && make test
+        
       - name: Run lab3 tests
         run: cd $GITHUB_WORKSPACE && cd labs/lab3/src && make test
+        
+      - name: Run lab4 tests
+        run: cd $GITHUB_WORKSPACE && cd labs/lab4/src && make test
+
+        
+        
+        
+        
