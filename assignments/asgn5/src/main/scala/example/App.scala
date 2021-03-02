@@ -39,16 +39,17 @@ object App {
    val gpa: Map[Char, Int] = Map('A' -> 4, 'B' -> 3, 'C' -> 2, 'D' -> 1, 'F' -> 0)
     Logger.getLogger("org").setLevel(Level.OFF)
     Logger.getLogger("akka").setLevel(Level.OFF)
-    val conf = new SparkConf().setAppName("example").setMaster("local[4]")
+    val conf = new SparkConf().setAppName("example").setMaster("local")
     val sc = new SparkContext(conf)
    sc.textFile("grades")
-     // Splits string into lists
-      .map(_.split(",", 3)(2).trim().split(", ")
-        .map(_.split(" ")(0))).collect()
-     // Counts GPA and number of classes using aggregate
-      .map(x => x.aggregate((0,0))((x,y)=>(x._1 + gpa.getOrElse(y.charAt(0), 0), x._2 + 1),
-        (x,y) => (x._1 + y._1, x._2 + y._2)))
-     .foreach(x => println(x._1.toFloat/x._2.toFloat))
+     // Splits into tuple, then strips class information
+      .map(x => (x.split(",", 3)(0), x.split(",", 3)(1),
+        x.split(",", 3)(2).trim().split(", ")
+        .map(_.split(" ")(0))))
+     // calculates gpa
+     .map(x => (x._1, x._2, x._3.aggregate((0,0))((x,y)=>(x._1 + gpa.getOrElse(y.charAt(0), 0), x._2 + 1),
+      (x,y) => (x._1 + y._1, x._2 + y._2))))
+     .foreach(x => println(x._1 + ", " + x._2 + ", " + x._3._1.toFloat / x._3._2.toFloat))
  }
 }
 
