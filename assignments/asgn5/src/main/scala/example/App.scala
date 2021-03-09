@@ -41,7 +41,7 @@ object App {
     Logger.getLogger("akka").setLevel(Level.OFF)
     val conf = new SparkConf().setAppName("example").setMaster("local")
     val sc = new SparkContext(conf)
-   sc.textFile("grades")
+    sc.textFile("grades")
      // Splits into tuple, then strips class information
       .map(x => (x.split(",", 3)(0), x.split(",", 3)(1),
         x.split(",", 3)(2).trim().split(", ")
