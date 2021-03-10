@@ -1,0 +1,194 @@
+Hehe. Looks like SBCL has the edge in numerics [on the shootout](http://shootout.alioth.debian.org/gp4/benchmark.php?test=all&amp;lang=ghc&amp;lang2=sbcl) but otherwise its a bit of a wash ('cept the memory overhead of SBCL programs...). 
+
+Hmm, we really should submit some ByteString-based entries.For having so many people that love xkcd and having such an interesting comment thread for todays cartoon, I actually want an up arrow for reddit as a whole.&gt; There's ABSOLUTELY NO WTF whatsoever with that code.
+
+You mean, besides really not doing anything useful?[deleted]Weird... I would have imagined they'd compile to the same thing, but they don't. const char* indeed involves an extra variable (pointer) and a relocation.
+
+Noted.I think it is fair to say that the key problem with concurrent programming is managing state. And "prominent" libraries might not have big thread-safety issues but that's because they are debugged on the way to becoming prominent. I would not feel at all comfortable picking up a random module that someone on my team created for use in a threaded situation. I'd need to do an audit. The posters point is that the Haskell compiler can greatly simplify those audits for you.You're misreading the spec.  It's saying that the *host* portion of a URL can either be a FQDN *or* an IP address in dotted quad notation.  It is *not* saying that FQDNs and IP addresses are the same thing or that they match each other, but merely that you can use either in the *host* portion of URLs.
+So, basically... `$index = $selected`
+
+Edit: My bad. An input of 5 wouldn't produce the required value of 0.Most "PHB"s don't even know what bug-tracking software is. I've never used Fogbugz, but if it saves just a few developer hours per installation, then it pays for itself, and is worth it. If it manages to solve even one customer problem per installation, then it is worth it. "PHB"s and even some developers are aware of such things as "ROI".
+
+"making the Right Thing happen"
+
+I suppose the right thing involves installing bugzilla, which is a monstrous piece of garbage if there ever was one.Well Google obviously had a tough time after launching a free search engine.No. I mean this: in Python, you can do `some_var = some_obj.methodname`, and `some_var` will contain a reference to the method. In Ruby `some_var` will contain the _return value_ of the method, because referring to it by name calls it. You have to do a little bit more work to actually get the method itself.It says that network hosts have FQDN and they have IP addresses. You can use either to map to that particular host. If it meant what you say, it would read:
+
+&gt;Host: The fully qualified domain name of a network host, or **an** IP address as a set of four decimal digit groups separated by ".".[deleted][deleted]Common sense advises against commenting this deep in this silly thread, but...
+
+"exp pi - pi" *is* the original algorithm.  e^pi is spelled "exp pi", not "let e = exp 1 in e ** pi".&gt; It says that network hosts have FQDN and they have IP addresses.
+
+But it doesn't say that FQDN and IP addresses are equivalent.  It is saying that you can use either in the *host* part of URLs.
+
+&gt; You can use either to map to that particular host.
+
+But that doesn't mean that they refer to the same resources.
+
+If example.com and example.org both point to 10.0.0.1, then you can write these three URLs down:
+
+* http://example.com/
+* http://example.org/
+* http://10.0.0.1/
+
+All of these are different URLs.  The fact that you may be talking to the same server is irrelevant.  And if a library function says that these are equivalent URLs, then it is **broken**.
+
+Edit:
+
+For a more apt example, reddit.com and programming.reddit.com both resolve to 72.5.28.218.  Now try these three URLs and tell me that they are the same:
+
+* http://reddit.com/
+* http://programming.reddit.com/
+* http://72.5.28.218/
+&gt; it's not idempotent because it's not the same as just calling it once
+
+Sounds exactly like what we're talking about to me.
+
+The broken comparison function that resolves the hostname returns different results if you call it repeatedly (or at least it can do).
+
+A proper comparison function would return the same thing each time no matter how many times you call it.  Calling it more than once doesn't have any effect beyond calling it once &amp;mdash; unless you count the wasted cycles, in which case nothing a computer does could ever be idempotent.
+I compiled 4 different flavors of this function with optimizations:
+
+The article's questionable code produces:
+
+00401000  push        ebp  
+
+00401001  mov         ebp,esp 
+
+00401003  sub         esp,8 
+
+00401006  mov         dword ptr [ebp-4],0 
+
+0040100D  mov         eax,dword ptr [ebp+8] 
+
+00401010  mov         dword ptr [ebp-8],eax 
+
+00401013  cmp         dword ptr [ebp-8],3 
+
+00401017  ja          00401045 
+
+00401019  mov         ecx,dword ptr [ebp-8] 
+
+0040101C  jmp         dword ptr [ecx*4+40104Eh] 
+
+00401023  mov         dword ptr [ebp-4],0 
+
+0040102A  jmp         00401045 
+
+0040102C  mov         dword ptr [ebp-4],1 
+
+00401033  jmp         00401045 
+
+00401035  mov         dword ptr [ebp-4],2 
+
+0040103C  jmp         00401045 
+
+0040103E  mov         dword ptr [ebp-4],3 
+
+00401045  mov         eax,dword ptr [ebp-4] 
+
+00401048  mov         esp,ebp 
+
+0040104A  pop         ebp  
+
+0040104B  ret         4 
+
+
+
+I wrote what I thought was the most natural code:
+
+if((unsigned)selected&lt;4)
+\t\treturn selected;
+
+       else
+\t\treturn 0;
+
+
+which compiled to:
+
+01000000  push        ebp  
+
+00401001  mov         ebp,esp 
+
+00401003  cmp         dword ptr [ebp+8],4 
+
+00401007  jae         0040100E 
+
+00401009  mov         eax,dword ptr [ebp+8] 
+
+0040100C  jmp         00401010 
+
+0040100E  xor         eax,eax 
+
+00401010  pop         ebp  
+
+00401011  ret         4   
+
+
+
+Then i tried endian675's 'crap' 
+return ((selected &lt; 0 || selected &gt; 3) ? 0 : selected);
+which generated:
+
+
+00401000  push        ebp  
+
+00401001  mov         ebp,esp 
+
+00401003  push        ecx  
+
+00401004  cmp         dword ptr [ebp+8],0 
+
+00401008  jl          00401018 
+
+0040100A  cmp         dword ptr [ebp+8],3 
+
+0040100E  jg          00401018 
+
+00401010  mov         eax,dword ptr [ebp+8] 
+
+00401013  mov         dword ptr [ebp-4],eax 
+
+00401016  jmp         0040101F 
+
+00401018  mov         dword ptr [ebp-4],0 
+
+0040101F  mov         eax,dword ptr [ebp-4] 
+
+00401022  mov         esp,ebp 
+
+00401024  pop         ebp  
+
+00401025  ret         4
+
+
+and Finally, I tried petevalle's
+
+return (!(selected&gt;&gt;2))*selected;
+
+
+which generated:
+
+
+00401000  push        ebp  
+
+00401001  mov         ebp,esp 
+
+00401003  mov         eax,dword ptr [ebp+8] 
+
+00401006  sar         eax,2 
+
+00401009  neg         eax  
+
+0040100B  sbb         eax,eax 
+
+0040100D  inc         eax  
+
+0040100E  imul        eax,dword ptr [ebp+8] 
+
+00401012  pop         ebp  
+
+00401013  ret         4  
+
+
+
+It seems clear that there actually is a substantial tax on bad code, namely number of instructions and binary size increases (in this case by a factor of 4). [you can see the size by looking at the last 2 hex digits of the 'ret 4' instruction's address. (4B,11,25,13)
+

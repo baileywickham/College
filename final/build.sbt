@@ -1,5 +1,4 @@
-
-name := "example"
+name := "testscala"
 
 version := "0.1"
 
@@ -8,7 +7,7 @@ scalaVersion := "2.11.8"
 val sparkVersion = "2.2.0"
 
 resolvers ++= Seq(
-  "apache-snapshots" at "https://repossavingitory.apache.org/snapshots/"
+  "apache-snapshots" at "https://repository.apache.org/snapshots/"
 )
 
 libraryDependencies ++= Seq(
