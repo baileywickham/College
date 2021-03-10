@@ -1,2 +1,0 @@
-spark-submit --class example.App --master yarn ./target/scala-2.11/fun_2.11-1.0.jar
-example
