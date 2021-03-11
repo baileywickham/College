@@ -7,13 +7,13 @@ import java.nio.file.Paths;
 public class lab5 {
     public static void main(String[] args) {
         String file = fileToString(args[0]);
-        Cache c0 = new Cache(2048, 1, 1);
-        Cache c1 = new Cache(2048, 1, 2);
-        Cache c2 = new Cache(2048, 1, 4);
-        Cache c3 = new Cache(2048, 2, 1);
-        Cache c4 = new Cache(2048, 4, 1);
-        Cache c5 = new Cache(2048, 4, 4);
-        Cache c6 = new Cache(4096, 1, 1);
+        Cache c0 = new Cache(1, 2048, 1, 1);
+        Cache c1 = new Cache(2, 2048, 1, 2);
+        Cache c2 = new Cache(3, 2048, 1, 4);
+        Cache c3 = new Cache(4, 2048, 2, 1);
+        Cache c4 = new Cache(5, 2048, 4, 1);
+        Cache c5 = new Cache(6, 2048, 4, 4);
+        Cache c6 = new Cache(7, 4096, 1, 1);
         for (String line: file.split("\n")) {
             String addr = line.split("\\s+")[1].trim();
             c0.lookup(addr);
