@@ -31,11 +31,21 @@ public class Cache {
     }
     public String hexToBin(String hex) {
         BigInteger value = new BigInteger(hex, 16);
-        String bin = value.toString(2);
-        while (bin.length() < 32){
-            bin = "0" + bin;
+        return intToNBits(value, 32);
+    }
+    public String intToNBits(BigInteger i, int n) {
+        String ext = "0";
+        if (i.signum() < 0) {
+            ext = "1";
         }
-        return bin;
+        String s = i.toString(2);
+        if (s.length() > n) {
+            return s.substring(s.length()-n);
+        }
+        while (s.length() < n) {
+            s = ext + s;
+        }
+        return s;
     }
 }
 
