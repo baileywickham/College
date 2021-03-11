@@ -15,7 +15,7 @@ public class lab5 {
         Cache c5 = new Cache(2048, 4, 4);
         Cache c6 = new Cache(4096, 1, 1);
         for (String line: file.split("\n")) {
-            String addr = line.split(" ")[1].trim();
+            String addr = line.split("\\s+")[1].trim();
             c0.lookup(addr);
             c1.lookup(addr);
             c2.lookup(addr);

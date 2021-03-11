@@ -20,7 +20,8 @@ public class Cache {
 
     }
     public String hexToBin(String hex) {
-        return new Integer.parseInt(hex, 16);
+        // return new Integer.parseInt(hex, 16);
+        return hex;
     }
 }
 
