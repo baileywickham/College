@@ -20,7 +20,8 @@ public class Cache {
         this.cashNumber = cashNumber;
     }
     public void lookup(String addr) {
-
+        String binary = hexToBin(addr);
+        // System.out.println(binary);
     }
     public void printResults() {
         System.out.printf("Cache #%d\n", cashNumber);
@@ -29,8 +30,12 @@ public class Cache {
         System.out.println("---------------------------");
     }
     public String hexToBin(String hex) {
-        // return new Integer.parseInt(hex, 16);
-        return hex;
+        BigInteger value = new BigInteger(hex, 16);
+        String bin = value.toString(2);
+        while (bin.length() < 32){
+            bin = "0" + bin;
+        }
+        return bin;
     }
 }
 
