@@ -336,8 +336,6 @@ public class Interpreter {
         if (Rins.contains(nextS)){
             RInstruction nextInst = (RInstruction) insts.get(pc + 1);
             if ((inst.rtCode != 0 && nextInst.rsCode  == inst.rtCode) || (nextInst.rtCode != 0 && nextInst.rtCode  == inst.rtCode)) {
-                // idk what jr has in rt
-
                 ld_wait = true;
             }
         }
