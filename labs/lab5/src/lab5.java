@@ -7,15 +7,30 @@ import java.nio.file.Paths;
 public class lab5 {
     public static void main(String[] args) {
         String file = fileToString(args[0]);
-        Cache c1 = new Cache(...);
-        Cache c2 = new Cache(...);
-        Cache c3 = new Cache(...);
-        Cache c4 = new Cache(...);
+        Cache c0 = new Cache(2048, 1, 1);
+        Cache c1 = new Cache(2048, 1, 2);
+        Cache c2 = new Cache(2048, 1, 4);
+        Cache c3 = new Cache(2048, 2, 1);
+        Cache c4 = new Cache(2048, 4, 1);
+        Cache c5 = new Cache(2048, 4, 4);
+        Cache c6 = new Cache(4096, 1, 1);
         for (String line: file.split("\n")) {
-            Cache.lookup(line.split(" ")[1].trim());
+            String addr = line.split(" ")[1].trim();
+            c0.lookup(addr);
+            c1.lookup(addr);
+            c2.lookup(addr);
+            c3.lookup(addr);
+            c4.lookup(addr);
+            c5.lookup(addr);
+            c6.lookup(addr);
         }
+        c0.printResults();
         c1.printResults();
-
+        c2.printResults();
+        c3.printResults();
+        c4.printResults();
+        c5.printResults();
+        c6.printResults();
     }
 
     public static String fileToString(String path) {
@@ -26,7 +41,6 @@ public class lab5 {
         } catch (Exception e) {
             System.out.println(e.toString());
         }
-
         return content;
     }
 }

@@ -2,7 +2,6 @@ import java.math.BigInteger;
 
 public class Cache {
     //long twotothethirtysecond = 4294967296;
-    int[] cache;
     int hits = 0;
     int misses = 0;
     int assoc;
@@ -21,9 +20,8 @@ public class Cache {
 
     }
     public String hexToBin(String hex) {
-        return new BigInteger(hex, 16).toString();
+        return new Integer.parseInt(hex, 16);
     }
-
 }
 
 class CacheEntry {
@@ -32,6 +30,5 @@ class CacheEntry {
     public CacheEntry(boolean vaild, String tag) {
         this.tag = tag;
         this.valid = valid;
-
     }
 }
