@@ -2,6 +2,7 @@ import java.math.BigInteger;
 
 public class Cache {
     //long twotothethirtysecond = 4294967296;
+    CacheEntry[] cache;
     int hits = 0;
     int misses = 0;
     int assoc;
@@ -10,14 +11,15 @@ public class Cache {
     int cashNumber;
     
     public float getRatio(){
-        return misses == 0 ? 0 : hits / misses;
+        return misses == 0 ? 0 : (float) hits / (float) misses;
     }
 
-    public Cache(int cashNumber, int cacheSize, int assoc, int blockSize) {
+    public Cache(int casheNumber, int cacheSize, int assoc, int blockSize) {
         this.cacheSize = cacheSize;
         this.assoc = assoc;
         this.blockSize = blockSize;
-        this.cashNumber = cashNumber;
+        this.cashNumber = casheNumber;
+        this.cache = new CacheEntry[cacheSize];
     }
     public void lookup(String addr) {
         String binary = hexToBin(addr);
@@ -52,7 +54,7 @@ public class Cache {
 class CacheEntry {
     boolean valid;
     String tag;
-    public CacheEntry(boolean vaild, String tag) {
+    public CacheEntry(boolean valid, String tag) {
         this.tag = tag;
         this.valid = valid;
     }
