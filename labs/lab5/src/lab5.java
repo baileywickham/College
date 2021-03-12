@@ -19,17 +19,17 @@ public class lab5 {
             c0.lookup(addr);
             c1.lookup(addr);
             c2.lookup(addr);
-            c3.lookup(addr);
-            c4.lookup(addr);
-            c5.lookup(addr);
+            //c3.lookup(addr);
+            //c4.lookup(addr);
+            //c5.lookup(addr);
             c6.lookup(addr);
         }
         c0.printResults();
         c1.printResults();
         c2.printResults();
-        c3.printResults();
-        c4.printResults();
-        c5.printResults();
+        //c3.printResults();
+        //c4.printResults();
+        //c5.printResults();
         c6.printResults();
     }
 
