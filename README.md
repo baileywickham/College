@@ -7,6 +7,7 @@ Monorepo! All class documents will be stored here. Mostly programming assignment
   - [CSC 202](/CSC202): Data Structures
   - [CSC 203](/CSC203): Java
   - [CPE 225](/CPE225): Computer Archetecture
+  - [CPE 315](/CPE315): Assembly and Pipelines
   - [CPE 357](/CPE357): Systems Programming
   - [CSC 348](/CSC348): Discrete Structures
   - [CSC 349](/CSC349): Algorithms
