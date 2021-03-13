@@ -1,0 +1,33 @@
+HW2: 1.4.1 (a,b), 1.4.3 (a,b), 1.5.1 (a), 1.5.2 (a) - Due Fri. (2/5)
+
+1.4.1 (a,b)
+a)
+// take the weighted average and multiply by the clock rate
+Cycles P1: A + .2B + .3C + .3D = 2.6
+Cycles P2: .2A + .2B + .2C + .2D = 2
+P1 Time: 2.6*10^6 / 2.5GHz = 1.04ms
+P2 Time: 2*10^6/3GHz = .66ms
+P2 is quicker
+b)
+Time:
+P1 Cycles: .2A + .15B + .2C + .1D = 1.7
+P2 Cycles: .1A + .2B + .1C + .1D =1.2
+P1 Time: 1.7*10^6 / 2.5 = .68ms
+P2 Time: 1.2*10^6 / 3  = .04ms
+P2 is quicker
+
+
+1.4.3
+a)
+P1 A + 2B + 3C + 3D = 2.6*10^6
+P2 2A + 2B + 2C + 2D = 2*10*6
+b)
+P1: .2A + .15B + .2C + .1D = 1.7*10^6
+P2: .1A + .2B + .1C + .1D = 1.2*10^6
+
+1.5.1
+P1: 4/2.0Ghz
+P2: 4/4.0Ghz
+
+1.5.2
+P2 is faster
