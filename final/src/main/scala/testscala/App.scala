@@ -27,14 +27,14 @@ object App {
       val command = readLine().split("\\s+")
       if (command.length > 1 && (command(0) == "t" || command(0) == "transition") && command.length == 2) {
         transition_table = Option(sc.textFile(command(1))
-          .flatMap(l => l.split("\\s+").sliding(prefix_length + suffix_length, 1).toList)
+          .flatMap(l => split_whitespace(l).sliding(prefix_length + suffix_length, 1).toList)
           .map(x => (x.slice(0, prefix_length).mkString(" "), x.slice(prefix_length, prefix_length + suffix_length).mkString(" ")))
           .groupByKey()
           .persist(StorageLevel.MEMORY_AND_DISK))
         println("Transition table for " + command(0) + " created.")
       }
       else if (command.length > 2 && command(0) == "g" || command(0) == "generate") {
-        if (transition_table == None) {
+        if (transition_table.isEmpty) {
           println("No transition table found")
         }
         else {
@@ -72,5 +72,8 @@ object App {
 
   def getRandomWord(l: List[String], random: Random): String = {
     l(random.nextInt(l.length))
+  }
+  def split_whitespace(s: String): Array[String] = {
+      s.split("\\s+")
   }
 }
