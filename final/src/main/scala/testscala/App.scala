@@ -1,23 +1,14 @@
 package testscala
 
-import org.apache.spark.SparkContext._
-import scala.util.Random
-import org.apache.spark.storage._
-
-
-import scala.io._
+import org.apache.log4j.{Level, Logger}
+import org.apache.spark.rdd.RDD
+import org.apache.spark.storage.StorageLevel
 import org.apache.spark.{SparkConf, SparkContext}
-import org.apache.spark.rdd._
-import org.apache.log4j.Logger
-import org.apache.log4j.Level
-import scala.util.control.Exception._
 
-
-
+import scala.collection.Iterable
 import scala.io.StdIn.readLine
-
-
-import scala.collection._
+import scala.util.Random
+import scala.util.control.Exception.allCatch
 
 object App {
 
@@ -31,19 +22,19 @@ object App {
     var suffix_length = 1
     val random = new Random
     var transition_table = None: Option[RDD[(String, Iterable[String])]]
-    while(true) {
+    while (true) {
       print("> ")
       val command = readLine().split("\\s+")
       if (command.length > 1 && (command(0) == "t" || command(0) == "transition") && command.length == 2) {
         transition_table = Option(sc.textFile(command(1))
           .flatMap(l => l.split("\\s+").sliding(prefix_length + suffix_length, 1).toList)
-          .map(x => (x.slice(0, prefix_length).mkString(" "),x.slice(prefix_length, prefix_length + suffix_length).mkString(" ")))
+          .map(x => (x.slice(0, prefix_length).mkString(" "), x.slice(prefix_length, prefix_length + suffix_length).mkString(" ")))
           .groupByKey()
           .persist(StorageLevel.MEMORY_AND_DISK))
-        println("Transition table for "+command(0)+" created.")
+        println("Transition table for " + command(0) + " created.")
       }
-      else if(command.length > 2 && command(0) == "g" || command(0) == "generate") {
-        if(transition_table == None) {
+      else if (command.length > 2 && command(0) == "g" || command(0) == "generate") {
+        if (transition_table == None) {
           println("No transition table found")
         }
         else {
@@ -56,7 +47,7 @@ object App {
           prev = prev.slice(prev.length - prefix_length, prev.length)
           var next = transition_table.get.lookup(prev.mkString(" "))
           var s = ""
-          while(next.length > 0 && i < length) {
+          while (next.length > 0 && i < length) {
             i += 1
             s = getRandomWord(next(0).toList, random)
             print(" " + s)
@@ -70,6 +61,7 @@ object App {
     }
 
   }
+
   def getRandomWord(l: List[String], random: Random): String = {
     l(random.nextInt(l.length))
   }
