@@ -1,9 +1,1 @@
-[0m[[0m[0mdebug[0m] [0m[0mPackaging /home/y/workspace/CSC369/assignments/asgn4/target/scala-2.11/example_2.11-0.1.jar ...[0m
-[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	example[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/y/workspace/CSC369/assignments/asgn4/target/scala-2.11/classes/example[0m
-[0m[[0m[0mdebug[0m] [0m[0m	example/App$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/y/workspace/CSC369/assignments/asgn4/target/scala-2.11/classes/example/App$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	example/App.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /home/y/workspace/CSC369/assignments/asgn4/target/scala-2.11/classes/example/App.class[0m
-[0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m
+[0m[[0m[0mdebug[0m] [0m[0mJar uptodate: /home/y/workspace/CSC369/final/target/scala-2.11/testscala_2.11-0.1.jar[0m
