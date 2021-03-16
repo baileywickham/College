@@ -19,7 +19,7 @@ object App {
     val sc = new SparkContext(conf)
 
     var prefix_length = 2
-    var suffix_length = 1
+    var suffix_length = 3
     val random = new Random
     var transition_table = None: Option[RDD[(String, Iterable[String])]]
     while (true) {
@@ -57,6 +57,14 @@ object App {
           }
           println()
         }
+      }
+      else if (command.length == 2 && command(0) == "prefix") {
+        prefix_length = command(1).toInt
+        println("Prefix length changed")
+      }
+      else if (command.length == 2 && command(0) == "suffix") {
+        suffix_length = command(1).toInt
+        println("Suffix length changed")
       }
     }
 
