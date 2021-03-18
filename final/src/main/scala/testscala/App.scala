@@ -22,6 +22,10 @@ object App {
     var suffix_length = 3
     val random = new Random
     var transition_table = None: Option[RDD[(String, Iterable[String])]]
+    println("t <fileName> - create Transition table on existing fileName\n" +
+            "g <int> - generate  followed by number of iterations\n" +
+            "prefix <int> - change prefix length. Current value = " + prefix_length + "\n" +
+            "suffix <int> - change suffix length. Current Value = " + suffix_length + "\n")
     while (true) {
       print("> ")
       val command = readLine().split("\\s+")
@@ -89,11 +93,11 @@ object App {
       }
       else if (command.length == 2 && command(0) == "prefix") {
         prefix_length = command(1).toInt
-        println("Prefix length changed")
+        println("Prefix length changed to " + prefix_length)
       }
       else if (command.length == 2 && command(0) == "suffix") {
         suffix_length = command(1).toInt
-        println("Suffix length changed")
+        println("Suffix length changed to" + suffix_length)
       }
       else {
         help
