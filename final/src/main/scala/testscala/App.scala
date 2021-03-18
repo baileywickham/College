@@ -1,5 +1,6 @@
 package testscala
 
+import java.io.{File, FileWriter}
 import java.util.concurrent.TimeUnit
 
 import org.apache.log4j.{Level, Logger}
@@ -27,7 +28,13 @@ object App {
     println("t <fileName> - create Transition table on existing fileName\n" +
             "g <int> - generate  followed by number of iterations\n" +
             "prefix <int> - change prefix length. Current value = " + prefix_length + "\n" +
-            "suffix <int> - change suffix length. Current Value = " + suffix_length + "\n")
+            "suffix <int> - change suffix length. Current Value = " + suffix_length + "\n" +
+            "exit or q - type exit or q to quit"
+    )
+    val filename = "results.txt"
+    val file = new File(filename)
+    file.delete()
+    file.createNewFile()
     while (true) {
       print("> ")
       val command = readLine().split("\\s+")
@@ -44,7 +51,9 @@ object App {
           .persist(StorageLevel.MEMORY_AND_DISK))
         val transition_table_time_creation_t1 = System.currentTimeMillis()
         val transition_table_creation_time = transition_table_time_creation_t1 - transition_table_time_creation_t0
-        println("Transition table for " + command(1) + " created in " + transition_table_creation_time + " milliseconds")
+        val str = "Transition table for " + command(1) + " created in " + transition_table_creation_time + " milliseconds"
+        println(str)
+        writeOutToFile(str + "\n", file)
       }
       else if (command.length > 2 && command(0) == "g" || command(0) == "generate") {
         if (transition_table.isEmpty) {
@@ -63,18 +72,23 @@ object App {
           while (next.length > 0 && i < length) {
             i += 1
             s = getRandomWord(next(0).toList, random)
-            print(" " + s)
+            val str = " " + s
+            print(str)
+            writeOutToFile(str, file)
             prev = prev ++ s.split("\\s+")
             prev = prev.slice(prev.length - prefix_length, prev.length)
             next = transition_table.get.lookup(prev.mkString(" "))
           }
           println()
+          writeOutToFile("\n", file)
           val chain_generation_time_t1 = System.currentTimeMillis()
           val chain_generation_elapsed_time = chain_generation_time_t1 - chain_generation_time_t0
           val minutes = TimeUnit.MILLISECONDS.toMinutes(chain_generation_elapsed_time)
           val seconds = TimeUnit.MILLISECONDS.toSeconds(chain_generation_elapsed_time)
-          println("Markov Chain generation time : " + minutes + " minutes and " + seconds + " seconds or " +
-            chain_generation_elapsed_time + " milliseconds")
+          val str = "Markov Chain generation time : " + minutes + " minutes and " + seconds + " seconds or " +
+            chain_generation_elapsed_time + " milliseconds"
+          println(str)
+          writeOutToFile(str + "\n", file)
         }
       }
       else if (command.length == 2 && command(0) == "g") {
@@ -118,6 +132,10 @@ object App {
         suffix_length = command(1).toInt
         println("Suffix length changed to" + suffix_length)
       }
+      else if (command.length == 1 && command(0) == "exit" || command(0) == "q") {
+        println("Exiting Program....");
+        return;
+      }
       else {
         help
       }
@@ -139,5 +157,11 @@ object App {
       "prefix <int>\n" +
       "transition <filename>\n" +
       "generate <int> <prefix>\n")
+  }
+
+  def writeOutToFile(text: String, file: File): Unit = {
+    val fw = new FileWriter(file, true)
+    fw.write(">" + text)
+    fw.close()
   }
 }
