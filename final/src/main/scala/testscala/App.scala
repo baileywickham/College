@@ -1,5 +1,7 @@
 package testscala
 
+import java.util.concurrent.TimeUnit
+
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.rdd.RDD
 import org.apache.spark.storage.StorageLevel
@@ -34,20 +36,24 @@ object App {
         if (command.length == 3 && command(2) == "xml") {
           f = (x => split_brackets(x))
         }
+        val transition_table_time_creation_t0 = System.currentTimeMillis()
         transition_table = Option(sc.textFile(command(1))
           .flatMap(l => f(l).sliding(prefix_length + suffix_length, 1).toList)
           .map(x => (x.slice(0, prefix_length).mkString(" "), x.slice(prefix_length, prefix_length + suffix_length).mkString(" ")))
           .groupByKey()
           .persist(StorageLevel.MEMORY_AND_DISK))
-        println("Transition table for " + command(0) + " created.")
+        val transition_table_time_creation_t1 = System.currentTimeMillis()
+        val transition_table_creation_time = transition_table_time_creation_t1 - transition_table_time_creation_t0
+        println("Transition table for " + command(1) + " created in " + transition_table_creation_time + " milliseconds")
       }
       else if (command.length > 2 && command(0) == "g" || command(0) == "generate") {
         if (transition_table.isEmpty) {
           println("No transition table found")
         }
         else {
-          var length = allCatch.opt(command(1).toInt).getOrElse(10)
-          var start = command.slice(2, command.length)
+          val chain_generation_time_t0 = System.currentTimeMillis()
+          val length = allCatch.opt(command(1).toInt).getOrElse(10)
+          val start = command.slice(2, command.length)
           var i = 0
           var prev = start
           print(prev.mkString(" "))
@@ -63,12 +69,19 @@ object App {
             next = transition_table.get.lookup(prev.mkString(" "))
           }
           println()
+          val chain_generation_time_t1 = System.currentTimeMillis()
+          val chain_generation_elapsed_time = chain_generation_time_t1 - chain_generation_time_t0
+          val minutes = TimeUnit.MILLISECONDS.toMinutes(chain_generation_elapsed_time)
+          val seconds = TimeUnit.MILLISECONDS.toSeconds(chain_generation_elapsed_time)
+          println("Markov Chain generation time : " + minutes + " minutes and " + seconds + " seconds or " +
+            chain_generation_elapsed_time + " milliseconds")
         }
       }
       else if (command.length == 2 && command(0) == "g") {
         if (transition_table.isEmpty) {
           println("No transition table found")
         } else {
+          val chain_generation_time_t0 = System.currentTimeMillis()
           val length = allCatch.opt(command(1).toInt).getOrElse(10)
           val start = Array(getRandomWord(transition_table.get
             .map(x => x._1)
@@ -88,6 +101,12 @@ object App {
             next = transition_table.get.lookup(prev.mkString(" "))
           }
           println()
+          val chain_generation_time_t1 = System.currentTimeMillis()
+          val chain_generation_elapsed_time = chain_generation_time_t1 - chain_generation_time_t0
+          val minutes = TimeUnit.MILLISECONDS.toMinutes(chain_generation_elapsed_time)
+          val seconds = TimeUnit.MILLISECONDS.toSeconds(chain_generation_elapsed_time)
+          println("Markov Chain generation time : " + minutes + " minutes and " + seconds + " seconds or " +
+            chain_generation_elapsed_time + " milliseconds")
         }
 
       }
