@@ -25,9 +25,13 @@ object App {
     while (true) {
       print("> ")
       val command = readLine().split("\\s+")
-      if (command.length > 1 && (command(0) == "t" || command(0) == "transition") && command.length == 2) {
+      if (command.length > 1 && (command(0) == "t" || command(0) == "transition") && command.length == 2 || command.length == 3) {
+        var f : String => Array[String] = {x => split_whitespace(x)}
+        if (command.length == 3 && command(2) == "xml") {
+          f = (x => split_brackets(x))
+        }
         transition_table = Option(sc.textFile(command(1))
-          .flatMap(l => split_whitespace(l).sliding(prefix_length + suffix_length, 1).toList)
+          .flatMap(l => f(l).sliding(prefix_length + suffix_length, 1).toList)
           .map(x => (x.slice(0, prefix_length).mkString(" "), x.slice(prefix_length, prefix_length + suffix_length).mkString(" ")))
           .groupByKey()
           .persist(StorageLevel.MEMORY_AND_DISK))
@@ -58,25 +62,29 @@ object App {
         }
       }
       else if (command.length == 2 && command(0) == "g") {
-        val length = allCatch.opt(command(1).toInt).getOrElse(10)
-        val start = Array(getRandomWord(transition_table.get
-          .map(x => x._1)
-          .collect().toList, random))
-        var prev = start
-        print(prev.mkString(" "))
-        prev = prev.slice(prev.length - prefix_length, prev.length)
-        var next = transition_table.get.lookup(prev.mkString(" "))
-        var s = ""
-        var i = 0
-        while (next.nonEmpty && i < length) {
-          i += 1
-          s = getRandomWord(next.head.toList, random)
-          print(" " + s)
-          prev = prev ++ s.split("\\s+")
+        if (transition_table.isEmpty) {
+          println("No transition table found")
+        } else {
+          val length = allCatch.opt(command(1).toInt).getOrElse(10)
+          val start = Array(getRandomWord(transition_table.get
+            .map(x => x._1)
+            .collect().toList, random))
+          var prev = start
+          print(prev.mkString(" "))
           prev = prev.slice(prev.length - prefix_length, prev.length)
-          next = transition_table.get.lookup(prev.mkString(" "))
+          var next = transition_table.get.lookup(prev.mkString(" "))
+          var s = ""
+          var i = 0
+          while (next.nonEmpty && i < length) {
+            i += 1
+            s = getRandomWord(next.head.toList, random)
+            print(" " + s)
+            prev = prev ++ s.split("\\s+")
+            prev = prev.slice(prev.length - prefix_length, prev.length)
+            next = transition_table.get.lookup(prev.mkString(" "))
+          }
+          println()
         }
-        println()
 
       }
       else if (command.length == 2 && command(0) == "prefix") {
@@ -99,6 +107,9 @@ object App {
   }
   def split_whitespace(s: String): Array[String] = {
       s.split("\\s+")
+  }
+  def split_brackets(s: String): Array[String] = {
+    s.split("(<|>)")
   }
   def help = {
     println("suffix <int>\n" +
