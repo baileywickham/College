@@ -39,7 +39,6 @@ object App {
         }
         else {
           var length = allCatch.opt(command(1).toInt).getOrElse(10)
-          var tt = transition_table.getOrElse(None)
           var start = command.slice(2, command.length)
           var i = 0
           var prev = start
@@ -58,6 +57,28 @@ object App {
           println()
         }
       }
+      else if (command.length == 2 && command(0) == "g") {
+        val length = allCatch.opt(command(1).toInt).getOrElse(10)
+        val start = Array(getRandomWord(transition_table.get
+          .map(x => x._1)
+          .collect().toList, random))
+        var prev = start
+        print(prev.mkString(" "))
+        prev = prev.slice(prev.length - prefix_length, prev.length)
+        var next = transition_table.get.lookup(prev.mkString(" "))
+        var s = ""
+        var i = 0
+        while (next.nonEmpty && i < length) {
+          i += 1
+          s = getRandomWord(next.head.toList, random)
+          print(" " + s)
+          prev = prev ++ s.split("\\s+")
+          prev = prev.slice(prev.length - prefix_length, prev.length)
+          next = transition_table.get.lookup(prev.mkString(" "))
+        }
+        println()
+
+      }
       else if (command.length == 2 && command(0) == "prefix") {
         prefix_length = command(1).toInt
         println("Prefix length changed")
@@ -65,6 +86,9 @@ object App {
       else if (command.length == 2 && command(0) == "suffix") {
         suffix_length = command(1).toInt
         println("Suffix length changed")
+      }
+      else {
+        help
       }
     }
 
@@ -75,5 +99,11 @@ object App {
   }
   def split_whitespace(s: String): Array[String] = {
       s.split("\\s+")
+  }
+  def help = {
+    println("suffix <int>\n" +
+      "prefix <int>\n" +
+      "transition <filename>\n" +
+      "generate <int> <prefix>\n")
   }
 }

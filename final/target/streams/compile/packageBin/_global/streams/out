@@ -1,1 +1,19 @@
-[0m[[0m[0mdebug[0m] [0m[0mJar uptodate: /home/y/workspace/CSC369/final/target/scala-2.11/testscala_2.11-0.1.jar[0m
+[0m[[0m[0mdebug[0m] [0m[0mPackaging /home/y/workspace/CSC369/final/target/scala-2.11/testscala_2.11-0.1.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	testscala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/y/workspace/CSC369/final/target/scala-2.11/classes/testscala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	testscala/App$$anonfun$3.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/y/workspace/CSC369/final/target/scala-2.11/classes/testscala/App$$anonfun$3.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	testscala/App.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/y/workspace/CSC369/final/target/scala-2.11/classes/testscala/App.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	testscala/App$$anonfun$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/y/workspace/CSC369/final/target/scala-2.11/classes/testscala/App$$anonfun$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	testscala/App$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/y/workspace/CSC369/final/target/scala-2.11/classes/testscala/App$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	testscala/App$$anonfun$main$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/y/workspace/CSC369/final/target/scala-2.11/classes/testscala/App$$anonfun$main$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	testscala/App$$anonfun$main$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/y/workspace/CSC369/final/target/scala-2.11/classes/testscala/App$$anonfun$main$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	testscala/App$$anonfun$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/y/workspace/CSC369/final/target/scala-2.11/classes/testscala/App$$anonfun$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m
