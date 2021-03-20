@@ -1,0 +1,4 @@
+Hehe. Looks like SBCL has the edge in numerics [on the shootout](http://shootout.alioth.debian.org/gp4/benchmark.php?test=all&amp;lang=ghc&amp;lang2=sbcl) but otherwise its a bit of a wash ('cept the memory overhead of SBCL programs...). 
+
+Hmm, we really should submit some ByteString-based entries.For having so many people that love xkcd and having such an interesting comment thread for todays cartoon, I actually want an up arrow for reddit as a whole.&gt; There's ABSOLUTELY NO WTF whatsoever with that code.
+
