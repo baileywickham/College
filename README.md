@@ -12,6 +12,7 @@ Monorepo! All class documents will be stored here. Mostly programming assignment
   - [CSC 348](/CSC348): Discrete Structures
   - [CSC 349](/CSC349): Algorithms
   - [CSC 365](/CSC365): Databases
+  - [CSC 369](/CSC369): Distributed Programming
   - [CSC 430](/CSC430): Programming Languages
   - [CSC 445](/CSC445): Theory of Computation
   - [CSC 453](/CSC453): Operating Systems
