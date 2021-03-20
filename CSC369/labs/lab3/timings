@@ -1,0 +1,16 @@
+hadoop:
+real    0m22.336s
+user    0m18.903s
+sys     0m1.507s
+
+java:
+real    0m0.231s
+user    0m0.327s
+sys     0m0.088s
+
+java with | sort
+real    0m0.210s
+user    0m0.320s
+sys     0m0.109s
+
+
