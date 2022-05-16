@@ -16,6 +16,7 @@ Monorepo! All class documents will be stored here. Mostly programming assignment
   - [CSC 430](/CSC430): Programming Languages
   - [CSC 445](/CSC445): Theory of Computation
   - [CSC 453](/CSC453): Operating Systems
+  - [CSC 530](/CSC530): Grad Programming Languages
 - Math
   - [MATH 306](/MATH306): Linear Algebra 2
   - [MATH 406](/MATH406): Linear Algebra 3
