@@ -1,0 +1,7 @@
+compiled
+*.bak
+*.rkt~
+*.ll
+*.c
+*.mini
+*.bc

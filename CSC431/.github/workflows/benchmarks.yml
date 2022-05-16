@@ -1,0 +1,39 @@
+name: Benchmarks
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Benchmark Tests
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup Racket environment
+      uses: Bogdanp/setup-racket@v1.7
+      with:
+          version: 8.3
+
+    - name: Install graph
+      working-directory: mini-compiler
+      run: raco pkg install --auto graph
+
+    - name: Install threading
+      working-directory: mini-compiler
+      run: raco pkg install --auto threading-lib
+
+    - name: Install packages
+      run: sudo apt-get update && sudo apt-get install -y gcc-arm-linux-gnueabihf gcc-arm-linux-gnueabi  qemu-user
+
+    - name: Raco Build
+      working-directory: mini-compiler
+      run: raco make benchmarks.rkt
+
+    - name: Test with benchmarks.rkt
+      working-directory: mini-compiler
+      run: racket benchmarks.rkt --error
+

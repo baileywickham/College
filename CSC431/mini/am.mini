@@ -1,0 +1,11 @@
+int g;
+
+fun main() int {
+    int a;
+    a = 1;
+    while (true) {
+        a = a + 2;
+    }
+    print a;
+    return 0;
+}

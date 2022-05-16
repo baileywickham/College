@@ -1,0 +1,36 @@
+struct A {
+int i;
+};
+
+fun main() int {
+    int a;
+    int b;
+    int c;
+    int d;
+    struct A e;
+    a = 1 + 1;
+    b = a + 2;
+    c = b + a;
+    d = 1;
+    d = d + 1;
+    print a;
+    print d;
+    e = new A;
+    e.i = 3;
+
+    if (true) {
+        a = b + 1;
+    } else {
+        a = 6;
+    }
+    b = a;
+
+    while (true) {
+        a = 1 + 1;
+    }
+    c = a;
+
+
+
+    return c;
+}
