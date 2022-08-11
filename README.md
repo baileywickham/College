@@ -1,5 +1,7 @@
 # college
 
+I graduated June, 2022 with a degree in Mathematics and Computer Science. 
+
 Monorepo! All class documents will be stored here. Mostly programming assignments with my LaTeX from math classes as well.
 
 ## Classes
@@ -22,6 +24,7 @@ Monorepo! All class documents will be stored here. Mostly programming assignment
   - [MATH 306](/MATH306): Linear Algebra 2
   - [MATH 406](/MATH406): Linear Algebra 3
   - [MATH 412](/MATH412): Real Analysis
+  - [MATH 461](https://github.com/baileywickham/CategoryTheory): Senior Project
 - Poly Sci
   - [POLS 361](/POLS361) (R)
 
